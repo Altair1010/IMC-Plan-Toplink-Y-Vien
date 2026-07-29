@@ -1,0 +1,40 @@
+{
+  "template_version": "1.0",
+  "project": "toplink-y-vien",
+  "run": "TOPLINK_RUN1_BUILD",
+  "status": "PLANNED",
+  "generated_at_ict": "<ISO-8601>",
+  "canonical_scope": [
+    "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md",
+    "docs Toplink/TOPLINK_PAGE_MILESTONES.md"
+  ],
+  "dmp": {
+    "trace_id": "<required for deliverable-producing run>",
+    "version": "3.15.1",
+    "active_brand_readback": "toplink-y-vien",
+    "input_paths": [],
+    "input_digest": "<SHA-256>",
+    "output_paths": [],
+    "output_digest": "<SHA-256>",
+    "skipped_dimensions": []
+  },
+  "reviews": [],
+  "issues": [],
+  "human_gates": [],
+  "stable_ids": [],
+  "checks": {
+    "reference_integrity": "NOT_RUN",
+    "unicode": "NOT_RUN",
+    "secret_pii": "NOT_RUN",
+    "git_diff_check": "NOT_RUN",
+    "sheet_readback": "NOT_APPLICABLE"
+  },
+  "external_state": {
+    "sheet_target": "BLOCKED_TARGET_INPUT",
+    "page_mutation": false,
+    "sheet_mutation": false,
+    "public_publishing": false
+  },
+  "next_safe_action": "<bounded action>",
+  "lease_released": false
+}

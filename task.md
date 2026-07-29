@@ -1,37 +1,61 @@
-# Active work
+# task.md — active execution only
 
-**Status:** complete
+## Status
 
-**Work item:** Repository migration, Toplink knowledge grounding, and agent/skill bootstrap.
+`IN_PROGRESS` — regenerate the Toplink operating scaffold from the approved plan. This is a
+documentation/control-plane change only; no DMP deliverable invocation, Page mutation, Google
+Sheets write, public publishing, or external-runtime mutation is authorized.
 
-## Delivered
+## Current work
 
-- Fresh Git/Trellis scaffold with Claude, Cursor, and Codex integration.
-- Six source-identical Agency reviewer files and nine Trellis workflow skills.
-- Four validated Toplink-specific skills, `spec.md`, source grounding, safety, routing, and
-  migration records.
-- Move-verified `docs Toplink/`: 14 expected files, 14 present, zero missing/unexpected/hash mismatch.
+- **Scope proof:** user approved the 2026-07-29 scaffold-regeneration plan.
+- **Deliverables:** Toplink-specific Claude ↔ Codex protocol; expanded root control plane;
+  lifecycle templates; two-run handoff/manifest templates; cross-link validation.
+- **Non-goals:** importing Thảo Tây history, staging payloads, credentials, Page/Sheet IDs,
+  analytics baselines, local tool caches, or its brand/content facts.
+- **Next safe action:** update the root control-plane documents while this lease is active.
 
-## Non-goals preserved
+## Assumptions
 
-- No DMP deliverable invocation, Page mutation, Sheets mutation, commercial activation, or public
-  publishing occurred.
+- `docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md` and `TOPLINK_PAGE_MILESTONES.md` stay the only
+  strategy and execution owners for Toplink.
+- This repository remains independent. A source pattern may be adapted, but never becomes a
+  source of Toplink facts or external targets.
 
-## Lease
+## 🔒 Lease — Claude Code ↔ Codex CLI
 
-None — migration finished.
+> Before writing a shared file set, add one scoped row. Read-only work may run in parallel.
+> A handoff requires the current writer to stop, checkpoint durable state, and release its row
+> before the next writer acquires a new one.
 
-## Verification
+| Agent/runtime | File set | Started (ICT) | Purpose |
+|---|---|---|---|
+| Codex CLI | root control plane; `docs/system/**`; `docs/prompts/**`; `README.md` | 2026-07-29 | Regenerate approved Toplink scaffold |
 
-- [2026-07-29] Source audit → PASS — lower-cost read-only pass covered all 14 Toplink documents.
-- [2026-07-29] Trellis foundation → PASS — Git and Trellis 0.6.8 initialized; task CLI responds.
-- [2026-07-29] Documentation move → PASS — 14/14 SHA-256 verification; source folder absent.
-- [2026-07-29] Agent/skill layer → PASS — six Agency hashes match source; four Toplink skills pass
-  structural validation and a fresh-context smoke test blocks unsafe publishing correctly.
-- [2026-07-29] Runtime readiness → PASS — DMP v3.15.1 plugin and `toplink-y-vien` profile are present;
-  no real invocation was performed.
+## Checklist
 
-## Next safe action
+- [ ] Define the Toplink-specific Claude ↔ Codex contract and ownership boundaries.
+- [ ] Regenerate root rules, governance, loop, state, memory, and read order.
+- [ ] Add reusable handoff and two-run manifest templates.
+- [ ] Validate references, prohibited cross-brand leakage, UTF-8 content, and diff hygiene.
+- [ ] Record a checkpoint, release the lease, and reset this file to the idle template.
 
-Begin only TL-M0 readiness work permitted by `docs Toplink/TOPLINK_PAGE_MILESTONES.md`; retain all
-external targets, legal/product evidence, and professional-review dependencies as blocked inputs.
+## Verification contract
+
+- Every link/reference resolves to a tracked Toplink path.
+- No document grants an agent human approval or permits an unapproved external mutation.
+- `toplink-y-vien` remains the only DMP brand slug; Sheet status remains
+  `BLOCKED_TARGET_INPUT`.
+- No Thảo Tây credential, identifier, baseline, deliverable, or runtime configuration enters
+  the repository.
+- `git diff --check` and bounded content checks pass before close.
+
+## Blockers
+
+None for the documentation-only scaffold work. Existing Toplink execution inputs remain blocked
+as recorded in `STATE.md` and `GOVERNANCE.md §3`.
+
+## Recent checkpoints
+
+- [2026-07-29] `STARTED` — user approved the scaffold-regeneration plan; Codex acquired the
+  scoped documentation lease. External mutations remain zero.

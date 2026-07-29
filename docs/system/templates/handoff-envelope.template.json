@@ -1,0 +1,24 @@
+{
+  "template_version": "1.0",
+  "project": "toplink-y-vien",
+  "run": "TOPLINK_RUN1_BUILD",
+  "stage": "claude_to_codex",
+  "prepared_at_ict": "<ISO-8601>",
+  "prepared_by": "Claude Code",
+  "recipient": "Codex CLI",
+  "lease_status": "RELEASED",
+  "read_after_independent_audit": false,
+  "canonical_inputs": [],
+  "dmp": {
+    "trace_id": "<required for deliverable-producing run>",
+    "version": "3.15.1",
+    "active_brand_readback": "toplink-y-vien",
+    "input_digest": "<SHA-256>",
+    "output_digest": "<SHA-256>"
+  },
+  "stable_ids": [],
+  "open_issue_ids": [],
+  "human_gate_ids": [],
+  "allowed_next_action": "<bounded action>",
+  "forbidden_actions": []
+}
