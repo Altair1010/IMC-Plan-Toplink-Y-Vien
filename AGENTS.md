@@ -56,3 +56,29 @@ owners respectively.
 Before editing shared project artifacts, take a scoped lease in `task.md`. Leave a checkpoint
 with evidence after each meaningful step, then release the lease at completion. Do not erase
 unresolved blockers or claim a milestone has advanced without the canonical Done gate.
+
+### Claude ↔ Codex coordination
+
+The detailed, Toplink-only contract is
+`docs/system/claude-codex-operating-contract.md`. It is authoritative for runtime ownership,
+handoff, approval tiers, two-run collaboration, and file-ledger behaviour.
+
+- Claude Code owns DMP raw authoring, creative/strategy drafts, and Agency-review coordination.
+- Codex CLI owns repository plumbing, evidence/status/allowed-use reconciliation, schemas,
+  manifests, QA, bounded automation, and exact read-back verification.
+- Neither runtime may invent brand, founder, product, legal/franchise, health, availability, or
+  performance facts, nor grant a human `APPROVED` state.
+- `TL-M1`–`TL-M5` are one two-run package: `TOPLINK_RUN1_BUILD`, then
+  `TOPLINK_RUN2_FRESH_AUDIT_FINALIZE`. A third run is forbidden.
+
+#### File lease and explicit handoff
+
+- The single live lock is `task.md → 🔒 Lease`: runtime, concrete file set, ICT start time, and
+  purpose. An overlapping writer is a hard stop; read-only work may run in parallel.
+- A handoff is always: stop writing → checkpoint paths/digests/verdicts/blockers → release the
+  old lease → recipient acquires a new lease. There is no implicit role switch.
+- Use `docs/system/templates/handoff-claude-to-codex.template.md` and
+  `handoff-envelope.template.json` for cross-runtime transfer. In Run 2, the recipient completes
+  the required independent audit before relying on the handoff findings.
+- Never deploy a coordination service or reuse a Thảo Tây identifier, credential, Sheet, Page,
+  baseline, deliverable, or milestone.
