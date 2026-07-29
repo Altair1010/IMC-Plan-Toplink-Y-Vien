@@ -28,3 +28,14 @@ documents must preserve their evidence, safety, and approval gates.
 - `docs/brand/`, `docs/content/`, `docs/research/` — milestone outputs only.
 - `.trellis/` — task lifecycle, working specs, and session records.
 - `.claude/`, `.cursor/`, `.agents/` — project-local agents and skills.
+
+## Operational control plane
+
+Before shared work, read `task.md` and `GOVERNANCE.md §1 + §3` after the root read-first files.
+Before a Claude/Codex handoff, also read
+`docs/system/claude-codex-operating-contract.md`. The committed templates under
+`docs/system/templates/` and the two-run prompts under `docs/prompts/` support execution but never
+override Toplink canonical evidence, milestone gates, or human approval.
+
+The runtime contract is local-only: no Page, Sheet, publishing, or external-runtime mutation is
+authorized by this repository documentation.
