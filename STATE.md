@@ -4,13 +4,13 @@
 
 ## Sprint goals
 
-- Complete the approved standalone Claude ↔ Codex documentation scaffold without external mutation.
-- Keep `TL-PMP-001` and `TL-MS-001` `PLAN_LOCKED`; do not begin a Toplink execution milestone.
+- Operate the independent Toplink scaffold with explicit lease/handoff and two-run controls.
+- Keep `TL-PMP-001` and `TL-MS-001` `PLAN_LOCKED` until their canonical readiness gates permit
+  execution.
 
 ## In-progress
 
-- **Scaffold regeneration:** root control plane, runtime contract, and templates are being
-  completed under the active documentation lease in `task.md`.
+- No active shared work item or writer lease.
 
 ## Blocked
 
@@ -23,15 +23,11 @@
 
 ## Completed this session
 
-- [2026-07-29] Added the accepted Toplink-only Claude ↔ Codex contract plus reusable handoff and
-  run-manifest templates. No DMP invocation, Page mutation, Sheet write, publishing, or external
-  runtime mutation occurred.
-- [2026-07-29] Expanded `AGENTS.md`, `CLAUDE.md`, `GOVERNANCE.md`, `RULES.md`, and `LOOP.md` with
-  explicit lease, handoff, two-run, approval, external-target, and close controls.
+- [2026-07-29] **Scaffold regeneration PASS.** Added standalone Claude ↔ Codex contract, lease/
+  handoff/manifest templates, Toplink Run 1/Run 2 prompts, deterministic delivery loop, lifecycle
+  controls, and cross-linked read order.
+- [2026-07-29] Static checks passed: JSON templates, referenced paths, prompt/core-rule contract,
+  cross-brand isolation, staged secret scan, and `git diff --check`. No DMP invocation, Page
+  mutation, Sheet write, publishing, or external-runtime mutation occurred.
 
 ## Next-session read order
-
-`AGENTS.md` → `STATE.md` → `RULES.md` → `task.md` → `GOVERNANCE.md §1 + §3` → `spec.md` →
-`docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md` → active section of
-`docs Toplink/TOPLINK_PAGE_MILESTONES.md` → exact evidence inputs. Before a cross-runtime handoff,
-also read `docs/system/claude-codex-operating-contract.md`.
