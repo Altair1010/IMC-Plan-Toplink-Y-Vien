@@ -1,0 +1,4 @@
+interface:
+  display_name: "Toplink IMC Delivery"
+  short_description: "Route Toplink deliverables through DMP"
+  default_prompt: "Use $toplink-imc-delivery to plan a traceable Toplink workstream delivery."

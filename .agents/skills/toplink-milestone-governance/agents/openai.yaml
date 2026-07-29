@@ -1,0 +1,4 @@
+interface:
+  display_name: "Toplink Milestone Governance"
+  short_description: "Run Toplink milestones with strict gates"
+  default_prompt: "Use $toplink-milestone-governance to assess the next safe Toplink milestone action."

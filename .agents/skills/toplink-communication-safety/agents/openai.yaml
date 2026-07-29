@@ -1,0 +1,4 @@
+interface:
+  display_name: "Toplink Communication Safety"
+  short_description: "Check claims and escalation requirements"
+  default_prompt: "Use $toplink-communication-safety to review this Toplink message for safe public use."

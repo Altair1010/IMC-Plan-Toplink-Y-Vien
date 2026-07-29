@@ -1,0 +1,13 @@
+# Store text using LF while preserving local working-tree behavior.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.xlsx binary
+*.docx binary
+*.pptx binary
+
+# Managed tool assets are not project-authored prose.
+.claude/skills/** -whitespace
+.cursor/** -whitespace
+.trellis/** -whitespace

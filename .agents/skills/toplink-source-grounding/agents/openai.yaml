@@ -1,0 +1,4 @@
+interface:
+  display_name: "Toplink Source Grounding"
+  short_description: "Ground Toplink work in verified sources"
+  default_prompt: "Use $toplink-source-grounding to classify the supplied Toplink inputs before drafting work."
