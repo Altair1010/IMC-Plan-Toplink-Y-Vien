@@ -20,6 +20,60 @@ Managed by Trellis. Edits outside this block are preserved; edits inside may be 
 
 <!-- TRELLIS:END -->
 
+## Token optimization policy
+
+Applies to every runtime in this repo (Claude Code and Codex CLI). The goal is to spend the
+fewest tokens that still reach a correct, traceable result. Reducing tokens must never lower
+verification rigor: fail-closed gates, evidence, and human `APPROVED` still stand.
+
+### Model tiering
+
+- Use a low-cost model for bounded, mechanical work: search, reading, keyword extraction, file
+  location, structure mapping, and first-pass planning. Pick the tier by how much has to be read:
+  - Claude Code: Haiku for light search/read; Sonnet (medium) when the volume is larger.
+  - Codex CLI: 5.4 for light search/read; 5.5 when the volume is larger.
+- Use a stronger model only for editing, reconciliation, validation, judgment, and skill
+  authoring. Keep raw source extraction separate from final strategic decisions.
+- When a step is pure search or "where is X", route it to a cheap read-only agent
+  (`Explore`, `cavecrew-investigator`, `trellis-research`) and consume its compressed result
+  instead of reading the corpus yourself.
+
+### Search before read
+
+- Locate first, read second. Run `grep` for a keyword — a single word or an exact phrase — to
+  find the file and line, then open only that region. Do not open a whole file to find one symbol.
+- Prefer content search with line numbers (`Grep output_mode=content -n`) so you can jump to an
+  exact `offset`/`limit` window.
+- Read the minimum relevant subset. For a large file, read the ranges the grep hits point to, not
+  the entire file. Re-grep to widen only when a hit proves insufficient.
+- Use `count` mode to size a footprint, but switch to `content -n` before drawing a verdict — a
+  raw hit count cannot tell an allowed guardrail mention apart from a real leak.
+- Anchor a probe on a distinctive literal (a URL, a known prefix) before reaching for a generic
+  regex, and exclude generated artifacts (`.template-hashes.json`, lock files) so wide patterns do
+  not match hashes or build noise.
+- Consult indexes before full documents: `.trellis/spec/*/index.md`,
+  `docs/system/toplink-knowledge-brief.md`, and section headers of the canonical plans. Open the
+  full file only when the index is not enough. The brief is a compact aid, never a replacement for
+  the canonical plan or milestone contract.
+
+### Read discipline
+
+- Never re-read a file you just edited to "verify"; the edit tool already confirms success and the
+  harness tracks file state.
+- Do not reload broad unrelated corpora to continue a nearly complete task. Cache a fact once, then
+  reference it by `path:line` rather than re-quoting it.
+- Persist paths, digests, verdicts, and blockers at a material pause (journal / `task.md`
+  checkpoint) so the next turn resumes without re-reading everything.
+- Compress or summarize large tool outputs before reasoning over them; keep only the decisive lines.
+
+### Execution efficiency
+
+- Batch independent tool calls in one turn (parallel reads/greps) instead of serial round-trips.
+- Quote the shortest decisive line of an error or log, not the full dump, unless the full text is
+  requested.
+- Scope every request: state the exact files or ranges to touch so a delegated agent does not sweep
+  the repo. Refuse or narrow any task that would require reading far more than the change needs.
+
 ## Toplink operating context
 
 Read `STATE.md`, `RULES.md`, `task.md`, and `spec.md` at the beginning of work. For any
@@ -50,6 +104,9 @@ owners respectively.
   to human/professional review.
 - Google Sheets is `BLOCKED_TARGET_INPUT` until the user provides an exact approved target; any
   future write must be bounded, stable-identity based, and exact-read-back verified.
+- The Toplink-only tab registry, approval payload, mapping, validation, and read-back contract is
+  `docs/system/toplink-google-sheets-operational-contract.md`; it never authorizes reuse of a Thảo
+  Tây workbook or creation of an external target.
 
 ### Shared-write protocol
 
