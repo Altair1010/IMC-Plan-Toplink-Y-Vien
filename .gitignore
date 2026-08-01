@@ -6,6 +6,13 @@
 .claude/settings.local.json
 .secrets/
 
+# Google service-account keys — NEVER commit
+*.iam.gserviceaccount.com.json
+imcforyvien-*.json
+*-service-account*.json
+service-account*.json
+gcp-*-key.json
+
 # Dependencies and generated output
 node_modules/
 dist/

@@ -6,8 +6,9 @@
 |---|---|
 | Document ID | `TL-MS-001` |
 | Plan owner | `TOPLINK_PAGE_MASTER_PLAN.md` |
-| Version | `0.1.0` |
+| Version | `0.1.2` |
 | Ngày | 2026-07-29 |
+| Sửa đổi | 2026-07-30 — TL-M1 input-contract repair; `TL-D12`–`TL-D15` input status update; no milestone advancement |
 | Trạng thái | `PLANNED · NO_MILESTONE_COMPLETE` |
 | DMP | Digital Marketing Pro `3.15.1` — real invocation bắt buộc |
 | Sheet | `BLOCKED_TARGET_INPUT` |
@@ -181,7 +182,8 @@ gate trước khi tạo bất kỳ strategy/content deliverable.
 2. Verify root `GOVERNANCE §1`, `RULES §0/§2`, `AGENTS` Toplink exception.
 3. Chạy DMP readiness path thật: version/capabilities/status/output-folder.
 4. Ghi rõ active brand hiện tại; không switch ngầm.
-5. Tạo logical Sheet architecture; giữ `BLOCKED_TARGET_INPUT`.
+5. Khóa logical Sheet architecture theo `docs/system/toplink-google-sheets-operational-contract.md`;
+   giữ `BLOCKED_TARGET_INPUT` và không tạo target/tab.
 6. Khóa future directory tree, không tạo toàn bộ trước hạn.
 
 ### Deliverables
@@ -212,11 +214,21 @@ competitor/franchisor, tick xanh hoặc product wording thành fact sai.
 
 ### Inputs
 
-- Existing `00_INDEX`, `01`–`10`, hồ sơ thương hiệu.
-- Root source inventory/profile/history.
-- User decisions.
+- Evidence corpus hiện hữu: `docs Toplink/00_INDEX.md`, `01`–`10` và
+  `Ho-so-thuong-hieu-Y-Vien-Toplink-Cai-tien-2026.md`.
+- Standalone-repository migration provenance:
+  `docs/reports/migration-report.md` và
+  `docs/reports/toplink-source-manifest.sha256`.
+- TL-M0 runtime/profile metadata read-back:
+  `staging/toplink-reconciled/TL-M0-readiness/dmp-readiness-trace.md` và
+  `staging/toplink-reconciled/TL-M0-readiness/raw/02-status.json`.
+  Metadata này chỉ chứng minh trạng thái/drift hiện tại; không phải nguồn brand fact.
+- User decisions trong canonical master plan.
 - Official Page URL/Page ID/snapshot khi user cung cấp.
 - Franchise/legal documents khi user cung cấp.
+- Pre-migration/root source inventory, profile artifact và decision/change history hiện không có
+  trong standalone repo; giữ fail-closed theo `TL-GAP-012`–`TL-GAP-014`. Không được thay chúng
+  bằng brand dossier, governance file, memory suy diễn hoặc artifact Thảo Tây.
 
 ### DMP
 
@@ -224,6 +236,9 @@ competitor/franchisor, tick xanh hoặc product wording thành fact sai.
 
 ### Work
 
+0. Resolve mọi prerequisite thành một exact repository path hoặc một `TL-GAP-*` stable ID.
+   Không để prerequisite dạng tên mô tả tự do, không map artifact thiếu sang một file có vai trò
+   khác và không dựng lại lịch sử rồi trình bày như lịch sử gốc.
 1. Tạo source manifest: relative path, UTF-8 policy, SHA-256, exclusions.
 2. Tách entity `Nhất Liệu Y Viện`, franchise relationship, source artifact/domain và allowed-use.
 3. Reconcile classification cũ; không xóa provenance.
@@ -258,6 +273,12 @@ Logical Sheet datasets:
 - Product benefit chưa đủ dossier giữ `UNVERIFIED`.
 - DMP trace + PR verdict PASS/NEEDS gate.
 - Sheet stable IDs + exact read-back PASS khi target có.
+- Mọi input được resolve thành exact path hoặc gap ID; không còn prerequisite không ràng buộc.
+- Migration provenance, current runtime metadata và historical evidence được phân biệt rõ.
+- Reconstructed current-repo inventory không được gọi là root/pre-migration inventory.
+- Thiếu legacy profile/history không được lấp bằng suy diễn hoặc dữ liệu Thảo Tây.
+- Các claim về historical equivalence, full reconciliation hoặc exact before/after state vẫn
+  bị chặn khi `TL-GAP-012`–`TL-GAP-014` chưa được giải.
 
 ## TL-M2 — DMP profile và brand architecture
 
@@ -523,7 +544,8 @@ docs Toplink/staging/run1/
 3. Repair evidence-grounded; regenerate chỉ qua traced DMP invocation khi required.
 4. Validate human/legal/privacy gate integrity.
 5. Promote local canonical candidates in place, không `_v2`.
-6. Chuẩn bị Sheet mapping theo target user duyệt.
+6. Chuẩn bị Sheet mapping theo `docs/system/toplink-google-sheets-operational-contract.md` và target
+   user duyệt.
 7. Exact approval → bounded upsert → exact-range read-back.
 8. Paired-manifest validation, checkpoint, release lease.
 
@@ -539,6 +561,8 @@ final_status = NOT_COMPLETE
 
 Không tái dùng workbook Thảo Tây hoặc tự tạo target. Khi target được cấp, approval phải nêu
 agent · spreadsheet/tab/range · input · action · limits · expiry.
+Registry tab, schema, mapping, validation error states, và bằng chứng read-back phải theo
+`docs/system/toplink-google-sheets-operational-contract.md`.
 
 ### Paired manifest contract
 
@@ -682,6 +706,21 @@ Người vận hành mới có thể chạy một bounded cycle mà không dựa
 | `TL-GAP-007` | Professional reviewer chưa chốt | Health-sensitive publish |
 | `TL-GAP-008` | Google Sheets target/approval chưa có | Mọi operational completion |
 | `TL-GAP-009` | TL-M0 chưa có DMP real readiness invocation | Bắt đầu Run 1 |
+| `TL-GAP-010` | Upstream source `11_Product_Yvien.md` được source `01` trích dẫn nhưng không tồn tại trong repo | Full product-source provenance |
+| `TL-GAP-011` | DMP profile `toplink-y-vien` đang drift: Website là primary và còn mục tiêu supporting Thảo Tây | Mọi DMP generation trước TL-M2 repair/read-back |
+| `TL-GAP-012` | Pre-migration/root source inventory không được migrate vào standalone repo | Claim rằng current inventory tương đương đầy đủ với historical source set; không chặn việc dựng current-repo inventory có giới hạn |
+| `TL-GAP-013` | Pre-migration/root DMP profile artifact hoặc snapshot không tồn tại | Legacy field provenance và exact before/after profile comparison; TL-M2 chỉ được repair từ current verified inputs |
+| `TL-GAP-014` | Pre-migration decision/change history cho source/profile/entity classification không tồn tại | Claim rằng legacy competitor/franchisor reconciliation đã hoàn tất toàn bộ |
+
+`TL-GAP-012`–`TL-GAP-014` dùng status `MISSING_INPUT`. Có thể ghi chú `NOT_MIGRATED_BY_DESIGN`
+như nguyên nhân, nhưng không coi đó là evidence status mới hoặc coi gap đã resolved.
+
+**Cập nhật status 2026-07-30 (`TL-D12`–`TL-D15`; không advance milestone):**
+- `TL-GAP-001` → `RESOLVED_BY_USER` (Page ID `61591880797654`, baseline = task start, follower 0).
+- `TL-GAP-007` → `REVIEWER_DESIGNATED_USER_ATTESTED` (per-item health approval lúc publish vẫn bắt buộc).
+- `TL-GAP-008` → `TARGET_PROVIDED · PENDING_SA_AND_BOUNDED_APPROVAL` (Sheet `1s-Pm5f…8hms`; SA Toplink mới).
+- `TL-GAP-011` → `REPAIR_SPEC_READY · EXECUTION_PENDING_USER` (phiếu `docs/system/tl-m2-profile-repair-spec.md`; mutation chưa chạy).
+- `TL-GAP-002`/`TL-GAP-009` giữ pending (doc user attests có nhưng chưa trong tay). DMP trace vẫn `NONE`; `external_writes=0`.
 
 ## 6. Next safe action
 

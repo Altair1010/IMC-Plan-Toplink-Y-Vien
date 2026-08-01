@@ -6,8 +6,9 @@
 |---|---|
 | Document ID | `TL-PMP-001` |
 | Brand track | Toplink Facebook Page |
-| Version | `0.1.0` |
+| Version | `0.1.1` |
 | Ngày khóa plan | 2026-07-29 |
+| Sửa đổi | 2026-07-30 — thêm `TL-D12`–`TL-D15` (Page ID, health reviewer, Sheet target, SA Toplink mới); no milestone advancement |
 | Trạng thái | `PLAN_LOCKED · EXECUTION_NOT_STARTED` |
 | Canonical scope | Chiến lược, kiến trúc và quyết định riêng của Toplink Page |
 | Execution owner | `TOPLINK_PAGE_MILESTONES.md` |
@@ -31,7 +32,7 @@ thương hiệu cá nhân Thảo Tây và không tự mở M6 của Thảo Tây.
 | Sprint summary/blocker | Root `STATE.md` |
 | Brand/product evidence | `00_INDEX.md`, `01`–`10`, hồ sơ thương hiệu và evidence map được tạo ở `TL-M1` |
 | DMP output | Staging có trace; không tự trở thành canonical |
-| Operational destination | Google Sheets target do user duyệt, sau exact read-back |
+| Operational destination | Google Sheets target do user duyệt, sau exact read-back; shape/mapping tại `docs/system/toplink-google-sheets-operational-contract.md` |
 
 Các file nguồn hiện hữu trong `docs Toplink/` là evidence input, không phải decision owner. Không
 di chuyển, đổi tên hoặc xóa chúng vì còn tham chiếu provenance/hydration. Khi owner mâu thuẫn,
@@ -51,6 +52,11 @@ dừng phần mutation bị ảnh hưởng và sửa đúng owner; không giải
 | `TL-D08` | Hà Nội là trọng tâm; toàn quốc là phạm vi awareness | `DECIDED_WITH_BOUNDARY`; không suy diễn năng lực phục vụ toàn quốc |
 | `TL-D09` | Codex làm phần lớn reconciliation/finalization do session Claude ngắn | `USER_APPROVED_BOUNDED_EXCEPTION`; theo `AGENTS.md` |
 | `TL-D10` | Mọi milestone phải qua DMP thật; output operational vào Google Sheets | `DECIDED`; `NO_DMP_TRACE = NOT_DONE`, `NO_SHEET_READBACK = NOT_OPERATIONALLY_COMPLETE` |
+| `TL-D11` | Toplink dùng kiến trúc Sheet có functional parity với workflow đã duyệt, nhưng profile/schema/output/identifier độc lập | `USER_APPROVED_BOUNDED_DECISION`; theo `docs/system/toplink-google-sheets-operational-contract.md`; không cấp target hoặc quyền ghi |
+| `TL-D12` | FB Page ID `61591880797654`; baseline = mốc bắt đầu task (2026-07-30), follower 0, greenfield | `USER_CONFIRMED_IDENTITY`; provenance user-provided (không tool-observed); badge chỉ `PLATFORM_IDENTITY_SIGNAL`; measured awareness vẫn `NO_MEASUREMENT` |
+| `TL-D13` | Người review sức khỏe = user + một người thầy lành nghề | `USER_ATTESTED_AUTHORITY`; duyệt từng health-sensitive item lúc publish là bắt buộc; credential chính thức `MISSING_INPUT` |
+| `TL-D14` | Google Sheet target = `1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms` (workbook Toplink-only) | `USER_PROVIDED_TARGET`; chưa phải write approval; cần SA + bounded fields + exact read-back trước khi ghi |
+| `TL-D15` | Sheet auth = Service Account Toplink **mới**, không dùng credential Thảo Tây | `USER_DECISION`; SA email `PENDING_USER`; key local gitignored; Codex thực thi wiring + bounded write |
 
 ### Conflict cần giải tại `TL-M1`
 
