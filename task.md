@@ -2,13 +2,12 @@
 
 ## Status
 
-`LOCAL_VERIFIED · UNCOMMITTED` — capability-aware routing and live lock/lease ledger added.
+`BLOCKED_PRE_TL_M5 · RUN1_NOT_COMPLETE`
 
 ## Current work
 
-`SYSTEMATIC_MULTI_AGENT_COLLABORATION_CONTRACT.md` now includes capability-aware Claude/Codex
-routing and a copyable task-style live lock/lease ledger. No commit was requested. Trellis task:
-`.trellis/tasks/07-30-systematic-multi-agent-contract/`.
+No active writer. Codex worktree/status reconciliation is checkpointed. TL-M5 Phase A is blocked
+pending MCBAu P1 worktree disposition, production capacity/start date, and asset-rights boundary.
 
 ## 🔒 Lease — Claude Code ↔ Codex CLI
 
@@ -17,6 +16,63 @@ routing and a copyable task-style live lock/lease ledger. No commit was requeste
 
 | Agent/runtime | File set | Started (ICT) | Purpose |
 |---|---|---|---|
+
+_Codex pre-TL-M5 reconciliation lease released 2026-08-03T17:19:25+07:00. Checkpoint: classified
+all tracked/untracked changes; preserved the MCBAu-owned P1 bootstrap task and unverified
+`docs Toplink/11_Product_Yvien.md`; independently validated and committed the generic multi-agent
+contract (`3fab204`) and archived its Trellis task (`e04ac6e`); committed nine digest-verified
+TL-M2–TL-M4 local artifacts (`468dee1`) and Sheet-governance alignment (`3840115`). Reconciled
+`TOPLINK_PAGE_MILESTONES.md` v0.1.3 without milestone advance. Profile
+`a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349`, source
+`3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76`, DMP `3.15.1`, active brand
+`toplink-y-vien`, and manifest `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`
+all read back exact. Readiness report: `docs Toplink/staging/run1/codex-to-claude-tl-m5-readiness.md`.
+Verdict `BLOCKED_PRE_TL_M5`: `BLOCKED_WORKTREE_OWNERSHIP`, `TL-GAP-006`,
+`TL-M5-ASSET-RIGHTS-001`, and frozen-source metadata drift `TL-SOURCE-LOCK-STATUS-001`.
+`external_writes=0`; no Sheet/Page/publish, no `APPROVED`, no milestone
+advance, no Run 1 close, no Run 2/Run 3._
+
+_Fresh Codex final-QA lease released 2026-08-01T13:41:46+07:00. Resolved
+`TL-R1-ISSUE-QA-001`. Verified JSON/schema, 9/9 output digests, profile/source locks, DMP 3.15.1,
+active brand `toplink-y-vien`, trace/review/handoff/Phase-B digests, stable-ID uniqueness,
+dispositions, reference integrity, orphan/path checks, five pillars=100%, reviewer count=3,
+UTF-8/final newline, placeholders, secret/PII, isolation and whitespace. Found and repaired one
+trailing space at the prior checkpoint; final `git diff --check` exit 0 (non-failing CRLF
+normalization warnings only). Updated `70-run1-checks.md` and `run1-manifest.json`; manifest
+SHA-256 `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`.
+Verdict: `RUN1 · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_COMPLETE`.
+`external_writes=0`; `milestone_advance=false`; no COMPLETE/APPROVED, Sheet/Page/publish,
+Run 2 or Run 3._
+
+_Codex Run 1 Phase B lease released 2026-08-01T13:04:40+07:00. Checkpoint: preflight verified
+Phase A marker, 9/9 output digests, G5 profile digest
+`a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349`, source digest
+`3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76` with 5/5 members,
+DMP `3.15.1`, and active brand `toplink-y-vien`. Updated
+`docs Toplink/staging/run1/{10-evidence-profile-map.md,20-runtime-compatibility.md,30-delta-ledger.json,
+40-workstream-reconciliation.md,50-pillar-decision.md,60-agency-review-register.md,
+70-run1-checks.md,handoff-claude-to-codex.md,run1-manifest.json}`. The manifest SHA-256 is
+`15bbe5bf09da1712cf06050d9c66780e924c8a8dac92d59bfe2d283238cad4b4`.
+Preliminary JSON/output-row/UTF-8/placeholder/secret-PII/isolation checks passed, but the final
+aggregate QA wrapper repeated `SyntaxError: Unexpected identifier 'n'` before PowerShell execution.
+Per stop rule, `TL-R1-ISSUE-QA-001` owner = Codex CLI; no third retry in this turn. Verdict:
+`PHASE_B_RECONCILIATION_WRITTEN · QA_BLOCKED · RUN1_NOT_PASS`; health TL-P2/TL-P4+W2, public
+positioning, franchise/legal, TL-M5, SheetTargetApproval/read-back and Run 2 remain open.
+`external_writes=0`; `milestone_advance=false`; no COMPLETE/APPROVED._
+
+_Claude Run 1 Phase A (TL-M2→TL-M4) lease released 2026-08-01T05:35 ICT. Built 9 deliverables via DMP
+raw-authoring (local-only, `external_writes=0`): TL-M2 `docs Toplink/brand/dmp-profile.md` (`2a151493…`) +
+`docs Toplink/system/runtime-compatibility.md` (`e38846fb…`); TL-M3 `research/audience-hypotheses.md`
+(`4a32da6b…`), `brand/{positioning `7c216e38…`, narrative `02a6f6be…`, content-pillars `451425c1…`
+(5 pillars=100%), facebook-page-strategy `cdd1f786…`}`; TL-M4 `brand/{campaign-architecture `c1fda749…`
+(relative D-1..D-28, W4=SAFE FALLBACK), kpi-experiment-plan `40a528c6…` (counts=0/rates=N/A)}`. Trace +
+agency-review + Phase A marker + handoff addendum in `staging/toplink-reconciled/TL-M2-M4-run1/`. DMP
+3.15.1, active brand `toplink-y-vien`, 4 skills invoked (audience-intelligence/campaign-plan/social-strategy/
+content-engine, skill-scaffold mode). Verify: G5 profile lock HELD (`a45e4ae4…` unchanged), 5/5 source
+digests MATCH, isolation scan 0 external-brand refs, secret/PII 0, `git diff --check` PASS. Codex Phase B
+files (`docs Toplink/staging/run1/10..70`, `run1-manifest.json`) NOT touched. `external_writes=0`; no
+milestone COMPLETE/APPROVED; human gates open (health TL-P2/P4+W2, public positioning, franchise/legal).
+Next actor: Codex Run 1 Phase B reconciliation._
 
 _Claude handoff-refresh lease released 2026-08-01T10:55 ICT. Brought `handoff-claude-to-codex.md` current
 to post-18:05 work: added `root-provenance-map.md` (`7962fed2…`) to digest table, updated `input-gap-register.md`
@@ -158,14 +214,13 @@ Gated next steps, in order:
    `NEEDS_HUMAN_REVIEW` (TL-REV-004/005→PASS). TL-M1 = `LOCAL_EVIDENCE_PASS · READY_FOR_CODEX_RECONCILIATION`
    (10/12 VERIFY PASS, #7 DEFERRED, #12 HELD) — see `staging/toplink-reconciled/TL-M1-evidence/tl-m1-closure-readiness.md`.
    TL-M1 **cannot be agent-closed**; remaining gates are Codex/user/human below.
-3. **NEXT (Codex) — Run 1 Phase B reconciliation:** reconcile TL-REV-007 staging-path convention
-   (`staging/toplink-reconciled/…` vs milestone future `docs Toplink/research/…`) + TL-GAP-003 + delta ledger
-   + run1-manifest. Cross-runtime handoff already staged.
+3. ~~**Fresh Codex — final Phase B QA**~~ **DONE 2026-08-01.** Manifest SHA-256
+   `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`.
 4. **User (human owner) — APPROVE per-item legal/franchise/health gates:** franchise/legal proof
    (TL-GAP-002/009), health reviewer credential (TL-GAP-007), product dossier (TL-GAP-004), `11_Product_Yvien.md`
    (TL-GAP-010).
-5. **User → Codex — Sheet:** create new Toplink SA + Editor grant → Codex `SheetTargetApproval` + bounded upsert
-   + exact read-back (TL-GAP-008). Key → local gitignored `GOOGLE_APPLICATION_CREDENTIALS`.
+5. **User → Codex — Sheet:** SA infrastructure is ready; user supplies the exact signed
+   `SheetTargetApproval` → Codex bounded upsert + exact read-back (TL-GAP-008).
 6. Two-run Run 1/Run 2 package → only then TL-M1–M5 close together. TL-GAP-012–014 stay fail-closed.
 
 Pre-migration/root artifacts stay fail-closed at `TL-GAP-012`–`TL-GAP-014`. Do not mark any milestone
@@ -173,8 +228,8 @@ Pre-migration/root artifacts stay fail-closed at `TL-GAP-012`–`TL-GAP-014`. Do
 
 ## Carry-forward blockers
 
-- Google Sheets target provided (`1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms`) but write still
-  blocked: needs the new Toplink SA (email + Editor grant) and a full `SheetTargetApproval` + read-back.
+- Google Sheets target and Toplink SA infrastructure are ready, but write remains blocked pending
+  a full signed `SheetTargetApproval` + bounded upsert + exact read-back.
   `TL-OUT-TL-M0-001` stays logical (`SYNC_PENDING_TARGET`). `TL-SHEET-001` v0.1.1 records the target,
   not a write approval.
 - ~~DMP profile drift~~ **RESOLVED 2026-07-30** (`TL-GAP-011`): `toplink-y-vien` now reads back

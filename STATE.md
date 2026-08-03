@@ -14,6 +14,24 @@
 
 ## Blocked
 
+- `BLOCKED_WORKTREE_OWNERSHIP`: `.trellis/spec/**` and
+  `.trellis/tasks/00-bootstrap-guidelines/prd.md` belong to active P1 owner MCBAu; no explicit
+  handoff to Codex. Preserve them uncommitted until MCBAu commits/archives or explicitly hands off/
+  excludes the scope.
+- `TL-GAP-006` and `TL-M5-ASSET-RIGHTS-001`: content start date, real weekly production capacity,
+  and asset-rights/availability boundary are not supplied. TL-M5 Phase A cannot claim readiness.
+- `TL-SOURCE-LOCK-STATUS-001`: `TOPLINK_PAGE_MASTER_PLAN.md` document-control metadata still
+  describes the original plan-lock snapshot (`EXECUTION_NOT_STARTED`/`BLOCKED_TARGET_INPUT`). The
+  file is a frozen Run 1 source member, so changing it now would invalidate the source digest and
+  return M2–M4 to Run 1. Current delivery status is reconciled in the milestone owner instead.
+- `TL-GAP-010`: `docs Toplink/11_Product_Yvien.md` now exists as an untracked source candidate, but
+  provenance, certifications/inspection, dossier completeness and public allowed-use are not
+  verified. Its existence does not verify product/service claims.
+- ~~`TL-R1-ISSUE-QA-001` aggregate QA wrapper blocker~~ **RESOLVED 2026-08-01**. Fresh Codex
+  completed schema/reference/orphan/digest/UTF-8/placeholder/secret/PII/isolation/whitespace and
+  `git diff --check`; one trailing space in `task.md` was repaired. Final manifest SHA-256:
+  `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`.
+  Status: `RUN1 · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_COMPLETE`.
 - ~~DMP profile drift~~ **RESOLVED 2026-07-30** (`TL-GAP-011`). User signed §6; Claude ran the bounded
   field repair (backup → correction → read-back). Profile now reads `primary_channel=Facebook Page`,
   independent Toplink goal (0 Thảo Tây/supporting), `competitors=[]`, franchisor relation INTERNAL-only
@@ -31,6 +49,13 @@
   created, Sheet shared Editor, Sheets API enabled, key at gitignored `.secrets/imcforyvien-de7e7ee958f4.json`,
   `GOOGLE_APPLICATION_CREDENTIALS` set (user-confirmed). **Still gated for WRITE:** signed `SheetTargetApproval`
   + Codex bounded upsert + exact read-back. SA ready ≠ write done.
+
+## Next safe action
+
+1. Human health/legal/franchise/public-positioning gates and the pending TL-M5 Run 1 package.
+2. User → Codex supplies the exact signed `SheetTargetApproval`; only then bounded upsert + exact
+   read-back.
+3. Fresh Run 2 audit/finalize after its canonical entry gate. Never create Run 3.
 
 ## Resolved-by-user (2026-07-30)
 
@@ -61,6 +86,39 @@
   Origin repo not mutated; 0 Thảo Tây brand fact/credential/Sheet baseline imported.
 
 ## Completed this session
+
+- [2026-08-03] **Codex pre-TL-M5 reconciliation checkpointed.** Classified every tracked/untracked
+  change without reset/clean/restore/stash; validated/committed the standalone multi-agent contract
+  and archived its Trellis task; committed nine manifest-verified M2–M4 local artifacts and the
+  Sheet-governance group. Canonical milestones v0.1.3 now reflect TL-M0 real readiness, resolved
+  profile drift, target/SA-ready-but-no-write status, unverified `11_Product_Yvien.md`, and
+  fail-closed TL-GAP-012–014. Runtime locks and the Run 1 manifest digest read back exact. Readiness
+  report: `docs Toplink/staging/run1/codex-to-claude-tl-m5-readiness.md`. Verdict:
+  `BLOCKED_PRE_TL_M5`; no milestone advanced and Run 1 remains open.
+- [2026-08-01] **Fresh Codex final Phase B QA PASS.** Resolved `TL-R1-ISSUE-QA-001`; verified
+  marker/profile/source/DMP/active-brand locks, 9/9 generated digests, manifest schema,
+  stable-ID/disposition/reference/orphan integrity, required paths, 5 pillars=100%, UTF-8,
+  placeholders, secrets/PII, isolation, whitespace and `git diff --check`. Updated
+  `70-run1-checks.md` and `run1-manifest.json`; manifest SHA-256
+  `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`.
+  `external_writes=0`; `milestone_advance=false`; no COMPLETE/APPROVED, Sheet/Page/publish,
+  Run 2 or Run 3.
+- [2026-08-01] **TL-M2→TL-M4 Run 1 Phase A built (DMP raw-authoring, local-only) — LOCAL_VERIFIED, NOT
+  COMPLETE.** Ran the M2→M4 masterprompt. 9 deliverables: TL-M2 `docs Toplink/brand/dmp-profile.md` +
+  `docs Toplink/system/runtime-compatibility.md` (field-layer map, no profile mutation); TL-M3
+  `research/audience-hypotheses.md` (TL-A01–A04 kept, A02 split; all hypothesis-labeled),
+  `brand/positioning.md` + `narrative.md` + `content-pillars.md` (5 pillars = 100%) +
+  `facebook-page-strategy.md`; TL-M4 `brand/campaign-architecture.md` (relative D-1..D-28, 1–2/day,
+  W4=SAFE FALLBACK default) + `kpi-experiment-plan.md` (counts=0/rates=N/A, no % from zero). DMP 3.15.1,
+  active brand `toplink-y-vien`, 4 skills invoked (audience-intelligence/campaign-plan/social-strategy/
+  content-engine). Trace + agency-review (PASS structural; NEEDS_HUMAN_REVIEW on health TL-P2/P4+W2 and
+  public positioning) + `CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json` + handoff addendum in
+  `staging/toplink-reconciled/TL-M2-M4-run1/`. Checks: G5 profile lock HELD (`a45e4ae4…` unchanged),
+  5/5 source digests MATCH, isolation 0 external-brand refs, secret/PII 0, `git diff --check` PASS.
+  `external_writes=0`; no Sheet/Page/publish; no milestone COMPLETE/APPROVED; Codex Phase B files
+  untouched. Next: Codex Run 1 Phase B reconciliation (reconcile M2–M4 into `staging/run1/10..70` +
+  `run1-manifest.json`), then human gates + Sheet + two-run close.
+
 
 - [2026-07-29] **Scaffold regeneration PASS.** Added standalone Claude ↔ Codex contract, lease/
   handoff/manifest templates, Toplink Run 1/Run 2 prompts, deterministic delivery loop, lifecycle

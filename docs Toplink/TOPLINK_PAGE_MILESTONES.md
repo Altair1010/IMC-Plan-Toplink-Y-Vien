@@ -6,12 +6,12 @@
 |---|---|
 | Document ID | `TL-MS-001` |
 | Plan owner | `TOPLINK_PAGE_MASTER_PLAN.md` |
-| Version | `0.1.2` |
+| Version | `0.1.3` |
 | Ngày | 2026-07-29 |
-| Sửa đổi | 2026-07-30 — TL-M1 input-contract repair; `TL-D12`–`TL-D15` input status update; no milestone advancement |
-| Trạng thái | `PLANNED · NO_MILESTONE_COMPLETE` |
+| Sửa đổi | 2026-08-03 — reconcile TL-M0/Run 1 evidence and blocker statuses; no milestone advancement |
+| Trạng thái | `RUN1 · LOCAL_VERIFIED · PHASE_B_RECONCILED · TL-M5_PENDING · NOT_COMPLETE` |
 | DMP | Digital Marketing Pro `3.15.1` — real invocation bắt buộc |
-| Sheet | `BLOCKED_TARGET_INPUT` |
+| Sheet | `TARGET_AND_SA_READY · SHEET_TARGET_APPROVAL_PENDING · NO_WRITE` |
 
 File này là execution contract duy nhất của Toplink Page brand-track. Root `task.md` vẫn là live
 checklist/lease ledger; root `STATE.md` là sprint summary. Không tạo plan/todo/milestone cạnh tranh.
@@ -203,7 +203,13 @@ gate trước khi tạo bất kỳ strategy/content deliverable.
 
 ### Current status
 
-`PLANNED · DOCS_CREATED_PENDING_LOCAL_VERIFY · NO_REAL_DMP_INVOCATION · SYNC_PENDING_TARGET`.
+`READINESS_EVIDENCE_PASS · VERIFIED_REAL_INVOKE · PROFILE_DRIFT_REPAIRED · NOT_MILESTONE_COMPLETE`.
+
+Evidence: `staging/toplink-reconciled/TL-M0-readiness/dmp-readiness-trace.md`,
+`staging/toplink-reconciled/TL-M0-readiness/codex-tl-m0-verification.md`, and
+`staging/toplink-reconciled/TL-M2-profile/tl-m2-profile-repair-trace.md`. The original TL-M0
+control-plane finding is retained as historical evidence; the later signed repair/read-back closes
+that readiness blocker without promoting TL-M0 or any package milestone.
 
 ## TL-M1 — Evidence, entity/franchise, Page identity và compliance
 
@@ -697,40 +703,38 @@ Người vận hành mới có thể chạy một bounded cycle mà không dựa
 
 | ID | Blocker | Chặn |
 |---|---|---|
-| `TL-GAP-001` | Official Page URL/Page ID/snapshot chưa có | TL-M1/TL-M3 measured baseline |
+| `TL-GAP-001` | `RESOLVED_BY_USER`: Page ID `61591880797654`; baseline = task start, follower 0; awareness vẫn `NO_MEASUREMENT` | Dated image snapshot remains optional evidence; no measured-awareness claim |
 | `TL-GAP-002` | Franchise public/legal evidence chưa có | Public identity/franchise content |
-| `TL-GAP-003` | Legacy competitor/franchisor classification chưa reconcile | DMP profile + narrative |
+| `TL-GAP-003` | `RESOLVED_INTERNAL_CLASSIFICATION`: profile/entity map reconciled; public relationship wording vẫn gated bởi `TL-GAP-002`/`009` | Public narrative until legal gates pass |
 | `TL-GAP-004` | Product/service dossiers còn thiếu | Product/service claim và W4 solution |
 | `TL-GAP-005` | Offer/booking/contact/privacy/SLA chưa verify | Commercial CTA |
 | `TL-GAP-006` | Production capacity/start date chưa chốt | TL-M5/TL-M6 |
-| `TL-GAP-007` | Professional reviewer chưa chốt | Health-sensitive publish |
-| `TL-GAP-008` | Google Sheets target/approval chưa có | Mọi operational completion |
-| `TL-GAP-009` | TL-M0 chưa có DMP real readiness invocation | Bắt đầu Run 1 |
-| `TL-GAP-010` | Upstream source `11_Product_Yvien.md` được source `01` trích dẫn nhưng không tồn tại trong repo | Full product-source provenance |
-| `TL-GAP-011` | DMP profile `toplink-y-vien` đang drift: Website là primary và còn mục tiêu supporting Thảo Tây | Mọi DMP generation trước TL-M2 repair/read-back |
-| `TL-GAP-012` | Pre-migration/root source inventory không được migrate vào standalone repo | Claim rằng current inventory tương đương đầy đủ với historical source set; không chặn việc dựng current-repo inventory có giới hạn |
-| `TL-GAP-013` | Pre-migration/root DMP profile artifact hoặc snapshot không tồn tại | Legacy field provenance và exact before/after profile comparison; TL-M2 chỉ được repair từ current verified inputs |
-| `TL-GAP-014` | Pre-migration decision/change history cho source/profile/entity classification không tồn tại | Claim rằng legacy competitor/franchisor reconciliation đã hoàn tất toàn bộ |
+| `TL-GAP-007` | `REVIEWER_DESIGNATED_USER_ATTESTED`; formal credential missing and item-level approval mandatory | Health-sensitive publish |
+| `TL-GAP-008` | `TARGET_AND_SA_READY · SHEET_TARGET_APPROVAL_PENDING`; target/Editor/API/key wiring readiness is not write approval | Mọi operational completion |
+| `TL-GAP-009` | Legal name / giấy phép / phạm vi hoạt động chưa có verified document in hand | Any public legal/scope claim |
+| `TL-GAP-010` | `11_Product_Yvien.md` now exists as an unverified source candidate; provenance, certifications, inspection and claim dossiers have not passed | Full product-source provenance and every product/service claim |
+| `TL-GAP-011` | `RESOLVED 2026-07-30`: signed bounded profile repair + G1–G7 read-back; digest locked | — |
+| `TL-GAP-012` | `PROVENANCE_LOCATED_LIMITED · FAIL_CLOSED`: bounded origin inventory digest exists; full historical equivalence remains unverified | Claim that current inventory equals the full historical source set |
+| `TL-GAP-013` | `PROVENANCE_LOCATED_LIMITED · FAIL_CLOSED`: origin profile pointer + pre-repair backup digest exist | Any broader legacy-field provenance or comparison beyond the bounded evidence |
+| `TL-GAP-014` | `PROVENANCE_LOCATED_LIMITED · FAIL_CLOSED`: origin decision-file pointers are digest-recorded | Claim that full legacy decision/reconciliation history is complete |
 
-`TL-GAP-012`–`TL-GAP-014` dùng status `MISSING_INPUT`. Có thể ghi chú `NOT_MIGRATED_BY_DESIGN`
-như nguyên nhân, nhưng không coi đó là evidence status mới hoặc coi gap đã resolved.
+`TL-GAP-012`–`TL-GAP-014` remain fail-closed. `PROVENANCE_LOCATED_LIMITED` records only the bounded
+pointer/digest evidence in `root-provenance-map.md`; it does not resolve the missing authority or
+permit historical-equivalence/full-reconciliation claims.
 
-**Cập nhật status 2026-07-30 (`TL-D12`–`TL-D15`; không advance milestone):**
-- `TL-GAP-001` → `RESOLVED_BY_USER` (Page ID `61591880797654`, baseline = task start, follower 0).
-- `TL-GAP-007` → `REVIEWER_DESIGNATED_USER_ATTESTED` (per-item health approval lúc publish vẫn bắt buộc).
-- `TL-GAP-008` → `TARGET_PROVIDED · PENDING_SA_AND_BOUNDED_APPROVAL` (Sheet `1s-Pm5f…8hms`; SA Toplink mới).
-- `TL-GAP-011` → `REPAIR_SPEC_READY · EXECUTION_PENDING_USER` (phiếu `docs/system/tl-m2-profile-repair-spec.md`; mutation chưa chạy).
-- `TL-GAP-002`/`TL-GAP-009` giữ pending (doc user attests có nhưng chưa trong tay). DMP trace vẫn `NONE`; `external_writes=0`.
+**Evidence reconciliation 2026-08-03; no milestone advancement:** TL-M0 real readiness trace,
+TL-M2 signed profile repair/read-back, TL-M1 DMP trace, TL-M2–TL-M4 Phase A/Phase B and final QA are
+locally verified. Run 1 still cannot PASS because TL-M5 is absent. Human health/legal/franchise/
+public-positioning gates, `SheetTargetApproval`/read-back and Run 2 remain open; `external_writes=0`.
 
 ## 6. Next safe action
 
-Claude Code bắt đầu `TL-M0` trong session ngắn:
-
-1. lấy exact lease cho DMP readiness trace/handoff;
-2. chạy real `doctor/status/output-folder` readiness path;
-3. không switch brand nếu chưa đến approved `TL-M2`;
-4. ghi trace + blocker + next actor;
-5. release lease.
-
-Sau handoff, Codex xác minh readiness/schema/control-plane và chuẩn bị `TL-M1` input contract.
-Không milestone nào hiện được đánh dấu COMPLETE.
+1. Human owner resolves `TL-GAP-006` (content start date + real weekly production capacity) and
+   supplies the asset-rights/availability boundary required by TL-M5; designated health reviewers
+   remain item-level gates, not blanket approval.
+2. MCBAu finishes or explicitly hands off/excludes the non-overlapping P1
+   `.trellis/tasks/00-bootstrap-guidelines` worktree changes.
+3. Claude may then acquire an exact TL-M5 Run 1 Phase A lease and write only the five canonical
+   TL-M5 deliverables plus its bounded trace/review/marker/handoff scope.
+4. Codex reconciles TL-M5 into the existing Run 1 manifest. Do not close Run 1, start Run 2, write
+   Sheet/Page state, publish, or mark any milestone `COMPLETE`/`APPROVED` in this step.
