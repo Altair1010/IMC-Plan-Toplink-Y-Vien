@@ -15,6 +15,7 @@
 - **Input/profile digest:** `<SHA-256 or NOT_AVAILABLE>`
 - **Output paths/digests:** `<relative paths and SHA-256>`
 - **Stable IDs affected:** `<IDs or none>`
+- **Sheet delivery plan:** `<TL-SHEET-001 tab key(s), local/sync state, or BLOCKED_TARGET_INPUT>`
 
 ## Reviewer and check results
 

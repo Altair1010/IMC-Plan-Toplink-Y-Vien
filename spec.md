@@ -119,6 +119,10 @@ Google Sheets is `BLOCKED_TARGET_INPUT` until the user provides the exact spread
 range, schema, and write approval. When approved, use stable identity, a bounded upsert, and exact
 read-back; never create `_v2` tabs, overwrite broadly, or reuse a Thảo Tây workbook.
 
+The planned Toplink-only tab registry, approval payload, mapping, validation/error states, and
+read-back evidence are defined in `docs/system/toplink-google-sheets-operational-contract.md`.
+That contract plans the architecture only; it does not supply a target or authorize a write.
+
 Local artifacts remain `SYNC_PENDING_TARGET` rather than complete whenever an external target is
 required but not approved. A milestone is done only when its canonical deliverables, evidence,
 DMP trace, reviewer records, human gates, and—when applicable—external read-back all pass.

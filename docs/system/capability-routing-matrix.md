@@ -10,4 +10,4 @@
 | Reels | `video-script` | Short-Video Coach → TikTok Strategist | mechanics reference, originality, no TikTok primary scope |
 | KPI and experiments | `campaign-plan` | Growth Hacker | greenfield logic, no percent growth from zero |
 | Safety and approval | `check`, `status` | PR Manager → human/professional | `NEEDS_HUMAN_REVIEW`, never self-approve |
-| Sheets sync | `output-folder`, `integrations` | operator only | approved target, stable ID, exact read-back |
+| Sheets sync | `output-folder`, `integrations` | operator only | `TL-SHEET-001` registry/map, approved target, stable ID, exact read-back |

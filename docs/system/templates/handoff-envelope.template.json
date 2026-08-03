@@ -17,6 +17,12 @@
     "output_digest": "<SHA-256>"
   },
   "stable_ids": [],
+  "sheet_delivery": {
+    "contract": "TL-SHEET-001",
+    "target_status": "BLOCKED_TARGET_INPUT",
+    "mappings": [],
+    "readback": null
+  },
   "open_issue_ids": [],
   "human_gate_ids": [],
   "allowed_next_action": "<bounded action>",

@@ -25,6 +25,10 @@ Never use a Thảo Tây Page, Sheet, identifier, credential, or analytics baseli
 Sheet target is `BLOCKED_TARGET_INPUT` until the user supplies the exact destination and write
 approval.
 
+Use `docs/system/toplink-google-sheets-operational-contract.md` for the Toplink-only tab registry,
+mapping, approval payload, and read-back. It plans local architecture only until an exact target is
+approved.
+
 ## Prime directives
 
 1. Follow the user, `RULES.md`, `GOVERNANCE.md §1`, and Toplink canonical owners in that order.

@@ -81,6 +81,29 @@ a validation path.
   fields, and Vietnamese Unicode.
 - On partial write or failed read-back, set `VERIFY_FAILED` or `BLOCKED_AUTH`, retain local
   staging, and never claim an official sync. Do not create `_v2` tabs or broad overwrite ranges.
+- `docs/system/toplink-google-sheets-operational-contract.md` owns the detailed Toplink-only tab
+  registry, approval payload, mapping, validation, and audit evidence. It does not authorize an
+  external target or weaken any hard stop in this file.
+
+## Mandatory DMP → Sheet output delivery
+
+- Every DMP deliverable output is required to be delivered into the single approved operational
+  Google Sheet. This is a binding completion condition, not optional: `NO_SHEET_READBACK =
+  NOT_OPERATIONALLY_COMPLETE` (per `TL-D10`). A local file alone never satisfies operational Done.
+- The local output file is still produced and remains the source-of-truth staging/canonical
+  artifact. The Sheet aggregates results; it does not replace the file.
+- Mapping is one output file → one dedicated tab in that one Sheet (`1 file = 1 tab`). Do not merge
+  multiple output files into one tab, split one file across multiple tabs, or scatter results across
+  multiple spreadsheets. All tabs live in the single approved spreadsheet.
+- Each tab carries a stable tab identity derived from the file/record stable ID, so re-runs upsert
+  the same tab instead of creating duplicates or `_v2` tabs. Read-back is verified per tab.
+- The tab key, minimum schema, and DMP-to-Sheet role boundary must match
+  `docs/system/toplink-google-sheets-operational-contract.md`; the architecture uses functional
+  parity only and never imports Thảo Tây identifiers or data.
+- This requirement stays fail-closed: until the user supplies the exact approved spreadsheet, tab,
+  range, schema, and bounded write approval, the target is `BLOCKED_TARGET_INPUT`; outputs hold at
+  `LOCAL_VERIFIED · SYNC_PENDING_TARGET` and must not be claimed as delivered or operationally
+  complete. The rule mandates the destination and shape, never a self-invented or reused target.
 
 ## Milestone and Done rules
 
@@ -127,3 +150,7 @@ a validation path.
 ## External target state
 
 Google Sheets is `BLOCKED_TARGET_INPUT`. Do not infer or reuse a destination; wait for the user to
+supply the exact approved spreadsheet, tab, range, schema, stable-identity fields, and bounded write
+approval. When that single approved spreadsheet exists, all DMP outputs aggregate into it under the
+`1 file = 1 tab` rule above, with per-tab exact read-back; never split the operational output across
+more than one spreadsheet.

@@ -20,4 +20,5 @@
 
 Before a deliverable-producing run, verify DMP version, switch/read back the active brand, lock
 profile/source digests, and write only local staging. A trace is mandatory. A missing connector
-or Sheets target is a blocker, never a reason to improvise an external destination.
+or Sheets target is a blocker, never a reason to improvise an external destination. Use
+`toplink-google-sheets-operational-contract.md` for any later Toplink tab mapping and read-back.

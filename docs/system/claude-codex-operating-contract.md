@@ -87,6 +87,9 @@ No agent grants any tier. `LOCAL_VERIFIED` and an Agency `PASS` never mean `APPR
   contains no secrets/unnecessary PII, and remains non-canonical until promotion gates pass.
 - The only DMP slug is `toplink-y-vien`. Sheet status remains `BLOCKED_TARGET_INPUT` until the user
   supplies spreadsheet, tab, range, schema, and bounded write approval.
+- `docs/system/toplink-google-sheets-operational-contract.md` is the shared Toplink-only registry
+  for tab keys, delivery payloads, mapping, validation, and read-back. Claude stages DMP output;
+  Codex performs any approved Sheet write and exact read-back.
 - Never reuse any Thảo Tây identifier, credential, Sheet, Page, baseline, deliverable, or
   milestone. Never create `_v2` tabs, broad overwrites, a competing plan, or an unsupported
   nationwide, franchise/legal, health, or commercial claim.
