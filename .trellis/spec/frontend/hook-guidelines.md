@@ -1,51 +1,42 @@
-# Hook Guidelines
+# Host Event-Hook Guidelines
 
-> How hooks are used in this project.
+## Scope
 
----
+The word “hook” in this repository means an AI-host lifecycle adapter, not a
+React hook. Current examples are:
 
-## Overview
+- `.codex/hooks/session-start.py`
+- `.codex/hooks/inject-workflow-state.py`
+- `.codex/hooks/inject-subagent-context.py`
+- their configured counterparts under `.claude/hooks/` and `.cursor/hooks/`
 
-<!--
-Document your project's hook conventions here.
+## Pattern
 
-Questions to answer:
-- What custom hooks do you have?
-- How do you handle data fetching?
-- What are the naming conventions?
-- How do you share stateful logic?
--->
+- Decode the host JSON input defensively, locate the repository, and delegate
+  task/session resolution to `.trellis/scripts/common`.
+- Make optional context injection best-effort. A hook may omit supplemental
+  context when no valid session/task state exists; it must not prevent the host
+  from starting.
+- Emit only the response envelope required by that host on stdout. The Codex
+  session-start hook emits `hookSpecificOutput` with a `SessionStart` event.
+- Preserve UTF-8 protections before reading or writing non-ASCII payloads. The
+  Codex hook explicitly reconfigures Windows standard streams.
+- Keep host-specific payload parsing at the adapter boundary. Do not pull
+  Claude, Cursor, or Codex wire formats into `common/`.
 
-(To be filled by the team)
+## Change checklist
 
----
+1. Identify the host event and expected JSON response before editing.
+2. Inspect every equivalent configured host adapter for the same semantic
+   behavior.
+3. Test a valid input, missing task/session state, malformed optional input,
+   and Vietnamese text.
+4. Confirm no debug output corrupts stdout and no hook writes an external
+   target.
 
-## Custom Hook Patterns
+## Avoid
 
-<!-- How to create and structure custom hooks -->
-
-(To be filled by the team)
-
----
-
-## Data Fetching
-
-<!-- How data fetching is handled (React Query, SWR, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Naming Conventions
-
-<!-- Hook naming rules (use*, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Hook-related mistakes your team has made -->
-
-(To be filled by the team)
+- Do not add client-side data fetching, browser state, or a `use*` function:
+  none belongs to the current repository.
+- Do not make hook success depend on an unavailable Page, Sheet, network, or
+  unapproved external integration.

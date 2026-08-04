@@ -21,9 +21,9 @@ the rest conversationally.
 
 ## Status (update the checkboxes as you complete each item)
 
-- [ ] Fill backend guidelines
-- [ ] Fill frontend guidelines
-- [ ] Add code examples
+- [x] Fill backend guidelines from the Python automation and local file-ledger patterns.
+- [x] Fill frontend guidelines from the repository's actual document and host-hook boundaries; no browser UI exists.
+- [x] Add code examples and source references for task metadata, JSON/JSONL, hooks, templates, and canonical artifacts.
 
 ---
 

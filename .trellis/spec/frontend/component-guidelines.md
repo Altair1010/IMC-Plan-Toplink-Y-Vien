@@ -1,59 +1,35 @@
-# Component Guidelines
+# Reusable Artifact Components
 
-> How components are built in this project.
+## No UI component system exists
 
----
+There are no React, Vue, HTML, CSS, or TypeScript components in this project.
+Do not invent prop, styling, or client-accessibility conventions from a generic
+frontend template.
 
-## Overview
+The reusable components are structured document sections and templates. Reuse
+them by preserving their roles rather than copying a slightly altered version:
 
-<!--
-Document your project's component conventions here.
+| Reusable unit | Source of truth | Required role |
+|---|---|---|
+| Handoff envelope | `docs/system/templates/handoff-claude-to-codex.template.md` | scope, provenance, reviews, repairs, human gates |
+| Machine-readable handoff | `docs/system/templates/handoff-envelope.template.json` | stable transfer fields between runtimes |
+| Run manifest | `docs/system/templates/toplink-run-manifest.template.json` | trace, digests, verdicts, blockers |
+| Page plan and gates | `docs Toplink/TOPLINK_PAGE_*.md` | canonical decision and milestone ownership |
 
-Questions to answer:
-- What component patterns do you use?
-- How are props defined?
-- How do you handle composition?
-- What accessibility standards apply?
--->
+## Composition rules
 
-(To be filled by the team)
+- Start from an existing committed template when the artifact role already
+  exists. Populate its fields with sourced values; do not create a competing
+  structure that omits provenance or human gates.
+- Keep the canonical owner's vocabulary and section ordering where readers or
+  validators depend on it. For example, the milestone document separates
+  Inputs, Work, Deliverables, and VERIFY for each milestone.
+- State uncertainty as `MISSING_INPUT`, `UNVERIFIED`, or the appropriate
+  status; a polished document layout never turns a gap into a fact.
 
----
+## Future UI work
 
-## Component Structure
-
-<!-- Standard structure of a component file -->
-
-(To be filled by the team)
-
----
-
-## Props Conventions
-
-<!-- How props should be defined and typed -->
-
-(To be filled by the team)
-
----
-
-## Styling Patterns
-
-<!-- How styles are applied (CSS modules, styled-components, Tailwind, etc.) -->
-
-(To be filled by the team)
-
----
-
-## Accessibility
-
-<!-- A11y requirements and patterns -->
-
-(To be filled by the team)
-
----
-
-## Common Mistakes
-
-<!-- Component-related mistakes your team has made -->
-
-(To be filled by the team)
+If the user later approves a browser UI, create a separate Trellis planning
+task first. Establish the framework, directory layout, component contract,
+accessibility baseline, and test commands from the implemented code before
+adding application-specific component rules here.

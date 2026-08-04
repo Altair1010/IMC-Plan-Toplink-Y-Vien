@@ -1,51 +1,29 @@
-# Quality Guidelines
+# User-Facing Artifact Quality
 
-> Code quality standards for frontend development.
+## What quality means here
 
----
+The current UI surface is documentation and host-generated context, not a web
+page. Review artifacts for canonical ownership, evidence, safety, privacy,
+and protocol correctness before visual polish.
 
-## Overview
+## Required checks
 
-<!--
-Document your project's quality standards here.
+- Read the governing source before drafting: `AGENTS.md`, `STATE.md`,
+  `RULES.md`, `task.md`, `GOVERNANCE.md`, and the relevant canonical Toplink
+  plan or milestone.
+- Verify every material statement has an appropriate source and evidence status.
+  Do not write unsupported brand, medical, legal, availability, pricing, or
+  performance claims.
+- Verify the destination state: local staging is not a Page mutation, Sheet
+  sync, publication, or human approval. External actions require the exact
+  approved target and read-back.
+- Preserve Vietnamese UTF-8 and exact stable IDs in Markdown, JSON, and hook
+  responses.
+- Before close, inspect the changed scope and run `git diff --check`.
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+## Future browser UI
 
-(To be filled by the team)
-
----
-
-## Forbidden Patterns
-
-<!-- Patterns that should never be used and why -->
-
-(To be filled by the team)
-
----
-
-## Required Patterns
-
-<!-- Patterns that must always be used -->
-
-(To be filled by the team)
-
----
-
-## Testing Requirements
-
-<!-- What level of testing is expected -->
-
-(To be filled by the team)
-
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+There is no local lint, build, visual-regression, or accessibility test command
+because there is no UI implementation. When a UI is approved, add its actual
+toolchain and tests in the same task that introduces the code; do not claim
+that a generic frontend checklist has been executed.

@@ -1,39 +1,30 @@
-# Frontend Development Guidelines
+# User-Facing Artifact and Host-Interface Guidelines
 
-> Best practices for frontend development in this project.
+> This directory retains Trellis' legacy `frontend` name. The repository has
+> no browser application, component library, TypeScript project, or client-side
+> state store. These guides define the actual user-facing boundaries: Markdown
+> artifacts, platform hook interfaces, and generated prompt/context output.
 
----
+## Current scope
 
-## Overview
+- Toplink's user-facing work is authored as evidence-grounded Markdown under
+  `docs Toplink/`, `docs/`, and local `staging/` runs; it is not a web UI.
+- `.codex/`, `.claude/`, and `.cursor/` contain host-specific hook adapters,
+  not React hooks or browser code.
+- Do not introduce a frontend framework, package manager, component convention,
+  or accessibility checklist until the user authorizes an actual product UI and
+  the project has a design and toolchain for it.
 
-This directory contains guidelines for frontend development. Fill in each file with your project's specific conventions.
+## Guides
 
----
+| Guide | Use it when changing |
+|---|---|
+| [Artifact structure](directory-structure.md) | public-facing documents, prompts, templates, or host adapters |
+| [Components](component-guidelines.md) | reusable document/template sections or a future UI proposal |
+| [Hooks](hook-guidelines.md) | Codex, Claude, or Cursor event handlers |
+| [State](state-management.md) | reader-facing status, task context, or generated prompt state |
+| [Contracts](type-safety.md) | JSON, JSONL, handoff, and status-vocabulary shapes |
+| [Quality](quality-guidelines.md) | document rendering, host protocol, or future UI review |
 
-## Guidelines Index
-
-| Guide | Description | Status |
-|-------|-------------|--------|
-| [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
-| [Component Guidelines](./component-guidelines.md) | Component patterns, props, composition | To fill |
-| [Hook Guidelines](./hook-guidelines.md) | Custom hooks, data fetching patterns | To fill |
-| [State Management](./state-management.md) | Local state, global state, server state | To fill |
-| [Quality Guidelines](./quality-guidelines.md) | Code standards, forbidden patterns | To fill |
-| [Type Safety](./type-safety.md) | Type patterns, validation | To fill |
-
----
-
-## How to Fill These Guidelines
-
-For each guideline file:
-
-1. Document your project's **actual conventions** (not ideals)
-2. Include **code examples** from your codebase
-3. List **forbidden patterns** and why
-4. Add **common mistakes** your team has made
-
-The goal is to help AI assistants and new team members understand how YOUR project works.
-
----
-
-**Language**: All documentation should be written in **English**.
+For the end-to-end artifact flow, read
+[the cross-layer guide](../guides/cross-layer-thinking-guide.md).

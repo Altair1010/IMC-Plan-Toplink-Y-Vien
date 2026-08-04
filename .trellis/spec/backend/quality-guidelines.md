@@ -1,51 +1,41 @@
-# Quality Guidelines
+# Quality Checks for Python Automation
 
-> Code quality standards for backend development.
+## Existing code conventions
 
----
+- Use standard-library Python and explicit type annotations, as in
+  `common/types.py`, `common/paths.py`, and `common/task_context.py`.
+- Preserve Windows UTF-8 behavior. `common/__init__.py` configures standard
+  streams and platform hooks repeat that protection before handling Vietnamese
+  JSON payloads.
+- Keep shared state transitions in one owner. For example, active-session
+  lookup and mutation live in `common/active_task.py`; commands should call it
+  rather than edit pointer files directly.
+- Treat task and governance files as data contracts. A structural change to a
+  `task.json`, JSONL entry, manifest, or handoff envelope requires an impact
+  check across readers, writers, hooks, templates, and docs.
 
-## Overview
+## Minimum verification
 
-<!--
-Document your project's quality standards here.
+For a Python or configuration change, run the narrow affected command and a
+repository integrity check:
 
-Questions to answer:
-- What patterns are forbidden?
-- What linting rules do you enforce?
-- What are your testing requirements?
-- What code review standards apply?
--->
+```powershell
+python ./.trellis/scripts/get_context.py
+python ./.trellis/scripts/task.py list
+git diff --check
+```
 
-(To be filled by the team)
+If a JSON or JSONL contract changed, also run the relevant `task.py validate`
+command or a bounded parse/read-back. If a hook changed, test its documented
+input/output shape without sending an external mutation.
 
----
+## Repository-specific review questions
 
-## Forbidden Patterns
-
-<!-- Patterns that should never be used and why -->
-
-(To be filled by the team)
-
----
-
-## Required Patterns
-
-<!-- Patterns that must always be used -->
-
-(To be filled by the team)
-
----
-
-## Testing Requirements
-
-<!-- What level of testing is expected -->
-
-(To be filled by the team)
-
----
-
-## Code Review Checklist
-
-<!-- What reviewers should check -->
-
-(To be filled by the team)
+- Does the change preserve UTF-8 and `ensure_ascii=False` for Vietnamese data?
+- Does it keep path resolution repository-relative and avoid machine-local
+  identifiers?
+- Does it preserve task unknown fields and atomic JSON-write behavior?
+- Does it respect Toplink's lease, evidence, approval, and cross-brand
+  isolation controls?
+- Does it touch more than one host hook or generated runtime template? If so,
+  inspect every configured counterpart before declaring it complete.
