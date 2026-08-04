@@ -1,0 +1,58 @@
+{
+  "schema_version": "TL-SHEET-001/0.2.0",
+  "registry_id": "TL-SHEET-DATASET-REGISTRY-001",
+  "common_columns": [
+    "stable_row_key", "record_id", "source_path", "source_location", "source_id",
+    "evidence_status", "allowed_use", "revision", "source_digest", "owner", "updated_at_ict"
+  ],
+  "enums": {
+    "evidence_status": ["TOPLINK_CONFIRMED", "INFERENCE", "HYPOTHESIS", "MISSING_INPUT", "UNVERIFIED", "DO_NOT_USE"],
+    "allowed_use": ["INTERNAL_ONLY", "PUBLIC_WITHIN_SOURCE", "HYPOTHESIS_VALIDATION_ONLY", "BLOCKED", "OPERATIONAL_CONTROL", "DO_NOT_USE"],
+    "decision_status": ["OPEN", "DECIDED", "DEFERRED", "BLOCKED"],
+    "approval_state": ["DRAFT", "NEEDS_HUMAN_REVIEW", "APPROVED", "EXPIRED", "BLOCKED"],
+    "publish_state": ["BLOCKED", "READY", "PUBLISHED", "NOT_AVAILABLE"],
+    "experiment_decision": ["CONTINUE", "REPAIR", "STOP", "DEFERRED", "NOT_AVAILABLE"]
+  },
+  "formatting": {
+    "frozen_rows": 1,
+    "wrap": true,
+    "header_background": "#6B1F36",
+    "header_foreground": "#FFFFFF",
+    "date_format": "yyyy-mm-dd hh:mm:ss"
+  },
+  "common_foreign_keys": [
+    {"columns": ["source_id"], "dataset": "TL_SOURCE_INVENTORY", "target_columns": ["inventory_source_id"]}
+  ],
+  "external_reference_contracts": {
+    "claim_ids": {"meaning": "claim ledger IDs governed by canonical source artifacts", "allowed_sentinels": ["NOT_AVAILABLE", "NONE", "N/A", "No claim"]},
+    "control_or_blocker_ids": {"meaning": "control, gap, or approval IDs may resolve outside the row dataset and must remain fail-closed"},
+    "manifest_trace_ids": {"meaning": "DMP/Agency trace IDs resolve through immutable Run 1/Run 2 manifests"},
+    "registry_dataset_keys": {"meaning": "comma-separated dataset keys resolve against this frozen registry"}
+  },
+  "datasets": {
+    "TL_REPORT": {"columns": ["report_id", "report_section", "synthesis", "source_record_ids", "status", "blocker_ids"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 50, "external_references": [{"columns": ["source_record_ids", "blocker_ids"], "contract": "control_or_blocker_ids"}]},
+    "TL_OWNER_ACTIONS": {"columns": ["action_id", "priority", "category", "requested_decision_or_input", "deadline_gate", "blocked_effect", "live_source_reference", "source_status", "decision_status", "approver_role", "decision_date", "decision_value", "notes"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100, "field_enums": {"decision_status": "decision_status"}},
+    "TL_CONTROL": {"columns": ["control_key", "control_value", "control_status", "approval_bundle_id", "external_writes"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100, "external_references": [{"columns": ["approval_bundle_id"], "contract": "control_or_blocker_ids"}]},
+    "TL_SOURCE_INVENTORY": {"columns": ["inventory_source_id", "relative_path", "sha256", "category", "sensitivity", "source_status", "exclusion_reason"], "primary_key": "stable_row_key", "min_records": 14, "max_records": 500},
+    "TL_INPUT_GAPS": {"columns": ["gap_id", "requested_input", "gap_owner", "blocked_milestone", "unblock_action", "gap_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200},
+    "TL_OUTPUT_INDEX": {"columns": ["artifact_id", "artifact_path", "artifact_digest", "dmp_trace_ids", "dataset_keys", "schema_version", "local_qa_state", "sheet_delivery_state", "readback_state"], "primary_key": "stable_row_key", "min_records": 14, "max_records": 100, "external_references": [{"columns": ["dmp_trace_ids"], "contract": "manifest_trace_ids"}, {"columns": ["dataset_keys"], "contract": "registry_dataset_keys"}]},
+    "TL_DECISIONS": {"columns": ["decision_id", "authority", "decision_date", "decision", "effective_scope", "evidence_reference", "review_condition", "decision_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200, "field_enums": {"decision_status": "decision_status"}},
+    "TL_KPI_DICTIONARY": {"columns": ["kpi_id", "metric", "definition", "formula", "measurement_source", "metric_owner", "cadence", "minimum_sample", "launch_value", "denominator_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100},
+    "TL_COMPLIANCE_RULES": {"columns": ["rule_id", "risk_class", "claim_class", "permitted_boundary", "forbidden_boundary", "reviewer_role", "human_gate"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200},
+    "TL_BRAND_PROFILE": {"columns": ["profile_field_id", "field_name", "field_value", "profile_digest", "mutation_gate"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 300},
+    "TL_RUNTIME_COMPATIBILITY": {"columns": ["runtime_rule_id", "category", "runtime_role", "runtime_state", "compatibility_rule"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200},
+    "TL_PAGE_BENCHMARK": {"columns": ["page_snapshot_id", "page_id", "snapshot_at_ict", "metric", "measured_value", "denominator", "baseline_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100},
+    "TL_AUDIENCE_HYPOTHESES": {"columns": ["audience_id", "hypothesis", "evidence_level", "validation_method", "observation_window", "current_verdict", "rationale"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100},
+    "TL_POSITIONING": {"columns": ["positioning_id", "positioning_type", "statement", "proof_status", "proof_boundary", "validation_path"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100},
+    "TL_NARRATIVE": {"columns": ["narrative_id", "narrative_rule", "boundary", "voice_owner", "founder_gate"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100},
+    "TL_CONTENT_PILLARS": {"columns": ["pillar_id", "pillar_name", "weight_percent", "audience_job", "formats", "funnel_role", "risk_gate", "rationale"], "primary_key": "stable_row_key", "min_records": 3, "max_records": 5},
+    "TL_FACEBOOK_STRATEGY": {"columns": ["strategy_id", "strategy_type", "channel", "role", "share_percent", "pillar_ids", "strategy_state"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100, "foreign_keys": [{"columns": ["pillar_ids"], "dataset": "TL_CONTENT_PILLARS", "target_columns": ["pillar_id"], "multi_value_separator": ",", "allow_values": ["NOT_AVAILABLE"]}]},
+    "TL_CAMPAIGN": {"columns": ["campaign_item_id", "relative_week", "relative_days", "campaign_role", "pillar_ids", "audience_job", "hard_gate", "default_cta_class"], "primary_key": "stable_row_key", "min_records": 4, "max_records": 100, "foreign_keys": [{"columns": ["pillar_ids"], "dataset": "TL_CONTENT_PILLARS", "target_columns": ["pillar_id"], "multi_value_separator": ",", "allow_values": ["NOT_AVAILABLE"]}]},
+    "TL_EXPERIMENTS": {"columns": ["experiment_id", "campaign_item_id", "hypothesis", "variable", "evidence_level", "validation_method", "observation_window", "continue_signal", "repair_signal", "stop_signal", "experiment_decision"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200, "field_enums": {"experiment_decision": "experiment_decision"}, "foreign_keys": [{"columns": ["campaign_item_id"], "dataset": "TL_CAMPAIGN", "target_columns": ["campaign_item_id"], "allow_statuses": ["DEFERRED", "NOT_AVAILABLE"]}]},
+    "TL_CONTENT_CALENDAR": {"columns": ["content_id", "relative_day", "option", "audience_id", "pillar_id", "format", "funnel_role", "angle", "cta_class", "claim_ids", "experiment_ids", "content_revision", "approval_state"], "primary_key": "stable_row_key", "min_records": 84, "max_records": 84, "field_enums": {"approval_state": "approval_state"}, "foreign_keys": [{"columns": ["audience_id"], "dataset": "TL_AUDIENCE_HYPOTHESES", "target_columns": ["audience_id"]}, {"columns": ["pillar_id"], "dataset": "TL_CONTENT_PILLARS", "target_columns": ["pillar_id"]}, {"columns": ["experiment_ids"], "dataset": "TL_EXPERIMENTS", "target_columns": ["experiment_id"], "multi_value_separator": ",", "allow_values": ["NOT_AVAILABLE"]}], "external_references": [{"columns": ["claim_ids"], "contract": "claim_ids"}]},
+    "TL_ASSET_BATCH_PLAN": {"columns": ["asset_batch_id", "asset_id", "content_ids", "asset_type", "description", "batch_id", "capacity", "rights_state", "consent_state", "production_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 200, "foreign_keys": [{"columns": ["content_ids"], "dataset": "TL_CONTENT_CALENDAR", "target_columns": ["content_id"], "multi_value_separator": ",", "allow_values": ["NOT_AVAILABLE", "DEFERRED"]}, {"columns": ["asset_id"], "dataset": "TL_ASSET_BATCH_PLAN", "target_columns": ["asset_batch_id"], "multi_value_separator": ","}, {"columns": ["batch_id"], "dataset": "TL_ASSET_BATCH_PLAN", "target_columns": ["asset_batch_id"], "allow_values": ["DEFERRED"]}]},
+    "TL_REELS_BRIEFS": {"columns": ["reel_id", "content_id", "duration_seconds", "aspect_ratio", "hook_options", "script_body", "shot_list", "on_screen_text", "subtitle_required", "safe_zone", "cta_class", "claim_ids", "accessibility", "risk_gate", "production_status"], "primary_key": "stable_row_key", "min_records": 1, "max_records": 100, "foreign_keys": [{"columns": ["content_id"], "dataset": "TL_CONTENT_CALENDAR", "target_columns": ["content_id"]}], "external_references": [{"columns": ["claim_ids"], "contract": "claim_ids"}]},
+    "TL_PRODUCTION_BRIEFS": {"columns": ["production_id", "content_id", "format", "hook", "shot_visual", "on_screen_text", "cta_class", "claim_ids", "kpi_ids", "accessibility", "risk_gate", "production_status"], "primary_key": "stable_row_key", "min_records": 28, "max_records": 28, "foreign_keys": [{"columns": ["content_id"], "dataset": "TL_CONTENT_CALENDAR", "target_columns": ["content_id"]}, {"columns": ["kpi_ids"], "dataset": "TL_KPI_DICTIONARY", "target_columns": ["kpi_id"], "multi_value_separator": ","}], "external_references": [{"columns": ["claim_ids"], "contract": "claim_ids"}]},
+    "TL_WORKFLOW_APPROVAL": {"columns": ["approval_id", "content_id", "content_hash", "content_revision", "reviewer_role", "verdict", "conditions", "expires_at_ict", "publish_state", "material_edit_reset"], "primary_key": "stable_row_key", "min_records": 84, "max_records": 200, "field_enums": {"verdict": "approval_state", "publish_state": "publish_state"}, "foreign_keys": [{"columns": ["content_id"], "dataset": "TL_CONTENT_CALENDAR", "target_columns": ["content_id"]}]}
+  }
+}
