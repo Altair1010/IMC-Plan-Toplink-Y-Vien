@@ -40,7 +40,7 @@
 - [x] Capture a read-only live snapshot and compare with V2 read-back; unexpected drift hard-stops.
 - [x] Build unsigned `TL-SHEET-RUN2-CORRECTION-01` with 10 creates, 24 bounded replacements,
       formatting/validation, exact ranges/limits, digests, expiry, and read-back ranges.
-- [ ] Commit the unsigned bundle and stop with `external_writes=0`.
+- [x] Commit the unsigned bundle and stop with `external_writes=0`.
 - [ ] Only after fresh exact digest-bound `APPROVED`: revalidate lease/target/identity/hashes,
       mutate minimally, and exact-read-back 24/24 plus `Trang tính1` integrity.
 - [ ] On partial write: persist `VERIFY_FAILED`, capture state, require new recovery approval.

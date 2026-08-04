@@ -192,9 +192,13 @@ class ApprovalAndRangeSafetyTests(unittest.TestCase):
             sheet_sync.validate_live_baseline(correction, snapshot, snapshot["sheets"], live_values)
 
     def test_active_lease_is_required_before_execution(self) -> None:
-        sheet_sync.validate_active_lease(REPO_ROOT)
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
+            (root / "task.md").write_text(
+                "| Codex CLI (`root`) | `.trellis/scripts/toplink_sheet_sync.py` | now | Sheet correction with digest-bound approval |\n",
+                encoding="utf-8",
+            )
+            sheet_sync.validate_active_lease(root)
             (root / "task.md").write_text("## no active lease\n", encoding="utf-8")
             with self.assertRaisesRegex(sheet_sync.SyncError, "lease drift"):
                 sheet_sync.validate_active_lease(root)

@@ -1,0 +1,32 @@
+{
+  "snapshot_id": "TL-SHEET-CORRECTION-SNAPSHOT-01",
+  "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+  "captured_at_ict": "2026-08-04T21:20:38+07:00",
+  "capture_mode": "MCP_READ_ONLY",
+  "read_only": true,
+  "historical_v2_digest_convention": "canonical JSON UTF-8 without trailing newline",
+  "mismatch_count": 0,
+  "historical_format_contract": {
+    "frozen_rows": 7,
+    "wrap": true,
+    "column_pixel_size": 180,
+    "data_validation": "NONE_BY_V2_EXECUTOR_CONTRACT"
+  },
+  "sheets": [
+    {"title": "Trang tính1", "sheet_id": 0, "row_count": 1000, "column_count": 26, "frozen_row_count": 0, "baseline_range": "A1:Z1000", "baseline_digest": "ab636994b1e61d22f6980d6ffd6cf59bc93d7ff9869f66286e1646064cb02ee8", "status": "BASELINE_CAPTURED"},
+    {"title": "TL_BRAND_PROFILE", "sheet_id": 870562582, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:T87", "values_digest": "9917067b522ef620364712e44ce4d042965eb2a121ef565aef02ac7834e6cf5e", "status": "MATCH_V2"},
+    {"title": "TL_RUNTIME_COMPATIBILITY", "sheet_id": 1414192553, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:O69", "values_digest": "ccd5aed58c900c1befa4f79f4c5ebc0fe58eec8e8a97434007a4426f4ab8551d", "status": "MATCH_V2"},
+    {"title": "TL_AUDIENCE_HYPOTHESES", "sheet_id": 67597104, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:O76", "values_digest": "c7deaed2cbdc7f73bad8b461062426b970ed04126d223fdf66a0d107cbc1653e", "status": "MATCH_V2"},
+    {"title": "TL_POSITIONING", "sheet_id": 708781861, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:O50", "values_digest": "d62dab7348ed410069deeec436dc139bf7fc5591988a095c4c9dd608f3909c67", "status": "MATCH_V2"},
+    {"title": "TL_NARRATIVE", "sheet_id": 379404649, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:M46", "values_digest": "c57b5c8df353a7b74bdf98185bd16f06c3753fd7fc2d6bc77668d51d214c2f4e", "status": "MATCH_V2"},
+    {"title": "TL_CONTENT_PILLARS", "sheet_id": 1291995432, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:N46", "values_digest": "7af497a05fe1702833902c908fa07f5d3992ca4b88bb3e0873e37e2bdd8ba458", "status": "MATCH_V2"},
+    {"title": "TL_FACEBOOK_STRATEGY", "sheet_id": 1402539487, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:N53", "values_digest": "6d20a0160a1ff3fd126e421dd41e92f56c50efb6c60befcc591ed9b3830b1845", "status": "MATCH_V2"},
+    {"title": "TL_CAMPAIGN", "sheet_id": 1965931116, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:R62", "values_digest": "68ca09cb6456f125d36649f2cc277bf7316679e07374648b4f35ceae40ac2bd5", "status": "MATCH_V2"},
+    {"title": "TL_KPI_DICTIONARY", "sheet_id": 1094283857, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:T50", "values_digest": "a7e5687d95d954129885fc0b7327a871e28d5eb443159f27e71b4f7e57435b3f", "status": "MATCH_V2"},
+    {"title": "TL_CONTENT_CALENDAR", "sheet_id": 1711003519, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:T93", "values_digest": "cf57b8fd98f42ca79c4257528b617bc1801dae8c4774c4367cfaa155bed4af0f", "status": "MATCH_V2"},
+    {"title": "TL_ASSET_BATCH_PLAN", "sheet_id": 1923291014, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:P64", "values_digest": "3a4e4aeaaa1162ddac3649f9e74b1acccf89703fe566ae11e9935930eb85cfcd", "status": "MATCH_V2"},
+    {"title": "TL_REELS_BRIEFS", "sheet_id": 23016754, "row_count": 110, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:L110", "values_digest": "16897f44e77f020a94680e6285d82db7bae8a916a2d2e86c83ff101a695f80f9", "status": "MATCH_V2"},
+    {"title": "TL_PRODUCTION_BRIEFS", "sheet_id": 1097464105, "row_count": 100, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:V96", "values_digest": "d2f55f2032314aa718d839874cae60dddb1da9268d99543009acdf097b8a5c6e", "status": "MATCH_V2"},
+    {"title": "TL_WORKFLOW_APPROVAL", "sheet_id": 1858037963, "row_count": 104, "column_count": 26, "frozen_row_count": 7, "used_range": "A1:N104", "values_digest": "27de0919e8828b15a2a1d0c147500ebf591db60e57e2bca1d5d3d2bc3dc3fa2b", "status": "MATCH_V2"}
+  ]
+}

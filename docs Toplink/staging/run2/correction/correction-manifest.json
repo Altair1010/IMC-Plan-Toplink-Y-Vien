@@ -1,0 +1,32 @@
+{
+  "correction_id": "TL-SHEET-RUN2-CORRECTION-01",
+  "run_id": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "historical_manifest_path": "docs Toplink/staging/run2/run2-manifest.json",
+  "historical_manifest_sha256": "50756122e25ff0cdd9e57b7ff313e881b586b0c3af338ee6a742ec0f2c72c712",
+  "historical_delivery": {
+    "payload_path": "docs Toplink/staging/run2/codex/61-sheet-payload-v2.json",
+    "payload_sha256": "64e9c656bee240951e41f9c4ad172d24059af0f13f0438f762d4f0c0ba4267b3",
+    "approval_path": "docs Toplink/staging/run2/codex/62-sheet-target-approval-v2.json",
+    "approval_sha256": "ebe7490bc5d1cfc8c2a0094290cac3355fa0410e05cb0b6abc8599b98d5d1336",
+    "readback_path": "docs Toplink/staging/run2/codex/63-sheet-readback-v2.json",
+    "readback_sha256": "be0e0efca02f3a7d5cba09cc404d3dba02ecc77a268d57de8b4d43d824caa719",
+    "independent_readback_sha256": "de97ce3873b176bb03352731f1c78a1d0ec89d0c4f57f5ae2931aae8e65edfaa",
+    "classification": "TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED"
+  },
+  "target_model": "TL-SHEET-001/0.2.0/24-DATASETS",
+  "state": "BUNDLE_UNSIGNED",
+  "approval_state": "NOT_GRANTED",
+  "registry_path": "docs/system/toplink-sheet-dataset-registry.json",
+  "registry_sha256": "681689306b0ce32a3d540daec4662aaa1b993dbb59753ccdbe53c12713da5f08",
+  "dataset_bundle_path": "docs Toplink/staging/run2/correction/dataset-bundle.json",
+  "dataset_bundle_file_sha256": "04efa6e662c3e65b5568614c23792ce1d630c6f70008006e165c0d28db9e573d",
+  "dataset_bundle_content_sha256": "b66077a8bd604f899a50e76d10644e44f0f0d7d69f46ef1d94841b22c0a7d167",
+  "target_snapshot_path": "docs Toplink/staging/run2/correction/target-snapshot.json",
+  "target_snapshot_file_sha256": "b0a03b048b30bbd770432b03dbd8b5a40200142ab8b884815af74e333a0fcc30",
+  "approval_bundle_path": "docs Toplink/staging/run2/correction/approval-bundle-unsigned.json",
+  "approval_bundle_sha256": "2b3d4e21f833d9612f41b91ba908421fc511bd4d183d4c7e78c897675cd711bf",
+  "independent_review_state": "PASS_ZERO_CRITICAL_MAJOR_MINOR",
+  "external_writes": 0,
+  "macro_run_count": 2,
+  "created_at_ict": "2026-08-04T21:20:38+07:00"
+}
