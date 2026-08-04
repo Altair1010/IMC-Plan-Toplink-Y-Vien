@@ -1,0 +1,82 @@
+{
+  "lock_id": "TL-RUN1-INPUT-LOCK-001",
+  "created_ict": "2026-07-30T16:30:00+07:00",
+  "spec_ref": "docs/system/tl-m2-profile-repair-spec.md (TL-M2-PROFILE-REPAIR-001 v0.1.1, APPROVED 2026-07-30)",
+  "profile": {
+    "path": "C:/Users/MCBAu/.claude-marketing/brands/toplink-y-vien/profile.json",
+    "profile_digest_sha256": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+    "backup": "staging/toplink-reconciled/TL-M2-profile/backup/profile.2026-07-30T19-26-29.json",
+    "backup_digest_sha256": "09885c2a0450d3ac8e320b10373203fb8a18217fdcb4042c6c254c2e9d0fed7c"
+  },
+  "source_digest_sha256": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+  "sources": [
+    {"path": "spec.md", "sha256": "aa8465eaf3b67d7a68f7725c1b19905956ea6926463efd3400b1b63c49dc3464"},
+    {"path": "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md", "sha256": "aa923b51c86d4c52e5dd15d4d25aa45697c51fbbc7ddb4f7f80de2b9250beb23"},
+    {"path": "RULES.md", "sha256": "96c1bb4cace6c243cea69aac83e7fd8704ab1e1ee8f31cee196983f53bc333d0"},
+    {"path": "docs Toplink/Ho-so-thuong-hieu-Y-Vien-Toplink-Cai-tien-2026.md", "sha256": "645b1ad2f62c831fa8d7adc9b02473391f01fd843bc6ed2dde05e156eafa56e8"},
+    {"path": "staging/toplink-reconciled/TL-M1-evidence/entity-franchise-allowed-use-map.md", "sha256": "56618b1814b164cf703cb115625e250af0d181ce6487308ff21bfd19c9568021"}
+  ],
+  "tl_m5_human_input_lock": {
+    "block_id": "TL-RUN1-TL-M5-HUMAN-INPUT-001",
+    "authority": "human owner",
+    "decision_date": "2026-08-03",
+    "recorded_ict": "2026-08-03T18:34:02+07:00",
+    "status": "LOCKED_FOR_TL_M5_RUN1_PHASE_A",
+    "value_digest_method": "SHA-256 of the exact UTF-8 bytes of each value string, without BOM or trailing newline",
+    "block_digest_method": "SHA-256 of UTF-8 lines input_id|value_sha256 joined by LF in array order, with no trailing LF",
+    "inputs": [
+      {
+        "input_id": "TL-GAP-006-START-DATE",
+        "blocker_id": "TL-GAP-006",
+        "resolution": "BOUNDED",
+        "human_decision_date": "2026-08-03",
+        "value": "TOPLINK_CONTENT_START_DATE = UNSET; calendar uses relative identities D-1..D-28; holiday, launch, and event content is a priority special slot and is not bound to a hard date.",
+        "value_sha256": "9cf445fcad4ee3efeac9e5e176b478691f17727b86a42590d2f7766b923fe076"
+      },
+      {
+        "input_id": "TL-GAP-006-CAPACITY",
+        "blocker_id": "TL-GAP-006",
+        "resolution": "BOUNDED",
+        "human_decision_date": "2026-08-03",
+        "value": "Capacity is approximately 3 videos per week and at least 7 total items per week (at least 1 per day), interleaving video with static or carousel; editing is basic, not professional; video lead time is 2 days; written posts can be produced the same day; team roles are not required yet.",
+        "value_sha256": "35928a9297969afa359c8c47d482d93cc2d9ec44bd448afcbeed693437c04fb7"
+      },
+      {
+        "input_id": "TL-M5-ASSET-RIGHTS-001-BOUNDARY",
+        "blocker_id": "TL-M5-ASSET-RIGHTS-001",
+        "resolution": "BOUNDED",
+        "human_decision_date": "2026-08-03",
+        "value": "Assets exist but rights have not been cleared by the communications team; direction B applies: placeholder briefs only; Q9 rights detail is deferred.",
+        "value_sha256": "d72acb436eae3e9ed728f1d0c894a75e7285e7e9e8826d3340408cc9a7db6d48"
+      },
+      {
+        "input_id": "BLOCKED-WORKTREE-OWNERSHIP-DISPOSITION",
+        "blocker_id": "BLOCKED_WORKTREE_OWNERSHIP",
+        "resolution": "CLEARED",
+        "human_decision_date": "2026-08-03",
+        "value": "Exclude the P1 00-bootstrap-guidelines files; TL-M5 write scope is limited to docs Toplink/content/** and staging/toplink-reconciled/TL-M5-run1/** with zero overlap; excluded P1 files remain untouched.",
+        "value_sha256": "4257cc517fbc1d20d2aaf638866e1a43b9ed6c5acc95b1e580307acc01aae698"
+      },
+      {
+        "input_id": "TL-GAP-010-FAIL-CLOSED-BOUNDARY",
+        "blocker_id": "TL-GAP-010",
+        "resolution": "BOUNDED",
+        "human_decision_date": "2026-08-03",
+        "value": "docs Toplink/11_Product_Yvien.md remains UNVERIFIED; product content uses customer-experience framing only, with no direct product or efficacy claim; the fail-closed gate remains in force.",
+        "value_sha256": "67ff01525eb3f1bf0b38df91fb3a43885d954fc7d3a8ea81ddf04fc714325d47"
+      },
+      {
+        "input_id": "TL-SOURCE-LOCK-STATUS-001-DIRECTION-A",
+        "blocker_id": "TL-SOURCE-LOCK-STATUS-001",
+        "resolution": "CLEARED",
+        "human_decision_date": "2026-08-03",
+        "value": "Direction A applies: docs Toplink/TOPLINK_PAGE_MILESTONES.md is the current status owner; do not edit docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md and do not rebaseline the frozen Run 1 source set.",
+        "value_sha256": "515934e51383fad47b3f407df3825a61dfe2f1fa8f3c5235d58b67e95d96459c"
+      }
+    ],
+    "block_digest_sha256": "809a94dd41e4d1640242d4eda01d27e6f4f4e459e2db50d1fa975e56483c4274"
+  },
+  "external_writes": 0,
+  "milestone_advance": false,
+  "notes": "Digest lock (G5) cho two-run. Profile repaired qua bounded field correction (spec §5 step 3 caveat, skill không có dry-run). Không mutation Sheet/Page/publish."
+}

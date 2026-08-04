@@ -2,12 +2,37 @@
 
 ## Status
 
-`BLOCKED_PRE_TL_M5 · RUN1_NOT_COMPLETE`
+`RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE`
+
+## Superseded pre-reconciliation checkpoint
+
+No active writer. Claude repaired the four confirmed Run 1 blockers `TL-R1-BLK-DMP-CAPABILITY-001`,
+`TL-R1-BLK-DMP-RAW-EVIDENCE-001`, `TL-R1-BLK-DMP-AUTOREJECT-001`, `TL-R1-BLK-HANDOFF-DIGEST-001` by
+replacing the eval-runner-misattributed traces with **real authoring-subagent dispatch** (governed
+definition, human owner 2026-08-03: DMP authoring-subagent dispatch = real native authoring invocation).
+9 authoring invocations across TL-M2–TL-M5 each captured a raw output + `.invocation.json` metadata +
+SHA-256 under `staging/toplink-reconciled/**/raw-repair/`; evaluator scripts recorded **separately** as
+`check` (raw JSON in `raw-repair/check/`). Only `content-pillars.md` changed (`451425c1…`→`b0790e2d…`,
+REGENERATE; auto-reject genuinely cleared 32→92, `auto_rejected` true→false); 13 deliverables KEEP
+byte-unchanged. Separate check: all 14 deliverables `auto_rejected=false`, 0 critical. All
+trace/marker/handoff/envelope digests recomputed and synced (no stale `d00a6489…`/`aa6eab89…` in active
+artifacts). Next actor is Codex for Run 1 Phase B reconciliation (reconcile `dmp_traces[]` off
+`VERIFIED_REAL_INVOKE_SCAFFOLD`, add TL-M5, record content-pillars `b0790e2d…`). Run 1 stays open; Run 2,
+human gates, and all external writes remain blocked.
 
 ## Current work
 
-No active writer. Codex worktree/status reconciliation is checkpointed. TL-M5 Phase A is blocked
-pending MCBAu P1 worktree disposition, production capacity/start date, and asset-rights boundary.
+No active writer. Codex accepted the released Claude handoff after exact profile/source/version/brand,
+path, hash, real-invocation, approval and zero-external-write verification; reconciled 14 outputs and
+24 deltas across TL-M1–TL-M5; and completed the Run 1 local gates. Final manifest:
+`docs Toplink/staging/run1/run1-manifest.json`, SHA-256
+`99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d`.
+
+Verdict: `RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE`.
+`external_writes=0`; `milestone_advance=false`; no milestone `COMPLETE`, no human `APPROVED`, no
+Sheet/Page/publish mutation, and Run 2 not started. Sheet state remains `SYNC_PENDING_TARGET`.
+Remaining gates: health/professional, public positioning, franchise/legal, product dossier,
+privacy/consent/asset rights, signed Sheet approval/read-back, and the fresh Run 2 entry gate.
 
 ## 🔒 Lease — Claude Code ↔ Codex CLI
 
@@ -16,6 +41,80 @@ pending MCBAu P1 worktree disposition, production capacity/start date, and asset
 
 | Agent/runtime | File set | Started (ICT) | Purpose |
 |---|---|---|---|
+
+_Codex CLI (root) Phase B lease released 2026-08-04T13:10+07:00. Handoff preflight PASS; locks
+profile `a45e4ae4…`, source `3ba91761…` (5/5), DMP `3.15.1`, brand `toplink-y-vien`; 14/14 output
+and 12/12 provenance hashes match; 11 real trace rows cover TL-M1–TL-M5; 9/9 authoring sidecars and
+raw hashes match; 24/24 delta IDs/dispositions, 28/28 calendar identities/A-B-C, 28/28 production
+rows, 12/12 Facebook-first Reels, JSON/schema/reference/orphan/UTF-8/newline/placeholder/secret/PII/
+isolation/whitespace gates PASS. Manifest `99227153…2f4d2d`. Verdict `RUN1_PASS · LOCAL_VERIFIED ·
+PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE`; Sheet `SYNC_PENDING_TARGET`; `external_writes=0`;
+`milestone_advance=false`; no `COMPLETE`/human `APPROVED`; no Page/Sheet/publish; Run 2 not started._
+
+_Codex CLI Phase B lease released 2026-08-04T13:03+07:00 at root direction. Checkpoint: read-only Phase A/M5 evidence review completed; no Phase B reconciliation artifact, `STATE.md`, runtime, canonical, Sheet/Page, publish, or Run 2 edit landed. Root will acquire the next scoped lease._
+
+_Claude Phase A real-authoring repair lease released 2026-08-04T01:20+07:00. Repaired blockers
+`TL-R1-BLK-DMP-CAPABILITY-001`, `TL-R1-BLK-DMP-RAW-EVIDENCE-001`, `TL-R1-BLK-DMP-AUTOREJECT-001`,
+`TL-R1-BLK-HANDOFF-DIGEST-001` via 9 real DMP authoring-subagent dispatches (raw output + `.invocation.json`
++ SHA-256 under `raw-repair/`) + separate `check`. content-pillars REGENERATE `451425c1…`→`b0790e2d…`
+(auto-reject 32→92→false); 13 KEEP byte-unchanged; all 14 `auto_rejected=false`/0 critical. Synced digests:
+M2–M4 trace `b63c2601…`/review `d6006af9…`/marker `a5040677…`/handoff `80dd87f8…`; M5 trace `99338576…`/
+review `c8390a46…`/marker `8dcf90e5…`/handoff `2c781814…`; envelope refreshed. `external_writes=0`; no
+milestone advance; no `APPROVED`; Run 1 open; no Run 2. Next actor: Codex Phase B._
+
+_Claude DMP-trace repair lease released 2026-08-03T22:25+07:00. Repaired blockers
+`TL-R1-BLK-DMP-M2-001`, `TL-R1-BLK-DMP-M3M4-001`, `TL-R1-BLK-DMP-M5-001`, `TL-R1-BLK-HANDOFF-JSON-001`.
+Ran **real deterministic DMP script executions** (not scaffold): `eval-runner.py --action run-full
+--brand toplink-y-vien` + `hallucination-detector.py --action detect` over all 14 deliverables (9 M2–M4
++ 5 M5), exit 0 each, `logged=false` ⇒ `external_writes=0`; plus `claim-verifier.py extract-claims`
+(total_claims=0). Finding: **0 CRITICAL hallucination flags on all 14**; low composites (content-pillars
+32/auto-reject, reels-briefs 44, facebook-page-strategy 52) are documented generic-scorer false-positives
+on spec-mandated pillar weights + Reels mechanics + governed support-language; no fabricated fact; all 14
+deliverable digests re-confirmed **byte-unchanged**. Rewrote traces to real-invocation status (removed
+`VERIFIED_REAL_INVOKE_SCAFFOLD`/`skill-scaffold`/read-back-only): `TL-M2-M4-run1/dmp-trace.md`
+`fd1ae240…`, marker `df6d3bc7…`, handoff `8a4a186b…`; `TL-M5-run1/dmp-trace.md` `b58ea051…`,
+agency-review `6fc58784…`, marker `630be861…`, handoff `a4102833…`. Created JSON handoff envelope
+`TL-M5-run1/handoff-envelope.json` (parse PASS). QA: JSON parse 4/4, final newline+UTF-8 8/8, `git diff
+--check` exit 0, placeholder/secret/PII CLEAN, self-`APPROVED` 0 (all negation/gate), prohibited-claim +
+commercial-CTA hits all negation/rule, Thảo Tây = 1 pre-existing person-level TL-D17 ref (allowed).
+Profile `a45e4ae4…` G5 held (brand-setup/import-guidelines NOT re-run), source `3ba91761…` 5/5, DMP
+`3.15.1`, active brand `toplink-y-vien`. Did NOT touch input lock, canonical M2–M4/M5 outputs, Phase B
+manifest/10–70, P1 Trellis files, `11_Product_Yvien.md`. `external_writes=0`; `milestone_advanced=false`;
+no `APPROVED`; Run 1 open; no Run 2. Open for Codex Phase B: reconcile manifest `dmp_traces[]` statuses
+(still `VERIFIED_REAL_INVOKE_SCAFFOLD`) + add TL-M5 to manifest. Next actor: Codex._
+
+_Claude TL-M5 Run 1 Phase A lease released 2026-08-03T19:12+07:00. Built 9 files via real DMP
+invocations (`content-calendar`/`content-engine`/`video-script`/`check`, DMP `3.15.1`, active brand
+`toplink-y-vien`, profile `a45e4ae4…` G5 held, source `3ba91761…` 5/5). Outputs: `docs Toplink/content/`
+`month-calendar.md` `0d2d2d16…`, `asset-and-batch-plan.md` `435969cf…`, `reels-briefs.md` `51b18d91…`,
+`production-briefs.md` `42cb8e7d…`, `workflow-approval-measurement.md` `651dff61…`; staging
+`TL-M5-run1/` `dmp-trace.md` `d00a6489…`, `agency-review.md` `aa6eab89…`,
+`CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json`, `handoff-claude-to-codex-phaseA.md`. 28 relative items
+`D-1..D-28` (A/B/C option), pillar 6/6/8/4/4=28, 12 Reels; CTA follow/save/share only. Reviewers:
+Content Creator/PR Manager (PASS structural + NEEDS_HUMAN_REVIEW), Short-Video Coach/TikTok Strategist
+(PASS mechanics, TikTok review-only). DMP check 8/8 dim PASS + 1 SKIPPED (eval-runner scorer, documented).
+Safety: health/founder/product-adjacent/positioning → `NEEDS_HUMAN_REVIEW`; franchise/legal + generalized
+testimonial + diagnosis/cure/guarantee `BLOCKED` (not used); commercial CTA rewritten to follow/save/share.
+Verify: forbidden-term/CTA/franchise scans clean (hits are negation/rule only); disclaimer §3.3 canonical +
+mandated for 10 health items. Did NOT touch input lock, M2–M4 outputs, Phase B manifest, P1 Trellis files,
+or `11_Product_Yvien.md`. `external_writes=0`; `milestone_advanced=false`; no `APPROVED`, no Run 1 close,
+no Run 2. Next actor: Codex (Run 1 Phase B reconcile TL-M5)._
+
+_Codex TL-M5 input-lock/readiness lease released 2026-08-03. Added human-input block
+`TL-RUN1-TL-M5-HUMAN-INPUT-001` to
+`docs Toplink/staging/run1/00-input-lock.json` (SHA-256
+`07a3b7c188d0c49808e2e961728eb9dc2256ef7ea0f9bd645a2a3fe14c2d1b32`; block digest
+`809a94dd41e4d1640242d4eda01d27e6f4f4e459e2db50d1fa975e56483c4274`; 6/6 value digests
+exact). Re-issued `docs Toplink/staging/run1/codex-to-claude-tl-m5-readiness.md` (SHA-256
+`e5b168909647e64bff21c41a1a5a7f0c224a1649b910d879dff6bdd9b42be8a0`) with verdict
+`READY_FOR_CLAUDE_TL_M5_PHASE_A`. Resolutions: `TL-GAP-006=BOUNDED`,
+`TL-M5-ASSET-RIGHTS-001=BOUNDED`, `BLOCKED_WORKTREE_OWNERSHIP=CLEARED`,
+`TL-GAP-010=BOUNDED_FAIL_CLOSED`, `TL-SOURCE-LOCK-STATUS-001=CLEARED`. Runtime preflight PASS:
+profile `a45e4ae4…c8cbe349`, frozen source `3ba91761…541fe76` 5/5, DMP `3.15.1`, active brand
+`toplink-y-vien`, manifest `48955606…3ac26427` 22/22 before the authorized input-lock extension.
+The final manifest was not edited; M2–M4 lock members and frozen sources remain unchanged.
+`external_writes=0`; `milestone_advanced=false`; no `APPROVED`, Run 1 close, Run 2, Sheet/Page,
+or publish action. Next actor: Claude._
 
 _Codex pre-TL-M5 reconciliation lease released 2026-08-03T17:19:25+07:00. Checkpoint: classified
 all tracked/untracked changes; preserved the MCBAu-owned P1 bootstrap task and unverified
@@ -216,12 +315,15 @@ Gated next steps, in order:
    TL-M1 **cannot be agent-closed**; remaining gates are Codex/user/human below.
 3. ~~**Fresh Codex — final Phase B QA**~~ **DONE 2026-08-01.** Manifest SHA-256
    `48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427`.
-4. **User (human owner) — APPROVE per-item legal/franchise/health gates:** franchise/legal proof
+4. **Claude — TL-M5 Run 1 Phase A:** use only the nine paths in
+   `docs Toplink/staging/run1/codex-to-claude-tl-m5-readiness.md`; preserve all carry-forward
+   constraints and return a bounded trace/review/marker/handoff. Do not close Run 1 or start Run 2.
+5. **User (human owner) — APPROVE per-item legal/franchise/health gates:** franchise/legal proof
    (TL-GAP-002/009), health reviewer credential (TL-GAP-007), product dossier (TL-GAP-004), `11_Product_Yvien.md`
    (TL-GAP-010).
-5. **User → Codex — Sheet:** SA infrastructure is ready; user supplies the exact signed
+6. **User → Codex — Sheet:** SA infrastructure is ready; user supplies the exact signed
    `SheetTargetApproval` → Codex bounded upsert + exact read-back (TL-GAP-008).
-6. Two-run Run 1/Run 2 package → only then TL-M1–M5 close together. TL-GAP-012–014 stay fail-closed.
+7. Two-run Run 1/Run 2 package → only then TL-M1–M5 close together. TL-GAP-012–014 stay fail-closed.
 
 Pre-migration/root artifacts stay fail-closed at `TL-GAP-012`–`TL-GAP-014`. Do not mark any milestone
 `COMPLETE`/`APPROVED`. No mutation until the corresponding approval is signed.

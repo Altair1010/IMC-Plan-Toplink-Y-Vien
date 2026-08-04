@@ -1,0 +1,183 @@
+{
+  "template_version": "1.1",
+  "project": "toplink-y-vien",
+  "run": "TOPLINK_RUN1_BUILD",
+  "run_id": "TOPLINK_RUN1_BUILD",
+  "status": "RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE",
+  "generated_at_ict": "2026-08-04T13:10:40+07:00",
+  "canonical_scope": [
+    "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md",
+    "docs Toplink/TOPLINK_PAGE_MILESTONES.md"
+  ],
+  "profile_digest": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+  "source_digest": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+  "DMP_version": "3.15.1",
+  "active_brand": "toplink-y-vien",
+  "workstreams": [
+    {"milestone": "TL-M0", "status": "READINESS_PASS_NOT_MILESTONE_COMPLETE"},
+    {"milestone": "TL-M1", "status": "LOCAL_EVIDENCE_PASS_NEEDS_HUMAN_REVIEW"},
+    {"milestone": "TL-M2", "status": "LOCAL_VERIFIED_STRUCTURAL_PASS_PUBLIC_FACT_GATES_HELD"},
+    {"milestone": "TL-M3", "status": "LOCAL_VERIFIED_STRUCTURAL_PASS_NEEDS_HUMAN_REVIEW"},
+    {"milestone": "TL-M4", "status": "LOCAL_VERIFIED_STRUCTURAL_PASS_NEEDS_HUMAN_REVIEW"},
+    {"milestone": "TL-M5", "status": "LOCAL_VERIFIED_STRUCTURAL_PASS_NEEDS_HUMAN_REVIEW"}
+  ],
+  "dmp": {
+    "trace_id": "11 VERIFIED_REAL_INVOKE rows; see dmp_traces",
+    "version": "3.15.1",
+    "active_brand_readback": "toplink-y-vien",
+    "input_paths": [
+      "docs Toplink/staging/run1/00-input-lock.json",
+      "staging/toplink-reconciled/TL-M1-evidence/tl-m1-dmp-trace.md",
+      "staging/toplink-reconciled/TL-M2-M4-run1/dmp-trace.md",
+      "staging/toplink-reconciled/TL-M5-run1/dmp-trace.md"
+    ],
+    "input_digest": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+    "output_paths": [
+      "docs Toplink/brand/dmp-profile.md",
+      "docs Toplink/system/runtime-compatibility.md",
+      "docs Toplink/research/audience-hypotheses.md",
+      "docs Toplink/brand/positioning.md",
+      "docs Toplink/brand/narrative.md",
+      "docs Toplink/brand/content-pillars.md",
+      "docs Toplink/brand/facebook-page-strategy.md",
+      "docs Toplink/brand/campaign-architecture.md",
+      "docs Toplink/brand/kpi-experiment-plan.md",
+      "docs Toplink/content/month-calendar.md",
+      "docs Toplink/content/asset-and-batch-plan.md",
+      "docs Toplink/content/reels-briefs.md",
+      "docs Toplink/content/production-briefs.md",
+      "docs Toplink/content/workflow-approval-measurement.md"
+    ],
+    "output_digest": "MEMBER_SHA256_SET_14",
+    "output_digest_basis": "Each generated_outputs member is verified independently; no synthetic aggregate replaces member read-back.",
+    "skipped_dimensions": [
+      "Absolute calendar dates remain unbound by the approved relative-date lock",
+      "Live brand-setup mutation was not invoked because the signed G5 profile digest is held",
+      "Sheet, Page, publishing and Run 2 are out of Run 1 scope"
+    ]
+  },
+  "dmp_traces": [
+    {"trace_id": "TL-M1-DMP-SWITCH-001", "milestone": "TL-M1", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M1-DMP-IMPORT-001", "milestone": "TL-M1", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M2-DMP-BRAND-002", "milestone": "TL-M2", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M3-DMP-AUD-002", "milestone": "TL-M3", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M3-DMP-CAMP-002", "milestone": "TL-M3", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M3-DMP-SOC-002", "milestone": "TL-M3", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M3-DMP-SOC-003", "milestone": "TL-M3", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M4-DMP-CAMP-002", "milestone": "TL-M4", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M5-DMP-CAL-002", "milestone": "TL-M5", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M5-DMP-ENG-002", "milestone": "TL-M5", "status": "VERIFIED_REAL_INVOKE"},
+    {"trace_id": "TL-M5-DMP-VID-002", "milestone": "TL-M5", "status": "VERIFIED_REAL_INVOKE"}
+  ],
+  "generated_outputs": [
+    {"milestone": "TL-M2", "stable_id": "TL-BRAND-PROFILE-001", "path": "docs Toplink/brand/dmp-profile.md", "sha256": "2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4", "status": "LOCAL_VERIFIED", "gate": "PUBLIC_FRANCHISE_LEGAL_AND_PRODUCT_FACTS_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M2", "stable_id": "TL-RUNTIME-COMPAT-001", "path": "docs Toplink/system/runtime-compatibility.md", "sha256": "e38846fb51853d2e82eadab8f882ec1ecc4d5a01256b8f99685ab508f07425c7", "status": "LOCAL_VERIFIED", "gate": "RUN2_DIGEST_VERSION_BRAND_LOCK", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "stable_id": "TL-AUDIENCE-001", "path": "docs Toplink/research/audience-hypotheses.md", "sha256": "4a32da6bdcbbbaa99db5618b052c809f579b8415497070d60b1f91fc3469c881", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "PILOT_VALIDATION_REQUIRED", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "stable_id": "TL-POSITIONING-001", "path": "docs Toplink/brand/positioning.md", "sha256": "7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "NOT_PUBLIC_APPROVED", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "stable_id": "TL-NARRATIVE-001", "path": "docs Toplink/brand/narrative.md", "sha256": "02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "FOUNDER_PUBLIC_USE_AND_HEALTH_BOUNDARIES_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "stable_id": "TL-PILLARS-001", "path": "docs Toplink/brand/content-pillars.md", "sha256": "b0790e2d83aa456eb09a318e1306953ceab54cc68b6c68079fa218477fb3a2a6", "prior_sha256": "451425c17aece4b8bbc873fe6d5c2f2386886916f2fc1ddee9423c3035b69cb4", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "TL_P2_TL_P4_ITEM_LEVEL_HUMAN_REVIEW", "disposition": "REGENERATE"},
+    {"milestone": "TL-M3", "stable_id": "TL-PAGE-STRATEGY-001", "path": "docs Toplink/brand/facebook-page-strategy.md", "sha256": "cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "OFFER_AND_COMMERCIAL_CTA_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M4", "stable_id": "TL-CAMPAIGN-001", "path": "docs Toplink/brand/campaign-architecture.md", "sha256": "c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "W2_HUMAN_REVIEW_AND_W4_SAFE_FALLBACK", "disposition": "KEEP"},
+    {"milestone": "TL-M4", "stable_id": "TL-KPI-001", "path": "docs Toplink/brand/kpi-experiment-plan.md", "sha256": "40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d", "status": "LOCAL_VERIFIED_HYPOTHESIS", "gate": "BASELINE_CAPACITY_AND_OFFER_GATES", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "stable_id": "TL-M5-CALENDAR-001", "path": "docs Toplink/content/month-calendar.md", "sha256": "0d2d2d1609910f7f5784ea98cd9e0820cda9d267314d9418e2e3b2f5b47ccb36", "status": "LOCAL_VERIFIED_NEEDS_HUMAN_REVIEW", "gate": "HEALTH_FOUNDER_PRODUCT_POSITIONING_ITEM_GATES_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "stable_id": "TL-M5-ASSET-001", "path": "docs Toplink/content/asset-and-batch-plan.md", "sha256": "435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd", "status": "LOCAL_VERIFIED_PLACEHOLDER_ONLY", "gate": "ASSET_RIGHTS_AND_CONSENT_UNCLEARED", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "stable_id": "TL-M5-REELS-001", "path": "docs Toplink/content/reels-briefs.md", "sha256": "51b18d91f1d5dea5391192700260273c3e891ac9cfb9e95f59c0917dfdb60fd4", "status": "LOCAL_VERIFIED_FACEBOOK_FIRST_NEEDS_HUMAN_REVIEW", "gate": "HEALTH_REVIEW_AND_ASSET_RIGHTS_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "stable_id": "TL-M5-PRODBRIEF-001", "path": "docs Toplink/content/production-briefs.md", "sha256": "42cb8e7d916b1cbe8e48d7f2ac624ea9e83ce49c3420cb2da55814b48d00d429", "status": "LOCAL_VERIFIED_NEEDS_HUMAN_REVIEW", "gate": "PER_ITEM_CLAIM_REVIEW_CONSENT_AND_OFFER_GATES_HELD", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "stable_id": "TL-M5-WORKFLOW-001", "path": "docs Toplink/content/workflow-approval-measurement.md", "sha256": "651dff61991fdc9c5669635cfacabebb4c006b4aa9b558739ce897fe80f109ed", "status": "LOCAL_VERIFIED_FAIL_CLOSED", "gate": "HUMAN_APPROVAL_AND_PUBLISH_GATES_HELD", "disposition": "KEEP"}
+  ],
+  "provenance_artifacts": [
+    {"path": "docs Toplink/staging/run1/00-input-lock.json", "sha256": "07a3b7c188d0c49808e2e961728eb9dc2256ef7ea0f9bd645a2a3fe14c2d1b32"},
+    {"path": "staging/toplink-reconciled/TL-M1-evidence/tl-m1-dmp-trace.md", "sha256": "b0272f66c887cb46de965c048a741b8cdc1c493a8c3faf2e9bf6eed329db5a85"},
+    {"path": "staging/toplink-reconciled/TL-M1-evidence/agency-review-pr-manager.md", "sha256": "0225c77f410981051d42d6c5b13b45769977d4b411243adc81842b590652ff6e"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/dmp-trace.md", "sha256": "b63c2601eef96a48d36109b7fc02ebccee21ac63a55d0ca0f76839299b3d9be5"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/agency-review.md", "sha256": "d6006af993afd09c7f090e616c00b2a0c386c37ba275f314dc027d9c4b89ea6d"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json", "sha256": "a5040677a739f5a2efbf5d45e4744cd7747d801f4b17e08943d13226d5c54369"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/handoff-claude-to-codex-phaseA.md", "sha256": "80dd87f8e6153ed580273edf225587c6be779e70ff4e8360506b14b04698c7f3"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/dmp-trace.md", "sha256": "993385764704a5e59b749cf2da48398e14c34f77ed426644a880a2aa1daaacfa"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/agency-review.md", "sha256": "c8390a46de479d655a751a814b4ab89bee8832ee7c9ffdcaae731db839c29306"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json", "sha256": "8dcf90e5f03709843ea4854583697bc2632ff350882c09f090b03e7b487d1e18"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/handoff-claude-to-codex-phaseA.md", "sha256": "2c781814bfa62b7d1e18d2c1aaf2149ac9caf042b76810a258e6273dccd9bc27"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/handoff-envelope.json", "sha256": "ddced12b04ee2dd43c9b36404f09d9b796aeae690b41e8833de895cb7964591c"}
+  ],
+  "phase_b_artifact_paths": [
+    "docs Toplink/staging/run1/10-evidence-profile-map.md",
+    "docs Toplink/staging/run1/20-runtime-compatibility.md",
+    "docs Toplink/staging/run1/30-delta-ledger.json",
+    "docs Toplink/staging/run1/40-workstream-reconciliation.md",
+    "docs Toplink/staging/run1/50-pillar-decision.md",
+    "docs Toplink/staging/run1/60-agency-review-register.md",
+    "docs Toplink/staging/run1/70-run1-checks.md"
+  ],
+  "reviews": [
+    {"id": "TL-R1-REV-M1-ROLLUP", "workstream": "TL-M1", "verdict": "LOCAL_EVIDENCE_PASS_NEEDS_HUMAN_REVIEW"},
+    {"id": "TL-R1-REV-M2-ROLLUP", "workstream": "TL-M2", "verdict": "PASS_LOCAL_PUBLIC_FACT_GATES_HELD"},
+    {"id": "TL-R1-REV-M3-ROLLUP", "workstream": "TL-M3", "verdict": "PASS_STRUCTURAL_NEEDS_HUMAN_REVIEW"},
+    {"id": "TL-R1-REV-M4-ROLLUP", "workstream": "TL-M4", "verdict": "PASS_STRUCTURAL_NEEDS_HUMAN_REVIEW"},
+    {"id": "TL-R1-REV-M5-ROLLUP", "workstream": "TL-M5", "verdict": "PASS_STRUCTURAL_NEEDS_HUMAN_REVIEW"}
+  ],
+  "human_gates": [
+    "Health-sensitive TL-P2/TL-P4/W2 and ten TL-M5 items require professional/human review",
+    "Public positioning, founder allowed-use, privacy and consent remain human-gated",
+    "Public franchise/legal evidence and product/service dossiers remain missing or unverified",
+    "Asset rights, exact offer/booking inputs and publication approval remain pending",
+    "Signed SheetTargetApproval and exact read-back remain pending"
+  ],
+  "logical_datasets": [
+    "TL_BRAND_PROFILE",
+    "TL_AUDIENCE_POSITIONING",
+    "TL_PAGE_STRATEGY",
+    "TL_CAMPAIGN_KPI",
+    "TL_CONTENT_CALENDAR",
+    "TL_REELS_PRODUCTION",
+    "TL_WORKFLOW_APPROVAL"
+  ],
+  "check_results": {
+    "locks": "PASS",
+    "real_dmp_trace_coverage": "PASS_TL_M1_TO_TL_M5",
+    "tl_m5_deliverables": "PASS_5_OF_5",
+    "tl_m5_relative_identity_and_options": "PASS_28_OF_28",
+    "generated_output_digests": "PASS_14_OF_14",
+    "delta_ids_and_dispositions": "PASS_24_OF_24",
+    "reviewer_register": "PASS",
+    "human_gate_preservation": "PASS",
+    "json_schema_shape": "PASS",
+    "required_paths": "PASS",
+    "reference_integrity": "PASS",
+    "orphan_check": "PASS",
+    "utf8_final_newline": "PASS",
+    "placeholder": "PASS_BOUNDED_PLACEHOLDER_ASSET_STATES_ONLY",
+    "secret_private_key_pii": "PASS_ZERO",
+    "isolation": "PASS",
+    "whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "external_writes": "PASS_ZERO",
+    "milestone_advance": "PASS_FALSE"
+  },
+  "delta_ledger": "docs Toplink/staging/run1/30-delta-ledger.json",
+  "sheet_plan": {
+    "status": "SYNC_PENDING_TARGET",
+    "action": "NONE",
+    "external_writes": 0,
+    "readback": "NOT_PERFORMED_APPROVAL_PENDING"
+  },
+  "external_state": {
+    "page_mutation": false,
+    "sheet_mutation": false,
+    "public_publishing": false,
+    "external_writes": 0
+  },
+  "milestone_advance": false,
+  "any_item_approved": false,
+  "run1_closed": true,
+  "run2_started": false,
+  "run3": "FORBIDDEN",
+  "remaining_milestone_blockers": [
+    "Human health/legal/franchise/public-positioning/privacy/consent gates",
+    "Signed SheetTargetApproval, bounded upsert and exact read-back",
+    "Fresh TOPLINK_RUN2_FRESH_AUDIT_FINALIZE entry gate"
+  ],
+  "next_safe_action": "After the canonical entry gate, start one fresh TOPLINK_RUN2_FRESH_AUDIT_FINALIZE context; do not perform any Sheet/Page/publish action without its separate exact approval.",
+  "lease_released": true,
+  "final_status": "RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE",
+  "manifest_sha256_recorded_externally": ["STATE.md", "task.md"]
+}

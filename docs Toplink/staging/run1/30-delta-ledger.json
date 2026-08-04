@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.1",
+  "run_id": "TOPLINK_RUN1_BUILD",
+  "generated_at_ict": "2026-08-04T13:10:40+07:00",
+  "allowed_dispositions": [
+    "KEEP",
+    "REVALIDATE",
+    "OPTIMIZE",
+    "REGENERATE",
+    "REJECT_DMP"
+  ],
+  "deltas": [
+    {
+      "id": "TL-R1-D001",
+      "subject": "TL-M1 staging path convention",
+      "source": "staging/toplink-reconciled/TL-M1-evidence/",
+      "disposition": "OPTIMIZE",
+      "result": "Run 1 receipt and digest-verifiable index retained under docs Toplink/staging/run1/; originals remain provenance."
+    },
+    {
+      "id": "TL-R1-D002",
+      "subject": "TL-GAP-011 stale historical row",
+      "source": "staging/toplink-reconciled/TL-M1-evidence/input-gap-register.md",
+      "disposition": "REVALIDATE",
+      "result": "Current repair remains verified by signed trace and G5 digest lock; historical snapshot is not deleted."
+    },
+    {
+      "id": "TL-R1-D003",
+      "subject": "TL-GAP-003 competitor/franchisor classification",
+      "source": "profile.json + entity-franchise-allowed-use-map.md",
+      "disposition": "REVALIDATE",
+      "result": "Current profile collision is cleared; public franchise/legal wording remains pending documents."
+    },
+    {
+      "id": "TL-R1-D004",
+      "subject": "Page stable identity and baseline semantics",
+      "source": "page-identity-baseline-gate.md",
+      "disposition": "KEEP",
+      "result": "User-provided identity preserved; awareness remains NO_MEASUREMENT."
+    },
+    {
+      "id": "TL-R1-D005",
+      "subject": "Health/legal/privacy gates",
+      "source": "health-compliance-claim-taxonomy.md + agency reviews",
+      "disposition": "KEEP",
+      "result": "NEEDS_HUMAN_REVIEW preserved; no agent approval."
+    },
+    {
+      "id": "TL-R1-D006",
+      "subject": "TL-M5 Phase A package",
+      "source": "staging/toplink-reconciled/TL-M5-run1/handoff-envelope.json",
+      "disposition": "KEEP",
+      "result": "Accepted after exact lock, path, output, trace, review, marker and handoff digest verification; reconciled into Run 1 Phase B without re-authoring."
+    },
+    {
+      "id": "TL-R1-D007",
+      "subject": "TL-M3 pillar convergence",
+      "source": "docs Toplink/brand/content-pillars.md",
+      "disposition": "KEEP",
+      "result": "Five launch-hypothesis pillars reconcile to 20+20+30+15+15=100%; TL-P2/TL-P4 keep item-level health review."
+    },
+    {
+      "id": "TL-R1-D008",
+      "subject": "Root/pre-migration provenance",
+      "source": "root-provenance-map.md; TL-GAP-012 through TL-GAP-014",
+      "disposition": "REVALIDATE",
+      "result": "Provenance pointers are located; they do not authorize reuse of external targets, facts or credentials."
+    },
+    {
+      "id": "TL-R1-D009",
+      "subject": "Sheet delivery state",
+      "source": "TL-SHEET-001 and Toplink Sheets operational contract",
+      "disposition": "KEEP",
+      "result": "Target and SA infrastructure are recorded, but SheetTargetApproval and exact read-back are absent; no write performed."
+    },
+    {
+      "id": "TL-R1-D010",
+      "milestone": "TL-M2",
+      "stable_id": "TL-BRAND-PROFILE-001",
+      "path": "docs Toplink/brand/dmp-profile.md",
+      "sha256": "2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4",
+      "status": "LOCAL_VERIFIED",
+      "gate": "PUBLIC_FRANCHISE_LEGAL_AND_PRODUCT_FACTS_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D011",
+      "milestone": "TL-M2",
+      "stable_id": "TL-RUNTIME-COMPAT-001",
+      "path": "docs Toplink/system/runtime-compatibility.md",
+      "sha256": "e38846fb51853d2e82eadab8f882ec1ecc4d5a01256b8f99685ab508f07425c7",
+      "status": "LOCAL_VERIFIED",
+      "gate": "RUN2_DIGEST_VERSION_BRAND_LOCK",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D012",
+      "milestone": "TL-M3",
+      "stable_id": "TL-AUDIENCE-001",
+      "path": "docs Toplink/research/audience-hypotheses.md",
+      "sha256": "4a32da6bdcbbbaa99db5618b052c809f579b8415497070d60b1f91fc3469c881",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "PILOT_VALIDATION_REQUIRED",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D013",
+      "milestone": "TL-M3",
+      "stable_id": "TL-POSITIONING-001",
+      "path": "docs Toplink/brand/positioning.md",
+      "sha256": "7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "NOT_PUBLIC_APPROVED",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D014",
+      "milestone": "TL-M3",
+      "stable_id": "TL-NARRATIVE-001",
+      "path": "docs Toplink/brand/narrative.md",
+      "sha256": "02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "FOUNDER_PUBLIC_USE_AND_HEALTH_BOUNDARIES_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D015",
+      "milestone": "TL-M3",
+      "stable_id": "TL-PILLARS-001",
+      "path": "docs Toplink/brand/content-pillars.md",
+      "sha256": "b0790e2d83aa456eb09a318e1306953ceab54cc68b6c68079fa218477fb3a2a6",
+      "prior_sha256": "451425c17aece4b8bbc873fe6d5c2f2386886916f2fc1ddee9423c3035b69cb4",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "TL_P2_TL_P4_ITEM_LEVEL_HUMAN_REVIEW",
+      "disposition": "REGENERATE"
+    },
+    {
+      "id": "TL-R1-D016",
+      "milestone": "TL-M3",
+      "stable_id": "TL-PAGE-STRATEGY-001",
+      "path": "docs Toplink/brand/facebook-page-strategy.md",
+      "sha256": "cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "OFFER_AND_COMMERCIAL_CTA_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D017",
+      "milestone": "TL-M4",
+      "stable_id": "TL-CAMPAIGN-001",
+      "path": "docs Toplink/brand/campaign-architecture.md",
+      "sha256": "c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "W2_HUMAN_REVIEW_AND_W4_SAFE_FALLBACK",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D018",
+      "milestone": "TL-M4",
+      "stable_id": "TL-KPI-001",
+      "path": "docs Toplink/brand/kpi-experiment-plan.md",
+      "sha256": "40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d",
+      "status": "LOCAL_VERIFIED_HYPOTHESIS",
+      "gate": "BASELINE_CAPACITY_AND_OFFER_GATES",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D019",
+      "milestone": "TL-M5",
+      "stable_id": "TL-M5-CALENDAR-001",
+      "path": "docs Toplink/content/month-calendar.md",
+      "sha256": "0d2d2d1609910f7f5784ea98cd9e0820cda9d267314d9418e2e3b2f5b47ccb36",
+      "status": "LOCAL_VERIFIED_NEEDS_HUMAN_REVIEW",
+      "gate": "HEALTH_FOUNDER_PRODUCT_POSITIONING_ITEM_GATES_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D020",
+      "milestone": "TL-M5",
+      "stable_id": "TL-M5-ASSET-001",
+      "path": "docs Toplink/content/asset-and-batch-plan.md",
+      "sha256": "435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd",
+      "status": "LOCAL_VERIFIED_PLACEHOLDER_ONLY",
+      "gate": "ASSET_RIGHTS_AND_CONSENT_UNCLEARED",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D021",
+      "milestone": "TL-M5",
+      "stable_id": "TL-M5-REELS-001",
+      "path": "docs Toplink/content/reels-briefs.md",
+      "sha256": "51b18d91f1d5dea5391192700260273c3e891ac9cfb9e95f59c0917dfdb60fd4",
+      "status": "LOCAL_VERIFIED_FACEBOOK_FIRST_NEEDS_HUMAN_REVIEW",
+      "gate": "HEALTH_REVIEW_AND_ASSET_RIGHTS_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D022",
+      "milestone": "TL-M5",
+      "stable_id": "TL-M5-PRODBRIEF-001",
+      "path": "docs Toplink/content/production-briefs.md",
+      "sha256": "42cb8e7d916b1cbe8e48d7f2ac624ea9e83ce49c3420cb2da55814b48d00d429",
+      "status": "LOCAL_VERIFIED_NEEDS_HUMAN_REVIEW",
+      "gate": "PER_ITEM_CLAIM_REVIEW_CONSENT_AND_OFFER_GATES_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D023",
+      "milestone": "TL-M5",
+      "stable_id": "TL-M5-WORKFLOW-001",
+      "path": "docs Toplink/content/workflow-approval-measurement.md",
+      "sha256": "651dff61991fdc9c5669635cfacabebb4c006b4aa9b558739ce897fe80f109ed",
+      "status": "LOCAL_VERIFIED_FAIL_CLOSED",
+      "gate": "HUMAN_APPROVAL_AND_PUBLISH_GATES_HELD",
+      "disposition": "KEEP"
+    },
+    {
+      "id": "TL-R1-D024",
+      "subject": "M2-M4 authoring provenance repair",
+      "source": "staging/toplink-reconciled/TL-M2-M4-run1/raw-repair/",
+      "disposition": "REGENERATE",
+      "result": "Replaced historical scaffold/read-back labels with real authoring sidecars; content-pillars is the only regenerated canonical output."
+    }
+  ]
+}
