@@ -38,3 +38,39 @@ Validated and archived systematic contract task; committed Run 1 M2-M4 evidence 
 ### Next Steps
 
 - None - task complete
+
+
+## Session 2: Toplink Run 1 TL-M5 reconciliation
+
+**Date**: 2026-08-04
+**Task**: Toplink Run 1 TL-M5 reconciliation
+**Branch**: `chore/toplink-bootstrap`
+
+### Summary
+
+Verified Claude Phase A, reconciled TL-M5 and repaired DMP provenance into RUN1_PASS local Phase B, preserved human/external gates, and completed full integrity QA without Run 2 or external writes.
+
+### Main Changes
+
+- Detailed change bullets were not supplied; see the summary above.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `92d50e0` | (see git log) |
+| `607d0a4` | (see git log) |
+| `7f100b5` | (see git log) |
+| `8003ba6` | (see git log) |
+
+### Testing
+
+- Validation was not recorded for this session.
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
