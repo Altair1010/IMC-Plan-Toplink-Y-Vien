@@ -1,0 +1,20 @@
+{
+  "record_id": "TL-SHEET-RUN2-14-INDEPENDENT-VERIFY-V2",
+  "verified_at_ict": "2026-08-04T19:56:43.3075772+07:00",
+  "mode": "READ_ONLY",
+  "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+  "service_account_identity_match": true,
+  "approval_bundle_id": "TL-SHEET-RUN2-14-V2",
+  "approval_sha256": "ebe7490bc5d1cfc8c2a0094290cac3355fa0410e05cb0b6abc8599b98d5d1336",
+  "payload_sha256": "64e9c656bee240951e41f9c4ad172d24059af0f13f0438f762d4f0c0ba4267b3",
+  "readback_sha256": "be0e0efca02f3a7d5cba09cc404d3dba02ecc77a268d57de8b4d43d824caa719",
+  "sheet_count": 15,
+  "toplink_tab_count": 14,
+  "unique_toplink_tab_count": 14,
+  "preserved_tabs": ["Trang tính1"],
+  "exact_range_mismatch_count": 0,
+  "mismatches": [],
+  "frozen_rows_verified_tab_count": 14,
+  "external_writes": 0,
+  "verdict": "PASS"
+}

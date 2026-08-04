@@ -2,7 +2,7 @@
 
 ## Status, authority, and scope
 
-- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.3 · **Status:** TARGET_AND_SA_READY · BOUNDED_APPROVAL_PENDING.
+- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.3 · **Status:** SYNC_READBACK_PASS · HUMAN_GATES_PENDING.
 - **Decision owner:** docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md; **execution/Done owner:**
   docs Toplink/TOPLINK_PAGE_MILESTONES.md; **safety owner:** RULES.md.
 - **Scope:** the provided Toplink-only operational workbook with functional parity to the approved
@@ -23,10 +23,17 @@ payload file digest plus each tab's title, range, schema, dimensions, and payloa
 is an envelope revision only and never authorizes a `_v2` tab. A human's exact digest-bound approval
 statement remains required before any Google API call.
 
+The human owner signed that exact V2 envelope digest on 2026-08-04. Codex executed only its three
+bound phases and recorded 14/14 exact tab read-backs at
+`docs Toplink/staging/run2/codex/63-sheet-readback-v2.json` (SHA-256
+`be0e0efca02f3a7d5cba09cc404d3dba02ecc77a268d57de8b4d43d824caa719`). This closes only the signed
+V2 delivery. Any later Sheet mutation requires a new current digest-bound approval.
+
 ## 0. Provided target and auth plan (2026-07-30)
 
 The user supplied an exact Toplink-only target and dedicated auth identity. This section records
-runtime readiness; it is **not yet** a complete `SheetTargetApproval`, so no write may occur.
+the infrastructure that was later bound by the signed V2 `SheetTargetApproval`; it does not authorize
+any future mutation.
 
 | Field | Value | Status |
 |---|---|---|
@@ -42,10 +49,10 @@ runtime readiness; it is **not yet** a complete `SheetTargetApproval`, so no wri
 or any Thảo Tây credential is forbidden (`CLAUDE.md` external-state rule). Claude does not source,
 handle, or expose any SA key; Codex performs SA wiring and the bounded write through the approved flow.
 
-**Still required before any write** (§1 entry condition, §2 `SheetTargetApproval`): signed tab_keys,
+**Required before every new write** (§1 entry condition, §2 `SheetTargetApproval`): signed tab_keys,
 ranges/schemas, one exact action per approval record, limits, authorized_agent, expiry, and read-back.
-Bind the local key only inside the approved execution process. Missing any field ⇒
-`BLOCKED_TARGET_INPUT`; retain local staging.
+The V2 approval satisfied these fields only for its completed run. Missing or changed fields in a later
+run ⇒ `BLOCKED_TARGET_INPUT`; retain local staging.
 
 ## 1. Scope / trigger
 

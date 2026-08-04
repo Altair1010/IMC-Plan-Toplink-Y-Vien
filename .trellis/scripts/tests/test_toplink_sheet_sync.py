@@ -303,6 +303,11 @@ class ApprovalTests(unittest.TestCase):
 
 
 class ReadbackTests(unittest.TestCase):
+    def test_ict_timestamp_converts_utc_to_the_named_timezone(self) -> None:
+        timestamp = sheet_sync.ict_timestamp(datetime(2026, 8, 4, 12, 49, 15, 240592, tzinfo=timezone.utc))
+
+        self.assertEqual(timestamp, "2026-08-04T19:49:15.240592+07:00")
+
     def test_normalizes_omitted_trailing_empty_cells_but_detects_value_drift(self) -> None:
         expected = [["a", "b", ""], ["c", "", ""]]
         actual = [["a", "b"], ["c"]]

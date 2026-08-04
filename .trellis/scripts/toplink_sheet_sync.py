@@ -42,6 +42,7 @@ COMMON_HEADERS = [
     "record_type",
     "section",
 ]
+ICT = timezone(timedelta(hours=7))
 
 
 class SyncError(RuntimeError):
@@ -67,6 +68,10 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def ict_timestamp(value: datetime) -> str:
+    return value.astimezone(ICT).isoformat()
 
 
 def strip_markdown(value: str) -> str:
@@ -756,7 +761,7 @@ def execute_sync(
         "approval_bundle_id": approval["approval_bundle_id"],
         "approval_sha256": sha256_file(approval_path),
         "payload_sha256": sha256_file(payload_path),
-        "started_at_ict": now.isoformat(),
+        "started_at_ict": ict_timestamp(now),
         "service_account": payload["service_account"],
         "phases": [],
         "tabs": [],
@@ -875,12 +880,12 @@ def execute_sync(
             if int(properties.get("gridProperties", {}).get("frozenRowCount", 0)) != 7:
                 raise SyncError(f"format read-back failed: {tab['tab_title']}")
         evidence["phases"].append({"action": "READBACK", "status": "PASS", "tab_count": len(payload["tabs"])})
-        evidence["verified_at_ict"] = datetime.now().astimezone().isoformat()
+        evidence["verified_at_ict"] = ict_timestamp(datetime.now(ICT))
         evidence["final_status"] = "SYNC_READBACK_PASS"
         persist()
         return evidence
     except Exception as exc:
-        evidence["failed_at_ict"] = datetime.now().astimezone().isoformat()
+        evidence["failed_at_ict"] = ict_timestamp(datetime.now(ICT))
         evidence["final_status"] = "VERIFY_FAILED"
         evidence["failure"] = type(exc).__name__ + ": " + str(exc)
         persist()

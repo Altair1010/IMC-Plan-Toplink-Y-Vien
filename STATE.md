@@ -10,8 +10,8 @@
 
 ## In-progress
 
-- Active task `.trellis/tasks/08-04-toplink-sheet-sync`; Codex holds a scoped local-payload/tooling
-  lease. No external mutation is authorized while V2 remains unsigned.
+- Task `.trellis/tasks/08-04-toplink-sheet-sync` is ready to close; no active writer lease. Signed V2
+  execution is closed and post-sync review PASS; later mutations need new approval.
 - Run 2 Phase B `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`: Codex blind audit frozen
   `f56264b3…` before Claude read; locks and 14/14 handoff outputs matched; merged 10 findings; targeted
   repairs changed 7/14 outputs and left 7/14 byte-identical. Post-repair reference and safety gates PASS;
@@ -20,9 +20,15 @@
   `Trang tính1` exists, and the Toplink service-account identity matches the local key. Contract
   `TL-SHEET-001` v0.1.3 now binds deterministic payload
   `docs Toplink/staging/run2/codex/61-sheet-payload-v2.json` (`64e9c656…4267b3`) to unsigned envelope
-  `62-sheet-target-approval-v2.json` (`ebe7490b…5d1336`). Fresh `trellis-check` review PASS (10/10
+  `62-sheet-target-approval-v2.json` (`ebe7490b…5d1336`). Fresh `trellis-check` review PASS (11/11
   tests); exact scope/range/schema/limit drift is rejected before credential or network access.
-  Write remains `DRAFT_UNSIGNED · BOUNDED_APPROVAL_PENDING`; `external_writes=0`; no milestone advance.
+  Human signed exact V2 digest; bounded execution created/upserted 14 registered tabs and exact
+  read-back passed 14/14 with zero mismatches. Evidence `63-sheet-readback-v2.json` SHA-256
+  `be0e0efc…caa719`; independent live read-only recheck `de97ce38…5edfaa` confirmed 15 total sheets,
+  14 Toplink tabs, `Trang tính1` preserved, 14 frozen-header states and zero range mismatches. Reconciled
+  Run 2 manifest `50756122…2c72c712`. Sheet is `SYNC_READBACK_PASS`; 29 bounded mutation API calls were
+  recorded. Non-Sheet human gates remain open, so final status is still `NOT_COMPLETE`; no milestone
+  advance.
 - Run 2 Phase A (fresh Claude blind audit) `CLAUDE_RUN2_PHASE_A_HANDOFF_READY`: attestation PASS,
   locks ALL_MATCH, 14/14 canonical byte-unchanged, blind audit frozen (`8625ceed…`) before withheld
   reads, real DMP check clean (0 auto-reject/critical/hard-claim), fresh Agency 4/4 (Social PASS · PR/
