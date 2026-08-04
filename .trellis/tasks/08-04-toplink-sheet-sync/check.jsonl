@@ -1,0 +1,5 @@
+{"file":".trellis/spec/backend/quality-guidelines.md","reason":"Full Python quality gate"}
+{"file":".trellis/spec/backend/error-handling.md","reason":"Audit blocked and verification-failure paths"}
+{"file":".trellis/spec/backend/logging-guidelines.md","reason":"Audit credential and sensitive-output safety"}
+{"file":".trellis/spec/guides/code-reuse-thinking-guide.md","reason":"Audit canonical contract ownership and cross-brand isolation"}
+{"file":".trellis/spec/guides/cross-layer-thinking-guide.md","reason":"Audit source, approval, write, and read-back consistency"}

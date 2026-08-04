@@ -1,0 +1,7 @@
+{"file":".trellis/spec/backend/index.md","reason":"Python automation owner and pre-development routing"}
+{"file":".trellis/spec/backend/directory-structure.md","reason":"CLI placement, imports, and repository-relative paths"}
+{"file":".trellis/spec/backend/database-guidelines.md","reason":"UTF-8 JSON contract and local state rules"}
+{"file":".trellis/spec/backend/error-handling.md","reason":"Fail-closed external mutation boundary"}
+{"file":".trellis/spec/backend/logging-guidelines.md","reason":"Credential-safe CLI output"}
+{"file":".trellis/spec/backend/quality-guidelines.md","reason":"Required Python and integrity checks"}
+{"file":".trellis/spec/guides/cross-layer-thinking-guide.md","reason":"Source-to-Sheet approval and read-back flow"}

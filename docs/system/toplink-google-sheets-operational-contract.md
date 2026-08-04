@@ -2,7 +2,7 @@
 
 ## Status, authority, and scope
 
-- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.2 · **Status:** TARGET_AND_SA_READY · BOUNDED_APPROVAL_PENDING.
+- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.3 · **Status:** TARGET_AND_SA_READY · BOUNDED_APPROVAL_PENDING.
 - **Decision owner:** docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md; **execution/Done owner:**
   docs Toplink/TOPLINK_PAGE_MILESTONES.md; **safety owner:** RULES.md.
 - **Scope:** the provided Toplink-only operational workbook with functional parity to the approved
@@ -15,6 +15,13 @@
 This contract defines the required architecture after the target and dedicated SA were supplied. It
 is not an external-write approval. Until the user signs the exact bounded action payload, every record
 stays LOCAL_VERIFIED or STAGING with SYNC_PENDING_TARGET.
+
+The Run 2 V2 payload and unsigned approval envelope are respectively
+`docs Toplink/staging/run2/codex/61-sheet-payload-v2.json` and
+`docs Toplink/staging/run2/codex/62-sheet-target-approval-v2.json`. The approval envelope binds the
+payload file digest plus each tab's title, range, schema, dimensions, and payload digest; its V2 suffix
+is an envelope revision only and never authorizes a `_v2` tab. A human's exact digest-bound approval
+statement remains required before any Google API call.
 
 ## 0. Provided target and auth plan (2026-07-30)
 
