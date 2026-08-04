@@ -10,11 +10,14 @@
 
 ## In-progress
 
-- Task `.trellis/tasks/08-04-toplink-sheet-model-correction` is active under a Codex lease. It
-  corrects the completed 14-tab prose delivery to 24 normalized operational datasets in place.
-  Historical V2 evidence remains immutable and is classified
-  `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`; correction mutation is
-  `BOUNDED_APPROVAL_PENDING`, `external_writes=0`, and no Run 3 or milestone advance is permitted.
+- Task `.trellis/tasks/08-04-toplink-sheet-model-correction` is active under a Codex recovery lease.
+  The approved 24-dataset correction completed create/clear/write/format across 24 tabs, then
+  fail-closed at native verification because Google quantized one header RGB channel by one code.
+  Persisted state is `VERIFY_FAILED · RECOVERY_APPROVAL_PENDING`; automatic rollback is forbidden.
+  A read-only audit now matches values/formulas/native rules 24/24 and preserves `Trang tính1`, but
+  success cannot be promoted until the zero-mutation `EXACT_READBACK_ONLY` recovery bundle receives
+  a new exact digest-bound human approval. Historical V2 evidence remains immutable and classified
+  `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`; no Run 3 or milestone advance is permitted.
 - Task `.trellis/tasks/08-04-toplink-sheet-sync` is ready to close; no active writer lease. Signed V2
   execution is closed and post-sync review PASS; later mutations need new approval.
 - Run 2 Phase B `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`: Codex blind audit frozen

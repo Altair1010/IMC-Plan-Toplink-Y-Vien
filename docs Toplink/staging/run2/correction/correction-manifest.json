@@ -14,8 +14,8 @@
     "classification": "TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED"
   },
   "target_model": "TL-SHEET-001/0.2.0/24-DATASETS",
-  "state": "BUNDLE_UNSIGNED",
-  "approval_state": "NOT_GRANTED",
+  "state": "VERIFY_FAILED_RECOVERY_APPROVAL_PENDING",
+  "approval_state": "PARENT_APPROVAL_CONSUMED",
   "registry_path": "docs/system/toplink-sheet-dataset-registry.json",
   "registry_sha256": "681689306b0ce32a3d540daec4662aaa1b993dbb59753ccdbe53c12713da5f08",
   "dataset_bundle_path": "docs Toplink/staging/run2/correction/dataset-bundle.json",
@@ -26,7 +26,14 @@
   "approval_bundle_path": "docs Toplink/staging/run2/correction/approval-bundle-unsigned.json",
   "approval_bundle_sha256": "2b3d4e21f833d9612f41b91ba908421fc511bd4d183d4c7e78c897675cd711bf",
   "independent_review_state": "PASS_ZERO_CRITICAL_MAJOR_MINOR",
-  "external_writes": 0,
+  "partial_failure_path": "docs Toplink/staging/run2/correction/correction-readback.json",
+  "partial_failure_sha256": "bfeae57fa6d4c60ca7f77066214a67d6e87ea247803f08687f2733ff0dcb4679",
+  "completed_mutation_phases": ["CREATE_TAB", "CLEAR_BOUNDED_RANGES", "WRITE_DATASETS", "FORMAT_AND_VALIDATE"],
+  "recovery_bundle_path": "docs Toplink/staging/run2/correction/recovery-bundle-unsigned.json",
+  "recovery_bundle_sha256": "319b3bb821246e1b56c3552aaedaf090369643037a6b9ddf6e3fa4fca14a8c7c",
+  "recovery_mode": "EXACT_READBACK_ONLY",
+  "recovery_authorized_external_mutations": 0,
+  "external_writes": 4,
   "macro_run_count": 2,
   "created_at_ict": "2026-08-04T21:20:38+07:00"
 }

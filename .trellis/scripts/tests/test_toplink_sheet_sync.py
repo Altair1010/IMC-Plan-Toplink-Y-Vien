@@ -167,6 +167,36 @@ class ApprovalAndRangeSafetyTests(unittest.TestCase):
         self.assertEqual(recovery["approval_state"], "NOT_GRANTED")
         self.assertNotEqual(recovery["bundle_id"], "TL-SHEET-RUN2-CORRECTION-01")
 
+    def test_verify_only_recovery_binds_current_state_and_authorizes_no_mutation(self) -> None:
+        parent = sheet_sync.read_json(REPO_ROOT / sheet_sync.CORRECTION_DIR / "approval-bundle-unsigned.json")
+        sheets = [{"title": "Trang tính1", "sheet_id": 0}]
+        new_id = 2000000000
+        for title in sheet_sync.TAB_KEYS:
+            sheets.append({"title": title, "sheet_id": sheet_sync.EXISTING_TAB_IDS.get(title, new_id)})
+            if title not in sheet_sync.EXISTING_TAB_IDS:
+                new_id += 1
+        partial = {
+            "status": "VERIFY_FAILED",
+            "completed_phases": ["CREATE_TAB", "CLEAR_BOUNDED_RANGES", "WRITE_DATASETS", "FORMAT_AND_VALIDATE"],
+            "current_state": {"metadata": {"sheets": sheets}, "ranges": []},
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            output = root / sheet_sync.CORRECTION_DIR
+            sheet_sync.write_json(output / "approval-bundle-unsigned.json", parent)
+            sheet_sync.write_json(output / "correction-readback.json", partial)
+            recovery = sheet_sync.build_verify_only_recovery_bundle(root, parent, partial, "2026-08-06T23:59:00+07:00")
+            self.assertEqual(recovery["recovery_mode"], "EXACT_READBACK_ONLY")
+            self.assertEqual(recovery["authorized_external_mutations"], 0)
+            self.assertEqual(len(recovery["actions"]), 24)
+            self.assertEqual({action["action"] for action in recovery["actions"]}, {"EXACT_READBACK_ONLY"})
+            approved = copy.deepcopy(recovery)
+            approved["approval_state"] = "APPROVED"
+            sheet_sync.validate_exact_recovery_scope(approved, root, parent, partial)
+            approved["actions"][0]["sheet_id"] = 999
+            with self.assertRaisesRegex(sheet_sync.SyncError, "recovery scope drift"):
+                sheet_sync.validate_exact_recovery_scope(approved, root, parent, partial)
+
     def test_repository_bindings_and_live_baseline_fail_closed(self) -> None:
         datasets = sheet_sync.compile_datasets(REPO_ROOT)
         snapshot = sheet_sync.read_json(
@@ -254,6 +284,8 @@ class ApprovalAndRangeSafetyTests(unittest.TestCase):
         brand = next(tab for tab in payload["tabs"] if tab["tab_key"] == "TL_BRAND_PROFILE")
         self.assertEqual(sheet_sync.sha256_v2_values(brand["values"]), "9917067b522ef620364712e44ce4d042965eb2a121ef565aef02ac7834e6cf5e")
         self.assertNotEqual(sheet_sync.sha256_json(brand["values"]), sheet_sync.sha256_v2_values(brand["values"]))
+        normalized_blank = sheet_sync.normalize_matrix([], width=26, height=1000)
+        self.assertEqual(sheet_sync.sha256_v2_values(normalized_blank), "ab636994b1e61d22f6980d6ffd6cf59bc93d7ff9869f66286e1646064cb02ee8")
 
 
 class ReadbackTests(unittest.TestCase):
@@ -312,12 +344,16 @@ class ReadbackTests(unittest.TestCase):
             }],
         }
         sheet_sync.verify_native_sheet_readback(action, sheet, 123)
-        for mutate in ("frozen", "width", "wrap", "header", "validation", "date"):
+        quantized = copy.deepcopy(sheet)
+        quantized["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["backgroundColor"]["red"] = 0.41568628
+        sheet_sync.verify_native_sheet_readback(action, quantized, 123)
+        for mutate in ("frozen", "width", "wrap", "header", "color", "validation", "date"):
             broken = copy.deepcopy(sheet)
             if mutate == "frozen": broken["properties"]["gridProperties"]["frozenRowCount"] = 0
             elif mutate == "width": broken["data"][0]["columnMetadata"][0]["pixelSize"] = 100
             elif mutate == "wrap": broken["data"][0]["rowData"][1]["values"][0]["userEnteredFormat"]["wrapStrategy"] = "OVERFLOW_CELL"
             elif mutate == "header": broken["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["textFormat"]["bold"] = False
+            elif mutate == "color": broken["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["backgroundColor"]["red"] = 0.3
             elif mutate == "validation": broken["data"][0]["rowData"][1]["values"][0]["dataValidation"]["strict"] = False
             else: broken["data"][0]["rowData"][1]["values"][1]["userEnteredFormat"]["numberFormat"]["pattern"] = "wrong"
             with self.assertRaises(sheet_sync.SyncError):
@@ -349,8 +385,10 @@ class CliContractTests(unittest.TestCase):
                 "validate-datasets",
                 "snapshot-target",
                 "build-correction-bundle",
+                "build-recovery-bundle",
                 "validate-approval",
                 "execute-correction",
+                "execute-recovery",
                 "verify-readback",
             },
         )

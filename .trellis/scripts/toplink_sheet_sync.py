@@ -114,6 +114,19 @@ def sha256_v2_values(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def normalize_matrix(values: Sequence[Sequence[Any]], width: int, height: int) -> list[list[Any]]:
+    normalized: list[list[Any]] = []
+    for row_index in range(height):
+        source_row = list(values[row_index]) if row_index < len(values) else []
+        normalized.append((source_row + [""] * width)[:width])
+    return normalized
+
+
+def snapshot_values_digest(values: Sequence[Sequence[Any]], used_range: str) -> str:
+    _, _, height, width = _parse_range(used_range)
+    return sha256_v2_values(normalize_matrix(values, width=width, height=height))
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -901,6 +914,88 @@ def build_recovery_bundle(parent_bundle_id: str, snapshot: dict[str, Any]) -> di
     return {"bundle_id": f"{parent_bundle_id}-RECOVERY-01", "parent_bundle_id": parent_bundle_id, "approval_state": "NOT_GRANTED", "current_state": snapshot, "automatic_rollback": False, "new_approval_required": True}
 
 
+def build_verify_only_recovery_bundle(
+    repo_root: Path,
+    parent: dict[str, Any],
+    partial_evidence: dict[str, Any],
+    expires_at_ict: str,
+) -> dict[str, Any]:
+    parent_path = repo_root / CORRECTION_DIR / "approval-bundle-unsigned.json"
+    evidence_path = repo_root / CORRECTION_DIR / "correction-readback.json"
+    if read_json(parent_path) != parent:
+        raise SyncError("recovery parent bundle input drift")
+    if read_json(evidence_path) != partial_evidence:
+        raise SyncError("recovery partial evidence input drift")
+    if partial_evidence.get("status") != "VERIFY_FAILED":
+        raise SyncError("VERIFY_FAILED evidence required for recovery")
+    completed = partial_evidence.get("completed_phases", [])
+    if completed != ["CREATE_TAB", "CLEAR_BOUNDED_RANGES", "WRITE_DATASETS", "FORMAT_AND_VALIDATE"]:
+        raise SyncError("verify-only recovery requires all mutation phases completed")
+    current_metadata = partial_evidence.get("current_state", {}).get("metadata", {})
+    current_sheets = {sheet["title"]: sheet for sheet in current_metadata.get("sheets", [])}
+    expected_titles = {"Trang tính1", *TAB_KEYS}
+    if set(current_sheets) != expected_titles:
+        raise SyncError("recovery current sheet registry drift")
+    actions: list[dict[str, Any]] = []
+    for parent_action in parent["actions"]:
+        title = parent_action["tab_key"]
+        current_sheet_id = current_sheets[title]["sheet_id"]
+        if title in EXISTING_TAB_IDS and current_sheet_id != EXISTING_TAB_IDS[title]:
+            raise SyncError(f"recovery existing sheet ID drift: {title}")
+        actions.append({
+            "tab_key": title,
+            "action": "EXACT_READBACK_ONLY",
+            "sheet_id": current_sheet_id,
+            "new_used_range": parent_action["new_used_range"],
+            "approved_new_used_range": parent_action["approved_new_used_range"],
+            "max_rows": parent_action["max_rows"],
+            "max_columns": parent_action["max_columns"],
+            "dataset_sha256": parent_action["dataset_sha256"],
+            "formatting": copy.deepcopy(parent_action["formatting"]),
+            "validations": copy.deepcopy(parent_action["validations"]),
+            "date_columns": list(parent_action.get("date_columns", [])),
+        })
+    recovery: dict[str, Any] = {
+        "bundle_id": f"{parent['bundle_id']}-RECOVERY-01",
+        "parent_bundle_id": parent["bundle_id"],
+        "parent_bundle_path": CORRECTION_DIR.joinpath("approval-bundle-unsigned.json").as_posix(),
+        "parent_bundle_sha256": sha256_file(parent_path),
+        "partial_failure_path": CORRECTION_DIR.joinpath("correction-readback.json").as_posix(),
+        "partial_failure_sha256": sha256_file(evidence_path),
+        "approval_state": "DRAFT_UNSIGNED",
+        "recovery_mode": "EXACT_READBACK_ONLY",
+        "spreadsheet_id": TARGET_SPREADSHEET_ID,
+        "service_account": TARGET_SERVICE_ACCOUNT,
+        "operator": "Codex CLI",
+        "expires_at_ict": expires_at_ict,
+        "schema_version": parent["schema_version"],
+        "dataset_bundle_sha256": parent["dataset_bundle_sha256"],
+        "snapshot_sha256": parent["snapshot_sha256"],
+        "repository_bindings": copy.deepcopy(parent["repository_bindings"]),
+        "current_state_sha256": sha256_json(partial_evidence["current_state"]),
+        "actions": actions,
+        "readback_tabs": list(TAB_KEYS),
+        "preserve_tabs": ["Trang tính1"],
+        "authorized_external_mutations": 0,
+        "automatic_rollback": False,
+        "new_approval_required": True,
+    }
+    recovery["scope_sha256"] = sha256_json({"actions": actions, "preserve_tabs": recovery["preserve_tabs"], "authorized_external_mutations": 0})
+    return recovery
+
+
+def validate_exact_recovery_scope(
+    approved: dict[str, Any], repo_root: Path, parent: dict[str, Any], partial_evidence: dict[str, Any]
+) -> None:
+    expected = build_verify_only_recovery_bundle(
+        repo_root, parent, partial_evidence, str(approved.get("expires_at_ict", ""))
+    )
+    actual = copy.deepcopy(approved)
+    actual["approval_state"] = "DRAFT_UNSIGNED"
+    if actual != expected:
+        raise SyncError("approved recovery scope drift")
+
+
 def record_partial_write(written_tabs: list[str], pending_tabs: list[str]) -> dict[str, Any]:
     return {"status": "VERIFY_FAILED", "written_tabs": written_tabs, "pending_tabs": pending_tabs, "automatic_rollback": False, "new_approval_required": True}
 
@@ -1037,7 +1132,7 @@ def normalize_native_sheet_state(sheet: dict[str, Any], action: dict[str, Any]) 
             if row_index == 0:
                 background = formatting.get("backgroundColor", {})
                 text_format = formatting.get("textFormat", {})
-                color_ok = all(abs(float(background.get(name, -1)) - value) < 0.001 for name, value in (("red", 0.4196), ("green", 0.1216), ("blue", 0.2118)))
+                color_ok = all(abs(float(background.get(name, -1)) - value) <= (1 / 255 + 0.0001) for name, value in (("red", 0.4196), ("green", 0.1216), ("blue", 0.2118)))
                 foreground = text_format.get("foregroundColor", {})
                 foreground_ok = all(abs(float(foreground.get(name, -1)) - 1.0) < 0.001 for name in ("red", "green", "blue"))
                 if color_ok and foreground_ok and text_format.get("bold") is True:
@@ -1071,6 +1166,72 @@ def normalize_native_sheet_state(sheet: dict[str, Any], action: dict[str, Any]) 
 def verify_native_sheet_readback(action: dict[str, Any], sheet: dict[str, Any], sheet_id: int) -> None:
     if normalize_native_sheet_state(sheet, action) != expected_native_sheet_state(action, sheet_id):
         raise SyncError(f"native Sheet readback mismatch: {action['tab_key']}")
+
+
+def verify_current_correction_readback(
+    spreadsheets: Any,
+    approved: dict[str, Any],
+    dataset_bundle: dict[str, Any],
+    frozen_snapshot: dict[str, Any],
+) -> dict[str, Any]:
+    metadata = spreadsheets.get(spreadsheetId=TARGET_SPREADSHEET_ID, fields="sheets.properties").execute()
+    current = _snapshot_from_metadata(metadata)
+    current_by_title = {sheet["title"]: sheet for sheet in current["sheets"]}
+    if set(current_by_title) != {"Trang tính1", *TAB_KEYS}:
+        raise SyncError("readback sheet registry drift")
+    ranges = [f"'{action['tab_key']}'!{action['new_used_range']}" for action in approved["actions"]]
+    preserved = next(sheet for sheet in frozen_snapshot["sheets"] if sheet["sheet_id"] == 0)
+    preserved_range = preserved["baseline_range"]
+    values_response = spreadsheets.values().batchGet(
+        spreadsheetId=TARGET_SPREADSHEET_ID,
+        ranges=ranges + [f"'{preserved['title']}'!{preserved_range}"],
+        majorDimension="ROWS",
+        valueRenderOption="FORMULA",
+    ).execute()
+    returned = values_response.get("valueRanges", [])
+    if len(returned) != len(approved["actions"]) + 1:
+        raise SyncError("partial correction readback")
+    native = spreadsheets.get(
+        spreadsheetId=TARGET_SPREADSHEET_ID,
+        ranges=ranges,
+        includeGridData=True,
+        fields="sheets(properties(sheetId,title,gridProperties(frozenRowCount)),data(rowData(values(userEnteredFormat(wrapStrategy,backgroundColor,textFormat,numberFormat),dataValidation)),columnMetadata(pixelSize)))",
+    ).execute()
+    native_by_title = {sheet.get("properties", {}).get("title"): sheet for sheet in native.get("sheets", [])}
+    evidence_tabs: list[dict[str, Any]] = []
+    for action, actual in zip(approved["actions"], returned[:-1]):
+        title = action["tab_key"]
+        current_sheet_id = current_by_title[title]["sheet_id"]
+        if current_sheet_id != action["sheet_id"]:
+            raise SyncError(f"readback sheet ID mismatch: {title}")
+        expected_values = matrix_for_dataset(dataset_bundle["datasets"][title])
+        if expected_values != actual.get("values", []):
+            raise SyncError(f"readback values/formulas mismatch: {title}")
+        native_sheet = native_by_title.get(title)
+        if native_sheet is None:
+            raise SyncError(f"native Sheet readback missing: {title}")
+        verify_native_sheet_readback(action, native_sheet, current_sheet_id)
+        evidence_tabs.append({
+            "tab_key": title,
+            "sheet_id": current_sheet_id,
+            "range": action["new_used_range"],
+            "dataset_sha256": action["dataset_sha256"],
+            "values_and_formulas": "PASS",
+            "formatting_and_validation": "PASS",
+            "status": "PASS",
+        })
+    if snapshot_values_digest(returned[-1].get("values", []), preserved_range) != preserved["baseline_digest"]:
+        raise SyncError("Trang tính1 post-write drift")
+    return {
+        "record_id": "TL-SHEET-RUN2-CORRECTION-READBACK-01",
+        "status": "SYNC_READBACK_PASS",
+        "spreadsheet_id": TARGET_SPREADSHEET_ID,
+        "tabs": evidence_tabs,
+        "tab_count": len(evidence_tabs),
+        "mismatch_count": 0,
+        "preserved_trang_tinh1_sheet_id": current_by_title[preserved["title"]]["sheet_id"],
+        "automatic_rollback": False,
+    }
 
 
 def capture_recovery_state(spreadsheets: Any, approved: dict[str, Any]) -> dict[str, Any]:
@@ -1138,7 +1299,7 @@ def execute_correction(repo_root: Path, approval_path: Path, statement: str) -> 
     live_values = {
         sheet["title"]: {
             "range": sheet.get("used_range", sheet.get("baseline_range")),
-            "digest": sha256_v2_values(actual.get("values", [])),
+            "digest": snapshot_values_digest(actual.get("values", []), sheet.get("used_range", sheet.get("baseline_range"))),
         }
         for sheet, actual in zip(frozen_value_sheets, baseline_returned)
     }
@@ -1224,7 +1385,7 @@ def execute_correction(repo_root: Path, approval_path: Path, statement: str) -> 
                 raise SyncError(f"native Sheet readback missing: {action['tab_key']}")
             verify_native_sheet_readback(action, native_sheet, sheet_id)
             evidence_tabs.append({"tab_key": action["tab_key"], "sheet_id": sheet_id, "range": action["new_used_range"], "dataset_sha256": action["dataset_sha256"], "values_and_formulas": "PASS", "formatting_and_validation": "PASS", "status": "PASS"})
-        if sha256_v2_values(returned[-1].get("values", [])) != preserved_sheet["baseline_digest"]:
+        if snapshot_values_digest(returned[-1].get("values", []), preserved_range) != preserved_sheet["baseline_digest"]:
             raise SyncError("Trang tính1 post-write drift")
         return {"record_id": "TL-SHEET-RUN2-CORRECTION-READBACK-01", "status": "SYNC_READBACK_PASS", "spreadsheet_id": TARGET_SPREADSHEET_ID, "tabs": evidence_tabs, "tab_count": len(evidence_tabs), "mismatch_count": 0, "preserved_trang_tinh1_sheet_id": by_title.get("Trang tính1", {}).get("sheet_id"), "automatic_rollback": False}
 
@@ -1280,6 +1441,17 @@ def _build_bundle_command(args: argparse.Namespace) -> int:
     return 0
 
 
+def _build_recovery_command(args: argparse.Namespace) -> int:
+    repo_root = _repo_root(args.repo_root)
+    parent = read_json(repo_root / CORRECTION_DIR / "approval-bundle-unsigned.json")
+    partial = read_json(repo_root / CORRECTION_DIR / "correction-readback.json")
+    recovery = build_verify_only_recovery_bundle(repo_root, parent, partial, args.expires_at_ict)
+    path = repo_root / CORRECTION_DIR / "recovery-bundle-unsigned.json"
+    write_json(path, recovery)
+    print(json.dumps({"status": "DRAFT_UNSIGNED", "mode": "EXACT_READBACK_ONLY", "path": path.relative_to(repo_root).as_posix(), "sha256": sha256_file(path), "authorized_external_mutations": 0}, ensure_ascii=False))
+    return 0
+
+
 def _validate_approval_command(args: argparse.Namespace) -> int:
     validate_approval_statement(Path(args.approval_path), args.approval_statement)
     print(json.dumps({"status": "PASS"}))
@@ -1294,6 +1466,50 @@ def _execute_command(args: argparse.Namespace) -> int:
         raise
     write_json(repo_root / CORRECTION_DIR / "correction-readback.json", evidence)
     print(json.dumps({"status": evidence["status"], "tab_count": evidence["tab_count"]}, ensure_ascii=False))
+    return 0
+
+
+def _execute_recovery_command(args: argparse.Namespace) -> int:
+    repo_root = _repo_root(args.repo_root)
+    approval_path = Path(args.approval_path)
+    approved = validate_approval_statement(approval_path, args.approval_statement)
+    if approved.get("recovery_mode") != "EXACT_READBACK_ONLY" or approved.get("authorized_external_mutations") != 0:
+        raise SyncError("verify-only recovery approval required")
+    validate_active_lease(repo_root)
+    validate_repository_bindings(approved, repo_root)
+    parent_path = repo_root / CORRECTION_DIR / "approval-bundle-unsigned.json"
+    partial_path = repo_root / CORRECTION_DIR / "correction-readback.json"
+    if approved.get("parent_bundle_sha256") != sha256_file(parent_path):
+        raise SyncError("recovery parent bundle digest drift")
+    if approved.get("partial_failure_sha256") != sha256_file(partial_path):
+        raise SyncError("recovery partial-failure digest drift")
+    parent = read_json(parent_path)
+    partial = read_json(partial_path)
+    if approved.get("current_state_sha256") != sha256_json(partial.get("current_state")):
+        raise SyncError("recovery current-state digest drift")
+    dataset_bundle = read_json(repo_root / CORRECTION_DIR / "dataset-bundle.json")
+    frozen_snapshot = read_json(repo_root / CORRECTION_DIR / "target-snapshot.json")
+    registry = load_registry(repo_root)
+    validate_dataset_bundle(dataset_bundle, registry)
+    validate_source_digests(dataset_bundle, repo_root)
+    validate_dataset_sidecars(dataset_bundle, repo_root / CORRECTION_DIR / "datasets")
+    if approved.get("dataset_bundle_sha256") != dataset_bundle.get("bundle_sha256"):
+        raise SyncError("recovery dataset digest drift")
+    if approved.get("snapshot_sha256") != sha256_json(frozen_snapshot):
+        raise SyncError("recovery snapshot digest drift")
+    validate_exact_recovery_scope(approved, repo_root, parent, partial)
+    service = _google_service(TARGET_SERVICE_ACCOUNT)
+    evidence = verify_current_correction_readback(service.spreadsheets(), approved, dataset_bundle, frozen_snapshot)
+    evidence.update({
+        "recovery_bundle_id": approved["bundle_id"],
+        "recovery_bundle_sha256": sha256_file(approval_path),
+        "recovery_mode": "EXACT_READBACK_ONLY",
+        "authorized_external_mutations": 0,
+        "prior_verify_failed_sha256": approved["partial_failure_sha256"],
+        "mutation_phases_from_parent": partial["completed_phases"],
+    })
+    write_json(partial_path, evidence)
+    print(json.dumps({"status": evidence["status"], "tab_count": evidence["tab_count"], "authorized_external_mutations": 0}, ensure_ascii=False))
     return 0
 
 
@@ -1317,6 +1533,9 @@ def build_parser() -> argparse.ArgumentParser:
     correction = subparsers.add_parser("build-correction-bundle")
     correction.add_argument("--expires-at-ict", required=True)
     correction.set_defaults(handler=_build_bundle_command)
+    recovery = subparsers.add_parser("build-recovery-bundle")
+    recovery.add_argument("--expires-at-ict", required=True)
+    recovery.set_defaults(handler=_build_recovery_command)
     validate = subparsers.add_parser("validate-approval")
     validate.add_argument("--approval-path", required=True)
     validate.add_argument("--approval-statement", required=True)
@@ -1325,6 +1544,10 @@ def build_parser() -> argparse.ArgumentParser:
     execute.add_argument("--approval-path", required=True)
     execute.add_argument("--approval-statement", required=True)
     execute.set_defaults(handler=_execute_command)
+    execute_recovery = subparsers.add_parser("execute-recovery")
+    execute_recovery.add_argument("--approval-path", required=True)
+    execute_recovery.add_argument("--approval-statement", required=True)
+    execute_recovery.set_defaults(handler=_execute_recovery_command)
     verify = subparsers.add_parser("verify-readback")
     verify.add_argument("--readback-path", required=True)
     verify.set_defaults(handler=_verify_readback_command)

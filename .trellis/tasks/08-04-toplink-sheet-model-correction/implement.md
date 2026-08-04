@@ -43,7 +43,7 @@
 - [x] Commit the unsigned bundle and stop with `external_writes=0`.
 - [ ] Only after fresh exact digest-bound `APPROVED`: revalidate lease/target/identity/hashes,
       mutate minimally, and exact-read-back 24/24 plus `Trang tính1` integrity.
-- [ ] On partial write: persist `VERIFY_FAILED`, capture state, require new recovery approval.
+- [x] On partial write: persist `VERIFY_FAILED`, capture state, require new recovery approval.
 
 ## N5 — Closure
 
