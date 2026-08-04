@@ -1,0 +1,64 @@
+{
+  "eval_id": "eval-20260804-050815",
+  "eval_type": "full",
+  "composite_score": 68.0,
+  "grade": "C+",
+  "interpretation": "Fair quality -- notable improvements needed",
+  "auto_rejected": false,
+  "dimensions": {
+    "content_quality": {
+      "score": null,
+      "weight": 0.0,
+      "status": "skipped",
+      "reason": "content-scorer.py ran in fallback mode: textstat not installed. Content scoring requires: pip install textstat"
+    },
+    "brand_voice": {
+      "score": null,
+      "weight": 0.0,
+      "status": "skipped",
+      "reason": "brand-voice-scorer.py ran in fallback mode: NLTK not installed. Voice scoring requires: pip install nltk"
+    },
+    "hallucination": {
+      "score": 68,
+      "weight": 1.0,
+      "status": "pass"
+    },
+    "claim_verification": {
+      "score": null,
+      "weight": 0.0,
+      "status": "skipped",
+      "reason": "No evidence file provided"
+    },
+    "output_structure": {
+      "score": null,
+      "weight": 0.0,
+      "status": "skipped",
+      "reason": "No schema specified"
+    },
+    "readability": {
+      "score": null,
+      "weight": 0.0,
+      "status": "skipped",
+      "reason": "readability-analyzer.py ran in fallback mode: textstat not installed. Readability analysis requires: pip install textstat"
+    }
+  },
+  "dimension_alerts": [],
+  "skipped_dimensions": [
+    "content_quality",
+    "brand_voice",
+    "claim_verification",
+    "output_structure",
+    "readability"
+  ],
+  "weights_used": {
+    "hallucination": 1.0
+  },
+  "content_type": "general",
+  "logged": false,
+  "timestamp": "2026-08-04T05:08:15Z",
+  "script_errors": {
+    "content_quality": "content-scorer.py ran in fallback mode: textstat not installed. Content scoring requires: pip install textstat",
+    "brand_voice": "brand-voice-scorer.py ran in fallback mode: NLTK not installed. Voice scoring requires: pip install nltk",
+    "readability": "readability-analyzer.py ran in fallback mode: textstat not installed. Readability analysis requires: pip install textstat"
+  }
+}

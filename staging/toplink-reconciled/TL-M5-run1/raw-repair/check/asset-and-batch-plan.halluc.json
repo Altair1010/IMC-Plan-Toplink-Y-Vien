@@ -1,0 +1,47 @@
+{
+  "hallucination_score": 80,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [
+      {
+        "type": "unverified_statistic",
+        "value": "100%",
+        "stat_type": "percentage",
+        "context": "VERIFY (TL-M5 asset/batch)\n\n- [x] Capacity ph\u1ea3n \u00e1nh input lock th\u1eadt; thi\u1ebfu ph\u00e2n vai = `MISSING_INPUT` (kh\u00f4ng \u0111i\u1ec1n gi\u1ea3).\n- [x] 100% asset l\u00e0 placeholder `RIGHTS_UNCLEARED`; kh\u00f4ng ch\u1ecdn/t\u00e1i d\u00f9ng/ng\u1ee5 \u00fd cl",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      }
+    ],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 K\u1ebf ho\u1ea1ch asset & batch production (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `content-calendar` + `content-engine`\n> (v3.15.1).",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Ch\u1ecdn/clear asset th\u1eadt l\u00e0 h\u00e0nh \u0111\u1ed9ng sau khi rights PASS.\n\n| Asset placeholder ID | Lo\u1ea1i | M\u00f4 t\u1ea3 c\u1ea7n chu\u1ea9n b\u1ecb | Rights state | D\u00f9ng cho item |\n|---|---|---|---|---|\n| `AST-SPACE-4F` | video/photo kh\u00f4ng ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY (TL-M5 asset/batch)\n\n- [x] Capacity ph\u1ea3n \u00e1nh input lock th\u1eadt; thi\u1ebfu ph\u00e2n vai = `MISSING_INPUT` (kh\u00f4ng \u0111i\u1ec1n gi\u1ea3).\n- [x] 100% asset l\u00e0 placeholder `RIGHTS_UNCLEARED`; kh\u00f4ng ch\u1ecdn/t\u00e1i d\u00f9ng/ng\u1ee5 \u00fd cl",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 4,
+  "critical_flags": 0
+}

@@ -1,0 +1,62 @@
+{
+  "hallucination_score": 68,
+  "interpretation": "Moderate hallucination risk - review recommended",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Audience hypotheses (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `audience-intelligence` (v3.15.1,\n> hypothesis-only / limited-data branch) applied to launch",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Audience hypotheses (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `audience-intelligence` (v3.15.1,\n> hypothesis-only / limited-data branch) applied to launch",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Data-quality declaration\n\n- Data level: **hypothesis-only.** No CRM, analytics, survey, or interview data.",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Verdict summary \u2014 keep / edit / drop\n\n| ID | Hypothesis (master plan \u00a78) | Verdict | Rationale |\n|---|---|---|---|\n| `TL-A01` | Ng\u01b0\u1eddi b\u1eadn r\u1ed9n/v\u0103n ph\u00f2ng 28\u201355, H\u00e0 N\u1ed9i | **KEEP** | Matches H\u00e0 N\u1ed9i local ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Income/education `MISSING_INPUT`.\n- **JTBD \u2014 functional:** t\u00ecm m\u1ed9t c\u00e1ch ch\u0103m s\u00f3c c\u01a1 th\u1ec3 \u0111\u1ec1u \u0111\u1eb7n, d\u1ec5 hi\u1ec3u, kh\u00f4ng b\u1ecb \u00e9p mua.\n- **JTBD \u2014 social:** \u0111\u01b0\u1ee3c xem l\u00e0 ng\u01b0\u1eddi bi\u1ebft ch\u0103m s\u00f3c b\u1ea3n th\u00e2n m\u1ed9t c\u00e1ch ch\u1ec9n c",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Anti-personas (exclude)\n\n| Anti-persona | Why excluded | Identification signal |\n|---|---|---|\n| Ng\u01b0\u1eddi t\u00ecm \"ch\u1eefa kh\u1ecfi b\u1ec7nh\"/\u0111i\u1ec1u tr\u1ecb d\u1ee9t \u0111i\u1ec3m | Toplink kh\u00f4ng ch\u1ea9n \u0111o\u00e1n/\u0111i\u1ec1u tr\u1ecb/cam k\u1ebft; fail-closed | ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 6,
+  "critical_flags": 0
+}

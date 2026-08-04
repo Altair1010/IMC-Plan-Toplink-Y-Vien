@@ -1,0 +1,141 @@
+{
+  "template_version": "1.0",
+  "project": "toplink-y-vien",
+  "run": "TOPLINK_RUN1_BUILD",
+  "stage": "claude_to_codex",
+  "milestone": "TL-M5",
+  "milestone_scope_repaired": ["TL-M2", "TL-M3", "TL-M4", "TL-M5"],
+  "prepared_at_ict": "2026-08-04T01:18:00+07:00",
+  "prepared_by": "Claude Code",
+  "recipient": "Codex CLI",
+  "next_actor": "Codex",
+  "lease_status": "RELEASED",
+  "read_after_independent_audit": false,
+  "purpose": "Hand over the Run 1 Phase A real-authoring repair for TL-M2..TL-M5. Blockers repaired: TL-R1-BLK-DMP-CAPABILITY-001 (authoring != check; real authoring = DMP subagent dispatch), TL-R1-BLK-DMP-RAW-EVIDENCE-001 (raw output + metadata per invocation under raw-repair/), TL-R1-BLK-DMP-AUTOREJECT-001 (content-pillars auto-reject cleared 32->92 via regeneration), TL-R1-BLK-HANDOFF-DIGEST-001 (all trace/marker/handoff/envelope digests recomputed and synced). Only content-pillars.md changed; 13 deliverables byte-unchanged.",
+  "invocation_definition": "Governed by human owner (2026-08-03): DMP authoring-subagent dispatch via the Agent tool = real native authoring invocation. Evaluator scripts (eval-runner/hallucination-detector/claim-verifier) = check capability only, never authoring.",
+  "locks": {
+    "profile_digest_sha256": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+    "profile_lock": "G5_HELD",
+    "source_digest_sha256": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+    "source_members_exact": "5/5",
+    "dmp_version": "3.15.1",
+    "active_brand": "toplink-y-vien",
+    "active_brand_readback": "toplink-y-vien",
+    "run1_manifest_pre_extension_sha256": "48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427",
+    "tl_m5_human_input_block_digest_sha256": "809a94dd41e4d1640242d4eda01d27e6f4f4e459e2db50d1fa975e56483c4274"
+  },
+  "sources_locked": [
+    {"path": "spec.md", "sha256": "aa8465eaf3b67d7a68f7725c1b19905956ea6926463efd3400b1b63c49dc3464"},
+    {"path": "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md", "sha256": "aa923b51c86d4c52e5dd15d4d25aa45697c51fbbc7ddb4f7f80de2b9250beb23"},
+    {"path": "RULES.md", "sha256": "96c1bb4cace6c243cea69aac83e7fd8704ab1e1ee8f31cee196983f53bc333d0"},
+    {"path": "docs Toplink/Ho-so-thuong-hieu-Y-Vien-Toplink-Cai-tien-2026.md", "sha256": "645b1ad2f62c831fa8d7adc9b02473391f01fd843bc6ed2dde05e156eafa56e8"},
+    {"path": "staging/toplink-reconciled/TL-M1-evidence/entity-franchise-allowed-use-map.md", "sha256": "56618b1814b164cf703cb115625e250af0d181ce6487308ff21bfd19c9568021"}
+  ],
+  "dmp_invocation": {
+    "mode": "REAL_AUTHORING_SUBAGENT_DISPATCH",
+    "evidence_status": "VERIFIED_REAL_INVOKE",
+    "raw_evidence_dirs": ["staging/toplink-reconciled/TL-M2-M4-run1/raw-repair/", "staging/toplink-reconciled/TL-M5-run1/raw-repair/"],
+    "check_raw_json_dirs": ["staging/toplink-reconciled/TL-M2-M4-run1/raw-repair/check/", "staging/toplink-reconciled/TL-M5-run1/raw-repair/check/"],
+    "external_writes": 0,
+    "authoring_invocations": [
+      {"trace_id": "TL-M2-DMP-BRAND-002", "milestone": "TL-M2", "capability": "brand-setup (non-mutating proposal)", "native_subagent": "digital-marketing-pro:marketing-strategist", "raw_output": "raw-repair/TL-M2-DMP-BRAND-002.md", "raw_sha256": "1a91b07d94519db434873421df7aafc10f3dbf56e63a55c1dd0935c56c2474b8", "disposition": "KEEP"},
+      {"trace_id": "TL-M3-DMP-AUD-002", "milestone": "TL-M3", "capability": "audience-intelligence", "native_subagent": "digital-marketing-pro:marketing-strategist", "raw_output": "raw-repair/TL-M3-DMP-AUD-002.md", "raw_sha256": "efa54ffbae90b52779b17fe988fe2050818d5ff2b65c4a7ffb4a19583bcf8668", "disposition": "KEEP"},
+      {"trace_id": "TL-M3-DMP-CAMP-002", "milestone": "TL-M3", "capability": "campaign-plan (positioning+narrative)", "native_subagent": "digital-marketing-pro:marketing-strategist", "raw_output": "raw-repair/TL-M3-DMP-CAMP-002.md", "raw_sha256": "6cc1f5a23b64141b2f544549b6b2cfe13ec2b91322b5703388bc547dd0fe74d6", "disposition": "KEEP"},
+      {"trace_id": "TL-M3-DMP-SOC-002", "milestone": "TL-M3", "capability": "social-strategy (content-pillars)", "native_subagent": "digital-marketing-pro:social-media-manager", "raw_output": "raw-repair/TL-M3-DMP-SOC-002.md", "raw_sha256": "b0790e2d83aa456eb09a318e1306953ceab54cc68b6c68079fa218477fb3a2a6", "disposition": "REGENERATE"},
+      {"trace_id": "TL-M3-DMP-SOC-003", "milestone": "TL-M3", "capability": "social-strategy (facebook-page-strategy)", "native_subagent": "digital-marketing-pro:social-media-manager", "raw_output": "raw-repair/TL-M3-DMP-SOC-003.md", "raw_sha256": "95645fa60616435d2bf500831ffbfc9efc7621d65477a455f0125dcea28606d9", "disposition": "KEEP"},
+      {"trace_id": "TL-M4-DMP-CAMP-002", "milestone": "TL-M4", "capability": "campaign-plan (campaign-architecture+kpi)", "native_subagent": "digital-marketing-pro:marketing-strategist", "raw_output": "raw-repair/TL-M4-DMP-CAMP-002.md", "raw_sha256": "833f63a5c7207f66a4c8e669d979a10875d1c41f0eddb48af7b93875b29ac17f", "disposition": "KEEP"},
+      {"trace_id": "TL-M5-DMP-CAL-002", "milestone": "TL-M5", "capability": "content-calendar", "native_subagent": "digital-marketing-pro:content-creator", "raw_output": "raw-repair/TL-M5-DMP-CAL-002.md", "raw_sha256": "cceb73ba0d6801495b027acf55ef02195c71ab19d97ab7a1c2aa645b8cae7ac3", "disposition": "KEEP"},
+      {"trace_id": "TL-M5-DMP-ENG-002", "milestone": "TL-M5", "capability": "content-engine", "native_subagent": "digital-marketing-pro:content-creator", "raw_output": "raw-repair/TL-M5-DMP-ENG-002.md", "raw_sha256": "2f5d5218252679bc775c9433861dc72d2418b0da5e0cd41ca9cbb2d44364843b", "disposition": "KEEP"},
+      {"trace_id": "TL-M5-DMP-VID-002", "milestone": "TL-M5", "capability": "video-script", "native_subagent": "Short-Video Editing Coach", "raw_output": "raw-repair/TL-M5-DMP-VID-002.md", "raw_sha256": "c97345a027eb196c4fbd703bdfbadf1149c924d7105789e246b46259ca6d6e75", "disposition": "KEEP"}
+    ],
+    "check_invocation": {
+      "capability": "digital-marketing-pro:check",
+      "scripts": ["scripts/eval-runner.py --action run-full --brand toplink-y-vien --file <deliverable>", "scripts/hallucination-detector.py --action detect --file <deliverable>"],
+      "logged": false,
+      "result": "All 14 deliverables (9 M2-M4 + 5 M5) auto_rejected=false, 0 critical. content-pillars auto-reject cleared 32->92 by real regeneration. Low composites elsewhere = generic-scorer false-positives on design numerics / governed support-language / Vietnamese governance phrases. No fabricated fact."
+    },
+    "aggregate_finding": "Real authoring re-invoked per capability with raw output + metadata; 1 canonical changed (content-pillars REGENERATE, auto-reject cleared); 13 KEEP byte-unchanged; all auto_rejected=false, 0 critical; evaluator recorded separately as check.",
+    "forbidden_status_labels_not_used": ["VERIFIED_REAL_INVOKE_SCAFFOLD", "skill-scaffold", "planned", "manual-only", "read-back-only"]
+  },
+  "canonical_inputs": [
+    "docs Toplink/staging/run1/00-input-lock.json",
+    "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md",
+    "docs Toplink/TOPLINK_PAGE_MILESTONES.md",
+    "RULES.md",
+    "spec.md"
+  ],
+  "deliverables": [
+    {"milestone": "TL-M2", "path": "docs Toplink/brand/dmp-profile.md", "sha256": "2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4", "disposition": "KEEP"},
+    {"milestone": "TL-M2", "path": "docs Toplink/system/runtime-compatibility.md", "sha256": "e38846fb51853d2e82eadab8f882ec1ecc4d5a01256b8f99685ab508f07425c7", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "path": "docs Toplink/research/audience-hypotheses.md", "sha256": "4a32da6bdcbbbaa99db5618b052c809f579b8415497070d60b1f91fc3469c881", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "path": "docs Toplink/brand/positioning.md", "sha256": "7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "path": "docs Toplink/brand/narrative.md", "sha256": "02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6", "disposition": "KEEP"},
+    {"milestone": "TL-M3", "path": "docs Toplink/brand/content-pillars.md", "sha256": "b0790e2d83aa456eb09a318e1306953ceab54cc68b6c68079fa218477fb3a2a6", "prior_sha256": "451425c17aece4b8bbc873fe6d5c2f2386886916f2fc1ddee9423c3035b69cb4", "disposition": "REGENERATE"},
+    {"milestone": "TL-M3", "path": "docs Toplink/brand/facebook-page-strategy.md", "sha256": "cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075", "disposition": "KEEP"},
+    {"milestone": "TL-M4", "path": "docs Toplink/brand/campaign-architecture.md", "sha256": "c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0", "disposition": "KEEP"},
+    {"milestone": "TL-M4", "path": "docs Toplink/brand/kpi-experiment-plan.md", "sha256": "40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "path": "docs Toplink/content/month-calendar.md", "sha256": "0d2d2d1609910f7f5784ea98cd9e0820cda9d267314d9418e2e3b2f5b47ccb36", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "path": "docs Toplink/content/asset-and-batch-plan.md", "sha256": "435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "path": "docs Toplink/content/reels-briefs.md", "sha256": "51b18d91f1d5dea5391192700260273c3e891ac9cfb9e95f59c0917dfdb60fd4", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "path": "docs Toplink/content/production-briefs.md", "sha256": "42cb8e7d916b1cbe8e48d7f2ac624ea9e83ce49c3420cb2da55814b48d00d429", "disposition": "KEEP"},
+    {"milestone": "TL-M5", "path": "docs Toplink/content/workflow-approval-measurement.md", "sha256": "651dff61991fdc9c5669635cfacabebb4c006b4aa9b558739ce897fe80f109ed", "disposition": "KEEP"}
+  ],
+  "trace_and_review_artifacts": [
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/dmp-trace.md", "sha256": "b63c2601eef96a48d36109b7fc02ebccee21ac63a55d0ca0f76839299b3d9be5", "role": "M2-M4 DMP trace (real authoring)"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/agency-review.md", "sha256": "d6006af993afd09c7f090e616c00b2a0c386c37ba275f314dc027d9c4b89ea6d", "role": "M2-M4 agency review"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json", "sha256": "a5040677a739f5a2efbf5d45e4744cd7747d801f4b17e08943d13226d5c54369", "role": "M2-M4 completion marker"},
+    {"path": "staging/toplink-reconciled/TL-M2-M4-run1/handoff-claude-to-codex-phaseA.md", "sha256": "80dd87f8e6153ed580273edf225587c6be779e70ff4e8360506b14b04698c7f3", "role": "M2-M4 handoff"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/dmp-trace.md", "sha256": "993385764704a5e59b749cf2da48398e14c34f77ed426644a880a2aa1daaacfa", "role": "M5 DMP trace (real authoring)"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/agency-review.md", "sha256": "c8390a46de479d655a751a814b4ab89bee8832ee7c9ffdcaae731db839c29306", "role": "M5 agency review + safety ledger"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE.json", "sha256": "8dcf90e5f03709843ea4854583697bc2632ff350882c09f090b03e7b487d1e18", "role": "M5 completion marker"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/handoff-claude-to-codex-phaseA.md", "sha256": "2c781814bfa62b7d1e18d2c1aaf2149ac9caf042b76810a258e6273dccd9bc27", "role": "M5 markdown handoff"}
+  ],
+  "reviewer_verdicts": [
+    {"reviewer": "Content Creator", "workstream": "calendar-copy", "verdict": "REVIEWED_PASS_STRUCTURAL"},
+    {"reviewer": "PR & Communications Manager", "workstream": "calendar-copy+safety", "verdict": "PASS_STRUCTURAL_PLUS_NEEDS_HUMAN_REVIEW"},
+    {"reviewer": "Short-Video Coach", "workstream": "reels", "verdict": "REVIEWED_PASS_MECHANICS"},
+    {"reviewer": "TikTok Strategist", "workstream": "reels", "verdict": "REVIEWED_MECHANICS_ONLY"}
+  ],
+  "human_gates": [
+    "10 health items (TL-P2/TL-P4) professional/human approval per item (TL-D13/TL-D17)",
+    "public positioning approval (HYPOTHESIS NOT_PUBLIC_APPROVED)",
+    "franchise/legal public wording (TL-GAP-002/009, TL-D16 KEEP LOCKED)",
+    "product dossier (TL-GAP-004) and 11_Product_Yvien.md (TL-GAP-010 UNVERIFIED, customer-experience only)",
+    "founder allowed-use and consent (CL-FD1)",
+    "testimonial/UGC documented consent before use",
+    "content start date and production capacity beyond the locked bounds (TL-GAP-006 at TL-M6)"
+  ],
+  "open_issues": [
+    {"id": "TL-M5-ISSUE-001", "severity": "major", "classification": "claim", "route": "HUMAN_GATE", "status": "open", "note": "10 health items need per-item human/professional approval"},
+    {"id": "TL-M5-ISSUE-002", "severity": "major", "classification": "evidence", "route": "HUMAN_GATE", "status": "open", "note": "11_Product_Yvien.md UNVERIFIED (TL-GAP-010), customer-experience only"},
+    {"id": "TL-R1-MANIFEST-DMPSTATUS-001", "severity": "minor", "classification": "schema", "route": "CODEX_PHASE_B", "status": "open", "note": "run1-manifest.json dmp_traces[] still read VERIFIED_REAL_INVOKE_SCAFFOLD; Codex must reconcile to the real-authoring repair, add TL-M5, and record content-pillars new digest b0790e2d"},
+    {"id": "TL-R1-EVAL-FP-001", "severity": "resolved", "classification": "evidence", "route": "CLOSED", "status": "resolved", "note": "content-pillars auto-reject (32/F) genuinely cleared to 92/A/auto_rejected=false via real social-strategy regeneration (28-slot fractions + neutralized superlatives). No prose override."}
+  ],
+  "human_review_recommendations_not_applied": [
+    "positioning.md: neutralize 'mạnh nhất' -> 'trọng tâm'; add explicit NEEDS_HUMAN_REVIEW on public/founder positioning",
+    "narrative.md: add explicit NEEDS_HUMAN_REVIEW on founder/public narrative"
+  ],
+  "external_state": {
+    "external_writes": 0,
+    "milestone_advance": false,
+    "sheet_mutation": false,
+    "page_mutation": false,
+    "public_publishing": false,
+    "any_item_approved": false,
+    "run1_closed": false,
+    "run2_started": false,
+    "run3": "FORBIDDEN"
+  },
+  "allowed_next_action": "Codex Run 1 Phase B: reconcile the repaired TL-M2-M5 real-authoring traces into run1-manifest.json (add TL-M5 outputs, record content-pillars new digest b0790e2d, update dmp_traces[] statuses off SCAFFOLD), verify all digests in this envelope, run final QA, WITHOUT closing Run 1.",
+  "forbidden_actions": [
+    "Sheet/Page/publish mutation",
+    "grant human APPROVED",
+    "advance any milestone / mark COMPLETE",
+    "close Run 1 or start Run 2/Run 3",
+    "edit input lock, P1 Trellis files, or 11_Product_Yvien.md",
+    "elevate UNVERIFIED product to a claim",
+    "brand-setup live-profile mutation"
+  ],
+  "stop_if": "profile digest != a45e4ae4...c8cbe349, source set != 3ba91761... 5/5, active brand != toplink-y-vien, DMP != 3.15.1, deliverable digest mismatch, or overlapping lease.",
+  "lease_released": true
+}

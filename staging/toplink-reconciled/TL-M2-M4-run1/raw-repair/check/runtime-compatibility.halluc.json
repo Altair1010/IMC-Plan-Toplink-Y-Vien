@@ -1,0 +1,38 @@
+{
+  "hallucination_score": 84,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M2 \u2014 DMP runtime compatibility (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** Records the runtime surface the M3/M4\n> generations rely on, so a Run 2 fresh audit can co",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Channel runtime roles\n\n| Channel | Runtime role | State |\n|---|---|---|\n| Facebook Page | Primary \u2014 corporate identity, education, operational proof, community | `ACTIVE` |\n| Reels (on Facebook) | Dis",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "first",
+        "context": "A change to any of the above = `FAIL_BACK_TO_RUN1`.\n- `_active-brand.json` is shared global state: any non-Toplink work must `switch-brand` away from\n  `toplink-y-vien` first (and switch back before T",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 3,
+  "critical_flags": 0
+}

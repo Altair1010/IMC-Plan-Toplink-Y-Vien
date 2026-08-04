@@ -1,0 +1,103 @@
+{
+  "hallucination_score": 44,
+  "interpretation": "High hallucination risk - revision required",
+  "checks": {
+    "unverified_statistics": [
+      {
+        "type": "unverified_statistic",
+        "value": "14%",
+        "stat_type": "percentage",
+        "context": "Chu\u1ea9n chung m\u1ecdi Reel\n\n- **T\u1ef7 l\u1ec7/\u0111\u1ed9 d\u00e0i:** 9:16 \u00b7 15\u201330s. **Subtitle:** b\u1eaft bu\u1ed9c, ph\u00f4ng \u0111\u1ee7 t\u01b0\u01a1ng ph\u1ea3n, \u0111\u1eb7t trong safe-zone.\n- **Safe-zone:** ch\u1eeba ~14% tr\u00ean (t\u00ean Page) v\u00e0 ~20% d\u01b0\u1edbi (UI/caption); on-scre",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      },
+      {
+        "type": "unverified_statistic",
+        "value": "20%",
+        "stat_type": "percentage",
+        "context": "Chu\u1ea9n chung m\u1ecdi Reel\n\n- **T\u1ef7 l\u1ec7/\u0111\u1ed9 d\u00e0i:** 9:16 \u00b7 15\u201330s. **Subtitle:** b\u1eaft bu\u1ed9c, ph\u00f4ng \u0111\u1ee7 t\u01b0\u01a1ng ph\u1ea3n, \u0111\u1eb7t trong safe-zone.\n- **Safe-zone:** ch\u1eeba ~14% tr\u00ean (t\u00ean Page) v\u00e0 ~20% d\u01b0\u1edbi (UI/caption); on-scre",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      }
+    ],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 Reels briefs (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `video-script` + `content-engine`\n> (v3.15.1). **Facebook Reels first; TikTok = mechanics-review on",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "first",
+        "context": "# TL-M5 \u2014 Reels briefs (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `video-script` + `content-engine`\n> (v3.15.1). **Facebook Reels first; TikTok = mechanics-review on",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 Reels briefs (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `video-script` + `content-engine`\n> (v3.15.1). **Facebook Reels first; TikTok = mechanics-review on",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "N\u1ed9i dung kh\u00f4ng thay th\u1ebf cho ch\u1ea9n \u0111o\u00e1n, \u0111i\u1ec1u tr\u1ecb ho\u1eb7c ch\u1ec9 \u0111\u1ecbnh c\u1ee7a b\u00e1c s\u0129.\n  > V\u1edbi kh\u00e1ch h\u00e0ng c\u00f3 b\u1ec7nh n\u1ec1n, \u0111ang mang thai, \u0111ang d\u00f9ng thu\u1ed1c \u0111i\u1ec1u tr\u1ecb ho\u1eb7c c\u00f3 thi\u1ebft b\u1ecb y t\u1ebf c\u1ea5y gh\u00e9p\n  > trong c\u01a1 th\u1ec3, c\u1ea7n ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "N\u1ed9i dung kh\u00f4ng thay th\u1ebf cho ch\u1ea9n \u0111o\u00e1n, \u0111i\u1ec1u tr\u1ecb ho\u1eb7c ch\u1ec9 \u0111\u1ecbnh c\u1ee7a b\u00e1c s\u0129.\n  > V\u1edbi kh\u00e1ch h\u00e0ng c\u00f3 b\u1ec7nh n\u1ec1n, \u0111ang mang thai, \u0111ang d\u00f9ng thu\u1ed1c \u0111i\u1ec1u tr\u1ecb ho\u1eb7c c\u00f3 thi\u1ebft b\u1ecb y t\u1ebf c\u1ea5y gh\u00e9p\n  > trong c\u01a1 th\u1ec3, c\u1ea7n ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "first",
+        "context": "Kh\u00f4ng cross-post, kh\u00f4ng \u0111\u0103ng TikTok cho t\u1edbi canonical decision kh\u00e1c.\n\n## VERIFY (TL-M5 reels)\n\n- [x] 12 Reel = \u0111\u00fang 12 video item c\u1ee7a calendar; Facebook-first; TikTok mechanics-only.\n- [x] M\u1ed7i Reel: h",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Kh\u00f4ng cross-post, kh\u00f4ng \u0111\u0103ng TikTok cho t\u1edbi canonical decision kh\u00e1c.\n\n## VERIFY (TL-M5 reels)\n\n- [x] 12 Reel = \u0111\u00fang 12 video item c\u1ee7a calendar; Facebook-first; TikTok mechanics-only.\n- [x] M\u1ed7i Reel: h",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Kh\u00f4ng cross-post, kh\u00f4ng \u0111\u0103ng TikTok cho t\u1edbi canonical decision kh\u00e1c.\n\n## VERIFY (TL-M5 reels)\n\n- [x] 12 Reel = \u0111\u00fang 12 video item c\u1ee7a calendar; Facebook-first; TikTok mechanics-only.\n- [x] M\u1ed7i Reel: h",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Kh\u00f4ng cross-post, kh\u00f4ng \u0111\u0103ng TikTok cho t\u1edbi canonical decision kh\u00e1c.\n\n## VERIFY (TL-M5 reels)\n\n- [x] 12 Reel = \u0111\u00fang 12 video item c\u1ee7a calendar; Facebook-first; TikTok mechanics-only.\n- [x] M\u1ed7i Reel: h",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 11,
+  "critical_flags": 0
+}

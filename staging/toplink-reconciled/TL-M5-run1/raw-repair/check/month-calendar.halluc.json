@@ -1,0 +1,62 @@
+{
+  "hallucination_score": 72,
+  "interpretation": "Moderate hallucination risk - review recommended",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 L\u1ecbch n\u1ed9i dung 28 ng\u00e0y (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `content-calendar` + `content-engine`\n> (v3.15.1), active brand `toplink-y-vien`, profile ",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Claim register (d\u00f9ng chung m\u1ecdi item)\n\n| Claim ID | N\u1ed9i dung \u0111\u01b0\u1ee3c ph\u00e9p | Source | Tr\u1ea1ng th\u00e1i | \u0110i\u1ec1u ki\u1ec7n |\n|---|---|---|---|---|\n| `CL-ID1` | Toplink l\u00e0 kh\u00f4ng gian ch\u0103m s\u00f3c **ch\u1ee7 \u0111\u1ed9ng**, KH\u00d4NG ph\u1ea3i b\u1ec7n",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Claim register (d\u00f9ng chung m\u1ecdi item)\n\n| Claim ID | N\u1ed9i dung \u0111\u01b0\u1ee3c ph\u00e9p | Source | Tr\u1ea1ng th\u00e1i | \u0110i\u1ec1u ki\u1ec7n |\n|---|---|---|---|---|\n| `CL-ID1` | Toplink l\u00e0 kh\u00f4ng gian ch\u0103m s\u00f3c **ch\u1ee7 \u0111\u1ed9ng**, KH\u00d4NG ph\u1ea3i b\u1ec7n",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Claim register (d\u00f9ng chung m\u1ecdi item)\n\n| Claim ID | N\u1ed9i dung \u0111\u01b0\u1ee3c ph\u00e9p | Source | Tr\u1ea1ng th\u00e1i | \u0110i\u1ec1u ki\u1ec7n |\n|---|---|---|---|---|\n| `CL-ID1` | Toplink l\u00e0 kh\u00f4ng gian ch\u0103m s\u00f3c **ch\u1ee7 \u0111\u1ed9ng**, KH\u00d4NG ph\u1ea3i b\u1ec7n",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Review routes (\u00e1p d\u1ee5ng theo c\u1ed9t calendar)\n\n- **R1 \u2014 Content Creator \u2192 PR Manager:** m\u1ecdi item (calendar/copy).\n- **R2 \u2014 Short-Video Coach \u2192 TikTok Strategist:** item video (mechanics-only; Facebook-fir",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "first",
+        "context": "Review routes (\u00e1p d\u1ee5ng theo c\u1ed9t calendar)\n\n- **R1 \u2014 Content Creator \u2192 PR Manager:** m\u1ecdi item (calendar/copy).\n- **R2 \u2014 Short-Video Coach \u2192 TikTok Strategist:** item video (mechanics-only; Facebook-fir",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 6,
+  "critical_flags": 0
+}

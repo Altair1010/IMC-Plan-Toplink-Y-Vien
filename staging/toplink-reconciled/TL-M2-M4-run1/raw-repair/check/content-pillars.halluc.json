@@ -1,0 +1,22 @@
+{
+  "hallucination_score": 92,
+  "interpretation": "Minimal hallucination risk",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Content pillars (Toplink Y Vi\u1ec7n)\n\n> Run 1 Phase A \u00b7 local-only \u00b7 external_writes=0.",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 1,
+  "critical_flags": 0
+}

@@ -1,0 +1,46 @@
+{
+  "hallucination_score": 80,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 Production briefs (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `content-engine` + `video-script` +\n> `content-calendar` (v3.15.1).",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Master production table (28 item)\n\n| ID | Fmt | Hook (default; A/B/C \u1edf calendar) | Shot / visual | On-screen text | CTA | Claim | Source | Review | Approval | KPI |\n|---|---|---|---|---|---|---|---|--",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Master production table (28 item)\n\n| ID | Fmt | Hook (default; A/B/C \u1edf calendar) | Shot / visual | On-screen text | CTA | Claim | Source | Review | Approval | KPI |\n|---|---|---|---|---|---|---|---|--",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY (TL-M5 production briefs)\n\n- [x] 28 item \u0111\u1ee7 field: hook \u00b7 shot \u00b7 on-screen text \u00b7 caption \u00b7 CTA \u00b7 claim ID \u00b7 source \u00b7 review \u00b7 approval \u00b7 measurement.\n- [x] CTA ch\u1ec9 follow/save/share; 0 booking",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 4,
+  "critical_flags": 0
+}

@@ -1,0 +1,31 @@
+{
+  "hallucination_score": 88,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [
+      {
+        "type": "unverified_statistic",
+        "value": "100%",
+        "stat_type": "percentage",
+        "context": "Corporate voice (locked)\n\n- Scores: formality 6 \u00b7 energy 3 \u00b7 humor 2 \u00b7 authority 6 (profile `brand_voice`).\n- Traits: sang tr\u1ecdng \u00b7 th\u00e2n thi\u1ec7n \u00b7 t\u0129nh t\u1ea1i \u00b7 \u0111\u00e1ng tin \u00b7 chi\u1ec1u s\u00e2u chuy\u00ean m\u00f4n.\n- Tone keywo",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      }
+    ],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Narrative (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** Narrative spine + corporate voice + founder\n> allowed-use, bounded by evidence. `HYPOTHESIS \u00b7 NOT_PUBLIC_A",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 2,
+  "critical_flags": 0
+}

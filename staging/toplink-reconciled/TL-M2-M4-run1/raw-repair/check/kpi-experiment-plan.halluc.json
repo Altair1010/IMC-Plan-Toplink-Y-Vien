@@ -1,0 +1,62 @@
+{
+  "hallucination_score": 68,
+  "interpretation": "Moderate hallucination risk - review recommended",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M4 \u2014 KPI & experiment plan (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** Greenfield KPI dictionary. **Counts = 0 only\n> after measurement exists; rates/history = `N/A`",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M4 \u2014 KPI & experiment plan (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** Greenfield KPI dictionary. **Counts = 0 only\n> after measurement exists; rates/history = `N/A`",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Baseline rules (master plan \u00a717)\n\n- Follower count records `0` **only after** Page identity + timestamp snapshot (`TL-D12`).\n- Awareness is `NO_MEASUREMENT`, not measured zero.\n- Count metrics may sta",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "KPI dictionary\n\n| KPI ID | Metric | Definition | Formula | Source | Owner | Cadence | Minimum sample | Launch value |\n|---|---|---|---|---|---|---|---|---|\n| `TL-KPI-01` | Reach | Unique accounts reac",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Experiment loop (Continue / Repair / Stop)\n\n- One variable per experiment (hook, format, or pillar share \u2014 see campaign-architecture \u00a74).\n- Decision only after minimum sample; never decide on `% from ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY (TL-M4 KPI)\n\n- [x] Each KPI has definition/formula/source/owner/cadence/minimum sample.\n- [x] Counts start at 0 only post-measurement; rates/history = `N/A`; no `% from zero`.\n- [x] Intent/book",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 6,
+  "critical_flags": 0
+}

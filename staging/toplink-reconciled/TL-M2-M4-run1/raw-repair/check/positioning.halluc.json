@@ -1,0 +1,54 @@
+{
+  "hallucination_score": 76,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Positioning (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `campaign-plan` + `social-strategy`\n> (v3.15.1) applied.",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Key messages (with proof status)\n\n| # | Message (draft, non-public) | Proof status | Gate |\n|---|---|---|---|\n| M1 | \"Ch\u0103m s\u00f3c c\u01a1 th\u1ec3 b\u1eaft \u0111\u1ea7u t\u1eeb vi\u1ec7c l\u1eafng nghe\" | `TOPLINK_CONFIRMED` (positioning) | n",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Geographic positioning\n\n- **H\u00e0 N\u1ed9i:** local awareness + operational proof + service discovery (conversion only when offer verified).\n- **To\u00e0n qu\u1ed1c:** education/brand awareness only; no implication of ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Geographic positioning\n\n- **H\u00e0 N\u1ed9i:** local awareness + operational proof + service discovery (conversion only when offer verified).\n- **To\u00e0n qu\u1ed1c:** education/brand awareness only; no implication of ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY\n\n- [x] Positioning labeled `HYPOTHESIS`; proof boundary explicit.\n- [x] No franchise/legal/efficacy fact asserted; internal-only relationship held.\n- [x] H\u00e0 N\u1ed9i vs national separated; no nation",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 5,
+  "critical_flags": 0
+}

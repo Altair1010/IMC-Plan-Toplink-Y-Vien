@@ -1,0 +1,86 @@
+{
+  "hallucination_score": 60,
+  "interpretation": "Moderate hallucination risk - review recommended",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M2 \u2014 DMP profile & brand architecture (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** Non-canonical staging-of-record for the DMP\n> brand entity.",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Document control\n\n| Field | Value |\n|---|---|\n| Milestone | `TL-M2` |\n| Stable ID | `TL-BRAND-PROFILE-001` |\n| DMP version | `3.15.1` |\n| Active brand read-back | `toplink-y-vien` (`_active-brand.json",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Document control\n\n| Field | Value |\n|---|---|\n| Milestone | `TL-M2` |\n| Stable ID | `TL-BRAND-PROFILE-001` |\n| DMP version | `3.15.1` |\n| Active brand read-back | `toplink-y-vien` (`_active-brand.json",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Field-layer map \u2014 core / profile / guideline / staging-only\n\nLayer legend: **CORE** = identity/runtime fields DMP reads for every generation \u00b7 **PROFILE** = brand\narchitecture context (`_brand_archite",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "ONLY",
+        "context": "Field-layer map \u2014 core / profile / guideline / staging-only\n\nLayer legend: **CORE** = identity/runtime fields DMP reads for every generation \u00b7 **PROFILE** = brand\narchitecture context (`_brand_archite",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "ONLY",
+        "context": "Field-layer map \u2014 core / profile / guideline / staging-only\n\nLayer legend: **CORE** = identity/runtime fields DMP reads for every generation \u00b7 **PROFILE** = brand\narchitecture context (`_brand_archite",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Founder appears selectively; public role only\n  `Founder/\u0111i\u1ec1u h\u00e0nh Toplink Y Vi\u1ec7n` per current evidence (master plan \u00a710 founder guardrail).\n- Founder must **not** explain mechanism, indicate/prescrib",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY checklist (TL-M2)\n\n- [x] One slug only; active read-back `toplink-y-vien`; no `toplink-page`.\n- [x] No secret / local path / private analytics in profile or this file.\n- [x] No unsupported fiel",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Sheet column shape (logical only \u2014 `TL_BRAND_PROFILE`)\n\n`Section | Subsection | Item ID | Content | Evidence/source | Assumption status | Owner | Review status | Last updated`.",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 9,
+  "critical_flags": 0
+}

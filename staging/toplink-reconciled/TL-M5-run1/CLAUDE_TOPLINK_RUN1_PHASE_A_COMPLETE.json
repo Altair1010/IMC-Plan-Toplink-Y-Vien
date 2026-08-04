@@ -1,0 +1,93 @@
+{
+  "marker": "CLAUDE_TOPLINK_RUN1_PHASE_A_COMPLETE",
+  "milestone": "TL-M5",
+  "tl_m5_included": true,
+  "prepared_by": "Claude Code",
+  "prepared_at_ict": "2026-08-04T01:12:00+07:00",
+  "repair_note": "DMP traces rebuilt 2026-08-04 from eval-runner-misattribution to REAL authoring-subagent dispatch (content-calendar, content-engine, video-script) with raw output + metadata under raw-repair/; evaluator scripts recorded separately as check. 5 M5 deliverables reconciled KEEP (byte-unchanged). Repairs TL-R1-BLK-DMP-CAPABILITY-001 / -RAW-EVIDENCE-001 (M5 scope) and re-syncs handoff digests (TL-R1-BLK-HANDOFF-DIGEST-001).",
+  "profile_digest_sha256": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+  "source_digest_sha256": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+  "tl_m5_human_input_block_digest_sha256": "809a94dd41e4d1640242d4eda01d27e6f4f4e459e2db50d1fa975e56483c4274",
+  "dmp_version": "3.15.1",
+  "active_brand": "toplink-y-vien",
+  "active_brand_readback": "toplink-y-vien",
+  "run1_manifest_pre_extension_sha256": "48955606d3b2e91c9a5d984c7dc5ec22dcc4f895479a96a069ef372c3ac26427",
+  "generated_outputs": [
+    {"path": "docs Toplink/content/month-calendar.md", "sha256": "0d2d2d1609910f7f5784ea98cd9e0820cda9d267314d9418e2e3b2f5b47ccb36", "stable_id": "TL-M5-CALENDAR-001", "disposition": "KEEP"},
+    {"path": "docs Toplink/content/asset-and-batch-plan.md", "sha256": "435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd", "stable_id": "TL-M5-ASSET-001", "disposition": "KEEP"},
+    {"path": "docs Toplink/content/reels-briefs.md", "sha256": "51b18d91f1d5dea5391192700260273c3e891ac9cfb9e95f59c0917dfdb60fd4", "stable_id": "TL-M5-REELS-001", "disposition": "KEEP"},
+    {"path": "docs Toplink/content/production-briefs.md", "sha256": "42cb8e7d916b1cbe8e48d7f2ac624ea9e83ce49c3420cb2da55814b48d00d429", "stable_id": "TL-M5-PRODBRIEF-001", "disposition": "KEEP"},
+    {"path": "docs Toplink/content/workflow-approval-measurement.md", "sha256": "651dff61991fdc9c5669635cfacabebb4c006b4aa9b558739ce897fe80f109ed", "stable_id": "TL-M5-WORKFLOW-001", "disposition": "KEEP"}
+  ],
+  "staging_artifacts": [
+    {"path": "staging/toplink-reconciled/TL-M5-run1/dmp-trace.md", "sha256": "993385764704a5e59b749cf2da48398e14c34f77ed426644a880a2aa1daaacfa"},
+    {"path": "staging/toplink-reconciled/TL-M5-run1/agency-review.md", "sha256": "c8390a46de479d655a751a814b4ab89bee8832ee7c9ffdcaae731db839c29306"}
+  ],
+  "dmp_invocation_mode": "REAL_AUTHORING_SUBAGENT_DISPATCH + separate deterministic check",
+  "real_authoring_invocations": [
+    {"trace_id": "TL-M5-DMP-CAL-002", "capability": "content-calendar", "native_subagent": "digital-marketing-pro:content-creator", "raw_output": "raw-repair/TL-M5-DMP-CAL-002.md", "raw_sha256": "cceb73ba0d6801495b027acf55ef02195c71ab19d97ab7a1c2aa645b8cae7ac3", "disposition": "KEEP"},
+    {"trace_id": "TL-M5-DMP-ENG-002", "capability": "content-engine", "native_subagent": "digital-marketing-pro:content-creator", "raw_output": "raw-repair/TL-M5-DMP-ENG-002.md", "raw_sha256": "2f5d5218252679bc775c9433861dc72d2418b0da5e0cd41ca9cbb2d44364843b", "disposition": "KEEP"},
+    {"trace_id": "TL-M5-DMP-VID-002", "capability": "video-script", "native_subagent": "Short-Video Editing Coach", "raw_output": "raw-repair/TL-M5-DMP-VID-002.md", "raw_sha256": "c97345a027eb196c4fbd703bdfbadf1149c924d7105789e246b46259ca6d6e75", "disposition": "KEEP"}
+  ],
+  "dmp_capabilities": ["content-calendar", "content-engine", "video-script"],
+  "dmp_check_evidence": {
+    "capability": "digital-marketing-pro:check (separate)",
+    "scripts": ["scripts/eval-runner.py --action run-full --brand toplink-y-vien", "scripts/hallucination-detector.py --action detect"],
+    "raw_json_dir": "raw-repair/check/",
+    "logged": false,
+    "per_deliverable_eval": [
+      {"file": "month-calendar.md", "composite": 72.0, "auto_reject": false, "hallucination": 72, "critical_flags": 0},
+      {"file": "asset-and-batch-plan.md", "composite": 80.0, "auto_reject": false, "hallucination": 80, "critical_flags": 0},
+      {"file": "reels-briefs.md", "composite": 44.0, "auto_reject": false, "hallucination": 44, "critical_flags": 0},
+      {"file": "production-briefs.md", "composite": 80.0, "auto_reject": false, "hallucination": 80, "critical_flags": 0},
+      {"file": "workflow-approval-measurement.md", "composite": 80.0, "auto_reject": false, "hallucination": 80, "critical_flags": 0}
+    ],
+    "finding": "All 5 M5 deliverables auto_rejected=false, 0 critical. reels-briefs 44 = generic-scorer false-positive on in-file Reels mechanics; production-briefs/workflow 'only' flags = Vietnamese governance phrases (GATE DUY NHẤT / chỉ human owner). No fabricated fact; deliverable digests unchanged."
+  },
+  "reviewers": [
+    {"reviewer": "Content Creator", "workstream": "calendar-copy", "verdict": "REVIEWED_PASS_STRUCTURAL"},
+    {"reviewer": "PR Manager", "workstream": "calendar-copy+safety", "verdict": "PASS_STRUCTURAL + NEEDS_HUMAN_REVIEW"},
+    {"reviewer": "Short-Video Coach", "workstream": "reels", "verdict": "REVIEWED_PASS_MECHANICS"},
+    {"reviewer": "TikTok Strategist", "workstream": "reels", "verdict": "REVIEWED_MECHANICS_ONLY"}
+  ],
+  "safety_findings": {
+    "allowable_with_source": ["CL-ID1", "CL-M1", "CL-M3", "CL-OP1", "CL-OP2", "CL-OP3"],
+    "needs_human_review": ["CL-M2", "CL-M4", "CL-CX1", "CL-FD1"],
+    "blocked_fail_closed_not_used": ["franchise/legal wording", "generalized testimonial", "diagnosis/treatment/cure/guarantee/medical-replacement"],
+    "rewrite_handled": ["commercial CTA replaced with follow/save/share"]
+  },
+  "human_gates": [
+    "10 health items (TL-P2/TL-P4) professional/human approval per item (TL-D13/TL-D17)",
+    "public positioning approval (HYPOTHESIS NOT_PUBLIC_APPROVED)",
+    "franchise/legal (TL-GAP-002/009, TL-D16 KEEP LOCKED)",
+    "product dossier (TL-GAP-004) + 11_Product_Yvien.md (TL-GAP-010 UNVERIFIED)",
+    "founder allowed-use + consent (CL-FD1)",
+    "testimonial/UGC documented consent before use"
+  ],
+  "skipped_dimensions": [
+    "eval-runner content_quality + readability: textstat not installed (script-reported fallback)",
+    "eval-runner brand_voice: nltk not installed (script-reported fallback)",
+    "eval-runner claim_verification: no --evidence supplied",
+    "eval-runner output_structure: no --schema supplied",
+    "absolute-date binding (relative D-1..D-28 by design)",
+    "team-role split (MISSING_INPUT, not fabricated)",
+    "TikTok publish/thumbnail-AB + music licensing (deferred; TikTok mechanics-only)"
+  ],
+  "check_results": {
+    "invocation": "separate eval-runner.py run-full + hallucination-detector.py detect",
+    "hallucination_critical_flags_total": 0,
+    "auto_reject_total": 0,
+    "cta_restriction_follow_save_share": "PASS",
+    "franchise_legal_wording": "PASS_NOT_USED",
+    "product_efficacy_claim": "PASS_CUSTOMER_EXPERIENCE_ONLY",
+    "self_approved": "PASS_ZERO",
+    "aggregate": "DETERMINISTIC_CHECK_PASS_0_CRITICAL + NEEDS_HUMAN_REVIEW"
+  },
+  "external_writes": 0,
+  "milestone_advanced": false,
+  "run1_closed": false,
+  "run2_started": false,
+  "any_item_approved": false,
+  "any_item_published": false,
+  "next_actor": "Codex"
+}

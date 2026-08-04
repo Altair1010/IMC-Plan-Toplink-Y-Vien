@@ -1,0 +1,78 @@
+{
+  "hallucination_score": 64,
+  "interpretation": "Moderate hallucination risk - review recommended",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M4 \u2014 Trust-led campaign architecture (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `campaign-plan` + `social-strategy` +\n> `content-engine` (v3.15.1). **Relative D",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Cadence 1\u20132 posts/day. **Skeleton/framework only** \u2014 user shoots/edits media + finalizes\n> caption; this is not finished creative.",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Four-week arc (each week traces to pillar + audience job)\n\n| Week | Days | Role | Pillars | Audience job | Hard gate | Default CTA class |\n|---|---|---|---|---|---|---|\n| **W1** | D-1\u2026D-7 | Toplink l\u00e0",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Weekly skeleton (structure \u00b7 hook \u00b7 angle \u00b7 claim-ID \u00b7 CTA class \u2014 no finished copy)\n\n### W1 \u2014 Identity & limits (`TL-P1`)\n- **Angle:** ai l\u00e0 Toplink, ph\u1ea1m vi ch\u0103m s\u00f3c ch\u1ee7 \u0111\u1ed9ng, v\u00e0 gi\u1edbi h\u1ea1n r\u00f5 r\u00e0ng (k",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Weekly skeleton (structure \u00b7 hook \u00b7 angle \u00b7 claim-ID \u00b7 CTA class \u2014 no finished copy)\n\n### W1 \u2014 Identity & limits (`TL-P1`)\n- **Angle:** ai l\u00e0 Toplink, ph\u1ea1m vi ch\u0103m s\u00f3c ch\u1ee7 \u0111\u1ed9ng, v\u00e0 gi\u1edbi h\u1ea1n r\u00f5 r\u00e0ng (k",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Experiment design (one variable at a time)\n\n| Experiment | Variable | Continue / Repair / Stop signal |\n|---|---|---|\n| Hook style | c\u00e2u h\u1ecfi vs chi ti\u1ebft kh\u00f4ng gian | Continue if save/share \u2265 baseline ",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY (TL-M4 campaign)\n\n- [x] 4 weeks each trace to pillar + audience job.\n- [x] W2 claim/professional gate item-level; W3 operational-only; W4 fallback complete (not bypassed).\n- [x] Relative D-1\u2026D-",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "VERIFY (TL-M4 campaign)\n\n- [x] 4 weeks each trace to pillar + audience job.\n- [x] W2 claim/professional gate item-level; W3 operational-only; W4 fallback complete (not bypassed).\n- [x] Relative D-1\u2026D-",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 8,
+  "critical_flags": 0
+}

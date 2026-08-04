@@ -1,0 +1,103 @@
+{
+  "hallucination_score": 52,
+  "interpretation": "High hallucination risk - revision required",
+  "checks": {
+    "unverified_statistics": [
+      {
+        "type": "unverified_statistic",
+        "value": "40%",
+        "stat_type": "percentage",
+        "context": "Content mix (maps to pillars `TL-P1..P5`)\n\n| Bucket | Share | Pillars |\n|---|---:|---|\n| Educational / body-literacy | ~40% | `TL-P2`, `TL-P4` |\n| Operational proof / trust | ~30% | `TL-P3` |\n| Identi",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      },
+      {
+        "type": "unverified_statistic",
+        "value": "30%",
+        "stat_type": "percentage",
+        "context": "Content mix (maps to pillars `TL-P1..P5`)\n\n| Bucket | Share | Pillars |\n|---|---:|---|\n| Educational / body-literacy | ~40% | `TL-P2`, `TL-P4` |\n| Operational proof / trust | ~30% | `TL-P3` |\n| Identi",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      },
+      {
+        "type": "unverified_statistic",
+        "value": "20%",
+        "stat_type": "percentage",
+        "context": "Content mix (maps to pillars `TL-P1..P5`)\n\n| Bucket | Share | Pillars |\n|---|---:|---|\n| Educational / body-literacy | ~40% | `TL-P2`, `TL-P4` |\n| Operational proof / trust | ~30% | `TL-P3` |\n| Identi",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      },
+      {
+        "type": "unverified_statistic",
+        "value": "10%",
+        "stat_type": "percentage",
+        "context": "Content mix (maps to pillars `TL-P1..P5`)\n\n| Bucket | Share | Pillars |\n|---|---:|---|\n| Educational / body-literacy | ~40% | `TL-P2`, `TL-P4` |\n| Operational proof / trust | ~30% | `TL-P3` |\n| Identi",
+        "severity": "medium",
+        "reason": "Statistic lacks source attribution. No citation, source reference, date, or hyperlink found within surrounding context."
+      }
+    ],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M3 \u2014 Facebook Page strategy (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `social-strategy` (v3.15.1).",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Channel roles (master plan \u00a711; profile `channels`)\n\n| Channel | Role | State |\n|---|---|---|\n| Facebook Page Toplink | Corporate identity, education, operational proof, community signal | PRIMARY |\n|",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "ONLY",
+        "context": "Channel roles (master plan \u00a711; profile `channels`)\n\n| Channel | Role | State |\n|---|---|---|\n| Facebook Page Toplink | Corporate identity, education, operational proof, community signal | PRIMARY |\n|",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Engagement playbook (fail-closed)\n\n- Comments/inbox about fit/safety \u2192 answer with support-level framing + disclaimer; escalate\n  concerning/acute symptoms to professional advice, **never** to a conve",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "CTA policy (before offer gate)\n\nAllowed: **theo d\u00f5i Page \u00b7 l\u01b0u b\u00e0i \u00b7 chia s\u1ebb n\u1ed9i dung.** Booking/t\u01b0 v\u1ea5n CTA opens only with exact\noffer/service, eligibility, location, availability, contact ownership,",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Growth tactics (organic only)\n\n- Trust-led reach via operational-proof + educational content; save/share as primary spread signal.\n- Reels for discovery; H\u00e0 N\u1ed9i geo-relevant content for local lane, na",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Baseline follower `0` only after Page identity snapshot; awareness\n`NO_MEASUREMENT`; no `% growth from zero`; tick xanh is not a trust KPI.\n\n## 8.",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 11,
+  "critical_flags": 0
+}

@@ -1,0 +1,46 @@
+{
+  "hallucination_score": 80,
+  "interpretation": "Low hallucination risk",
+  "checks": {
+    "unverified_statistics": [],
+    "suspicious_urls": [],
+    "unsubstantiated_claims": [
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "# TL-M5 \u2014 Workflow, approval ledger & measurement (Toplink Y Vi\u1ec7n)\n\n> **Run 1 Phase A \u00b7 local-only \u00b7 `external_writes=0`.** DMP `content-calendar` + `check` (v3.15.1).\n> Fail-closed production\u2192approva",
+        "severity": "high",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Production \u2192 publish workflow (fail-closed)\n\n```text\n\u00dd t\u01b0\u1edfng (calendar item, A/B/C)\n  \u2192 Draft copy/script (content-engine/video-script)\n  \u2192 DMP check (compliance gate)\n  \u2192 R1 Content Creator \u2192 PR Mana",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Health / legal / privacy state (gi\u1eef nguy\u00ean trong Sheet schema)\n\n- `risk_class=health` (10 item P2/P4): disclaimer \u00a73.3 b\u1eaft bu\u1ed9c + individual-variation + nh\u00f3m ch\u1ed1ng ch\u1ec9\n  \u0111\u1ecbnh; route R3 + human; log KP",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      },
+      {
+        "type": "unsubstantiated_claim",
+        "claim_type": "exclusive_claim",
+        "value": "only",
+        "context": "Dimension:\n\n| Dimension | Rule | Verdict Phase A |\n|---|---|---|\n| Forbidden health terms | 0 l\u1ea7n xu\u1ea5t hi\u1ec7n (safety \u00a73.2) | `PASS` (deterministic scan) |\n| Mandatory disclaimer | m\u1ecdi health item c\u00f3 \u00a73",
+        "severity": "medium",
+        "reason": "Superlative or exclusive claim lacks substantiation. Add a certification, ranking source, or qualifying context."
+      }
+    ],
+    "entities_to_verify": [],
+    "missing_hedging": []
+  },
+  "total_flags": 4,
+  "critical_flags": 0
+}
