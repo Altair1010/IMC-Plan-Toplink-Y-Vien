@@ -107,3 +107,37 @@ Completed independent Codex Run 2 Phase B audit, reconciled and minimally repair
 ### Next Steps
 
 - None - task complete
+
+
+## Session 4: Toplink verified Google Sheet sync
+
+**Date**: 2026-08-04
+**Task**: Toplink verified Google Sheet sync
+**Branch**: `chore/toplink-bootstrap`
+
+### Summary
+
+Built deterministic fail-closed 14-tab Sheet tooling and V2 approval bundle; completed signed CREATE_TAB, UPSERT, exact READBACK; fresh pre/post review agents and independent live read-only verification passed; Sheet is SYNC_READBACK_PASS while non-Sheet human gates keep final status NOT_COMPLETE.
+
+### Main Changes
+
+- Detailed change bullets were not supplied; see the summary above.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `2f549e4` | (see git log) |
+| `784b339` | (see git log) |
+
+### Testing
+
+- Validation was not recorded for this session.
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
