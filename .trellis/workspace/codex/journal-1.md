@@ -74,3 +74,36 @@ Verified Claude Phase A, reconciled TL-M5 and repaired DMP provenance into RUN1_
 ### Next Steps
 
 - None - task complete
+
+
+## Session 3: Toplink Run 2 Phase B finalize and Sheet readiness
+
+**Date**: 2026-08-04
+**Task**: Toplink Run 2 Phase B finalize and Sheet readiness
+**Branch**: `chore/toplink-bootstrap`
+
+### Summary
+
+Completed independent Codex Run 2 Phase B audit, reconciled and minimally repaired 7 of 14 canonical outputs while preserving 7 byte-identical outputs, verified reference/safety/manifest gates, reconciled the Toplink Sheet contract to target-and-SA-ready, and prepared a bounded unsigned 14-output CREATE_TAB/UPSERT/READBACK approval bundle. No external write occurred.
+
+### Main Changes
+
+- Detailed change bullets were not supplied; see the summary above.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `bf0dcd2` | (see git log) |
+
+### Testing
+
+- Validation was not recorded for this session.
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
