@@ -1,6 +1,6 @@
 # TL-M3 — Content pillars (Toplink Y Viện)
 
-> Run 1 Phase A · local-only · external_writes=0. DMP social-strategy + content-engine converged candidate territories TL-PC1–TL-PC5 (master plan §10) thành 5 trụ nội dung. Phân bổ được biểu diễn bằng số slot trên kế hoạch tháng 28 slot; đây là giả thuyết khởi động (launch hypotheses), tái cân chỉnh sau tín hiệu pilot (TL-M4). ID ổn định TL-PILLARS-001. Bộ dữ liệu Sheet logic: TL_PAGE_STRATEGY. Phản chiếu cơ chế lịch 6/6/8/4/4.
+> Run 1 Phase A · local-only · external_writes=0. DMP social-strategy + content-engine converged candidate territories TL-PC1–TL-PC5 (master plan §10) thành 5 trụ nội dung. Phân bổ được biểu diễn bằng số slot trên kế hoạch tháng 28 slot; đây là giả thuyết khởi động (launch hypotheses), tái cân chỉnh sau tín hiệu pilot (TL-M4). ID ổn định TL-PILLARS-001. Bộ dữ liệu Sheet logic: TL_CONTENT_PILLARS. Phản chiếu cơ chế lịch 6/6/8/4/4.
 
 ## Trụ nội dung (phân bổ slot, audience job, bằng chứng, format/funnel, rủi ro, cơ sở)
 
@@ -43,6 +43,8 @@ Mặc định no-BOFU / no-commercial-CTA. Item health-sensitive bị gating the
 - **TL-P4**: disclaimer bắt buộc + caveat khác biệt cá nhân + rà soát chuyên môn/con người theo từng item (mức item, không theo lô); cấm efficacy claim tới khi có dossier (TL-GAP-004).
 - **TL-P5**: founder-led tối đa 1 trên mỗi 5 item đã hoạch định; không đặt hai CTA thương mại founder-led liền kề; không nói cơ chế/chẩn đoán; cần consent.
 
+> **Run 2 founder-cap QA:** global ratio hiện tại = 4/28 (14,3%), dưới cap 20%, và không có CTA thương mại founder-led. Sliding window D24–D28 vẫn chứa D24 + D28; Codex không tự đổi nội dung hoặc diễn giải lại canonical rule. Việc giữ/reassign D28 trước lịch publish thật là `HUMAN_GATE`; consent và item approval vẫn bắt buộc.
+
 ## VERIFY checklist
 
 - [x] Đúng 5 trụ TL-P1..TL-P5, giữ nguyên ID, audience job, bằng chứng, funnel, rủi ro và thứ tự nhấn mạnh tương đối.
@@ -53,4 +55,4 @@ Mặc định no-BOFU / no-commercial-CTA. Item health-sensitive bị gating the
 - [x] Không phát sinh claim hiệu quả (không invent efficacy); giữ mọi nhãn UNVERIFIED / HYPOTHESIS / TOPLINK_CONFIRMED / gated.
 - [x] external_writes=0.
 
-> Stable ID: TL-PILLARS-001 · Logical Sheet dataset: TL_PAGE_STRATEGY · external_writes=0.
+> Stable ID: TL-PILLARS-001 · Logical Sheet dataset: TL_CONTENT_PILLARS · external_writes=0.

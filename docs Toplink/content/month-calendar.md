@@ -62,12 +62,12 @@
 
 | ID | Pillar | Format | Angle chính | A / B / C option | Claim | CTA | Review | Approval |
 |---|---|---|---|---|---|---|---|---|
-| `TL-M5-CAL-D08` | `TL-P2` | Reel | Tín hiệu cổ vai gáy do ngồi nhiều | A: mô tả cảm giác quen thuộc · B: thói quen nhỏ giữa giờ · C: khi nào nên hỏi chuyên môn | `CL-M2`,`CL-P2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D08` | `TL-P2` | Reel | Tín hiệu cổ vai gáy do ngồi nhiều | A: mô tả cảm giác quen thuộc · B: thói quen nhỏ giữa giờ · C: khi nào nên hỏi chuyên môn | `CL-M2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D09` | `TL-P4` | static | Lý–Dược–Dưỡng dễ hiểu | A: 3 lớp là gì · B: "đúng người/đúng lúc" · C: giới hạn & lưu ý | `CL-M4` | save | R1+R3 | NEEDS_HUMAN_REVIEW |
-| `TL-M5-CAL-D10` | `TL-P2` | carousel | Thói quen nhỏ, đều đặn | A: 5 thói quen · B: 1 thói quen/ngày · C: lắng nghe cơ thể | `CL-M2`,`CL-P2` | save/share | R1+R3 | NEEDS_HUMAN_REVIEW |
-| `TL-M5-CAL-D11` | `TL-P2` | Reel | Hỗ trợ làm ấm & thư giãn | A: cảm giác làm ấm · B: nhịp thở/dừng lại · C: support-level framing | `CL-M2`,`CL-P2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D10` | `TL-P2` | carousel | Thói quen nhỏ, đều đặn | A: 5 thói quen · B: 1 thói quen/ngày · C: lắng nghe cơ thể | `CL-M2` | save/share | R1+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D11` | `TL-P2` | Reel | Hỗ trợ làm ấm & thư giãn | A: cảm giác làm ấm · B: nhịp thở/dừng lại · C: support-level framing | `CL-M2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D12` | `TL-P4` | carousel | "Đúng người, đúng cách, đúng thời điểm" | A: nguyên tắc cá nhân hóa · B: 3 câu hỏi trước khi chọn · C: nhóm cần thận trọng | `CL-M4` | save | R1+R3 | NEEDS_HUMAN_REVIEW |
-| `TL-M5-CAL-D13` | `TL-P2` | static | Nhóm cần thận trọng (caregiver) | A: bệnh nền/mang thai/cấy ghép · B: hỏi trước khi dùng · C: hiếu thảo & an tâm | `CL-M2`,`CL-P2` | save/share | R1+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D13` | `TL-P2` | static | Nhóm cần thận trọng (caregiver) | A: bệnh nền/mang thai/cấy ghép · B: hỏi trước khi dùng · C: hiếu thảo & an tâm | `CL-M2` | save/share | R1+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D14` | `TL-P4` | Reel | Dưỡng liệu — trải nghiệm khách hàng | A: trải nghiệm tại trung tâm · B: "theo hướng dẫn" · C: chăm sóc định kỳ | `CL-CX1`,`CL-M4` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
 
 ### Tuần 3 — Bằng chứng vận hành (`TL-P3`)
@@ -87,11 +87,11 @@
 | ID | Pillar | Format | Angle chính | A / B / C option | Claim | CTA | Review | Approval |
 |---|---|---|---|---|---|---|---|---|
 | `TL-M5-CAL-D22` | `TL-P1` | static | Recap "Toplink là ai / không phải" | A: tóm định vị · B: giá trị Thân–Tâm–Trí · C: giới hạn rõ | `CL-ID1`,`CL-M1` | follow/save | R1 | DRAFT |
-| `TL-M5-CAL-D23` | `TL-P2` | Reel | Recap lắng nghe cơ thể | A: 1 tín hiệu + 1 thói quen · B: nhịp dừng lại · C: khi nào hỏi chuyên môn | `CL-M2`,`CL-P2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D23` | `TL-P2` | Reel | Recap lắng nghe cơ thể | A: 1 tín hiệu + 1 thói quen · B: nhịp dừng lại · C: khi nào hỏi chuyên môn | `CL-M2` | save | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D24` | `TL-P5` | static | Hành trình & cộng đồng | A: cột mốc ý niệm · B: lời cảm ơn cộng đồng · C: mời đồng hành | `CL-FD1` | follow/share | R1+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D25` | `TL-P1` | Reel | Recap giá trị thương hiệu | A: 3 giá trị · B: "chăm sóc chủ động" · C: mời theo dõi | `CL-ID1`,`CL-M1` | follow/save | R1+R2 | DRAFT |
 | `TL-M5-CAL-D26` | `TL-P4` | carousel | Lý–Dược–Dưỡng — trải nghiệm | A: 3 lớp recap · B: "đúng nhu cầu" · C: chăm sóc định kỳ | `CL-CX1`,`CL-M4` | save | R1+R3 | NEEDS_HUMAN_REVIEW |
-| `TL-M5-CAL-D27` | `TL-P2` | Reel | Thói quen chăm sóc chủ động | A: 1 thói quen mỗi ngày · B: lắng nghe & nghỉ ngơi · C: nhắc nhóm thận trọng | `CL-M2`,`CL-P2` | save/share | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
+| `TL-M5-CAL-D27` | `TL-P2` | Reel | Thói quen chăm sóc chủ động | A: 1 thói quen mỗi ngày · B: lắng nghe & nghỉ ngơi · C: nhắc nhóm thận trọng | `CL-M2` | save/share | R1+R2+R3 | NEEDS_HUMAN_REVIEW |
 | `TL-M5-CAL-D28` | `TL-P5` | static | Mời cộng đồng dưỡng sinh | A: tổng kết 4 tuần · B: giá trị cộng đồng · C: theo dõi & lưu | `CL-FD1` | follow/save/share | R1+R3 | NEEDS_HUMAN_REVIEW |
 
 ## 4. Special priority slots (không bind ngày cứng)

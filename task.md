@@ -30,7 +30,9 @@ path, hash, real-invocation, approval and zero-external-write verification; reco
 
 Verdict: `RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE`.
 `external_writes=0`; `milestone_advance=false`; no milestone `COMPLETE`, no human `APPROVED`, no
-Sheet/Page/publish mutation, and Run 2 not started. Sheet state remains `SYNC_PENDING_TARGET`.
+Sheet/Page/publish mutation, and Run 2 not started. The Sheet target and service-account identity are
+now read-only verified; write state is `BOUNDED_APPROVAL_PENDING` until an exact digest-bound approval
+is signed and the execution process binds the local credential.
 Remaining gates: health/professional, public positioning, franchise/legal, product dossier,
 privacy/consent/asset rights, signed Sheet approval/read-back, and the fresh Run 2 entry gate.
 
@@ -41,6 +43,36 @@ privacy/consent/asset rights, signed Sheet approval/read-back, and the fresh Run
 
 | Agent/runtime | File set | Started (ICT) | Purpose |
 |---|---|---|---|
+| — | — | — | No active writer. |
+_Released 2026-08-04T18:18:24+07:00 — Codex CLI (`root`) Sheet-readiness reconciliation. Read-only metadata verified target `1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms` is accessible and contains only preserved default tab `Trang tính1` (`sheetId=0`); no Toplink tabs exist, so the first authorized mutation must be `CREATE_TAB`. Local service-account key exists and its `client_email` matches `yvien-sheet-writer@imcforyvien.iam.gserviceaccount.com`; `GOOGLE_APPLICATION_CREDENTIALS` is not bound in the current process. Updated `TL-SHEET-001` to v0.1.2 with a one-to-one 14-output registry and prepared unsigned, digest-bound bundle `TL-SHEET-RUN2-14-V1` at `docs Toplink/staging/run2/codex/60-sheet-target-approval-draft.json`, SHA-256 `ec13965b2db5c48e1bb5f39f23f2b5b0fefb8778b2a0ddc4635234b2c7b63d5b`. Validation PASS: 14 unique stable IDs, 14 tab keys/ranges/schemas, all source hashes exact, three bounded actions (`CREATE_TAB` → `UPSERT` → `READBACK`). State remains `DRAFT_UNSIGNED · BOUNDED_APPROVAL_PENDING`; `external_writes=0`. Next safe action: human signs the exact path+digest approval statement; then Codex reacquires a lease, binds the local key only inside the approved process, executes the three phases, and verifies exact read-back._
+_Released 2026-08-04T17:59:18+07:00 — Codex CLI (`root`) `TOPLINK_RUN2_FRESH_AUDIT_FINALIZE` Phase B. Verdict `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`. N0/N3/N4 locks PASS; Codex blind audit `f56264b3a95d799b41313eee63a25a63bf90eb94627dbabaf4374005b0f82720` frozen before Claude read; Claude blind `8625ceed…` and 7/7 envelope artifacts match; 14/14 outputs matched at handoff. Merged ledger 10 items (8 AGREES, 1 NEW, 1 CONTRADICTS metadata resolved by recipient); repairs changed 7/14 outputs, 7/14 stayed Run 1 byte-identical. Post-repair claims/assets/decisions unresolved=0/0/0; N7 gate integrity PASS; paired manifest PASS at `docs Toplink/staging/run2/run2-manifest.json`, SHA-256 `a4e6de7582e7d1c51136029e16ffaf266906d97f721cf3510a7768b40c86e939`. Sheet approval absent → `BLOCKED_TARGET_INPUT · SYNC_PENDING_TARGET`; `external_writes=0`; no Page/publish/profile mutation, human `APPROVED`, milestone `COMPLETE`, or Run 3. Open human gates: final disclaimer wording/canonical health host, founder D24–D28 sliding-window choice, health/legal/franchise/product/privacy/consent/asset rights, public positioning, and exact signed Sheet approval/read-back. Next safe action: human supplies/approves the remaining gates; only then bounded Sheet upsert + exact read-back and canonical Done-gate evaluation._
+_Checkpoint 2026-08-04T17:38:59+07:00 — N2 independent blind audit persisted at `docs Toplink/staging/run2/codex/20-blind-audit-codex.md`; SHA-256 frozen as `f56264b3a95d799b41313eee63a25a63bf90eb94627dbabaf4374005b0f82720` in `codex/25-blind-freeze.json`. Temporal cut satisfied before any read of `run2/claude/**` or the Run 2 handoff files. Findings: 3 major / 6 minor; `external_writes=0`; no human approval or milestone advance._
+_Released 2026-08-04T17:28:08+07:00 — Codex CLI (`root`) Phase B planning lease. N0 independently PASS: manifest `99227153…2f4d2d`, profile `a45e4ae4…c8cbe349`, source `3ba91761…541fe76`, 5/5 source members, 14/14 outputs, DMP `3.15.1`, active brand `toplink-y-vien`, and 0 competing writers. Trellis planning artifacts persisted at `.trellis/tasks/08-04-toplink-run2-phaseb-codex/`. Temporal cut preserved: no `docs Toplink/staging/run2/claude/**` or handoff file opened; N2 not started. Paused for the mandatory post-summary human approval required by `trellis-brainstorm`; next actor is Codex after approval, starting with fresh N0 recompute and lease acquisition._
+_Released 2026-08-04T17:05+07:00 — Claude Code (Run 2 Phase A, `TOPLINK_RUN2_FRESH_AUDIT_FINALIZE`). File set `docs Toplink/staging/run2/**` + this checkpoint. Verdict `CLAUDE_RUN2_PHASE_A_HANDOFF_READY`. Locks recomputed ALL_MATCH (manifest 99227153…, profile a45e4ae4…, source 3ba91761…, DMP 3.15.1, brand toplink-y-vien); 5/5 sources + 14/14 canonical outputs byte-unchanged. Attestation PASS (no_seed_detected=true). Blind audit frozen sha256 `8625ceed415ae60bcc0202fa718608a73814693990389a196052518b1648ccaa` BEFORE any withheld Run 1 read. Real DMP check `TL-R2-DMP-CHECK-001`: all auto_rejected=false, 0 critical flags, 0 hard claims, logged=false. Fresh Agency 4/4: Social PASS · PR NEEDS_HUMAN_REVIEW · Short-Video NEEDS_HUMAN_REVIEW · Content FAIL (CL-P2 ref-integrity). Findings 0 critical / 2 major (TL-R2-F02 CL-P2 orphan, TL-R2-F08 disclaimer canonical host absent) / 6 minor (F01,F03–F07); all DIRECT_REPAIR or bounded HUMAN_GATE — no DMP_SKILL_REAUTHOR, no FAIL_BACK_TO_RUN1. Human gates preserved; external_writes=0; Sheet BLOCKED_TARGET_INPUT·SYNC_PENDING_TARGET; milestone_advance=false. NEXT ACTOR: fresh Codex Phase B — persist its own blind audit before reading `docs Toplink/staging/run2/claude/**`, then merge/repair in place, paired-manifest validation. No lease held now (0 active writer)._
+
+
+_Claude Code (root) TOPLINK_RUN2 Phase A entry-gate lease released 2026-08-04T15:04+07:00. Entry
+digest locks recompute PASS (manifest `99227153…2f4d2d`, profile `a45e4ae4…c8cbe349`, source
+`3ba91761…541fe76` via LF-joined member digests + trailing LF, DMP `3.15.1`, brand `toplink-y-vien`,
+14/14 outputs byte-match). BUT fresh-context attestation `FAIL` → `FRESH_CONTEXT_ATTESTATION_FAIL`:
+this context consumed withheld Run 1 closure reasoning (task.md §Superseded-checkpoint + §Current-work,
+lines 7-35) plus auto-memory `dmp-real-invocation-vs-scaffold`, so the blind guarantee is broken.
+Recorded `docs Toplink/staging/run2/claude/00-fresh-context-attestation.json` (SHA-256
+`1ea14a1da65d9d70447a96e471dcb69037dc4243704db8fc6d9b41a09cc1d964`); blind audit NOT started. No DMP
+check, Agency review, reconciliation, or handoff performed. `external_writes=0`; 14 canonical outputs
+byte-unchanged; no Sheet/Page/profile/publish mutation. Report `BLOCKED_ENTRY_GATE`. Next actor: a
+genuinely fresh Claude context reading only task.md §Status + lease table (field-scoped, no broad top
+read) with the Run 1-disposition memory suppressed._
+
+_Codex CLI (root) Run 2 master-prompt lease released 2026-08-04T14:42:43+07:00. Expanded
+`docs/prompts/TOPLINK_RUN2_MASTERPROMPT.md` into a copy-ready fresh-Claude Phase A contract bound to
+Run 1 manifest `99227153…2f4d2d`, profile `a45e4ae4…c8cbe349`, source `3ba91761…541fe76`, DMP
+`3.15.1`, and brand `toplink-y-vien`. It enforces the pre-blind read boundary, fresh-context
+attestation, exact nine-artifact Run 2 staging scope, source/claim ledgers, real DMP `check`, fresh
+Agency review, post-blind comparison, atomic released handoff, zero external writes, and fresh Codex
+next actor. Prompt SHA-256 `dacd25702daf590beeca2fa08d3a94a536f9c972ef65f2225c7b0b993a0aff68`;
+`git diff --check` PASS. Documentation only: Run 2 not started; no milestone advance, human
+`APPROVED`, Sheet/Page/profile/publish mutation, or external write._
 
 _Codex CLI (root) Phase B lease released 2026-08-04T13:10+07:00. Handoff preflight PASS; locks
 profile `a45e4ae4…`, source `3ba91761…` (5/5), DMP `3.15.1`, brand `toplink-y-vien`; 14/14 output

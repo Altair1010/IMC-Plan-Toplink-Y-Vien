@@ -115,6 +115,12 @@ Mỗi milestone PASS khi:
 
 ID immutable; wording/revision không đổi identity.
 
+### 2.7. Decision-register continuation pointer
+
+- `TL-D01`–`TL-D15`: canonical register tại `TOPLINK_PAGE_MASTER_PLAN.md` §3.
+- `TL-D16`–`TL-D20`: continuation đã được human owner ghi tại `STATE.md` §"Resolved-by-user (2026-07-30)" và checkpoint Part 2 trong `task.md`; milestone/status surface này là pointer phân giải các citation đó trong khi Direction A giữ master plan byte-unchanged.
+- Pointer không nâng `USER_ATTESTED`, `PENDING_DOCUMENT`, `UNVERIFIED` hay `MISSING_INPUT` thành public fact/approval.
+
 ## 3. DMP và reviewer routing theo milestone
 
 | Milestone | DMP real invocation bắt buộc | Reviewer |

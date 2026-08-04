@@ -1,0 +1,56 @@
+{
+  "run_id": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "profile_digest": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+  "source_digest": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+  "DMP_version": "3.15.1",
+  "active_brand": "toplink-y-vien",
+  "workstreams": [
+    {"id": "RUN2-CLAUDE-PHASE-A", "status": "HANDOFF_VERIFIED"},
+    {"id": "RUN2-CODEX-PHASE-B", "status": "CODEX_RUN2_PHASEB_LOCAL_VERIFIED"}
+  ],
+  "dmp_traces": [
+    {"trace_id": "TL-R2-DMP-CHECK-001", "mode": "check-only", "status": "PASS_WITH_EXPLICIT_SKIPS", "logged": false, "external_writes": 0, "evidence": "docs Toplink/staging/run2/claude/30-dmp-check-trace.md"}
+  ],
+  "generated_outputs": [
+    {"stable_id":"TL-BRAND-PROFILE-001","path":"docs Toplink/brand/dmp-profile.md","sha256":"2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4","run1_sha256":"2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4","disposition":"UNCHANGED"},
+    {"stable_id":"TL-RUNTIME-COMPAT-001","path":"docs Toplink/system/runtime-compatibility.md","sha256":"5c6325aac946e99cd28ee4d8e859f0bb5844a685c15854278a68b9b70c9938c0","run1_sha256":"e38846fb51853d2e82eadab8f882ec1ecc4d5a01256b8f99685ab508f07425c7","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-AUDIENCE-001","path":"docs Toplink/research/audience-hypotheses.md","sha256":"25d3795ce98bb62ce10120a79536e26355ea2695049578bf418423451f0a82b8","run1_sha256":"4a32da6bdcbbbaa99db5618b052c809f579b8415497070d60b1f91fc3469c881","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-POSITIONING-001","path":"docs Toplink/brand/positioning.md","sha256":"7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6","run1_sha256":"7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6","disposition":"UNCHANGED"},
+    {"stable_id":"TL-NARRATIVE-001","path":"docs Toplink/brand/narrative.md","sha256":"02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6","run1_sha256":"02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6","disposition":"UNCHANGED"},
+    {"stable_id":"TL-PILLARS-001","path":"docs Toplink/brand/content-pillars.md","sha256":"773a43d73774c2d0b34c5e71dd91af8c65f84644ebed8b666acaffb5ef052ff2","run1_sha256":"b0790e2d83aa456eb09a318e1306953ceab54cc68b6c68079fa218477fb3a2a6","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-PAGE-STRATEGY-001","path":"docs Toplink/brand/facebook-page-strategy.md","sha256":"cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075","run1_sha256":"cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075","disposition":"UNCHANGED"},
+    {"stable_id":"TL-CAMPAIGN-001","path":"docs Toplink/brand/campaign-architecture.md","sha256":"c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0","run1_sha256":"c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0","disposition":"UNCHANGED"},
+    {"stable_id":"TL-KPI-001","path":"docs Toplink/brand/kpi-experiment-plan.md","sha256":"40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d","run1_sha256":"40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d","disposition":"UNCHANGED"},
+    {"stable_id":"TL-M5-CALENDAR-001","path":"docs Toplink/content/month-calendar.md","sha256":"c270bd4f1c8f915869e7024cb1e9bd61df4694eeb3f9c33af775bf71ce40072a","run1_sha256":"0d2d2d1609910f7f5784ea98cd9e0820cda9d267314d9418e2e3b2f5b47ccb36","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-M5-ASSET-001","path":"docs Toplink/content/asset-and-batch-plan.md","sha256":"435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd","run1_sha256":"435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd","disposition":"UNCHANGED"},
+    {"stable_id":"TL-M5-REELS-001","path":"docs Toplink/content/reels-briefs.md","sha256":"51983b6ff86e0c1f146547f1d8579ea017107d97d24859d8eaae1d77cf0fc732","run1_sha256":"51b18d91f1d5dea5391192700260273c3e891ac9cfb9e95f59c0917dfdb60fd4","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-M5-PRODBRIEF-001","path":"docs Toplink/content/production-briefs.md","sha256":"f36824b650c1415fd813a72bca2ccd9ac1ec9de9f852c3a684f2c412ae2c198a","run1_sha256":"42cb8e7d916b1cbe8e48d7f2ac624ea9e83ce49c3420cb2da55814b48d00d429","disposition":"TARGETED_REPAIR"},
+    {"stable_id":"TL-M5-WORKFLOW-001","path":"docs Toplink/content/workflow-approval-measurement.md","sha256":"754af6cff1ea9706829b0d7cbc99b49fcea49145bbd13598ca3bc3c48878dc54","run1_sha256":"651dff61991fdc9c5669635cfacabebb4c006b4aa9b558739ce897fe80f109ed","disposition":"TARGETED_REPAIR"}
+  ],
+  "reviewers": [
+    {"role":"PR Manager","verdict":"NEEDS_HUMAN_REVIEW"},
+    {"role":"Social Strategist","verdict":"PASS"},
+    {"role":"Content Creator","verdict":"FAIL"},
+    {"role":"Short-Video Coach","verdict":"NEEDS_HUMAN_REVIEW"}
+  ],
+  "check_results": {"N0":"PASS","N2":"NEEDS_TARGETED_REPAIR","N3":"PASS","N4":"PASS_WITH_HANDOFF_METADATA_ADVISORY","N5":"PASS","N6":"PASS","N7":"PASS","N8":"PASS","N9":"PASS","N10":"SKIPPED_BLOCKED_TARGET_INPUT"},
+  "delta_ledger": [
+    {"merged_id":"TL-R2-M01","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_ZERO_ORPHAN"},
+    {"merged_id":"TL-R2-M02","relation":"AGREES","route":"HUMAN_GATE_INTERIM","status":"INTERIM_ANNOTATED_FINAL_WORDING_PENDING_HUMAN"},
+    {"merged_id":"TL-R2-M03","relation":"NEW","route":"DIRECT_REPAIR","status":"RESOLVED_SAFE_NARROWING"},
+    {"merged_id":"TL-R2-M04","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_CANONICAL_POINTER"},
+    {"merged_id":"TL-R2-M05","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_COUNT_5"},
+    {"merged_id":"TL-R2-M06","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_14_DISTINCT_D26_BOUND"},
+    {"merged_id":"TL-R2-M07","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_TL_CONTENT_PILLARS"},
+    {"merged_id":"TL-R2-M08","relation":"AGREES","route":"DIRECT_REPAIR_WITH_HUMAN_GATE","status":"GLOBAL_RATIO_PASS_SLIDING_WINDOW_HUMAN_GATE"},
+    {"merged_id":"TL-R2-M09","relation":"AGREES","route":"DIRECT_REPAIR","status":"RESOLVED_NON_BREAKING_CROSSWALK"},
+    {"merged_id":"TL-R2-M10","relation":"CONTRADICTS","route":"DIRECT_REPAIR_LEDGER_ONLY","status":"RESOLVED_BY_MERGE"}
+  ],
+  "human_gates": ["TL-GAP-002","TL-GAP-004","TL-GAP-005","TL-GAP-007","TL-GAP-008","TL-GAP-009","TL-GAP-010","TL-GAP-012","TL-GAP-013","TL-GAP-014","public-positioning-approval","final-disclaimer-wording","founder-BTS-UGC-consent","asset-rights"],
+  "sheet_plan": {"status":"BLOCKED_TARGET_INPUT","sync_state":"SYNC_PENDING_TARGET","approval":"ABSENT","external_writes":0},
+  "readback": null,
+  "blockers": ["final-disclaimer-wording","founder-sliding-window-human-choice","signed-SheetTargetApproval"],
+  "paired_manifest_status": "PASS",
+  "terminal_verdict": "CODEX_RUN2_PHASEB_LOCAL_VERIFIED",
+  "final_status": "NOT_COMPLETE"
+}

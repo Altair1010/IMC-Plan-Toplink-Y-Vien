@@ -15,6 +15,7 @@
 - **Cấm:** before/after, medical-fear visual, generalized testimonial, forbidden health terms, cơ chế/
   chẩn đoán, franchise/legal wording, staff qualification/outcome claim.
 - **Disclaimer §3.3 (chuẩn, dán nguyên văn cho item sức khỏe):**
+  `DISCLAIMER_HOST_PENDING (TL-M1: docs Toplink/system/health-compliance.md)`. Giữ nguyên văn bản dưới đây và bắt buộc human/professional xác nhận bản cuối trước publish; ghi chú này không tự phê duyệt wording.
   > Sản phẩm và liệu trình chăm sóc tại Y Viện có vai trò hỗ trợ chăm sóc sức khỏe chủ động, thư giãn
   > và phục hồi thể trạng. Nội dung không thay thế cho chẩn đoán, điều trị hoặc chỉ định của bác sĩ.
   > Với khách hàng có bệnh nền, đang mang thai, đang dùng thuốc điều trị hoặc có thiết bị y tế cấy ghép
@@ -128,7 +129,7 @@ chuẩn Facebook + safety trên. Không cross-post, không đăng TikTok cho t�
 
 - [x] 12 Reel = đúng 12 video item của calendar; Facebook-first; TikTok mechanics-only.
 - [x] Mỗi Reel: hook A/B/C, shot list, on-screen text, subtitle, safe-zone, CTA follow/save/share.
-- [x] 6 Reel sức khỏe mang disclaimer §3.3 ≥5s + individual-variation; route R3.
+- [x] 5 Reel sức khỏe (4×`TL-P2` + 1×`TL-P4`: D08,D11,D14,D23,D27) mang disclaimer §3.3 ≥5s + individual-variation; route R3.
 - [x] Operational Reels: fact-only, no qualification/outcome; D14 customer-experience only.
 - [x] Không before/after, medical-fear, generalized testimonial, forbidden term.
 - [x] `external_writes=0`; không Reel `APPROVED`.

@@ -1,0 +1,119 @@
+{
+  "attestation_id": "TL-RUN2-CLAUDE-FRESH-CONTEXT-ATTESTATION-001",
+  "run_id": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "phase": "CLAUDE_PHASE_A",
+  "recorded_ict": "2026-08-04T15:01:17+07:00",
+  "recorded_ict_note": "Session shell TZ flag did not apply (emitted +0000); value above is the UTC 08:01:17 clock converted to ICT (UTC+7).",
+  "runtime_identity": "Claude Code (root) — model claude-opus-4-8",
+  "prompt_ref": {
+    "path": "docs/prompts/TOPLINK_RUN2_MASTERPROMPT.md",
+    "sha256": "dacd25702daf590beeca2fa08d3a94a536f9c972ef65f2225c7b0b993a0aff68",
+    "git_state": "modified/uncommitted vs HEAD; content digest matches the Codex-authored contract recorded in task.md"
+  },
+
+  "entry_lock_verification": {
+    "verdict": "PASS",
+    "method": "Independent recompute; manifest recorded values not trusted as proof.",
+    "manifest": {
+      "path": "docs Toplink/staging/run1/run1-manifest.json",
+      "expected_sha256": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d",
+      "recomputed_sha256": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d",
+      "match": true
+    },
+    "profile_digest": {
+      "path": "C:/Users/MCBAu/.claude-marketing/brands/toplink-y-vien/profile.json",
+      "expected_sha256": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+      "recomputed_sha256": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+      "match": true
+    },
+    "source_digest": {
+      "expected_sha256": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+      "recomputed_sha256": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+      "match": true,
+      "aggregate_method_confirmed": "SHA-256 over the five member SHA-256 hex strings joined by LF with a single trailing LF",
+      "members": [
+        {"path": "spec.md", "sha256": "aa8465eaf3b67d7a68f7725c1b19905956ea6926463efd3400b1b63c49dc3464", "match": true},
+        {"path": "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md", "sha256": "aa923b51c86d4c52e5dd15d4d25aa45697c51fbbc7ddb4f7f80de2b9250beb23", "match": true},
+        {"path": "RULES.md", "sha256": "96c1bb4cace6c243cea69aac83e7fd8704ab1e1ee8f31cee196983f53bc333d0", "match": true},
+        {"path": "docs Toplink/Ho-so-thuong-hieu-Y-Vien-Toplink-Cai-tien-2026.md", "sha256": "645b1ad2f62c831fa8d7adc9b02473391f01fd843bc6ed2dde05e156eafa56e8", "match": true},
+        {"path": "staging/toplink-reconciled/TL-M1-evidence/entity-franchise-allowed-use-map.md", "sha256": "56618b1814b164cf703cb115625e250af0d181ce6487308ff21bfd19c9568021", "match": true}
+      ]
+    },
+    "dmp_version": {"expected": "3.15.1", "manifest_readback": "3.15.1", "match": true, "installed_capability_confirmation": "DEFERRED — not reached; entry gate stopped before DMP check step"},
+    "active_brand": {"expected": "toplink-y-vien", "manifest_readback": "toplink-y-vien", "profile_path_brand": "toplink-y-vien", "match": true},
+    "canonical_outputs_contract": {
+      "count": 14,
+      "all_byte_match": true,
+      "note": "All 14 generated_outputs[].sha256 recomputed and matched the manifest artifact contract exactly."
+    },
+    "lease_state": {"active_writers_before_acquire": 0, "lease_released_prior": true, "overlapping_writer": false}
+  },
+
+  "files_read_before_blind_audit": [
+    "docs/prompts/TOPLINK_RUN2_MASTERPROMPT.md",
+    "docs Toplink/staging/run1/run1-manifest.json (identity/lock fields + generated_outputs contract + dmp block, extracted via field-scoped python; review conclusions/dispositions/check verdicts NOT loaded)",
+    "docs Toplink/staging/run1/00-input-lock.json (full)",
+    "task.md (lines 1-70 — see blind_boundary_breach)",
+    "profile.json + 5 frozen source files + 14 canonical outputs (hash recompute only, contents not audited yet)"
+  ],
+  "prohibited_run1_reasoning_files_not_read": [
+    "docs Toplink/staging/run1/30-delta-ledger.json",
+    "docs Toplink/staging/run1/40-workstream-reconciliation.md",
+    "docs Toplink/staging/run1/50-pillar-decision.md",
+    "docs Toplink/staging/run1/60-agency-review-register.md",
+    "docs Toplink/staging/run1/70-run1-checks.md",
+    "docs Toplink/staging/run1/handoff-claude-to-codex.md",
+    "docs Toplink/staging/run1/codex-to-claude-tl-m5-readiness.md",
+    "staging/toplink-reconciled/** Run 1 handoffs/findings/checkpoints (beyond the two hash-only frozen sources)",
+    "STATE.md historical Run 1 reasoning"
+  ],
+
+  "blind_boundary_breach": {
+    "occurred": true,
+    "severity": "compromises_blind_guarantee",
+    "items": [
+      {
+        "source": "task.md lines 7-35",
+        "sections": ["## Superseded pre-reconciliation checkpoint", "## Current work"],
+        "why_prohibited": "Section 2 withheld list explicitly names 'closure reasoning, or detailed historical checkpoint under ... task.md'. These sections are Run 1 closure reasoning.",
+        "exposed_run1_conclusions": [
+          "content-pillars.md disposition = REGENERATE (451425c1... -> b0790e2d...)",
+          "auto-reject cleared 32 -> 92, auto_rejected true -> false",
+          "13 deliverables KEEP byte-unchanged",
+          "all 14 auto_rejected=false, 0 critical (Run 1 check verdict)",
+          "Codex reconciled 14 outputs and 24 deltas",
+          "remaining human gates list and Sheet state SYNC_PENDING_TARGET"
+        ],
+        "cause": "Broad Read(task.md, lines 1-70) to reach the lease table instead of field-scoped extraction of only '## Status' + the lease table.",
+        "avoidable": true
+      },
+      {
+        "source": "Claude auto-memory loaded at SessionStart",
+        "file": "memory/dmp-real-invocation-vs-scaffold.md",
+        "why_prohibited": "Encodes a Run 1 disposition/finding: 'auto-reject cleared by regeneration not prose' and the scaffold-vs-real-invocation distinction, which was a Run 1 blocker resolution.",
+        "cause": "Persistent auto-memory injected before the audit began; not chosen by this run."
+      }
+    ],
+    "not_breached": "The detailed Run 1 findings registers (30/40/50/60/70), agency-review register, delta ledger, and Run 1 handoffs were NOT read. Exposure is limited to summary-level closure verdicts, not per-finding reasoning."
+  },
+
+  "external_writes": 0,
+  "no_external_mutation": "No Sheet/Page/DMP-profile/publish/message mutation performed or attempted.",
+  "canonical_outputs_unchanged": true,
+
+  "verdict": "FAIL",
+  "verdict_code": "FRESH_CONTEXT_ATTESTATION_FAIL",
+  "decision": "STOP. Per master prompt Section 2, a fresh context that has already consumed withheld Run 1 closure reasoning must record FRESH_CONTEXT_ATTESTATION_FAIL and stop; it must not pretend the audit is blind. The independent blind audit (20-blind-audit.md), DMP check, Agency review, reconciliation, and handoff were NOT performed in this context.",
+  "report_code": "BLOCKED_ENTRY_GATE",
+
+  "safe_next_action": {
+    "actor": "A genuinely fresh Claude Code context",
+    "required_context_hygiene": [
+      "Do NOT read task.md '## Superseded pre-reconciliation checkpoint' or '## Current work'. Read only the '## Status' line and the '## Lease' table via field-scoped extraction (e.g., grep the lease table + the Status header), never a broad range read of the top of the file.",
+      "Suppress / exclude the auto-memory 'dmp-real-invocation-vs-scaffold' from the audit context, or run with memory not injected, so no Run 1 disposition seeds the blind pass.",
+      "From run1-manifest.json use ONLY identity/lock fields and generated_outputs[].{milestone,stable_id,path,sha256}; extract field-scoped, never load review conclusions/dispositions/check verdicts."
+    ],
+    "already_established_and_reusable": "All entry-gate digest locks recompute cleanly (see entry_lock_verification) and can be re-verified by the fresh context; they are not the reason for the FAIL.",
+    "forbidden": ["Do not proceed to the blind audit in the current (breached) context.", "Do not repair the Run 1 lock inside Run 2.", "No external write.", "No third macro-run.", "Do not open TL-M6."]
+  }
+}

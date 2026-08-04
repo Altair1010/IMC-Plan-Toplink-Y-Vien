@@ -28,12 +28,12 @@
 | D05 | static | "Một ý niệm rất đời" | ảnh founder (AST-FOUNDER, consent) | câu ý niệm | Theo dõi·Lưu | `CL-FD1` | allowed-use gated | R1+R3 | NEEDS_HUMAN_REVIEW | 04,10 |
 | D06 | static | "8 bước — minh bạch từ đầu" | thẻ 8 bước | 8 bước rút gọn | Lưu | `CL-OP2` | CONFIRMED | R1 | DRAFT | 04,06 |
 | D07 | Reel | "3 điều nên biết về Toplink" | ghép b-roll W1+text | "LÀ / KHÔNG LÀ" | Theo dõi·Lưu | `CL-ID1`,`CL-M1` | CONFIRMED | R1+R2 | DRAFT | 01,03,04 |
-| D08 | Reel | "Cổ vai gáy căng sau ngày ngồi nhiều?" | người ngồi→thả lỏng→text | "Hỗ trợ thư giãn — không thay thế chẩn đoán" | Lưu | `CL-M2`,`CL-P2` | CONFIRMED(support)/efficacy UNVERIFIED | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,06,10 |
+| D08 | Reel | "Cổ vai gáy căng sau ngày ngồi nhiều?" | người ngồi→thả lỏng→text | "Hỗ trợ thư giãn — không thay thế chẩn đoán" | Lưu | `CL-M2` | CONFIRMED(support)/efficacy UNVERIFIED | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,06,10 |
 | D09 | static | "Lý – Dược – Dưỡng là gì?" | 3 lớp graphic | 3 lớp + giới hạn | Lưu | `CL-M4` | naming CONFIRMED/efficacy UNVERIFIED | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
-| D10 | carousel | "Thói quen nhỏ, đều đặn" | 5 thẻ thói quen | mỗi thẻ 1 thói quen | Lưu·Chia sẻ | `CL-M2`,`CL-P2` | CONFIRMED(support) | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
-| D11 | Reel | "Một khoảng dừng để làm ấm" | cận làm ấm (placeholder), tông ấm | support phrasing | Lưu | `CL-M2`,`CL-P2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
+| D10 | carousel | "Thói quen nhỏ, đều đặn" | 5 thẻ thói quen | mỗi thẻ 1 thói quen | Lưu·Chia sẻ | `CL-M2` | CONFIRMED(support) | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
+| D11 | Reel | "Một khoảng dừng để làm ấm" | cận làm ấm (placeholder), tông ấm | support phrasing | Lưu | `CL-M2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
 | D12 | carousel | "Đúng người, đúng cách, đúng lúc" | 3 thẻ nguyên tắc | 3 câu hỏi + nhóm thận trọng | Lưu | `CL-M4` | naming CONFIRMED | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
-| D13 | static | "Nhóm cần thận trọng" | thẻ lưu ý | bệnh nền/mang thai/cấy ghép | Lưu·Chia sẻ | `CL-M2`,`CL-P2` | CONFIRMED(support) | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
+| D13 | static | "Nhóm cần thận trọng" | thẻ lưu ý | bệnh nền/mang thai/cấy ghép | Lưu·Chia sẻ | `CL-M2` | CONFIRMED(support) | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
 | D14 | Reel | "Chăm sóc như một thói quen" | không gian dưỡng liệu (no label) | "Trải nghiệm — theo hướng dẫn" | Lưu | `CL-CX1`,`CL-M4` | UNVERIFIED (customer-exp only) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
 | D15 | Reel | "Được gọi bằng tên khi bước vào" | tầng 1–2 (AST-SPACE-4F) | tên tầng TĨNH/THÔNG | Theo dõi·Lưu | `CL-OP1`,`CL-M3` | CONFIRMED | R1+R2 | DRAFT | 01,03,04,05 |
 | D16 | carousel | "Giải thích trước khi làm" | 8 thẻ bước | 8 bước | Lưu | `CL-OP2`,`CL-M3` | CONFIRMED | R1 | DRAFT | 04,06 |
@@ -43,17 +43,18 @@
 | D20 | static | "Đôi tay + trái tim lắng nghe" | đào tạo/cộng đồng | giá trị nghề có tâm | Theo dõi·Chia sẻ | `CL-FD1` | allowed-use gated | R1+R3 | NEEDS_HUMAN_REVIEW | 04,10 |
 | D21 | Reel | "Không ép mua khi đang thư giãn" | moment tin cậy (placeholder) | minh bạch giới hạn | Theo dõi·Lưu | `CL-OP3`,`CL-M3` | CONFIRMED | R1+R2 | DRAFT | 01,03,04,05 |
 | D22 | static | "Toplink là ai / không phải" | recap card | tóm định vị | Theo dõi·Lưu | `CL-ID1`,`CL-M1` | CONFIRMED | R1 | DRAFT | 04 |
-| D23 | Reel | "1 tín hiệu + 1 thói quen" | khung body-literacy | support phrasing | Lưu | `CL-M2`,`CL-P2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
+| D23 | Reel | "1 tín hiệu + 1 thói quen" | khung body-literacy | support phrasing | Lưu | `CL-M2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
 | D24 | static | "Từ ý niệm đến hôm nay" | cột mốc hành trình | lời cảm ơn cộng đồng | Theo dõi·Chia sẻ | `CL-FD1` | allowed-use gated | R1+R3 | NEEDS_HUMAN_REVIEW | 04,10 |
 | D25 | Reel | "3 giá trị của Toplink" | text-card + b-roll | "chăm sóc chủ động" | Theo dõi·Lưu | `CL-ID1`,`CL-M1` | CONFIRMED | R1+R2 | DRAFT | 01,03,04 |
 | D26 | carousel | "Lý – Dược – Dưỡng, đúng nhu cầu" | 3 thẻ recap | customer-experience | Lưu | `CL-CX1`,`CL-M4` | UNVERIFIED (customer-exp only) | R1+R3 | NEEDS_HUMAN_REVIEW | 04,06,10 |
-| D27 | Reel | "1 thói quen mỗi ngày" | khung body-literacy | nhắc nhóm thận trọng | Lưu·Chia sẻ | `CL-M2`,`CL-P2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
+| D27 | Reel | "1 thói quen mỗi ngày" | khung body-literacy | nhắc nhóm thận trọng | Lưu·Chia sẻ | `CL-M2` | CONFIRMED(support) | R1+R2+R3 | NEEDS_HUMAN_REVIEW | 03,04,10 |
 | D28 | static | "Cùng nhau dưỡng sinh" | tổng kết 4 tuần | mời cộng đồng | Theo dõi·Lưu·Chia sẻ | `CL-FD1` | allowed-use gated | R1+R3 | NEEDS_HUMAN_REVIEW | 04,07 |
 
 ## 2. Caption skeletons (khung — chủ hoàn thiện; chưa phải bản đăng)
 
 > Cấu trúc: **hook** → **1–2 ý giá trị (support/operational)** → **giới hạn/ranh giới** →
 > **CTA follow/save/share** → **[disclaimer §3.3 nếu health]**. Tránh forbidden term; ưu tiên "hỗ trợ…".
+> `DISCLAIMER_HOST_PENDING (TL-M1: docs Toplink/system/health-compliance.md)`: không đổi wording hiện có; human/professional phải xác nhận bản cuối trước publish.
 
 - **Identity (`TL-P1`) — D01/D02/D04/D07/D22/D25:**
   > [Hook đời thường]. Toplink là nơi chăm sóc cơ thể **chủ động** — bắt đầu từ việc lắng nghe. Toplink

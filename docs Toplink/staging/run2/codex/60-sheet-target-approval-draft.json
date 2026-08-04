@@ -1,0 +1,143 @@
+{
+  "contract_id": "TL-SHEET-001",
+  "contract_version": "0.1.2",
+  "approval_bundle_id": "TL-SHEET-RUN2-14-V1",
+  "approval_state": "DRAFT_UNSIGNED",
+  "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+  "target_class": "TOPLINK_ONLY",
+  "metadata_read_at_ict": "2026-08-04T18:08:00+07:00",
+  "metadata_read_result": {
+    "accessible": true,
+    "existing_sheets": [
+      {"title": "Trang tính1", "sheet_id": 0, "row_count": 1000, "column_count": 26}
+    ],
+    "required_toplink_tabs_present": 0,
+    "preserve_existing_tabs": ["Trang tính1"]
+  },
+  "auth_readiness": {
+    "service_account": "yvien-sheet-writer@imcforyvien.iam.gserviceaccount.com",
+    "local_key_present": true,
+    "client_email_readback": "MATCH",
+    "editor_grant": "USER_CONFIRMED_READY",
+    "sheets_api": "USER_CONFIRMED_READY",
+    "credential_binding": "BIND_LOCAL_KEY_IN_APPROVED_EXECUTION_PROCESS",
+    "credential_material_in_payload": false
+  },
+  "input_manifest": {
+    "run2_manifest_path": "docs Toplink/staging/run2/run2-manifest.json",
+    "run2_manifest_sha256": "a4e6de7582e7d1c51136029e16ffaf266906d97f721cf3510a7768b40c86e939",
+    "profile_digest": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+    "source_digest": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+    "DMP_version": "3.15.1",
+    "active_brand": "toplink-y-vien"
+  },
+  "common_scope": {
+    "tab_keys": [
+      "TL_BRAND_PROFILE",
+      "TL_RUNTIME_COMPATIBILITY",
+      "TL_AUDIENCE_HYPOTHESES",
+      "TL_POSITIONING",
+      "TL_NARRATIVE",
+      "TL_CONTENT_PILLARS",
+      "TL_FACEBOOK_STRATEGY",
+      "TL_CAMPAIGN",
+      "TL_KPI_DICTIONARY",
+      "TL_CONTENT_CALENDAR",
+      "TL_ASSET_BATCH_PLAN",
+      "TL_REELS_BRIEFS",
+      "TL_PRODUCTION_BRIEFS",
+      "TL_WORKFLOW_APPROVAL"
+    ],
+    "ranges": {
+      "TL_BRAND_PROFILE": "A1:J128",
+      "TL_RUNTIME_COMPATIBILITY": "A1:J96",
+      "TL_AUDIENCE_HYPOTHESES": "A1:M128",
+      "TL_POSITIONING": "A1:M96",
+      "TL_NARRATIVE": "A1:L96",
+      "TL_CONTENT_PILLARS": "A1:M64",
+      "TL_FACEBOOK_STRATEGY": "A1:M96",
+      "TL_CAMPAIGN": "A1:N128",
+      "TL_KPI_DICTIONARY": "A1:P128",
+      "TL_CONTENT_CALENDAR": "A1:N64",
+      "TL_ASSET_BATCH_PLAN": "A1:N96",
+      "TL_REELS_BRIEFS": "A1:N128",
+      "TL_PRODUCTION_BRIEFS": "A1:N64",
+      "TL_WORKFLOW_APPROVAL": "A1:R96"
+    },
+    "schemas": {
+      "TL_BRAND_PROFILE": "TL-SHEET-001/0.1.2/TL_BRAND_PROFILE/v1",
+      "TL_RUNTIME_COMPATIBILITY": "TL-SHEET-001/0.1.2/TL_RUNTIME_COMPATIBILITY/v1",
+      "TL_AUDIENCE_HYPOTHESES": "TL-SHEET-001/0.1.2/TL_AUDIENCE_HYPOTHESES/v1",
+      "TL_POSITIONING": "TL-SHEET-001/0.1.2/TL_POSITIONING/v1",
+      "TL_NARRATIVE": "TL-SHEET-001/0.1.2/TL_NARRATIVE/v1",
+      "TL_CONTENT_PILLARS": "TL-SHEET-001/0.1.2/TL_CONTENT_PILLARS/v1",
+      "TL_FACEBOOK_STRATEGY": "TL-SHEET-001/0.1.2/TL_FACEBOOK_STRATEGY/v1",
+      "TL_CAMPAIGN": "TL-SHEET-001/0.1.2/TL_CAMPAIGN/v1",
+      "TL_KPI_DICTIONARY": "TL-SHEET-001/0.1.2/TL_KPI_DICTIONARY/v1",
+      "TL_CONTENT_CALENDAR": "TL-SHEET-001/0.1.2/TL_CONTENT_CALENDAR/v1",
+      "TL_ASSET_BATCH_PLAN": "TL-SHEET-001/0.1.2/TL_ASSET_BATCH_PLAN/v1",
+      "TL_REELS_BRIEFS": "TL-SHEET-001/0.1.2/TL_REELS_BRIEFS/v1",
+      "TL_PRODUCTION_BRIEFS": "TL-SHEET-001/0.1.2/TL_PRODUCTION_BRIEFS/v1",
+      "TL_WORKFLOW_APPROVAL": "TL-SHEET-001/0.1.2/TL_WORKFLOW_APPROVAL/v1"
+    },
+    "mapping": [
+      {"stable_id":"TL-BRAND-PROFILE-001","path":"docs Toplink/brand/dmp-profile.md","sha256":"2a15149302a1fc69e772fde035b16666a5be7f5a76fd5aeb3182dabb0df47bc4","tab_key":"TL_BRAND_PROFILE"},
+      {"stable_id":"TL-RUNTIME-COMPAT-001","path":"docs Toplink/system/runtime-compatibility.md","sha256":"5c6325aac946e99cd28ee4d8e859f0bb5844a685c15854278a68b9b70c9938c0","tab_key":"TL_RUNTIME_COMPATIBILITY"},
+      {"stable_id":"TL-AUDIENCE-001","path":"docs Toplink/research/audience-hypotheses.md","sha256":"25d3795ce98bb62ce10120a79536e26355ea2695049578bf418423451f0a82b8","tab_key":"TL_AUDIENCE_HYPOTHESES"},
+      {"stable_id":"TL-POSITIONING-001","path":"docs Toplink/brand/positioning.md","sha256":"7c216e38fafeb46a6bcf40f0d4aa0b8dc872b060dbcb75e290da7e6b99729ce6","tab_key":"TL_POSITIONING"},
+      {"stable_id":"TL-NARRATIVE-001","path":"docs Toplink/brand/narrative.md","sha256":"02a6f6be10b5c363a10e1ee1d6843ba913e17c9d56cb748ad24b2283aa5ae2c6","tab_key":"TL_NARRATIVE"},
+      {"stable_id":"TL-PILLARS-001","path":"docs Toplink/brand/content-pillars.md","sha256":"773a43d73774c2d0b34c5e71dd91af8c65f84644ebed8b666acaffb5ef052ff2","tab_key":"TL_CONTENT_PILLARS"},
+      {"stable_id":"TL-PAGE-STRATEGY-001","path":"docs Toplink/brand/facebook-page-strategy.md","sha256":"cdd1f786ff2222923bfd558f39f8f425a1004750d6e9e915ca27708e8e71e075","tab_key":"TL_FACEBOOK_STRATEGY"},
+      {"stable_id":"TL-CAMPAIGN-001","path":"docs Toplink/brand/campaign-architecture.md","sha256":"c1fda749f256dc420d7818143267c9036948ddfd812191c8f3d88cb5aa76c6c0","tab_key":"TL_CAMPAIGN"},
+      {"stable_id":"TL-KPI-001","path":"docs Toplink/brand/kpi-experiment-plan.md","sha256":"40a528c67c904789d07d2ca8395befc3a9a8a78bc24cef56ccd0a3cc9a06523d","tab_key":"TL_KPI_DICTIONARY"},
+      {"stable_id":"TL-M5-CALENDAR-001","path":"docs Toplink/content/month-calendar.md","sha256":"c270bd4f1c8f915869e7024cb1e9bd61df4694eeb3f9c33af775bf71ce40072a","tab_key":"TL_CONTENT_CALENDAR"},
+      {"stable_id":"TL-M5-ASSET-001","path":"docs Toplink/content/asset-and-batch-plan.md","sha256":"435969cf0ae9e8badccb22451b7d4704b5733afa70ca43aac7aef9f324bc0acd","tab_key":"TL_ASSET_BATCH_PLAN"},
+      {"stable_id":"TL-M5-REELS-001","path":"docs Toplink/content/reels-briefs.md","sha256":"51983b6ff86e0c1f146547f1d8579ea017107d97d24859d8eaae1d77cf0fc732","tab_key":"TL_REELS_BRIEFS"},
+      {"stable_id":"TL-M5-PRODBRIEF-001","path":"docs Toplink/content/production-briefs.md","sha256":"f36824b650c1415fd813a72bca2ccd9ac1ec9de9f852c3a684f2c412ae2c198a","tab_key":"TL_PRODUCTION_BRIEFS"},
+      {"stable_id":"TL-M5-WORKFLOW-001","path":"docs Toplink/content/workflow-approval-measurement.md","sha256":"754af6cff1ea9706829b0d7cbc99b49fcea49145bbd13598ca3bc3c48878dc54","tab_key":"TL_WORKFLOW_APPROVAL"}
+    ],
+    "stable_identity_upsert_only": true,
+    "full_overwrite": false,
+    "create_v2_tabs": false,
+    "preserve_existing_tabs": ["Trang tính1"]
+  },
+  "approval_records": [
+    {
+      "phase": 1,
+      "action": "CREATE_TAB",
+      "bound_scope": "#/common_scope",
+      "limits": {"max_tabs": 14, "max_rows_per_tab": 128},
+      "authorized_agent": "Codex CLI",
+      "expires_at_ict": "2026-08-05T18:30:00+07:00",
+      "readback_required": true,
+      "postcondition": "14 registered Toplink tabs exist with exact titles; Trang tính1 unchanged"
+    },
+    {
+      "phase": 2,
+      "action": "UPSERT",
+      "bound_scope": "#/common_scope",
+      "limits": {"max_tabs": 0, "max_rows_per_tab": 128},
+      "authorized_agent": "Codex CLI",
+      "expires_at_ict": "2026-08-05T18:30:00+07:00",
+      "readback_required": true,
+      "postcondition": "stable-identity rows written only inside approved ranges"
+    },
+    {
+      "phase": 3,
+      "action": "READBACK",
+      "bound_scope": "#/common_scope",
+      "limits": {"max_tabs": 0, "max_rows_per_tab": 128},
+      "authorized_agent": "Codex CLI",
+      "expires_at_ict": "2026-08-05T18:30:00+07:00",
+      "readback_required": true,
+      "postcondition": "exact ranges, stable IDs, values, formulas, Unicode, row counts and gate fields match"
+    }
+  ],
+  "signature": {
+    "required_statement": "APPROVED: TL-SHEET-RUN2-14-V1 at <repository path> SHA-256 <digest>",
+    "signer": "minhkhang.guru",
+    "signed_at_ict": null,
+    "approval_state": "DRAFT_UNSIGNED"
+  },
+  "external_writes": 0
+}

@@ -60,6 +60,19 @@ until an offer gate (does not yet exist) passes.
   runtime output as fact.
 - No secret / credential / local machine path written into any deliverable.
 
+### 5.1. Non-breaking emitted-ID namespace crosswalk
+
+Run 1 IDs are already emitted and remain immutable. This crosswalk resolves their namespace family without allocating or renaming any stable ID:
+
+| Emitted Run 1 form | Milestones §2.6 family | Rule |
+|---|---|---|
+| `TL-A01`, `TL-A02a`, `TL-A02b`, `TL-A03`, `TL-A04` | `TL-AUD-{NNN}` | retained as Run 1 aliases; no automatic renumber |
+| `TL-P1`–`TL-P5` | `TL-PIL-{NNN}` | retained as pillar aliases; no automatic renumber |
+| `TL-KPI-01`–`TL-KPI-11` | `TL-KPI-{NNN}` | retained as KPI aliases; zero-padding change is not identity migration |
+| `CL-*` claim IDs | `TL-CLAIM-{NNN}` | retained as claim aliases; a canonical numeric ID requires a separately governed allocation |
+
+New artifacts must use the §2.6 namespace. Existing aliases may only be changed through an explicit migration with complete reference read-back; this Run 2 performs no breaking rename.
+
 ## 6. VERIFY
 
 - [x] DMP version + active brand + guidelines manifest recorded and reproducible.

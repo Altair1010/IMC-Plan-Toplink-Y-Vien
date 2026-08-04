@@ -1,0 +1,10 @@
+{
+  "run_id": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "runtime": "Codex CLI (root)",
+  "artifact": "docs Toplink/staging/run2/codex/20-blind-audit-codex.md",
+  "sha256": "f56264b3a95d799b41313eee63a25a63bf90eb94627dbabaf4374005b0f82720",
+  "frozen_at_ict": "2026-08-04T17:38:59+07:00",
+  "temporal_cut": "FROZEN_BEFORE_CLAUDE_PHASE_A_READ",
+  "withheld_paths_read_before_freeze": false,
+  "external_writes": 0
+}

@@ -1,0 +1,76 @@
+{
+  "run": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "phase": "CLAUDE_PHASE_A",
+  "runtime_identity": "Claude Code (claude-opus-4-8)",
+  "timestamp_ict": "2026-08-04T16:00:20+07:00",
+  "entry_wrapper": "docs/prompts/RUN2_PHASE_A_FRESH_ENTRY.md",
+  "master_prompt": "docs/prompts/TOPLINK_RUN2_MASTERPROMPT.md",
+  "master_prompt_digest_locked": "dacd2570...aff68 (not edited)",
+  "step0_seed_tripwire": {
+    "scanned": "SessionStart-injected MEMORY.md index + recalled memory bodies",
+    "forbidden_tokens_checked": [
+      "auto-reject cleared", "auto_rejected true->false", "32 -> 92 / 32→ 92",
+      "REGENERATE", "content-pillars ... cleared", "451425c1 -> b0790e2d",
+      "TL-R1-BLK-*", "KEEP byte-unchanged verdict", "all 14 auto_rejected=false",
+      "0 critical verdict", "Codex reconciled 14 outputs / 24 deltas"
+    ],
+    "no_seed_detected": true,
+    "notes": "Only near-token found was 'auto_rejected' inside memory 'dmp-real-invocation-vs-scaffold' line 28, which describes the eval-runner script mechanism (threshold composite<40) as ALLOWED DMP methodology, not a Run 1 per-artifact disposition. Memory body lines 34-36 explicitly quarantine all Run 1 dispositions to run1-manifest.json / staging. MEMORY.md index line carries no 'auto-reject cleared by regeneration' seed. Human-owner input decisions (relative start date, ~3 vids/wk + >=7 items/wk, asset direction B, source-lock direction A) are the audit evidence baseline (mirror 00-input-lock.json), not Run 1 findings."
+  },
+  "preconditions_verified": {
+    "memory_rewritten_methodology_only": true,
+    "memory_index_no_regeneration_seed": true,
+    "prior_fail_attestation_archived": "docs Toplink/staging/run2/_prior-attempts/00-fresh-context-attestation.attempt-01-FAIL.json (present, NOT read)",
+    "canonical_attestation_path_was_empty_before_this_write": true
+  },
+  "files_read_before_blind_audit": [
+    "docs/prompts/RUN2_PHASE_A_FRESH_ENTRY.md",
+    "docs/prompts/TOPLINK_RUN2_MASTERPROMPT.md",
+    "task.md (bounded: ## Status verdict line + ## Lease grid header/separator/next line only)",
+    "STATE.md (bounded: ## Sprint goals + ## In-progress only, stopped before line 16)",
+    "docs Toplink/staging/run1/00-input-lock.json",
+    "docs Toplink/staging/run1/run1-manifest.json (field-scoped: identity/lock + generated_outputs[].{milestone,stable_id,path,sha256} + dmp.{input_paths,output_paths,version} only)",
+    "C:/Users/MCBAu/.claude-marketing/brands/toplink-y-vien/profile.json (bytes hashed for profile_digest recompute)",
+    "5 frozen source files (bytes hashed for source_digest recompute + drift check)"
+  ],
+  "additional_authority_reads_pending_before_ledger": [
+    "AGENTS.md", "RULES.md", "GOVERNANCE.md", "spec.md",
+    "docs/system/toplink-knowledge-brief.md",
+    "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md",
+    "docs Toplink/TOPLINK_PAGE_MILESTONES.md",
+    "docs/system/claude-codex-operating-contract.md",
+    "docs/system/capability-routing-matrix.md",
+    "the 14 canonical generated artifacts",
+    "frozen evidence paths authorized by 00-input-lock.json"
+  ],
+  "prohibited_run1_reasoning_not_yet_read": [
+    "docs Toplink/staging/run1/30-delta-ledger.json",
+    "docs Toplink/staging/run1/40-workstream-reconciliation.md",
+    "docs Toplink/staging/run1/50-pillar-decision.md",
+    "docs Toplink/staging/run1/60-agency-review-register.md",
+    "docs Toplink/staging/run1/70-run1-checks.md",
+    "task.md _italic_ released-lease disposition paragraphs (line ~45+)",
+    "task.md ## Superseded pre-reconciliation checkpoint / ## Current work",
+    "STATE.md ## Run 1 Phase B final reconciliation / ## Phase A real-authoring repair / ## Completed this session",
+    "docs Toplink/staging/run2/_prior-attempts/** (archived attempt-01 attestation)",
+    "any Run 1 Claude/Codex handoff, Agency finding, or staging/toplink-reconciled/** checkpoint"
+  ],
+  "lock_recompute": {
+    "manifest_sha256": {"recomputed": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d", "expected": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d", "match": true},
+    "profile_digest": {"recomputed": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349", "expected": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349", "match": true},
+    "source_digest": {"recomputed": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76", "expected": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76", "match": true, "recipe": "SHA-256 of the 5 source member SHA-256 hex strings joined by LF with one trailing LF"},
+    "dmp_version": {"recomputed": "3.15.1", "expected": "3.15.1", "match": true},
+    "active_brand": {"recomputed": "toplink-y-vien", "expected": "toplink-y-vien", "match": true},
+    "status": {"read": "RUN1_PASS · LOCAL_VERIFIED · PHASE_B_RECONCILED · NOT_MILESTONE_COMPLETE", "match": true},
+    "frozen_sources_drift": "none (5/5 byte-unchanged)",
+    "generated_outputs_contract": "14/14 byte-match locked sha256"
+  },
+  "active_lease_result": {
+    "prior_active_writer_leases": 0,
+    "acquired": "Claude Code (Run 2 Phase A) row added to task.md lease grid at 2026-08-04T16:00+07:00",
+    "overlap_hard_stop": false
+  },
+  "external_writes": 0,
+  "verdict": "PASS",
+  "verdict_basis": "Step 0 tripwire found no Run 1 disposition seed; every bounded entry read stayed within its bound; all §1 locks recomputed independently and matched; frozen sources and the 14-artifact contract are byte-unchanged; exactly 0 prior active writer leases."
+}

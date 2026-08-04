@@ -1,0 +1,85 @@
+{
+  "template_version": "1.0",
+  "project": "toplink-y-vien",
+  "run": "TOPLINK_RUN2_FRESH_AUDIT_FINALIZE",
+  "stage": "claude_to_codex",
+  "prepared_at_ict": "2026-08-04T17:05:00+07:00",
+  "prepared_by": "Claude Code",
+  "recipient": "Codex CLI",
+  "lease_status": "RELEASED",
+  "read_after_independent_audit": true,
+  "canonical_inputs": [
+    "docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md",
+    "docs Toplink/TOPLINK_PAGE_MILESTONES.md",
+    "docs/system/claude-codex-operating-contract.md",
+    "docs Toplink/staging/run1/00-input-lock.json",
+    "docs Toplink/staging/run1/run1-manifest.json",
+    "staging/toplink-reconciled/TL-M1-evidence/entity-franchise-allowed-use-map.md"
+  ],
+  "locks": {
+    "manifest_sha256": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d",
+    "profile_digest": "a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349",
+    "source_digest": "3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76",
+    "DMP_version": "3.15.1",
+    "active_brand": "toplink-y-vien",
+    "recompute_result": "ALL_MATCH",
+    "frozen_sources": "5/5 byte-unchanged",
+    "generated_outputs": "14/14 byte-match contract"
+  },
+  "dmp": {
+    "trace_id": "TL-R2-DMP-CHECK-001",
+    "version": "3.15.1",
+    "active_brand_readback": "toplink-y-vien",
+    "invocation_mode": "check-only (run-full + hallucination-detect + claim-extract), --log omitted",
+    "result": "all auto_rejected=false, 0 critical flags, 0 hard claims, logged=false",
+    "input_digest": "see 30-dmp-check-trace.md (8 artifact SHA-256 prefixes)",
+    "output_digest": "none written by check (stdout only)"
+  },
+  "claude_phase_a_outputs": [
+    {"path": "docs Toplink/staging/run2/claude/00-fresh-context-attestation.json", "sha256": "7cdf99bc55601d7932d077156a0f516ecec559d055ae6d7d02d1d7dac7bc48d7"},
+    {"path": "docs Toplink/staging/run2/claude/10-source-ledger.md", "sha256": "367caaf66a13ed38f5ea5fdd2da935f32c3816583d5b490c95c18cbfacf8c2a2"},
+    {"path": "docs Toplink/staging/run2/claude/20-blind-audit.md", "sha256": "8625ceed415ae60bcc0202fa718608a73814693990389a196052518b1648ccaa"},
+    {"path": "docs Toplink/staging/run2/claude/30-dmp-check-trace.md", "sha256": "3a1d84074777d5b09bde162b16577e9582f34eb190f242962bd6e496185a9abd"},
+    {"path": "docs Toplink/staging/run2/claude/40-agency-review.md", "sha256": "eefd9effaaf0c608da2332dc736dda2aa18130773c2c368ed9f9e2c6d8b26e23"},
+    {"path": "docs Toplink/staging/run2/claude/50-post-blind-reconciliation.md", "sha256": "a323b6302036aa521874aae6c9f8649a5cfe5ff16c41ee6c7d872a26e8985f0a"},
+    {"path": "docs Toplink/staging/run2/handoff-claude-to-codex.md", "sha256": "79ede6daadf33bad95ad2757173eedf11fe58b167091113ba441ef2671f4fb5f"}
+  ],
+  "blind_audit_frozen_sha256": "8625ceed415ae60bcc0202fa718608a73814693990389a196052518b1648ccaa",
+  "stable_ids": [
+    "TL-BRAND-PROFILE-001","TL-RUNTIME-COMPAT-001","TL-AUDIENCE-001","TL-POSITIONING-001",
+    "TL-NARRATIVE-001","TL-PILLARS-001","TL-PAGE-STRATEGY-001","TL-CAMPAIGN-001","TL-KPI-001",
+    "TL-M5-CALENDAR-001","TL-M5-ASSET-001","TL-M5-REELS-001","TL-M5-PRODBRIEF-001","TL-M5-WORKFLOW-001"
+  ],
+  "sheet_delivery": {
+    "contract": "TL-SHEET-001",
+    "target_status": "BLOCKED_TARGET_INPUT",
+    "sync_state": "SYNC_PENDING_TARGET",
+    "mappings": [],
+    "readback": null
+  },
+  "sheet_target_action": "no write unless a separate exact SheetTargetApproval exists",
+  "open_issue_ids": [
+    "TL-R2-F01","TL-R2-F02","TL-R2-F03","TL-R2-F04","TL-R2-F05","TL-R2-F06","TL-R2-F07","TL-R2-F08"
+  ],
+  "issue_summary": {"critical": 0, "major": 2, "minor": 6, "fail_back_to_run1": false, "dmp_skill_reauthor": false},
+  "agency_verdicts": {
+    "pr_manager": "NEEDS_HUMAN_REVIEW",
+    "social_strategist": "PASS",
+    "content_creator": "FAIL",
+    "short_video_coach": "NEEDS_HUMAN_REVIEW"
+  },
+  "human_gate_ids": [
+    "TL-GAP-002","TL-GAP-004","TL-GAP-005","TL-GAP-007","TL-GAP-008","TL-GAP-009","TL-GAP-010",
+    "TL-GAP-012","TL-GAP-013","TL-GAP-014","public-positioning-approval","final-disclaimer-wording"
+  ],
+  "allowed_next_action": "Fresh Codex Phase B: persist own blind audit first, then merge ledgers, repair the 8 defects in place (no new fact/claim/pillar/ID), update Run 2 manifest + re-verify digests, validate gate integrity, paired-manifest validation; Sheet only on exact SheetTargetApproval -> bounded upsert -> exact read-back.",
+  "forbidden_actions": [
+    "any external write / Page / Sheet / profile mutation without approval",
+    "new marketing version / _v2 / third macro-run",
+    "milestone COMPLETE or human APPROVED",
+    "importing any Thao Tay fact/target/credential/baseline"
+  ],
+  "external_writes": 0,
+  "milestone_advance": false,
+  "verdict": "CLAUDE_RUN2_PHASE_A_HANDOFF_READY"
+}

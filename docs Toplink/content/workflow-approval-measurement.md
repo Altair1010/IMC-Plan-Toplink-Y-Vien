@@ -65,17 +65,20 @@ Mặc định TL-M5 Phase A: item thường `DRAFT`; item health/founder/product
 ### Trạng thái ledger hiện tại (Phase A)
 
 Tất cả 28 dòng: `revision=1`, `content_hash` gán khi copy cuối chốt (Phase A tạo khung, hash hoá khi sản
-xuất), `human_gate=PENDING`, `publish_state=NOT_PUBLISHED`, `publish_ts` rỗng. 10 item health +
-6 founder/product-adjacent: `reviewer_verdict=NEEDS_HUMAN_REVIEW`. **Không dòng nào `HUMAN_APPROVED`.**
+xuất), `human_gate=PENDING`, `publish_state=NOT_PUBLISHED`, `publish_ts` rỗng. Có **14 item distinct**
+`NEEDS_HUMAN_REVIEW`: 10 health; trong đó D14/D26 đồng thời product-adjacent; cộng D05/D20/D24/D28
+founder. Không cộng trùng D14/D26. **Không dòng nào `HUMAN_APPROVED`.**
 
 ## 4. Health / legal / privacy state (giữ nguyên trong Sheet schema)
 
+- `DISCLAIMER_HOST_PENDING (TL-M1: docs Toplink/system/health-compliance.md)`: §3.3 hiện chỉ là wording chờ human/professional xác nhận; không item nào được publish chỉ dựa trên disclaimer hiện có.
 - `risk_class=health` (10 item P2/P4): disclaimer §3.3 bắt buộc + individual-variation + nhóm chống chỉ
   định; route R3 + human; log KPI-10.
 - `risk_class=legal-privacy`: **không** franchise/legal wording (`TL-D16`); không thu thập PII/health info
   không cần thiết; testimonial/UGC chỉ khi `consent_state=OBTAINED` (mục đích/kênh/thời hạn/thu hồi/redaction).
 - `risk_class=product-adjacent` (D14/D26): `11_Product_Yvien.md` `UNVERIFIED` — customer-experience only,
-  no product/efficacy claim (`TL-GAP-010` fail-closed).
+  no product/efficacy claim (`TL-GAP-010` fail-closed). D26 binding = `product-adjacent`; health disclaimer
+  và professional/human review vẫn được kế thừa từ `TL-P4`.
 - `risk_class=founder` (D05/D20/D24/D28): allowed-use gated + consent; no cơ chế/chỉ định/chẩn đoán.
 
 Các state này là dữ liệu bắt buộc trong Sheet; bounded write chỉ khi có signed `SheetTargetApproval` +

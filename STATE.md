@@ -10,8 +10,25 @@
 
 ## In-progress
 
-- No active shared work item or writer lease (Codex Run 1 Phase B lease released
-  2026-08-04T13:10+07:00).
+- No active shared work item or writer lease. Codex Sheet-readiness reconciliation lease released
+  2026-08-04T18:18:24+07:00.
+- Run 2 Phase B `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`: Codex blind audit frozen
+  `f56264b3…` before Claude read; locks and 14/14 handoff outputs matched; merged 10 findings; targeted
+  repairs changed 7/14 outputs and left 7/14 byte-identical. Post-repair reference and safety gates PASS;
+  paired manifest PASS at `a4e6de75…c86e939`. Disclaimer final wording and founder D24–D28 choice remain
+  human gates. Sheet target metadata is now read-only verified: target accessible, only default tab
+  `Trang tính1` exists, and the Toplink service-account identity matches the local key. Contract
+  `TL-SHEET-001` v0.1.2 and unsigned approval bundle `TL-SHEET-RUN2-14-V1` are prepared at
+  `docs Toplink/staging/run2/codex/60-sheet-target-approval-draft.json` (SHA-256
+  `ec13965b2db5c48e1bb5f39f23f2b5b0fefb8778b2a0ddc4635234b2c7b63d5b`). Write remains
+  `BOUNDED_APPROVAL_PENDING`; `external_writes=0`; no milestone advance.
+- Run 2 Phase A (fresh Claude blind audit) `CLAUDE_RUN2_PHASE_A_HANDOFF_READY`: attestation PASS,
+  locks ALL_MATCH, 14/14 canonical byte-unchanged, blind audit frozen (`8625ceed…`) before withheld
+  reads, real DMP check clean (0 auto-reject/critical/hard-claim), fresh Agency 4/4 (Social PASS · PR/
+  Short-Video NEEDS_HUMAN_REVIEW · Content FAIL on CL-P2). Findings 0 critical / 2 major (`TL-R2-F02`
+  CL-P2 orphan, `TL-R2-F08` disclaimer canonical host absent) / 6 minor — all DIRECT_REPAIR or bounded
+  HUMAN_GATE. `external_writes=0`; Sheet `SYNC_PENDING_TARGET`; milestone_advance=false. Next: fresh
+  Codex Phase B (own blind audit first) at `docs Toplink/staging/run2/`.
 
 ## Run 1 Phase B final reconciliation — checkpoint 2026-08-04
 

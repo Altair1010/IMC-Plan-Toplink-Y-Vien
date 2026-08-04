@@ -2,32 +2,32 @@
 
 ## Status, authority, and scope
 
-- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.1 · **Status:** TARGET_PROVIDED · PENDING_SA_AND_BOUNDED_APPROVAL.
+- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.2 · **Status:** TARGET_AND_SA_READY · BOUNDED_APPROVAL_PENDING.
 - **Decision owner:** docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md; **execution/Done owner:**
   docs Toplink/TOPLINK_PAGE_MILESTONES.md; **safety owner:** RULES.md.
-- **Scope:** a future Toplink-only operational workbook with functional parity to the approved
+- **Scope:** the provided Toplink-only operational workbook with functional parity to the approved
   DMP-to-Sheet workflow: control, evidence, output, compliance, planning, production, approval,
   measurement, stable identity, and exact read-back.
-- **Out of scope:** creating a workbook or tab now; using any Thảo Tây workbook, sheet ID, tab,
+- **Out of scope:** creating a workbook; creating a tab or writing without an exact signed approval; using any Thảo Tây workbook, sheet ID, tab,
   row, formula, output, baseline, credential, or identifier; copying external data; publishing;
   changing the DMP runtime/profile; granting human approval.
 
-This contract defines the required architecture before a target exists. It is not an external-write
-approval. Until the user supplies a new Toplink spreadsheet plus bounded authorization, every
-record stays LOCAL_VERIFIED or STAGING with SYNC_PENDING_TARGET.
+This contract defines the required architecture after the target and dedicated SA were supplied. It
+is not an external-write approval. Until the user signs the exact bounded action payload, every record
+stays LOCAL_VERIFIED or STAGING with SYNC_PENDING_TARGET.
 
 ## 0. Provided target and auth plan (2026-07-30)
 
-The user supplied an exact Toplink-only target and chose an isolation-clean auth path. This section
-records the target; it is **not yet** a complete `SheetTargetApproval` (SA + bounded fields + read-back
-still pending), so no write may occur.
+The user supplied an exact Toplink-only target and dedicated auth identity. This section records
+runtime readiness; it is **not yet** a complete `SheetTargetApproval`, so no write may occur.
 
 | Field | Value | Status |
 |---|---|---|
 | `spreadsheet_id` | `1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms` | `USER_PROVIDED` (Toplink-only workbook) |
 | Auth mechanism | **New dedicated Toplink service account** | `USER_DECISION` — no Thảo Tây credential reuse |
-| SA email | — | `PENDING_USER` (user creates SA in GCP, grants Editor on the sheet) |
-| SA key | local gitignored `GOOGLE_APPLICATION_CREDENTIALS` path | `PENDING_USER` — never committed, never in chat |
+| SA email | `yvien-sheet-writer@imcforyvien.iam.gserviceaccount.com` | `USER_CONFIRMED_READY`; local key `client_email` read-back MATCH |
+| SA key | gitignored `.secrets/imcforyvien-de7e7ee958f4.json` | `LOCAL_KEY_PRESENT`; key material never committed or printed; process env binding required at execution |
+| Editor grant / Sheets API | dedicated SA has Editor; API enabled | `USER_CONFIRMED_READY`; not a write approval |
 | Write operator | Codex CLI | per DMP-to-Sheet sequence §4 |
 | `TL_PAGE_BENCHMARK` seed | Page ID `61591880797654` (baseline task start 2026-07-30, follower 0) | `LOCAL_VERIFIED · SYNC_PENDING` |
 
@@ -35,9 +35,10 @@ still pending), so no write may occur.
 or any Thảo Tây credential is forbidden (`CLAUDE.md` external-state rule). Claude does not source,
 handle, or expose any SA key; Codex performs SA wiring and the bounded write through the approved flow.
 
-**Still required before any write** (§1 entry condition, §2 `SheetTargetApproval`): SA email + Editor
-grant confirmed, tab_keys, ranges/schemas, action, limits, authorized_agent, expiry, and read-back.
-Missing any field ⇒ `BLOCKED_TARGET_INPUT`; retain local staging.
+**Still required before any write** (§1 entry condition, §2 `SheetTargetApproval`): signed tab_keys,
+ranges/schemas, one exact action per approval record, limits, authorized_agent, expiry, and read-back.
+Bind the local key only inside the approved execution process. Missing any field ⇒
+`BLOCKED_TARGET_INPUT`; retain local staging.
 
 ## 1. Scope / trigger
 
@@ -65,10 +66,18 @@ action: CREATE_TAB | UPSERT | READBACK
 limits: { max_tabs, max_rows_per_tab }
 authorized_agent: Codex CLI | named operator
 expires_at_ict: ISO-8601
+readback_required: true
+signer: human owner
+signed_at_ict: ISO-8601
 ~~~
 
 Missing, mismatched, expired, or broad fields yield BLOCKED_TARGET_INPUT; they are never filled
 from an old workbook or an agent guess.
+
+A human may sign an exact local draft by citing its repository path plus SHA-256 and stating
+`APPROVED`; the signed statement binds every field in that digest. A multi-step delivery uses one
+approval record per action (`CREATE_TAB`, `UPSERT`, then `READBACK`); approval of one action never
+implies the next.
 
 ### SheetDeliveryRecord
 
@@ -97,9 +106,11 @@ mapped once through TL_OUTPUT_INDEX; a re-run upserts the same tab_key and stabl
 | TL_KPI_DICTIONARY | TL-M4 | KPI/experiment plan | kpi_id |
 | TL_COMPLIANCE_RULES | TL-M1–TL-M5 | health/legal/privacy taxonomy | rule_id |
 | TL_BRAND_PROFILE | TL-M2 | profile/source-digest map | profile_field_id |
+| TL_RUNTIME_COMPATIBILITY | TL-M2 | DMP/runtime field-layer and lock compatibility | runtime_rule_id |
 | TL_PAGE_BENCHMARK | TL-M3 | Page identity/baseline only | page_snapshot_id |
 | TL_AUDIENCE_HYPOTHESES | TL-M3 | audience hypotheses | audience_id |
 | TL_POSITIONING | TL-M3 | positioning/narrative constraints | positioning_id |
+| TL_NARRATIVE | TL-M3 | corporate/founder narrative constraints | narrative_id |
 | TL_CAMPAIGN | TL-M4 | relative campaign architecture | campaign_item_id |
 | TL_CONTENT_PILLARS | TL-M3 | weighted pillar decision | pillar_id |
 | TL_EXPERIMENTS | TL-M4–TL-M8 | experiment ledger | experiment_id |
@@ -113,6 +124,29 @@ mapped once through TL_OUTPUT_INDEX; a re-run upserts the same tab_key and stabl
 No title may use a Thảo Tây identifier. A tab only becomes real after an approved target and a
 bounded CREATE_TAB action. It must then retain the listed tab_key; a revision changes rows, not
 the tab title.
+
+### Run 2 canonical 14-output mapping
+
+| Output stable ID | Artifact | Tab key |
+|---|---|---|
+| TL-BRAND-PROFILE-001 | `docs Toplink/brand/dmp-profile.md` | TL_BRAND_PROFILE |
+| TL-RUNTIME-COMPAT-001 | `docs Toplink/system/runtime-compatibility.md` | TL_RUNTIME_COMPATIBILITY |
+| TL-AUDIENCE-001 | `docs Toplink/research/audience-hypotheses.md` | TL_AUDIENCE_HYPOTHESES |
+| TL-POSITIONING-001 | `docs Toplink/brand/positioning.md` | TL_POSITIONING |
+| TL-NARRATIVE-001 | `docs Toplink/brand/narrative.md` | TL_NARRATIVE |
+| TL-PILLARS-001 | `docs Toplink/brand/content-pillars.md` | TL_CONTENT_PILLARS |
+| TL-PAGE-STRATEGY-001 | `docs Toplink/brand/facebook-page-strategy.md` | TL_FACEBOOK_STRATEGY |
+| TL-CAMPAIGN-001 | `docs Toplink/brand/campaign-architecture.md` | TL_CAMPAIGN |
+| TL-KPI-001 | `docs Toplink/brand/kpi-experiment-plan.md` | TL_KPI_DICTIONARY |
+| TL-M5-CALENDAR-001 | `docs Toplink/content/month-calendar.md` | TL_CONTENT_CALENDAR |
+| TL-M5-ASSET-001 | `docs Toplink/content/asset-and-batch-plan.md` | TL_ASSET_BATCH_PLAN |
+| TL-M5-REELS-001 | `docs Toplink/content/reels-briefs.md` | TL_REELS_BRIEFS |
+| TL-M5-PRODBRIEF-001 | `docs Toplink/content/production-briefs.md` | TL_PRODUCTION_BRIEFS |
+| TL-M5-WORKFLOW-001 | `docs Toplink/content/workflow-approval-measurement.md` | TL_WORKFLOW_APPROVAL |
+
+Every mapping also receives a delivery record in `TL_OUTPUT_INDEX`; that index reference does not
+turn `TL_OUTPUT_INDEX` into the artifact's primary tab. The mapping is one artifact ↔ one primary
+tab and introduces no `_v2` key.
 
 ## 4. Data and mapping rules
 
@@ -198,4 +232,3 @@ workbook.”
 **Correct:** “DMP created a traced Toplink artifact; Codex maps its Toplink stable ID to a registered
 TL_ tab only after the user approves a new Toplink workbook, exact range/schema/action/limits, and
 Codex can read the result back.”
-

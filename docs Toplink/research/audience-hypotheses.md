@@ -60,7 +60,7 @@ No hypothesis dropped; none promoted to confirmed persona. `TL-A02` edited into 
 
 ### `TL-A04` — "Người quan tâm dưỡng sinh toàn quốc" (awareness-only)
 - **JTBD — functional:** học kiến thức và thói quen dưỡng sinh dễ áp dụng tại nhà.
-- **JTBD — emotional:** cảm giác chủ động chăm sóc sức khỏe mà không cần đến cơ sở.
+- **JTBD — emotional:** cảm giác chủ động học và xây dựng thói quen dưỡng sinh phù hợp tại nhà.
 - **Validation signal:** completion, save/share. **Không** coi là service demand.
 - **Boundary:** education/awareness toàn quốc; cấm ngụ ý có cơ sở/dịch vụ tại địa phương ngoài Hà Nội.
 
