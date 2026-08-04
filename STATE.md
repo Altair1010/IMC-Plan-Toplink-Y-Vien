@@ -10,6 +10,11 @@
 
 ## In-progress
 
+- Task `.trellis/tasks/08-04-toplink-sheet-model-correction` is active under a Codex lease. It
+  corrects the completed 14-tab prose delivery to 24 normalized operational datasets in place.
+  Historical V2 evidence remains immutable and is classified
+  `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`; correction mutation is
+  `BOUNDED_APPROVAL_PENDING`, `external_writes=0`, and no Run 3 or milestone advance is permitted.
 - Task `.trellis/tasks/08-04-toplink-sheet-sync` is ready to close; no active writer lease. Signed V2
   execution is closed and post-sync review PASS; later mutations need new approval.
 - Run 2 Phase B `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`: Codex blind audit frozen
@@ -109,9 +114,10 @@
 - Product/service dossiers, offer, booking/contact/privacy, price/availability, and qualification
   evidence still `MISSING_INPUT` (added gradually from `docs Toplink/`).
 - Content start date and production capacity.
-- Google Sheets **target provided** (`1s-Pm5f…8hms`) but write still blocked: needs the new Toplink
-  service account (email + Editor grant), then a full `SheetTargetApproval` (tab/range/schema/action/
-  limits/expiry) and exact read-back. `TL-SHEET-001` v0.1.1 records the target; it is not a write approval.
+- Google Sheets target and dedicated service-account identity are verified. The V2 approval was
+  consumed by the completed 14-tab delivery and cannot authorize correction. The 24-dataset in-place
+  migration requires a new digest-bound approval (tabs/ranges/schemas/actions/limits/expiry) and
+  24/24 exact read-back. `TL-SHEET-001` records the target; it is not a new write approval.
   **UPDATE 2026-07-30 (TL-D19): SA infrastructure READY** — SA `yvien-sheet-writer@imcforyvien.iam.gserviceaccount.com`
   created, Sheet shared Editor, Sheets API enabled, key at gitignored `.secrets/imcforyvien-de7e7ee958f4.json`,
   `GOOGLE_APPLICATION_CREDENTIALS` set (user-confirmed). **Still gated for WRITE:** signed `SheetTargetApproval`
@@ -119,12 +125,11 @@
 
 ## Next safe action
 
-1. Claude builds the exact nine-path TL-M5 Run 1 Phase A package under the re-issued readiness
-   gate; no Run 1 close or Run 2 start.
-2. Human health/legal/franchise/public-positioning and per-item gates remain open.
-3. User → Codex supplies the exact signed `SheetTargetApproval`; only then bounded upsert + exact
-   read-back.
-4. Fresh Run 2 audit/finalize only after its canonical entry gate. Never create Run 3.
+1. Codex completes local governance, schema/compiler, normalized sidecars, and independent review.
+2. Codex prepares and commits unsigned `TL-SHEET-RUN2-CORRECTION-01`; `external_writes=0`.
+3. Human supplies an exact `APPROVED` statement bound to that path and SHA-256; only then may Codex
+   run the bounded in-place correction and 24/24 exact read-back.
+4. Health/legal/franchise/product/privacy/consent/asset-rights gates remain open. Never create Run 3.
 
 ## Resolved-by-user (2026-07-30)
 

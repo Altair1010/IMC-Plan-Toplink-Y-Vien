@@ -1,0 +1,12 @@
+{
+  "addendum_id": "TL-SHEET-RUN1-MODEL-ADDENDUM-01",
+  "run_id": "TOPLINK_RUN1_BUILD",
+  "historical_manifest_path": "docs Toplink/staging/run1/run1-manifest.json",
+  "historical_manifest_sha256": "99227153de577887966ae09124fdabcb2b3bf8ff23d838503531be507c2f4d2d",
+  "correction_scope": "SCHEMA_PROVENANCE_NORMALIZATION_ONLY",
+  "material_content_reauthor": false,
+  "macro_run_count_after_addendum": 2,
+  "status": "LOCAL_ADDENDUM_LOCKED",
+  "external_writes": 0,
+  "created_at_ict": "2026-08-04T21:20:38+07:00"
+}

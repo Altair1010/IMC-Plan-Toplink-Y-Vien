@@ -92,18 +92,19 @@ a validation path.
   NOT_OPERATIONALLY_COMPLETE` (per `TL-D10`). A local file alone never satisfies operational Done.
 - The local output file is still produced and remains the source-of-truth staging/canonical
   artifact. The Sheet aggregates results; it does not replace the file.
-- Mapping is one output file → one dedicated tab in that one Sheet (`1 file = 1 tab`). Do not merge
-  multiple output files into one tab, split one file across multiple tabs, or scatter results across
-  multiple spreadsheets. All tabs live in the single approved spreadsheet.
-- Each tab carries a stable tab identity derived from the file/record stable ID, so re-runs upsert
-  the same tab instead of creating duplicates or `_v2` tabs. Read-back is verified per tab.
+- Mapping is many-to-many through normalized domain datasets: one canonical artifact may feed
+  several datasets and one dataset may cite several artifacts. `TL_OUTPUT_INDEX` binds every
+  artifact path/digest to its dataset keys and delivery/read-back state.
+- The approved workbook has 24 functional `TL_` tabs. Each dataset and row has immutable stable
+  identity, so revisions update the same tab/row instead of creating duplicates or `_v2` tabs.
+  Canonical Markdown remains source-of-truth; deterministic JSON sidecars are the machine interface.
 - The tab key, minimum schema, and DMP-to-Sheet role boundary must match
   `docs/system/toplink-google-sheets-operational-contract.md`; the architecture uses functional
   parity only and never imports Thảo Tây identifiers or data.
-- This requirement stays fail-closed: until the user supplies the exact approved spreadsheet, tab,
-  range, schema, and bounded write approval, the target is `BLOCKED_TARGET_INPUT`; outputs hold at
-  `LOCAL_VERIFIED · SYNC_PENDING_TARGET` and must not be claimed as delivered or operationally
-  complete. The rule mandates the destination and shape, never a self-invented or reused target.
+- This requirement stays fail-closed: target identity is known, but until the user supplies the
+  exact correction tabs, ranges, schemas, limits, and digest-bound approval, the mutation is
+  `BOUNDED_APPROVAL_PENDING`; outputs hold at `LOCAL_VERIFIED · SYNC_PENDING_APPROVAL` and must not
+  be claimed as corrected or operationally complete.
 
 ## Milestone and Done rules
 
@@ -149,8 +150,8 @@ a validation path.
 
 ## External target state
 
-Google Sheets is `BLOCKED_TARGET_INPUT`. Do not infer or reuse a destination; wait for the user to
-supply the exact approved spreadsheet, tab, range, schema, stable-identity fields, and bounded write
-approval. When that single approved spreadsheet exists, all DMP outputs aggregate into it under the
-`1 file = 1 tab` rule above, with per-tab exact read-back; never split the operational output across
-more than one spreadsheet.
+Google Sheets target identity is verified, but every later mutation is `BOUNDED_APPROVAL_PENDING`.
+The completed V2 approval is consumed and authorizes no correction write. Wait for a new approval
+bound to the exact correction bundle path and SHA-256. All DMP outputs aggregate into the one
+Toplink-only workbook through the 24 normalized datasets above, with per-tab exact read-back; never
+split delivery across workbooks or reuse a Thảo Tây target.

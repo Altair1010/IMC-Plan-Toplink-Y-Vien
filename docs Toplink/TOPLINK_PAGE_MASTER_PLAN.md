@@ -14,7 +14,7 @@
 | Execution owner | `TOPLINK_PAGE_MILESTONES.md` |
 | DMP | Digital Marketing Pro `3.15.1` — core bắt buộc |
 | DMP real invocation của plan này | `0` — chỉ có `SKILL_CONTRACT_REVIEW` |
-| Google Sheets | `BLOCKED_TARGET_INPUT` — user sẽ cung cấp target sau |
+| Google Sheets | Target verified; V2 consumed; 24-dataset correction `BOUNDED_APPROVAL_PENDING` |
 | External writes | `0` |
 
 Tài liệu này là brand-track được ủy quyền bởi `GOVERNANCE.md §1`, subordinate với
@@ -383,10 +383,10 @@ channel, duration, withdrawal và redaction; không generalize thành outcome pr
 ### Current gate
 
 ```text
-spreadsheet_id = BLOCKED_TARGET_INPUT
-approved_tabs  = BLOCKED_TARGET_INPUT
-approved_range = BLOCKED_TARGET_INPUT
-write_approval = NOT_GRANTED
+spreadsheet_id = 1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms · VERIFIED_TOPLINK_ONLY
+approved_tabs  = 14-tab V2 delivery consumed; 24-tab correction pending
+approved_range = CORRECTION_BUNDLE_PENDING
+write_approval = NOT_GRANTED_FOR_CORRECTION
 ```
 
 Không tái dùng workbook Thảo Tây, tự tạo workbook/tab hoặc suy diễn target. User có thể cấp target
@@ -394,23 +394,38 @@ mới hoặc target hiện hữu; chỉ exact target trong approval mới có hi
 
 ### Logical dataset map
 
-Tên dưới đây là logical dataset, không phải tab đã được duyệt:
+The operational model uses exactly 24 functional datasets/tabs:
 
 ```text
+TL_REPORT
+TL_OWNER_ACTIONS
+TL_CONTROL
 TL_SOURCE_INVENTORY
 TL_INPUT_GAPS
-TL_BRAND_PROFILE
-TL_AUDIENCE_POSITIONING
-TL_PAGE_STRATEGY
-TL_CAMPAIGN_KPI
-TL_CONTENT_CALENDAR
-TL_REELS_PRODUCTION
-TL_WORKFLOW_APPROVAL
 TL_OUTPUT_INDEX
 TL_DECISIONS
+TL_KPI_DICTIONARY
+TL_COMPLIANCE_RULES
+TL_BRAND_PROFILE
+TL_RUNTIME_COMPATIBILITY
+TL_PAGE_BENCHMARK
+TL_AUDIENCE_HYPOTHESES
+TL_POSITIONING
+TL_NARRATIVE
+TL_CONTENT_PILLARS
+TL_FACEBOOK_STRATEGY
+TL_CAMPAIGN
+TL_EXPERIMENTS
+TL_CONTENT_CALENDAR
+TL_ASSET_BATCH_PLAN
+TL_REELS_BRIEFS
+TL_PRODUCTION_BRIEFS
+TL_WORKFLOW_APPROVAL
 ```
 
-Mỗi DMP file → một tab sau khi user duyệt mapping. Không `_v2`; update theo stable identity.
+Canonical artifacts and datasets map many-to-many through `TL_OUTPUT_INDEX`. Canonical Markdown
+remains human-readable source-of-truth; deterministic normalized JSON sidecars are the machine
+interface. No `_v2`; update by stable identity.
 
 ### Stable identity
 
@@ -430,7 +445,7 @@ trước Run 1 và giữ tới hết Run 2.
 ```text
 LOCAL_STAGING
 → LOCAL_VERIFIED
-→ SYNC_PENDING_TARGET
+→ SYNC_PENDING_APPROVAL
 → SYNC_READY_APPROVAL
 → SYNC_WRITTEN_UNVERIFIED
 → SYNC_READBACK_PASS
@@ -452,8 +467,8 @@ risk, DMP check, reviewer/conditions và publish status; không có null→appro
 
 Hai run dùng cùng `profile_digest`, `source_digest`, DMP version và active brand. Drift:
 `FAIL_BACK_TO_RUN1`; không tạo Run 3. `TL-M1`–`TL-M5` chỉ complete khi paired manifests PASS và
-Sheet `SYNC_READBACK_PASS`. Nếu chưa có target, được `LOCAL_VERIFIED · SYNC_PENDING_TARGET` nhưng
-không gọi operational complete.
+Sheet correction `SYNC_READBACK_PASS`. Until the new digest-bound correction approval and read-back,
+the state is `LOCAL_VERIFIED · SYNC_PENDING_APPROVAL`; it is not operationally complete.
 
 Canonical promotion, Sheet sync và Facebook Page mutation là ba action khác nhau. Page publish/
 bio/CTA/cross-post luôn cần item/action approval riêng và không nằm mặc định trong Run 2.
@@ -492,7 +507,7 @@ Không tạo `task.md`, `STATE.md`, `MEMORY.md`, `RULES.md` hoặc `GOVERNANCE.m
 | W4 thiếu dossier | High | `EVIDENCE-CLEARED` hoặc `SAFE FALLBACK`, không bypass lịch |
 | Hai runtime ghi đè | High | Exact lease/handoff/digest |
 | DMP trace giả | Critical | `NO_TRACE = NOT_DONE`; runtime blocker rõ |
-| Sheet target chưa có | Critical | `BLOCKED_TARGET_INPUT`; no invented/reused target |
+| Sheet correction approval chưa có | Critical | `BOUNDED_APPROVAL_PENDING`; no invented/reused target or approval |
 | Approval rơi khi sync/edit | Critical | Immutable gate fields + content hash/reset rule |
 | Token/context waste | Medium | Frozen manifest + section-level routing + thresholds |
 

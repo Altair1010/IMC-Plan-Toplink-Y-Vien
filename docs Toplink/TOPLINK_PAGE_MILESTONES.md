@@ -63,7 +63,7 @@ PLANNED
 → DMP_GENERATED
 → AGENCY_REVIEWED
 → LOCAL_VERIFIED
-→ SYNC_PENDING_TARGET
+→ SYNC_PENDING_APPROVAL
 → SYNC_READY_APPROVAL
 → SYNC_WRITTEN_UNVERIFIED
 → SYNC_READBACK_PASS
@@ -72,7 +72,7 @@ PLANNED
 
 `LOCAL_VERIFIED` không đồng nghĩa `APPROVED`, published hoặc operationally complete.
 Milestone cần Sheet chỉ `COMPLETE` sau exact-range read-back. Target chưa có thì dừng ở
-`SYNC_PENDING_TARGET`.
+`SYNC_PENDING_APPROVAL`.
 
 ### 2.4. Common Done gates
 
@@ -188,8 +188,8 @@ gate trước khi tạo bất kỳ strategy/content deliverable.
 2. Verify root `GOVERNANCE §1`, `RULES §0/§2`, `AGENTS` Toplink exception.
 3. Chạy DMP readiness path thật: version/capabilities/status/output-folder.
 4. Ghi rõ active brand hiện tại; không switch ngầm.
-5. Khóa logical Sheet architecture theo `docs/system/toplink-google-sheets-operational-contract.md`;
-   giữ `BLOCKED_TARGET_INPUT` và không tạo target/tab.
+5. Khóa kiến trúc 24 domain datasets theo `docs/system/toplink-google-sheets-operational-contract.md`;
+   giữ `BOUNDED_APPROVAL_PENDING`; không mutation nếu chưa có approval gắn exact bundle path + digest.
 6. Khóa future directory tree, không tạo toàn bộ trước hạn.
 
 ### Deliverables
@@ -556,22 +556,24 @@ docs Toplink/staging/run1/
 3. Repair evidence-grounded; regenerate chỉ qua traced DMP invocation khi required.
 4. Validate human/legal/privacy gate integrity.
 5. Promote local canonical candidates in place, không `_v2`.
-6. Chuẩn bị Sheet mapping theo `docs/system/toplink-google-sheets-operational-contract.md` và target
-   user duyệt.
-7. Exact approval → bounded upsert → exact-range read-back.
+6. Chuẩn bị 24 normalized domain datasets theo
+   `docs/system/toplink-google-sheets-operational-contract.md`; canonical artifacts map many-to-many
+   through `TL_OUTPUT_INDEX`.
+7. Exact correction approval → bounded in-place replacement/create → exact-range read-back.
 8. Paired-manifest validation, checkpoint, release lease.
 
 ### Run 2 Sheet gate
 
-Nếu target chưa được cấp:
+Nếu correction bundle chưa được duyệt:
 
 ```text
 local_status = LOCAL_VERIFIED
-sheet_status = SYNC_PENDING_TARGET
+sheet_status = SYNC_PENDING_APPROVAL
 final_status = NOT_COMPLETE
 ```
 
-Không tái dùng workbook Thảo Tây hoặc tự tạo target. Khi target được cấp, approval phải nêu
+Không tái dùng workbook Thảo Tây hoặc tự tạo target. V2 approval đã tiêu thụ và không có hiệu lực
+cho mutation mới. Correction approval phải nêu
 agent · spreadsheet/tab/range · input · action · limits · expiry.
 Registry tab, schema, mapping, validation error states, và bằng chứng read-back phải theo
 `docs/system/toplink-google-sheets-operational-contract.md`.

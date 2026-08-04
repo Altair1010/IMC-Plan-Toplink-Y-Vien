@@ -1,0 +1,4 @@
+{"file":".trellis/spec/backend/index.md","reason":"Package-scoped implementation rules for repository automation."}
+{"file":"docs/system/toplink-google-sheets-operational-contract.md","reason":"Authoritative Toplink-only registry, approval, mapping, and read-back contract to correct."}
+{"file":"docs/system/claude-codex-operating-contract.md","reason":"Two-run ownership, lease, handoff, and approval-tier invariants."}
+{"file":"docs Toplink/TOPLINK_PAGE_MILESTONES.md","reason":"Canonical delivery and Done gates; correction must remain inside Run 1/Run 2."}

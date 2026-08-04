@@ -115,16 +115,18 @@ mismatch returns work to Run 1; a third run is forbidden.
 
 ## 8. External-state and completion rules
 
-Google Sheets is `BLOCKED_TARGET_INPUT` until the user provides the exact spreadsheet, tab,
-range, schema, and write approval. When approved, use stable identity, a bounded upsert, and exact
-read-back; never create `_v2` tabs, overwrite broadly, or reuse a Thảo Tây workbook.
+The Toplink spreadsheet identity is verified. The completed 14-tab V2 delivery is historical
+`TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`; its approval is consumed. The 24-dataset
+correction remains `BOUNDED_APPROVAL_PENDING` until the user approves the exact new bundle path and
+SHA-256. When approved, use stable identity, bounded range replacement, and exact read-back; never
+create `_v2` tabs, overwrite broadly, or reuse a Thảo Tây workbook.
 
 The planned Toplink-only tab registry, approval payload, mapping, validation/error states, and
 read-back evidence are defined in `docs/system/toplink-google-sheets-operational-contract.md`.
 That contract plans the architecture only; it does not supply a target or authorize a write.
 
-Local artifacts remain `SYNC_PENDING_TARGET` rather than complete whenever an external target is
-required but not approved. A milestone is done only when its canonical deliverables, evidence,
+Local correction artifacts remain `SYNC_PENDING_APPROVAL` rather than complete while the new
+mutation is not approved. A milestone is done only when its canonical deliverables, evidence,
 DMP trace, reviewer records, human gates, and—when applicable—external read-back all pass.
 
 ## 9. Open inputs
@@ -133,4 +135,5 @@ DMP trace, reviewer records, human gates, and—when applicable—external read-
 - Public/legal proof for franchise and entity wording.
 - Product/service dossiers, exact offer, pricing, availability, eligibility, and warranties.
 - Booking/contact/privacy process, response owner, and SLA.
-- Content start date, production capacity, professional reviewer, and approved Sheets target.
+- Content start date, production capacity, professional reviewer, and a digest-bound Sheet
+  correction approval.

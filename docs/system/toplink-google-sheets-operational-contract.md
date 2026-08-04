@@ -2,7 +2,8 @@
 
 ## Status, authority, and scope
 
-- **Contract ID:** TL-SHEET-001 · **Version:** 0.1.3 · **Status:** SYNC_READBACK_PASS · HUMAN_GATES_PENDING.
+- **Contract ID:** TL-SHEET-001 · **Version:** 0.2.0 · **Status:**
+  `CORRECTION_LOCAL_BUILD · BOUNDED_APPROVAL_PENDING · HUMAN_GATES_PENDING`.
 - **Decision owner:** docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md; **execution/Done owner:**
   docs Toplink/TOPLINK_PAGE_MILESTONES.md; **safety owner:** RULES.md.
 - **Scope:** the provided Toplink-only operational workbook with functional parity to the approved
@@ -14,7 +15,7 @@
 
 This contract defines the required architecture after the target and dedicated SA were supplied. It
 is not an external-write approval. Until the user signs the exact bounded action payload, every record
-stays LOCAL_VERIFIED or STAGING with SYNC_PENDING_TARGET.
+stays LOCAL_VERIFIED or STAGING with SYNC_PENDING_APPROVAL.
 
 The Run 2 V2 payload and unsigned approval envelope are respectively
 `docs Toplink/staging/run2/codex/61-sheet-payload-v2.json` and
@@ -27,7 +28,9 @@ The human owner signed that exact V2 envelope digest on 2026-08-04. Codex execut
 bound phases and recorded 14/14 exact tab read-backs at
 `docs Toplink/staging/run2/codex/63-sheet-readback-v2.json` (SHA-256
 `be0e0efca02f3a7d5cba09cc404d3dba02ecc77a268d57de8b4d43d824caa719`). This closes only the signed
-V2 delivery. Any later Sheet mutation requires a new current digest-bound approval.
+V2 delivery. It is immutable historical `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`: the
+cells matched the approved prose payload, but the payload was not an operational data model. Any
+correction mutation requires a new current digest-bound approval.
 
 ## 0. Provided target and auth plan (2026-07-30)
 
@@ -52,7 +55,7 @@ handle, or expose any SA key; Codex performs SA wiring and the bounded write thr
 **Required before every new write** (§1 entry condition, §2 `SheetTargetApproval`): signed tab_keys,
 ranges/schemas, one exact action per approval record, limits, authorized_agent, expiry, and read-back.
 The V2 approval satisfied these fields only for its completed run. Missing or changed fields in a later
-run ⇒ `BLOCKED_TARGET_INPUT`; retain local staging.
+correction ⇒ `BOUNDED_APPROVAL_PENDING`; retain local staging.
 
 ## 1. Scope / trigger
 
@@ -112,6 +115,8 @@ mapped once through TL_OUTPUT_INDEX; a re-run upserts the same tab_key and stabl
 
 | Tab key | Primary milestone | Local source class | Stable row key |
 |---|---|---|---|
+| TL_REPORT | TL-M1–TL-M9 | human-readable synthesis from datasets | report_id |
+| TL_OWNER_ACTIONS | TL-M1–TL-M9 | decisions and inputs required from owners | action_id |
 | TL_CONTROL | TL-M0–TL-M9 | target metadata, delivery state, revisions | control_key |
 | TL_SOURCE_INVENTORY | TL-M1 | source manifest | source_id |
 | TL_INPUT_GAPS | TL-M1 | input-gap register | gap_id |
@@ -158,16 +163,17 @@ the tab title.
 | TL-M5-PRODBRIEF-001 | `docs Toplink/content/production-briefs.md` | TL_PRODUCTION_BRIEFS |
 | TL-M5-WORKFLOW-001 | `docs Toplink/content/workflow-approval-measurement.md` | TL_WORKFLOW_APPROVAL |
 
-Every mapping also receives a delivery record in `TL_OUTPUT_INDEX`; that index reference does not
-turn `TL_OUTPUT_INDEX` into the artifact's primary tab. The mapping is one artifact ↔ one primary
-tab and introduces no `_v2` key.
+Every artifact receives one or more mapping records in `TL_OUTPUT_INDEX`. A dataset may aggregate
+records from multiple artifacts, and an artifact may feed multiple datasets. There is no artifact
+“primary tab” requirement and no `_v2` key.
 
 ## 4. Data and mapping rules
 
 ### Common provenance fields
 
-Every operational row carries its stable row key, record_id where an artifact exists,
-source_path/source_id, evidence_status, allowed_use, revision_or_digest, owner, and updated_at_ict.
+Every operational row carries `stable_row_key`, `record_id`, `source_path`, `source_location`,
+`source_id`, `evidence_status`, `allowed_use`, `revision`, `source_digest`, `owner`, and
+`updated_at_ict`.
 Unknown values are explicit (MISSING_INPUT, UNVERIFIED, or DO_NOT_USE), not blank values presented
 as facts.
 
@@ -175,6 +181,8 @@ as facts.
 
 | Dataset | Minimum additional fields |
 |---|---|
+| TL_REPORT | report section, synthesis, source record IDs, status, blocker IDs |
+| TL_OWNER_ACTIONS | priority, category, requested decision/input, deadline gate, blocked effect, live source reference, decision status, approver role/date/value, notes |
 | TL_SOURCE_INVENTORY | relative path, SHA-256, UTF-8 policy, category, exclusion reason |
 | TL_INPUT_GAPS | requested input, owner, blocked milestone, unblock action, status |
 | TL_OUTPUT_INDEX | local path/digest, DMP trace, tab_key, delivery/read-back status |
@@ -217,8 +225,8 @@ only be written with their source/status/allowed-use. A sheet schema never upgra
 - **Good:** The user approves one new Toplink workbook, TL_SOURCE_INVENTORY, a bounded range and
   an upsert limit. Codex verifies the local source manifest, writes only those records, and reads
   back IDs, count, values, and Unicode.
-- **Base:** The local artifact and registry mapping are ready but no target is approved. Its state is
-  LOCAL_VERIFIED · SYNC_PENDING_TARGET; no tab is created.
+- **Base:** The local artifact and registry mapping are ready but the correction bundle is not
+  approved. Its state is LOCAL_VERIFIED · SYNC_PENDING_APPROVAL; no mutation occurs.
 - **Bad:** An agent copies a tab, formula, baseline, or output from the Thảo Tây workbook, guesses a
   target/range, creates a _v2 tab, or calls a connector without a read-back. Stop and record the
   applicable error status.
@@ -227,7 +235,8 @@ only be written with their source/status/allowed-use. A sheet schema never upgra
 
 Before any external write, the operator must prove:
 
-1. every requested tab_key is in this registry and maps to exactly one artifact/dataset;
+1. every requested tab_key is in this 24-tab registry and all artifact/dataset mappings resolve
+   through `TL_OUTPUT_INDEX` without orphan records;
 2. artifact and DMP trace digests match the handoff/manifest;
 3. no target/ID/tab/row comes from Thảo Tây scope;
 4. exact approval fields and lease are current;

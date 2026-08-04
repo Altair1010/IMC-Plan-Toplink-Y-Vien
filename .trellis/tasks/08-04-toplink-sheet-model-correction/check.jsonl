@@ -1,0 +1,4 @@
+{"file":".trellis/spec/backend/index.md","reason":"Quality-check commands and backend conventions."}
+{"file":"RULES.md","reason":"Fail-closed safety, external-write, provenance, and completion constraints."}
+{"file":"docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md","reason":"Canonical strategy and Sheet architecture precedence."}
+{"file":"docs/system/toplink-google-sheets-operational-contract.md","reason":"Exact registry, migration safety, approval, and read-back acceptance contract."}
