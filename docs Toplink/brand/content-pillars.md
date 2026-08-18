@@ -1,58 +1,71 @@
-# TL-M3 — Content pillars (Toplink Y Viện)
+# TL-M3 — Trụ nội dung Toplink Y Viện
 
-> Run 1 Phase A · local-only · external_writes=0. DMP social-strategy + content-engine converged candidate territories TL-PC1–TL-PC5 (master plan §10) thành 5 trụ nội dung. Phân bổ được biểu diễn bằng số slot trên kế hoạch tháng 28 slot; đây là giả thuyết khởi động (launch hypotheses), tái cân chỉnh sau tín hiệu pilot (TL-M4). ID ổn định TL-PILLARS-001. Bộ dữ liệu Sheet logic: TL_CONTENT_PILLARS. Phản chiếu cơ chế lịch 6/6/8/4/4.
+> **Run 1 Phase A · chỉ chạy nội bộ · `external_writes=0`.** Năm trụ nội dung hội tụ từ năm vùng đề
+> tài ứng viên (master plan §10). Phân bổ biểu diễn bằng số slot trên kế hoạch 28 slot; đây là giả
+> thuyết khởi động, sẽ cân chỉnh lại sau tín hiệu của chu kỳ chạy thử.
 
-## Trụ nội dung (phân bổ slot, audience job, bằng chứng, format/funnel, rủi ro, cơ sở)
+## 0. Khối định danh
 
-- **TL-P1 "Toplink là ai — phạm vi & giới hạn"** (←PC1) · **6/28 slot** | TL-A01/A02 hiểu Toplink là gì, không phải là gì | Positioning + không gian + brand descriptor TOPLINK_CONFIRMED; nội dung franchise/pháp lý bị gated | FB post + Reel intro; TOFU nhận biết/tin cậy | Rủi ro: Medium — tick xanh ≠ bằng chứng năng lực; không dùng ngôn từ franchise/pháp lý công khai; tick xanh = PLATFORM_IDENTITY_SIGNAL, không dùng làm proof | Nền tảng, cần đứng trước mọi claim khác. Giữ ở mức 6/28 slot.
+| Trường | Giá trị |
+|---|---|
+| Milestone | `TL-M3` |
+| Stable ID | `TL-PILLARS-001` |
+| Tab đích | `YV_05_content_pillars` |
+| Schema | `YV-SHEET-001/1.0.0` |
+| Trạng thái | `HYPOTHESIS` — giả thuyết khởi động, chưa `APPROVED` |
+| Số dòng | **đúng 5**, không hơn không kém (sửa lỗi mô hình #9: registry cũ cho `min_records = 3`) |
+| Nguồn sự thật | master plan §10 · taxonomy §1–2 · `positioning.md §2` |
+| Ghi ra ngoài | `0` |
 
-- **TL-P2 "Hiểu & lắng nghe tín hiệu cơ thể"** (←PC2) · **6/28 slot** | TL-A01/A02a/A02b body literacy, an tâm | Ngôn ngữ hỗ trợ TOPLINK_CONFIRMED (taxonomy §1); hiệu quả UNVERIFIED | Carousel/Reel giáo dục; TOFU→MOFU | Rủi ro: High — cấm ngôn từ nhân-quả/chẩn đoán; bắt buộc disclaimer + caveat về khác biệt cá nhân + rà soát chuyên môn/con người theo từng item (mức item, không rà theo lô) | Giá trị cốt lõi bị giới hạn bởi health gate; giữ ở 6/28 slot.
+## 1. Quy tắc quy đổi slot sang tỷ trọng %
 
-- **TL-P3 "Bằng chứng vận hành: không gian, quy trình, con người"** (←PC3) · **8/28 slot** | TL-A01/A03 tin vào sự chỉn chu, minh bạch | Không gian 4 tầng + quy trình 8 bước TOPLINK_CONFIRMED | Photo/video tour, Reel behind-the-scenes; MOFU tin cậy | Rủi ro: Low — là fact vận hành; không gắn qualification nhân sự/outcome/testimonial khi chưa có đồng thuận | Tài sản vận hành có thể kiểm chứng qua không gian/quy trình/con người, mức rủi ro thấp; nhận 8 trên 28 slot.
+Slot là sự thật gốc: **6 / 6 / 8 / 4 / 4 = 28**. Tỷ trọng % là số nguyên, tổng **đúng 100**, quy đổi
+bằng phương pháp phần dư lớn nhất:
 
-- **TL-P4 "Lý – Dược – Dưỡng dễ hiểu"** (←PC4) · **4/28 slot** | TL-A02/A04 hiểu hệ giải pháp | Naming TOPLINK_CONFIRMED; hiệu quả theo từng SKU UNVERIFIED (dossier gate TL-GAP-004) | Explainer post/Reel; MOFU | Rủi ro: Medium-High — cấm efficacy claim tới khi có dossier; bắt buộc disclaimer + caveat về khác biệt cá nhân + rà soát chuyên môn/con người theo từng item (mức item, không rà theo lô) | Giữ ở mức thấp 4/28 slot tới khi product dossier đạt PASS.
+- Lấy phần nguyên: 21 · 21 · 28 · 14 · 14 = 98.
+- Còn dư 2 điểm phần trăm, chia cho hai phần dư lớn nhất: `TL-P3` (0,5714) rồi `TL-P1` (0,4286 —
+  hoà với `TL-P2`, phá hoà theo thứ tự trụ).
+- Kết quả: **22 · 21 · 29 · 14 · 14 = 100**.
 
-- **TL-P5 "Hành trình Toplink, founder & cộng đồng"** (←PC5) · **4/28 slot** | TL-A03/A04 kết nối giá trị, cộng đồng | Founder allowed-use bị gated; cần consent | Story/Reel; TOFU→retention | Rủi ro: Medium — founder cap: tối đa 1 item founder-led trên mỗi 5 item đã hoạch định, không đặt hai CTA thương mại founder-led liền kề; không nói cơ chế/chẩn đoán | Bị giới hạn bởi founder guardrail; giữ ở 4/28 slot.
+Quy tắc này là tất định; chạy lại cho ra đúng bộ số này.
 
-## Phân bổ slot (28-slot monthly plan)
+## 2. Bảng dữ liệu — `YV_05_content_pillars`
 
-| Trụ | Slot | Ghi chú |
-|-----|------|---------|
-| TL-P1 | 6/28 | nền tảng, giữ ở 6 của 28 slot |
-| TL-P2 | 6/28 | health-gated, giữ ở 6 của 28 slot |
-| TL-P3 | 8/28 | nhận 8 của 28 slot — vận hành, rủi ro thấp |
-| TL-P4 | 4/28 | gated bởi dossier, giữ ở 4 của 28 slot |
-| TL-P5 | 4/28 | founder-capped, giữ ở 4 của 28 slot |
-| **Tổng** | **28/28** | covers the full 28-slot plan (28/28) |
+Quy ước bảng theo `dmp-profile.md §1`. Cột `Slot` là cột máy phục vụ ánh xạ lịch, không hiển thị.
 
-Cơ chế lịch phản chiếu: 6/6/8/4/4.
+| Mã | Trụ nội dung | Tỷ trọng % | Số ngày trong chu kỳ | Giải quyết việc gì cho khách | Định dạng hay dùng | Vai trò trong phễu | Rủi ro / cổng | Vì sao có trụ này | Chủ sở hữu |
+|---|---|---|---|---|---|---|---|---|---|
+| TL-P1 | Y Viện là ai — phạm vi và giới hạn | 22 | 6 | Giúp người mới hiểu Y Viện là gì và không phải là gì trước khi tin bất cứ điều gì khác | Bài Facebook và Reel giới thiệu | TOFU | Trung bình — cấm ngôn từ nhượng quyền và pháp lý công khai; tick xanh chỉ là tín hiệu định danh nền tảng, không phải bằng chứng năng lực | Đây là nền móng; mọi khẳng định khác chỉ đứng được khi người đọc đã biết phạm vi của Y Viện | Hướng dẫn thương hiệu |
+| TL-P2 | Hiểu và lắng nghe tín hiệu cơ thể | 21 | 6 | Giúp người đọc đọc được tín hiệu cơ thể mình và bớt lo lắng | Carousel và Reel giáo dục | TOFU | Cao — cấm ngôn từ nhân quả và chẩn đoán; bắt buộc câu miễn trừ, lưu ý khác biệt cá nhân, và người có chuyên môn rà từng bài chứ không rà theo lô | Đây là giá trị lõi nhưng bị chặn bởi cổng sức khoẻ, nên giữ nguyên 6 trên 28 slot | Cổng sức khoẻ |
+| TL-P3 | Bằng chứng vận hành: không gian, quy trình, con người | 29 | 8 | Cho người đang cân nhắc thấy sự chỉn chu và minh bạch bằng thứ kiểm chứng được | Ảnh và video tham quan, Reel hậu trường | MOFU | Thấp — chỉ nói dữ kiện vận hành; không gắn bằng cấp nhân sự, không nói kết quả, không dùng lời khách khi chưa có đồng ý | Đây là tài sản kiểm chứng được và rủi ro thấp nhất, nên nhận phần lớn nhất trong 28 slot | Chủ Y Viện |
+| TL-P4 | Lý – Dược – Dưỡng dễ hiểu | 14 | 4 | Giúp người đọc hiểu hệ giải pháp trước khi chọn | Bài giải thích và Reel giải thích | MOFU | Trung bình cao — cấm mọi khẳng định công dụng cho tới khi có hồ sơ sản phẩm; bắt buộc câu miễn trừ, lưu ý khác biệt cá nhân và rà soát từng bài | Giữ ở mức thấp cho tới khi hồ sơ sản phẩm đạt, vì công dụng theo từng sản phẩm vẫn chưa kiểm chứng | Cổng sức khoẻ |
+| TL-P5 | Hành trình Y Viện, founder và cộng đồng | 14 | 4 | Cho người đã biết Y Viện một lý do để ở lại và quay lại | Story và Reel kể chuyện | TOFU | Trung bình — trần founder tối đa 1 trên mỗi 5 bài; không đặt hai lời kêu gọi thương mại do founder dẫn liền kề; không nói cơ chế, không chẩn đoán; cần đồng ý của người xuất hiện | Bị giới hạn bởi ranh giới founder, nên giữ ở 4 trên 28 slot | Cổng pháp lý |
 
-## Funnel
+**Tổng: 100% · 28/28 slot.** Cơ chế lịch phản chiếu 6/6/8/4/4.
 
-- **TOFU** = TL-P1 / TL-P2 / TL-P5
-- **MOFU** = TL-P3 / TL-P4
-- **BOFU** = none (commercial CTA disabled cho tới khi qua offer gate)
+## 3. Vai trò trong phễu
 
-Mặc định no-BOFU / no-commercial-CTA. Item health-sensitive bị gating theo từng item. Founder guardrail áp dụng theo từng item.
+- **TOFU (nhận biết):** `TL-P1` · `TL-P2` · `TL-P5`
+- **MOFU (cân nhắc):** `TL-P3` · `TL-P4`
+- **BOFU (ra quyết định):** *không có trụ nào* — lời kêu gọi thương mại đang tắt cho tới khi cổng
+  chào bán được mở.
 
-## Guardrails theo từng trụ
+Mặc định: không BOFU, không lời kêu gọi thương mại. Bài chạm sức khoẻ bị chặn theo từng bài. Ranh giới
+founder áp theo từng bài.
 
-- **TL-P1**: không dùng ngôn từ franchise/pháp lý công khai; tick xanh = PLATFORM_IDENTITY_SIGNAL, không dùng làm proof năng lực.
-- **TL-P2**: disclaimer bắt buộc + caveat khác biệt cá nhân + rà soát chuyên môn/con người theo từng item (mức item, không theo lô); cấm ngôn từ nhân-quả/chẩn đoán.
-- **TL-P3**: chỉ fact vận hành; không gắn qualification nhân sự, không outcome, không testimonial khi chưa có consent.
-- **TL-P4**: disclaimer bắt buộc + caveat khác biệt cá nhân + rà soát chuyên môn/con người theo từng item (mức item, không theo lô); cấm efficacy claim tới khi có dossier (TL-GAP-004).
-- **TL-P5**: founder-led tối đa 1 trên mỗi 5 item đã hoạch định; không đặt hai CTA thương mại founder-led liền kề; không nói cơ chế/chẩn đoán; cần consent.
+## 4. Kiểm trần founder
 
-> **Run 2 founder-cap QA:** global ratio hiện tại = 4/28 (14,3%), dưới cap 20%, và không có CTA thương mại founder-led. Sliding window D24–D28 vẫn chứa D24 + D28; Codex không tự đổi nội dung hoặc diễn giải lại canonical rule. Việc giữ/reassign D28 trước lịch publish thật là `HUMAN_GATE`; consent và item approval vẫn bắt buộc.
+Tỷ trọng founder hiện tại = 4/28 = **14,3%**, dưới trần 20%, và chưa có lời kêu gọi thương mại nào do
+founder dẫn. Cửa sổ trượt `D-24`…`D-28` vẫn chứa `D-24` và `D-28`. Việc giữ hay đổi `D-28` trước khi
+có lịch đăng thật là **cổng người**; đồng ý của người xuất hiện và duyệt theo từng bài vẫn bắt buộc.
 
-## VERIFY checklist
+## 5. VERIFY (TL-M3)
 
-- [x] Đúng 5 trụ TL-P1..TL-P5, giữ nguyên ID, audience job, bằng chứng, funnel, rủi ro và thứ tự nhấn mạnh tương đối.
-- [x] Phân bổ 6/6/8/4/4 cộng đủ full 28-slot plan (28/28).
-- [x] Các trụ health-sensitive (TL-P2, TL-P4) bị gate theo từng item.
-- [x] Founder guardrail (TL-P5) itemized: tối đa 1/5 item, không hai CTA thương mại founder-led liền kề.
-- [x] Mặc định no-BOFU / no-commercial-CTA được giữ.
-- [x] Không phát sinh claim hiệu quả (không invent efficacy); giữ mọi nhãn UNVERIFIED / HYPOTHESIS / TOPLINK_CONFIRMED / gated.
-- [x] external_writes=0.
-
-> Stable ID: TL-PILLARS-001 · Logical Sheet dataset: TL_CONTENT_PILLARS · external_writes=0.
+- [x] Đúng 5 trụ, giữ nguyên mã, việc cần giải, mức bằng chứng, vai trò phễu, rủi ro và thứ tự nhấn.
+- [x] Phân bổ 6/6/8/4/4 phủ đủ 28 slot; tỷ trọng % tổng đúng 100 theo quy tắc tất định ở §1.
+- [x] Trụ chạm sức khoẻ (`TL-P2`, `TL-P4`) bị chặn theo từng bài.
+- [x] Ranh giới founder (`TL-P5`) tách thành điều kiện kiểm được.
+- [x] Giữ mặc định không BOFU, không lời kêu gọi thương mại.
+- [x] Không phát sinh khẳng định công dụng mới; giữ nguyên mọi nhãn bằng chứng.
+- [x] Chuyển từ dạng bullet sang bảng để `parse_markdown_tables()` đọc được.
+- [x] `external_writes=0`.

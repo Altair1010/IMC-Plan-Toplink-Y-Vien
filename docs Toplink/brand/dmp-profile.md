@@ -1,76 +1,86 @@
-# TL-M2 — DMP profile & brand architecture (Toplink Y Viện)
+# TL-M2 — Hồ sơ thương hiệu Toplink Y Viện
 
-> **Run 1 Phase A · local-only · `external_writes=0`.** Non-canonical staging-of-record for the DMP
-> brand entity. Formalizes the already-repaired profile (`TL-M2-PROFILE-REPAIR-001`, APPROVED
-> 2026-07-30); it does **not** re-derive or mutate `profile.json`. Logical Sheet dataset:
-> `TL_BRAND_PROFILE` (no write until a signed `SheetTargetApproval`).
+> **Run 1 Phase A · chỉ chạy nội bộ · `external_writes=0`.** Bản dựng hồ sơ thương hiệu cho DMP.
+> Chỉ ghi lại hồ sơ đã sửa và đã duyệt trước đó (`TL-M2-PROFILE-REPAIR-001`, duyệt 2026-07-30);
+> **không** suy diễn lại và **không** ghi đè `profile.json`.
 
-## 0. Document control
+## 0. Khối định danh
 
-| Field | Value |
+| Trường | Giá trị |
 |---|---|
 | Milestone | `TL-M2` |
 | Stable ID | `TL-BRAND-PROFILE-001` |
+| Tab đích | `YV_01_brand_profile` |
+| Schema | `YV-SHEET-001/1.0.0` (`docs/system/yvien-sheet-dataset-registry.json`) |
+| Trạng thái | `LOCAL_VERIFIED · SYNC_PENDING_TARGET` — chưa `APPROVED`, chưa ghi Sheet |
+| Nguồn sự thật | `profile.json` (`toplink-y-vien`) · brief §Foundation · taxonomy §1–3 · entity-map §2–4 |
 | DMP version | `3.15.1` |
-| Active brand read-back | `toplink-y-vien` (`_active-brand.json`, `active_slug=toplink-y-vien`) |
-| Profile path | `C:/Users/MCBAu/.claude-marketing/brands/toplink-y-vien/profile.json` |
+| Đường dẫn hồ sơ | `C:/Users/MCBAu/.claude-marketing/brands/toplink-y-vien/profile.json` |
 | `profile_digest` (G5 LOCK) | `a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349` |
 | `source_digest` (G5 LOCK) | `3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe76` |
-| Digest verified this run | Profile MATCH · 5/5 sources MATCH (`00-input-lock.json`) |
-| Guidelines | 5 categories / 52 rules (`guidelines/_manifest.json`) |
-| Slug uniqueness | 1 slug only; **no** `toplink-page` profile created |
-| External writes | `0` |
-| Milestone advanced | `false` (LOCAL only; not COMPLETE/APPROVED) |
+| Digest kiểm lại lần này | Hồ sơ MATCH · 5/5 nguồn MATCH (`00-input-lock.json`) |
+| Bộ hướng dẫn | 5 nhóm / 52 luật (`guidelines/_manifest.json`) |
+| Tính duy nhất của slug | Đúng 1 slug; **không** tạo `toplink-page` |
+| Ghi ra ngoài | `0` |
+| Milestone tiến lên | `false` |
 
-## 1. Slug & runtime read-back (VERIFY 1–2)
+## 1. Quy ước bảng (dùng chung 14 tệp canonical)
 
-- Single DMP brand entity: `toplink-y-vien`. No second entity for the same brand; no `toplink-page`.
-- Active-brand read-back = `toplink-y-vien` (verified before authoring; matches `TL-M1-DMP-SWITCH-001`).
-- No secret, credential, source-code, tech-stack, or local machine path stored in the profile
-  (`_m2_verification.no_secret`). Website/Zalo/phone/Maps kept out of the conversion runtime.
+- Bảng ở §2 là **bảng dữ liệu duy nhất** mà trình biên dịch đọc cho tab đích.
+- Cột `Mã` và cột `Chủ sở hữu` là **cột máy**: chúng đi vào hai cột ẩn `_key` / `_audit` của tab,
+  **không** hiển thị ở mặt trước.
+- Mọi cột còn lại là **cột hiển thị**, đúng thứ tự và đúng tên đã khai trong registry.
+- `Mức bằng chứng` và `Được dùng ở đâu` ghi bằng giá trị enum máy; Sheet hiển thị nhãn tiếng Việt
+  tra từ `display_label_map`.
+- Ô trống có nghĩa ghi `—`, không để rỗng thật.
 
-## 2. Field-layer map — core / profile / guideline / staging-only
+## 2. Slug & kiểm chứng runtime
 
-Layer legend: **CORE** = identity/runtime fields DMP reads for every generation · **PROFILE** = brand
-architecture context (`_brand_architecture`, franchise-internal) · **GUIDELINE** = `guidelines/**`
-(52 rules) · **STAGING-ONLY** = evidence lives in `docs Toplink/`, never forced into runtime.
+- Đúng một thực thể DMP: `toplink-y-vien`. Không có thực thể thứ hai cho cùng thương hiệu.
+- Đọc lại thương hiệu đang hoạt động = `toplink-y-vien` (khớp `TL-M1-DMP-SWITCH-001`).
+- Không lưu bí mật, thông tin đăng nhập, mã nguồn, tech stack hay đường dẫn máy cục bộ trong hồ sơ.
+  Website · Zalo · điện thoại · Maps giữ ngoài runtime chuyển đổi.
 
-| Section | Subsection | Item ID | Content (from `profile.json`) | Evidence/source | Assumption status | Owner | Review status | Layer |
-|---|---|---|---|---|---|---|---|---|
-| Identity | brand_name | TL-BP-01 | Toplink Y Viện | profile `brand_name`; brief §Foundation | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Identity | tagline | TL-BP-02 | Y Viện Dưỡng Thân – Tỉnh Thức | profile `identity.tagline`; brief §Foundation | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Identity | positioning_statement | TL-BP-03 | Không gian chăm sóc sức khỏe kết hợp Đông y dưỡng sinh + lý liệu + công nghệ cao | profile `identity.positioning_statement` | `HYPOTHESIS` (not public-approved) | DMP core | HYPOTHESIS | CORE |
-| Industry | primary + regulated | TL-BP-04 | Chăm sóc sức khỏe chủ động; `regulated=true`; code `health-claim-compliance` | profile `industry` | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Industry | compliance disclaimer | TL-BP-05 | Verbatim disclaimer "…không thay thế chẩn đoán, điều trị…" + nhóm chống chỉ định | profile `industry.compliance_notes`; taxonomy §3 | `TOPLINK_CONFIRMED` (as policy) | Health gate | MANDATORY | CORE+GUIDELINE |
-| Channels | primary | TL-BP-06 | Facebook Page (primary); Reels = discovery support | profile `channels`; RULES §Channel | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Channels | pending_input | TL-BP-07 | Zalo / phone / Google Maps = `PENDING_INPUT` | profile `channels.pending_input`; entity-map §4 | `PENDING_INPUT` | Open gate | HELD | CORE |
-| Goals | primary_objective | TL-BP-08 | Trust-led FB Page từ 0; Toplink độc lập — 0 tham chiếu thương hiệu bên ngoài | profile `goals.primary_objective` | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Goals | kpis | TL-BP-09 | `[]` (empty; defined at TL-M4, greenfield) | profile `goals.kpis` | `MISSING_INPUT` (by design) | DMP core | DEFERRED→M4 | CORE |
-| Business | price_range | TL-BP-10 | `UNVERIFIED` — source thiếu giá/bảo hành | profile `business_model.price_range` | `UNVERIFIED` | Open gate | HELD | CORE |
-| Voice | brand_voice scores | TL-BP-11 | formality 6 · energy 3 · humor 2 · authority 6 | profile `brand_voice` | `TOPLINK_CONFIRMED` | Guidelines | LOCKED | GUIDELINE |
-| Voice | avoid/prefer words | TL-BP-12 | avoid: "chữa khỏi/điều trị dứt điểm/thay thế thuốc…"; prefer: "hỗ trợ…" | profile `brand_voice`; taxonomy §1–2 | `TOPLINK_CONFIRMED` | Guidelines | LOCKED | GUIDELINE |
-| Architecture | three_pillars | TL-BP-13 | Lý liệu · Dược liệu · Dưỡng liệu | profile `_brand_architecture.three_pillars`; `01` §2 | `TOPLINK_CONFIRMED` | Profile ctx | LOCKED | PROFILE |
-| Architecture | services 3-tier / 12 | TL-BP-14 | basic/advanced/intensive (12 dịch vụ) | profile `_brand_architecture.services_3_tier` | `TOPLINK_CONFIRMED` (naming) | Profile ctx | LOCKED | PROFILE |
-| Architecture | products 7 | TL-BP-15 | 4 lý liệu + 3 dưỡng liệu; efficacy `UNVERIFIED` | profile `_brand_architecture.products_7`; entity-map §3 | `UNVERIFIED` (efficacy) | Health gate | HELD | PROFILE |
-| Architecture | space 4 floors | TL-BP-16 | Tĩnh/Thông/Dưỡng/Tỉnh — tài sản không gian mạnh nhất | profile `_brand_architecture.space_4_floors` | `TOPLINK_CONFIRMED` | Profile ctx | LOCKED | PROFILE |
-| Architecture | process 8 steps | TL-BP-17 | Tiếp nhận→…→Hẹn lịch | profile `_brand_architecture.process_8_steps` | `TOPLINK_CONFIRMED` | Profile ctx | LOCKED | PROFILE |
-| Architecture | visual tokens | TL-BP-18 | #FFFCF7/#D8AA4B/#F7E8C2/#1A1410; Be Vietnam Pro/Noto Sans; reduced-motion | profile `_brand_architecture.visual_tokens`; brief §Visual | `TOPLINK_CONFIRMED` | Guidelines | LOCKED | GUIDELINE |
-| Franchise | `_franchise_internal` | TL-BP-19 | Parent Nhất Liệu Y Viện; `FRANCHISOR_PARENT (INTERNAL_ONLY)`; public `PENDING_DOCUMENT` | profile `_franchise_internal`; entity-map §2; TL-D04/D16 | `PUBLIC_BRAND_RELATIONSHIP_PENDING_DOCUMENT` | Legal gate | LOCKED-INTERNAL | PROFILE |
-| Competitors | competitors | TL-BP-20 | `[]` (empty — Toplink độc lập) | profile `competitors` | `TOPLINK_CONFIRMED` | DMP core | LOCKED | CORE |
-| Evidence | dossier/consent | TL-BP-21 | Giá/bảo hành/chứng nhận pháp lý/spec/case-study consent = `MISSING_INPUT` | profile `_m2_verification.missing_input` | `MISSING_INPUT` | Open gate | HELD | STAGING-ONLY |
+## 3. Bảng dữ liệu — `YV_01_brand_profile`
 
-## 3. Founder allowed-use & restrictions map (VERIFY 3)
+Đúng 21 dòng `TL-BP-01`…`TL-BP-21`. Không dòng nào được thêm nếu không truy được về `profile.json`.
 
-- Corporate voice = default. Founder appears selectively; public role only
-  `Founder/điều hành Toplink Y Viện` per current evidence (master plan §10 founder guardrail).
-- Founder must **not** explain mechanism, indicate/prescribe products, diagnose, or speak for a
-  professional. Cross-post to personal Facebook = separate external action + item-level approval.
-- Restrictions (`guidelines/restrictions.md`, 18 rules) enforce the forbidden catalogue
-  (taxonomy §2) and the mandatory disclaimer (taxonomy §3). No unsupported field forced into runtime.
+| Mã | Nhóm | Hạng mục | Nội dung | Mức bằng chứng | Được dùng ở đâu | Khoá / mở | Chủ sở hữu |
+|---|---|---|---|---|---|---|---|
+| TL-BP-01 | Nhận diện | Tên thương hiệu | Toplink Y Viện | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (lõi runtime) | DMP core |
+| TL-BP-02 | Nhận diện | Câu định vị ngắn | Y Viện Dưỡng Thân – Tỉnh Thức | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (lõi runtime) | DMP core |
+| TL-BP-03 | Nhận diện | Câu định vị đầy đủ | Không gian chăm sóc sức khoẻ kết hợp Đông y dưỡng sinh, lý liệu và công nghệ cao | HYPOTHESIS | HYPOTHESIS_VALIDATION_ONLY | Mở — chưa được duyệt để nói công khai (lõi runtime) | DMP core |
+| TL-BP-04 | Ngành | Ngành chính & mức quản lý | Chăm sóc sức khoẻ chủ động; ngành có quản lý; áp bộ luật phát ngôn sức khoẻ | TOPLINK_CONFIRMED | OPERATIONAL_CONTROL | Khoá (lõi runtime) | DMP core |
+| TL-BP-05 | Ngành | Câu miễn trừ bắt buộc | Nguyên văn câu "không thay thế chẩn đoán, điều trị" kèm nhóm chống chỉ định | TOPLINK_CONFIRMED | OPERATIONAL_CONTROL | Bắt buộc — mọi bài sức khoẻ (lõi runtime, hướng dẫn) | Cổng sức khoẻ |
+| TL-BP-06 | Kênh | Kênh chính | Facebook Page là kênh chính; Reels giữ vai trò hỗ trợ khám phá | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (lõi runtime) | DMP core |
+| TL-BP-07 | Kênh | Kênh chờ đầu vào | Zalo, điện thoại và Google Maps chưa đấu nối; chưa được đưa vào bất kỳ lời kêu gọi nào | MISSING_INPUT | BLOCKED | Đang treo — chờ chủ Y Viện cấp (lõi runtime) | Chủ Y Viện |
+| TL-BP-08 | Mục tiêu | Mục tiêu chính | Dựng một Facebook Page dẫn dắt bằng niềm tin, xuất phát từ con số 0; Toplink đứng độc lập, không tham chiếu thương hiệu bên ngoài | TOPLINK_CONFIRMED | INTERNAL_ONLY | Khoá (lõi runtime) | DMP core |
+| TL-BP-09 | Mục tiêu | Bộ chỉ số | Để trống theo thiết kế — chỉ số được định nghĩa ở tab từ điển chỉ số, không nhét vào hồ sơ | MISSING_INPUT | INTERNAL_ONLY | Hoãn tới tab từ điển chỉ số (lõi runtime) | DMP core |
+| TL-BP-10 | Kinh doanh | Khoảng giá | Chưa kiểm chứng — nguồn không có bảng giá và không có điều khoản bảo hành | UNVERIFIED | BLOCKED | Đang treo — chờ chủ Y Viện cấp (lõi runtime) | Chủ Y Viện |
+| TL-BP-11 | Giọng | Thang giọng | Trang trọng 6 · năng lượng 3 · hài hước 2 · uy tín 6 | TOPLINK_CONFIRMED | OPERATIONAL_CONTROL | Khoá (hướng dẫn) | Hướng dẫn thương hiệu |
+| TL-BP-12 | Giọng | Từ cấm và từ nên dùng | Cấm "chữa khỏi", "điều trị dứt điểm", "thay thế thuốc"; nên dùng "hỗ trợ", "góp phần" | TOPLINK_CONFIRMED | OPERATIONAL_CONTROL | Khoá (hướng dẫn) | Hướng dẫn thương hiệu |
+| TL-BP-13 | Kiến trúc | Ba trụ dịch vụ | Lý liệu · Dược liệu · Dưỡng liệu | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (bối cảnh hồ sơ) | DMP core |
+| TL-BP-14 | Kiến trúc | Ba tầng dịch vụ | Cơ bản, nâng cao, chuyên sâu — tổng 12 dịch vụ | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá ở mức tên gọi (bối cảnh hồ sơ) | DMP core |
+| TL-BP-15 | Kiến trúc | Bảy sản phẩm | Bốn sản phẩm lý liệu và ba sản phẩm dưỡng liệu; công dụng chưa kiểm chứng | UNVERIFIED | HYPOTHESIS_VALIDATION_ONLY | Đang treo — cổng sức khoẻ (bối cảnh hồ sơ) | Cổng sức khoẻ |
+| TL-BP-16 | Kiến trúc | Không gian bốn tầng | Tĩnh · Thông · Dưỡng · Tỉnh — tài sản không gian mạnh nhất của Y Viện | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (bối cảnh hồ sơ) | DMP core |
+| TL-BP-17 | Kiến trúc | Quy trình tám bước | Từ tiếp nhận đến hẹn lịch, tám bước rõ ràng và công khai được | TOPLINK_CONFIRMED | PUBLIC_WITHIN_SOURCE | Khoá (bối cảnh hồ sơ) | DMP core |
+| TL-BP-18 | Kiến trúc | Bộ màu và bộ chữ | Nền ngà, nhấn vàng đồng, vàng nhắc việc, chữ nâu đen; bộ chữ Be Vietnam Pro và Noto Sans; tôn trọng chế độ giảm chuyển động | TOPLINK_CONFIRMED | OPERATIONAL_CONTROL | Khoá (hướng dẫn) | Hướng dẫn thương hiệu |
+| TL-BP-19 | Hệ thống mẹ | Quan hệ nhượng quyền | Hệ thống mẹ là Nhất Liệu Y Viện; quan hệ chỉ ở mức nội bộ, cách nói công khai còn chờ văn bản | TOPLINK_CONFIRMED | INTERNAL_ONLY | Khoá — chỉ nội bộ (bối cảnh hồ sơ) | Cổng pháp lý |
+| TL-BP-20 | Đối thủ | Danh sách đối thủ | Để trống — Toplink giữ vị thế độc lập, không tự đặt cạnh thương hiệu nào | TOPLINK_CONFIRMED | INTERNAL_ONLY | Khoá (lõi runtime) | DMP core |
+| TL-BP-21 | Bằng chứng | Hồ sơ và đồng ý | Giá, bảo hành, chứng nhận pháp lý, thông số kỹ thuật và đồng ý dùng câu chuyện khách đều đang thiếu | MISSING_INPUT | BLOCKED | Đang treo — chờ chủ Y Viện cấp (chỉ lưu ở kho tài liệu) | Chủ Y Viện |
 
-## 4. Digest lock confirmation (VERIFY 4) — `TL_BRAND_PROFILE` anchor
+## 4. Founder — được nói gì, cấm nói gì
 
-`docs Toplink/staging/run1/00-input-lock.json` re-verified this run:
+- Giọng thương hiệu là mặc định. Founder chỉ xuất hiện có chọn lọc, vai trò công khai duy nhất là
+  `Founder/điều hành Toplink Y Viện`.
+- Founder **không** giải thích cơ chế, **không** chỉ định sản phẩm, **không** chẩn đoán, **không**
+  phát ngôn thay người có chuyên môn.
+- Đăng lại sang Facebook cá nhân là một hành động ngoài phạm vi này và cần duyệt riêng từng bài.
+- `guidelines/restrictions.md` (18 luật) thực thi danh mục cấm và câu miễn trừ bắt buộc.
+
+## 5. Khoá digest — neo của `YV_01_brand_profile`
+
+`docs Toplink/staging/run1/00-input-lock.json` kiểm lại trong lần chạy này:
 
 ```text
 profile_digest = a45e4ae49f60308654df49381caea8bd3cd24cb415fcb071c05cb064c8cbe349   [MATCH]
@@ -82,18 +92,15 @@ source_digest  = 3ba91761612ca482471dc1c071bd7e9d82e5708a3bb13ceb630fed476541fe7
   entity-franchise-allowed-use-map.md        56618b18…  [MATCH]
 ```
 
-Digests are deterministic and locked for both Run 1 and Run 2. Any drift = `FAIL_BACK_TO_RUN1`.
+Digest là tất định và bị khoá cho cả Run 1 lẫn Run 2. Lệch bất kỳ = `FAIL_BACK_TO_RUN1`.
 
-## 5. VERIFY checklist (TL-M2)
+## 6. VERIFY (TL-M2)
 
-- [x] One slug only; active read-back `toplink-y-vien`; no `toplink-page`.
-- [x] No secret / local path / private analytics in profile or this file.
-- [x] No unsupported field forced into runtime (Website/Zalo/phone/Maps held `PENDING_INPUT`;
-      price/products efficacy held `UNVERIFIED`/`MISSING_INPUT`).
-- [x] Digests deterministic + G5-locked (profile + 5 sources MATCH).
-- [ ] Runtime/Sheet exact read-back — **DEFERRED** (Sheet write gated; `external_writes=0`).
-
-## 6. Sheet column shape (logical only — `TL_BRAND_PROFILE`)
-
-`Section | Subsection | Item ID | Content | Evidence/source | Assumption status | Owner | Review status | Last updated`.
-Stable identity = `TL-BRAND-PROFILE-001` → one tab. No write; hold `LOCAL_VERIFIED · SYNC_PENDING_TARGET`.
+- [x] Đúng một slug; đọc lại `toplink-y-vien`; không có `toplink-page`.
+- [x] Không bí mật, không đường dẫn cục bộ, không dữ liệu phân tích riêng tư trong hồ sơ hay tệp này.
+- [x] Không ép trường thiếu bằng chứng vào runtime (Website · Zalo · điện thoại · Maps giữ
+      `MISSING_INPUT`; giá và công dụng sản phẩm giữ `UNVERIFIED`).
+- [x] Digest tất định và bị khoá (hồ sơ + 5 nguồn MATCH).
+- [x] Đúng 21 dòng `TL-BP-*`, khớp `min_records = max_records = 21` của registry (sửa lỗi mô hình #10:
+      nguồn 21 dòng nhưng bộ biên dịch cũ cho ra 32 record).
+- [ ] Đọc lại từ Sheet — **hoãn** (chưa có approval, `external_writes=0`).

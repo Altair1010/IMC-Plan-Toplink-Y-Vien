@@ -1,71 +1,75 @@
-# TL-M5 — Kế hoạch asset & batch production (Toplink Y Viện)
+# TL-M5 — Kế hoạch tài sản và mẻ sản xuất (Toplink Y Viện)
 
-> **Run 1 Phase A · local-only · `external_writes=0`.** DMP `content-calendar` + `content-engine`
-> (v3.15.1). Phản ánh **capacity thật** (input lock 2026-08-03). **Direction B: chỉ placeholder brief
-> — KHÔNG chọn/tái sử dụng/công bố hay ngụ ý rights-clearance cho bất kỳ asset thật nào**
-> (`TL-M5-ASSET-RIGHTS-001 = BOUNDED`; Q9 rights deferred). Stable ID `TL-M5-ASSET-001`.
-> Logical Sheet dataset: `TL_REELS_PRODUCTION`.
+> **Run 1 Phase A · chỉ chạy nội bộ · `external_writes=0`.** Phản ánh **năng lực sản xuất thật** đã
+> chốt. **Toàn bộ tài sản ở đây là yêu cầu cần quay hoặc chuẩn bị mới** — không tệp nào trỏ tới thư
+> viện có sẵn, không dòng nào ngụ ý đã có quyền sử dụng. Việc chọn và làm sạch quyền cho một tài sản
+> thật là hành động diễn ra **sau** khi cổng quyền sử dụng đạt.
 
-## 1. Capacity thật (nguồn: input lock `TL-GAP-006-CAPACITY`)
+## 0. Khối định danh
 
-| Tham số | Giá trị | Ghi chú |
-|---|---|---|
-| Video/tuần | ~3 | 12 Reels / 28 ngày |
-| Tổng item/tuần | ≥7 (≥1/ngày) | 28 item / 28 ngày |
-| Xen kẽ | video + static/carousel | 16 static/carousel |
-| Editing | cơ bản (không professional) | tránh VFX/motion phức tạp |
-| Video lead-time | 2 ngày | shoot → edit → review → sẵn sàng |
-| Bài viết | same-day | static/carousel |
-| Vai trò team | chưa yêu cầu | 1 người đa vai (`MISSING_INPUT` cho phân vai chi tiết) |
+| Trường | Giá trị |
+|---|---|
+| Milestone | `TL-M5` |
+| Stable ID | `TL-M5-ASSET-001` |
+| Tab đích | `YV_11_asset_batch_plan` |
+| Schema | `YV-SHEET-001/1.0.0` |
+| Trạng thái | `LOCAL_VERIFIED` — chưa `APPROVED`, chưa ghi Sheet |
+| Chu kỳ hiện tại | `C1` |
+| Năng lực đã chốt | Khoảng 3 video mỗi tuần · ít nhất 1 mục mỗi ngày · 28 mục trong 28 ngày · 12 Reel · 16 bài tĩnh hoặc carousel |
+| Thời gian chuẩn bị video | 2 ngày, tính từ lúc quay tới lúc sẵn sàng đăng |
+| Nguồn sự thật | Bản chốt năng lực sản xuất · `content-pillars.md §2` · `reels-briefs.md` |
+| Ghi ra ngoài | `0` |
 
-> Phân vai chi tiết (quay/edit/duyệt tách người) = `MISSING_INPUT` — **không điền giả**; mặc định
-> single-operator cho tới khi user chốt (gate `TL-M6`).
+## 1. Quy ước bảng
 
-## 2. Placeholder asset brief (KHÔNG asset thật)
+Theo `dmp-profile.md §1`. Bảng ở §2 chứa **hai loại dòng** trong cùng một tab:
 
-> Mỗi ô dưới là *yêu cầu cần quay/chuẩn bị mới* dạng placeholder. **Không** trỏ tới file/thư viện/asset
-> có sẵn; **không** giả định đã có quyền dùng. Chọn/clear asset thật là hành động sau khi rights PASS.
+- Dòng **tài sản** để `—` ở cột `Sức chứa mẻ`.
+- Dòng **mẻ sản xuất** để `—` ở các cột `Loại tài sản`, `Quyền sử dụng`, `Đồng ý của người xuất hiện`.
 
-| Asset placeholder ID | Loại | Mô tả cần chuẩn bị | Rights state | Dùng cho item |
-|---|---|---|---|---|
-| `AST-SPACE-4F` | video/photo không gian | b-roll 4 tầng (TĨNH/THÔNG/DƯỠNG/TỈNH), real imagery | `RIGHTS_UNCLEARED` (placeholder) | D03,D15,D19 |
-| `AST-PROCESS-8S` | video/photo quy trình | minh hoạ 8 bước, xin phép/giải thích | `RIGHTS_UNCLEARED` | D06,D16 |
-| `AST-HYGIENE` | photo/video vệ sinh | quy chuẩn vệ sinh, chi tiết chỉn chu | `RIGHTS_UNCLEARED` | D17,D21 |
-| `AST-TEAM-BTS` | video hậu trường | đội ngũ chuẩn bị (no qualification claim, cần consent người xuất hiện) | `RIGHTS_UNCLEARED` + consent gate | D18,D20 |
-| `AST-BODY-LIT` | video/graphic body-literacy | minh hoạ tín hiệu cơ thể, không medical-fear | `RIGHTS_UNCLEARED` | D08,D10,D11,D13,D23,D27 |
-| `AST-LDD-EXPLAIN` | graphic/carousel | Lý–Dược–Dưỡng dễ hiểu (customer-experience, no product claim) | `RIGHTS_UNCLEARED` | D09,D12,D26 |
-| `AST-CX-DUONGLIEU` | video trải nghiệm | trải nghiệm khách hàng (UNVERIFIED product → customer-experience framing only) | `RIGHTS_UNCLEARED` + `TL-GAP-010` fail-closed | D14 |
-| `AST-FOUNDER` | video/photo founder | founder ý niệm/hành trình | `RIGHTS_UNCLEARED` + allowed-use + consent | D05,D24 |
-| `AST-BRAND-ID` | graphic nhận diện | định vị/this-not-that, palette Tân Trung Hoa (ivory/wine/brass) | `RIGHTS_UNCLEARED` | D01,D02,D04,D07,D22,D25,D28 |
+Ngày ghi theo dạng tương đối `D-1` … `D-28`, không zero-pad, đúng như lịch nội dung. Ô nền vàng nghĩa
+là còn một việc của người thật chưa làm.
 
-> Bất kỳ testimonial/UGC/người xuất hiện thật nào ⇒ documented consent (mục đích/kênh/thời hạn/thu hồi/
-> che thông tin) trước khi dùng. Chưa có consent nào ở phase này.
+## 2. Bảng dữ liệu — `YV_11_asset_batch_plan`
 
-## 3. Batch plan theo tuần (khớp lead-time 2 ngày)
+| Mã | Chu kỳ | Mẻ sản xuất | Dùng cho ngày nào | Loại tài sản | Mô tả | Sức chứa mẻ | Quyền sử dụng | Đồng ý của người xuất hiện | Trạng thái | Chủ sở hữu |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AST-SPACE-4F | C1 | Mẻ tuần 1 và mẻ tuần 3 | D-3, D-15, D-19 | Video và ảnh không gian | Cảnh cắt bốn tầng Tĩnh, Thông, Dưỡng, Tỉnh; quay hình thật của Y Viện | — | Chưa xác lập — phải quay mới, không dùng lại tư liệu cũ | Không có người xuất hiện | Chưa quay | Chủ Y Viện |
+| AST-PROCESS-8S | C1 | Mẻ tuần 3 | D-6, D-16 | Video và ảnh quy trình | Minh hoạ tám bước tiếp nhận, có xin phép và giải thích tại chỗ | — | Chưa xác lập — phải quay mới | Cần đồng ý nếu có nhân viên trong khung hình | Chưa quay | Chủ Y Viện |
+| AST-HYGIENE | C1 | Mẻ tuần 3 | D-17, D-21 | Ảnh và video vệ sinh | Quy chuẩn vệ sinh và các chi tiết cho thấy sự chỉn chu | — | Chưa xác lập — phải quay mới | Không có người xuất hiện | Chưa quay | Chủ Y Viện |
+| AST-TEAM-BTS | C1 | Mẻ tuần 3 | D-18, D-20 | Video hậu trường | Đội ngũ chuẩn bị; tuyệt đối không nêu bằng cấp hay chuyên môn của ai | — | Chưa xác lập — phải quay mới | CHƯA CHỐT — chủ Y Viện cần lấy đồng ý bằng văn bản của từng người xuất hiện, nêu rõ mục đích, kênh đăng, thời hạn và cách rút lại. Chưa có thì bỏ hết phần con người, chỉ giữ không gian | Chặn bởi cổng đồng ý | Cổng pháp lý |
+| AST-BODY-LIT | C1 | Mẻ tuần 2 và mẻ tuần 4 | D-8, D-10, D-11, D-13, D-23, D-27 | Video và đồ hoạ giải thích | Minh hoạ tín hiệu cơ thể; giải thích không doạ, không chẩn đoán | — | Chưa xác lập — phải dựng mới | Không có người xuất hiện | Chưa dựng | Cổng sức khoẻ |
+| AST-LDD-EXPLAIN | C1 | Không thuộc mẻ quay | D-9, D-12, D-26 | Đồ hoạ và carousel | Giải thích Lý – Dược – Dưỡng ở mức trải nghiệm; cấm mọi khẳng định công dụng | — | Chưa xác lập — phải dựng mới | Không có người xuất hiện | Chưa dựng | Cổng sức khoẻ |
+| AST-CX-DUONGLIEU | C1 | Mẻ tuần 2 | D-14 | Video trải nghiệm | Kể ở mức trải nghiệm khách hàng vì hồ sơ sản phẩm chưa kiểm chứng | — | Chưa xác lập — phải quay mới | Cần đồng ý nếu có khách trong khung hình | Chặn bởi cổng hồ sơ sản phẩm | Cổng sức khoẻ |
+| AST-FOUNDER | C1 | Mẻ tuần 1 và mẻ tuần 4 | D-5, D-24 | Video và ảnh founder | Hành trình và triết lý của founder; cấm cơ chế, cấm chỉ định sản phẩm | — | Chưa xác lập — phải quay mới | CHƯA CHỐT — chủ Y Viện cần xác nhận phạm vi được nói của founder bằng văn bản và ký đồng ý cho hình ảnh. Chưa có thì hai ngày này chuyển sang nội dung không có founder | Chặn bởi cổng đồng ý | Cổng pháp lý |
+| AST-BRAND-ID | C1 | Không thuộc mẻ quay | D-1, D-2, D-4, D-7, D-22, D-25, D-28 | Đồ hoạ nhận diện | Định vị và cặp "là gì, không phải gì"; dùng bảng màu ngà, rượu vang, đồng | — | Chưa xác lập — phải dựng mới | Không có người xuất hiện | Chưa dựng | Hướng dẫn thương hiệu |
+| B-W1 | C1 | Mẻ tuần 1 | D-1, D-3, D-7 | — | Gom quay không gian và phần giới thiệu thương hiệu trong một buổi | 3 video, quay xong trước D-1 ít nhất 2 ngày | — | — | Chưa quay | Chủ Y Viện |
+| B-W2 | C1 | Mẻ tuần 2 | D-8, D-11, D-14 | — | Gom quay phần đọc hiểu cơ thể và phần trải nghiệm trong một buổi | 3 video, quay xong trước D-8 ít nhất 2 ngày, và phải qua người có chuyên môn rà trước khi đăng | — | — | Chưa quay | Cổng sức khoẻ |
+| B-W3 | C1 | Mẻ tuần 3 | D-15, D-18, D-21 | — | Gom quay không gian bốn tầng và hậu trường đội ngũ trong một buổi | 3 video, quay xong trước D-15 ít nhất 2 ngày, và phải có đồng ý của người xuất hiện | — | — | Chưa quay | Cổng pháp lý |
+| B-W4 | C1 | Mẻ tuần 4 | D-23, D-25, D-27 | — | Gom quay phần khép chu kỳ; dùng lại khung cũ, chỉ quay mới phần thiếu | 3 video, quay xong trước D-22 ít nhất 2 ngày | — | — | Chưa quay | Chủ Y Viện |
+| TL-BATCH-ROLE | C1 | Áp dụng cho cả bốn mẻ | D-1 … D-28 | — | Phân vai sản xuất: ai quay, ai dựng, ai duyệt | Mặc định một người làm hết cho tới khi có phân vai | — | — | CHƯA CHỐT — chủ Y Viện cần chốt ai quay, ai dựng và ai duyệt. Chưa chốt thì mặc định một người kiêm hết, và mọi cam kết về nhịp đăng chỉ là ước lượng | Chủ Y Viện |
 
-> Nguyên tắc: gom video cùng bối cảnh vào 1 buổi quay để đủ ~3 Reels/tuần với editing cơ bản; bài viết
-> chuẩn bị same-day. Không ngày tuyệt đối — dùng "trước D-1 ≥2 ngày" cho video.
+**16 bài tĩnh và carousel** sản xuất trong ngày, dùng bộ đồ hoạ nhận diện và bộ đồ hoạ giải thích ở
+trên, không cần mẻ quay riêng.
 
-| Batch | Item video | Bối cảnh gom quay | Chuẩn bị | Ràng buộc lead-time |
-|---|---|---|---|---|
-| `B-W1` | D01,D03,D07 | không gian + intro brand | AST-BRAND-ID, AST-SPACE-4F | quay ≥2 ngày trước D-1 |
-| `B-W2` | D08,D11,D14 | body-literacy + trải nghiệm | AST-BODY-LIT, AST-CX-DUONGLIEU | quay ≥2 ngày trước D-8; **chờ professional review trước publish** |
-| `B-W3` | D15,D18,D21 | không gian 4 tầng + BTS đội ngũ | AST-SPACE-4F, AST-TEAM-BTS, AST-HYGIENE | quay ≥2 ngày trước D-15; consent người xuất hiện |
-| `B-W4` | D23,D25,D27 | recap (tái dùng khung, quay mới nếu cần) | AST-BODY-LIT, AST-BRAND-ID | quay ≥2 ngày trước D-22 |
+## 3. Ràng buộc khi dựng
 
-Static/carousel (16 item): sản xuất same-day theo ngày phát, dùng placeholder graphic AST-*.
+- Ưu tiên cắt đơn giản, phụ đề rõ, vùng an toàn chuẩn khung dọc 9:16. Tránh hiệu ứng chuyển động nặng.
+- Mọi Reel bắt buộc có phụ đề. Mục chạm sức khoẻ phải để câu miễn trừ đủ lâu để đọc hết.
+- Không dùng tài sản do máy sinh ra trong chu kỳ này.
+- Bất kỳ câu chuyện khách hàng, nội dung do người dùng làm ra, hay người thật xuất hiện đều cần đồng ý
+  bằng văn bản trước khi dùng: nêu rõ mục đích, kênh đăng, thời hạn, cách rút lại và cách che thông
+  tin. **Hiện chưa có đồng ý nào.**
 
-## 4. Editing constraint (cơ bản)
+## 4. VERIFY (TL-M5 tài sản và mẻ sản xuất)
 
-- Ưu tiên cut đơn giản, subtitle rõ, safe-zone chuẩn 9:16; tránh motion-graphics/VFX nặng.
-- Mọi Reel: subtitle bắt buộc (xem `reels-briefs.md`), disclaimer đủ thời gian đọc cho item sức khỏe.
-- Không AI-generated asset ở phase này; nếu sau này dùng và có thị trường EU → cần C2PA (ngoài scope).
-
-## 5. VERIFY (TL-M5 asset/batch)
-
-- [x] Capacity phản ánh input lock thật; thiếu phân vai = `MISSING_INPUT` (không điền giả).
-- [x] 100% asset là placeholder `RIGHTS_UNCLEARED`; không chọn/tái dùng/ngụ ý clearance asset thật.
-- [x] Consent gate cho founder/BTS/testimonial nêu rõ; chưa có consent nào.
-- [x] Batch tôn trọng lead-time 2 ngày; W2 chờ professional review trước publish.
-- [x] Product-adjacent (D14/D26) = customer-experience only, `TL-GAP-010` fail-closed.
-- [x] `external_writes=0`; không item `APPROVED`.
+- [x] Năng lực phản ánh đúng bản chốt thật; thiếu phân vai thì ghi thành một dòng cần chốt, không điền giả.
+- [x] Toàn bộ tài sản chưa xác lập quyền sử dụng; không dòng nào chọn, dùng lại hay ngụ ý đã có quyền.
+- [x] Cổng đồng ý nêu rõ cho hậu trường đội ngũ và cho founder; chưa có đồng ý nào.
+- [x] Mẻ sản xuất tôn trọng thời gian chuẩn bị 2 ngày; mẻ tuần 2 chờ người có chuyên môn rà trước khi đăng.
+- [x] Ngày đã chuẩn hoá về dạng `D-1` … `D-28`, bỏ hết dạng zero-pad (sửa lỗi mô hình #8).
+- [x] Header khai đúng tab `YV_11_asset_batch_plan` (sửa lỗi mô hình #1: bản cũ khai
+      `TL_REELS_PRODUCTION`, một dataset không tồn tại).
+- [x] Ba ô vàng (`AST-TEAM-BTS`, `AST-FOUNDER`, `TL-BATCH-ROLE`) mở đầu bằng `CHƯA CHỐT — `, mỗi ô có
+      đúng một dòng đối ứng ở `00_Y_VIEN_CAN_CHOT`.
+- [x] `external_writes=0`; không mục nào `APPROVED`.

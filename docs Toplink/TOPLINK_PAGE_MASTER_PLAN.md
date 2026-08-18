@@ -394,7 +394,11 @@ mới hoặc target hiện hữu; chỉ exact target trong approval mới có hi
 
 ### Logical dataset map
 
-The operational model uses exactly 24 functional datasets/tabs:
+The operational model uses exactly 24 functional datasets. **These are dataset names for the machine
+sidecars, not tab names.** Từ registry `YV-SHEET-001/1.0.0` trở đi, 24 dataset này được gộp và hiển
+thị trên **21 tab** mang tiền tố `YV_` cùng các tab hệ thống `NN_UPPER_SNAKE`; bản đồ gộp nằm ở
+`docs/system/yvien-sheet-dataset-registry.json` và `docs/system/yvien-sheet-human-layer-spec.md`
+SPEC-B. Không dataset nào bị mất khi gộp.
 
 ```text
 TL_REPORT

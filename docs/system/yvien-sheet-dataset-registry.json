@@ -1,0 +1,2935 @@
+{
+  "schema_version": "YV-SHEET-001/1.0.0",
+  "registry_id": "YV-SHEET-DATASET-REGISTRY-001",
+  "state": "DRAFT_UNSIGNED · LOCAL_ONLY",
+  "created_at_ict": "2026-08-05",
+  "authored_by": "Claude Code (Phase 1, external_writes=0)",
+  "written_to_sheet_by": "Codex (Phase 2, only after three signed SheetTargetApproval)",
+  "spec": "docs/system/yvien-sheet-human-layer-spec.md (YV-HUMAN-LAYER-001 v1.0.0)",
+  "voice_binding": "docs/system/yvien-brand-voice-pack.md (YV-VOICE-001 v0.1.0, APPROVED 2026-08-05)",
+  "supersedes": {
+    "schema_version": "TL-SHEET-001/0.2.0",
+    "registry_path": "docs/system/toplink-sheet-dataset-registry.json",
+    "status": "SUPERSEDED",
+    "reason": "TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED — 24 tab TL_* bày 11 cột provenance máy ra mặt trước; 24 tab đã bị xoá trên Sheet. Registry cũ giữ nguyên trên đĩa làm bằng chứng, không còn là nguồn thi hành.",
+    "machine_datasets_retained": true,
+    "machine_dataset_location": "staging/yv-humanize/datasets/*.json"
+  },
+  "spreadsheet_target": {
+    "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+    "service_account": "yvien-sheet-writer@imcforyvien.iam.gserviceaccount.com",
+    "key_handling": "Chỉ Codex đọc key. Claude không chạm Google API, không đọc key.",
+    "preserved_untouched": [
+      {
+        "title": "Trang tính1",
+        "sheet_id": 0
+      }
+    ],
+    "forbidden_tab_suffix": "_v2",
+    "tab_count": 21
+  },
+  "conventions": {
+    "system_tab_naming": "NN_UPPER_SNAKE",
+    "content_tab_naming": "YV_NN_slug_thường",
+    "header_language": "vi-VN",
+    "header_row": 1,
+    "legend_row": 2,
+    "first_data_row": 3,
+    "legend_text": "Ô nền vàng = còn một việc của người thật chưa làm. Nội dung ô bắt đầu bằng \"CHƯA CHỐT — \".",
+    "hidden_columns_position": "hai cột cuối cùng của mọi tab",
+    "empty_with_meaning": "—",
+    "relative_day_format": "D-1 … D-28 (không zero-pad)",
+    "absolute_dates": "FORBIDDEN — TOPLINK_CONTENT_START_DATE = UNSET (gate TL-M6 / TL-GAP-006)",
+    "merged_cells_in_data": false,
+    "value_input_option": "RAW",
+    "formula_injection_guard": "Ô bắt đầu bằng +, =, -, @ phải viết lại thành chữ trước khi ghi.",
+    "row_count_formula": "1 header + 1 legend + số dòng dữ liệu"
+  },
+  "id_exposure_policy": {
+    "default": "CONTENT_TAB",
+    "CONTENT_TAB": {
+      "allowed_visible_ids": [
+        "D-1 … D-28",
+        "C1, C2, …",
+        "CL-*",
+        "A / B / C"
+      ],
+      "forbidden_visible_patterns": [
+        "TL-*",
+        "YV-*",
+        "hex ≥ 16 ký tự",
+        "sha256",
+        "revision",
+        "record_id",
+        "stable_row_key",
+        "source_digest"
+      ]
+    },
+    "AUDIT_TAB": {
+      "rationale": "Tab dành cho người soát; ID kỹ thuật là nội dung chính đáng của tab.",
+      "declared_on": [
+        "01_SOURCE_INVENTORY",
+        "03_OUTPUT_INDEX",
+        "00_CONTROL#Mã"
+      ]
+    }
+  },
+  "common_columns": [
+    "stable_row_key",
+    "record_id",
+    "source_path",
+    "source_location",
+    "source_id",
+    "evidence_status",
+    "allowed_use",
+    "revision",
+    "source_digest",
+    "owner",
+    "updated_at_ict"
+  ],
+  "common_columns_visibility": "NEVER_ON_FRONT — bản đầy đủ chỉ nằm trong JSON sidecar; bản rút gọn nằm trong cột ẩn _audit.",
+  "hidden_column_contract": {
+    "_key": {
+      "position": "cột kế cuối",
+      "field": "stable_row_key",
+      "hidden_by_user": true
+    },
+    "_audit": {
+      "position": "cột cuối",
+      "separator": " · ",
+      "composition": [
+        "record_id",
+        "source_path#source_location",
+        "source_id",
+        "evidence_status",
+        "allowed_use",
+        "revision",
+        "source_digest",
+        "owner",
+        "updated_at_ict"
+      ],
+      "hidden_by_user": true
+    }
+  },
+  "formatting": {
+    "frozen_rows": 2,
+    "frozen_columns": 0,
+    "basic_filter": true,
+    "wrap": "WRAP",
+    "vertical_alignment": "TOP",
+    "banding": false,
+    "auto_resize": false,
+    "conditional_format_rules": 0,
+    "action_required_mechanism": "direct format — repeatCell.userEnteredFormat.backgroundColor",
+    "conditional_formatting": "FORBIDDEN — Google trả HTTP 400 rồi 500 với payload conditional-format",
+    "rgb_tolerance": "một mã (Google lượng tử hoá: 0.4196 gửi đi → 0.41568628 đọc về). Không nới rộng.",
+    "date_format": "yyyy-mm-dd hh:mm:ss",
+    "default_column_width": 180,
+    "narrow_column_width": 72,
+    "wide_column_width": 320,
+    "header_row_format": {
+      "background": "#f6f4df",
+      "foreground": "#95131f",
+      "bold": true
+    },
+    "legend_row_format": {
+      "background": "#f6f4df",
+      "foreground": "#4a4a4a",
+      "italic": true
+    },
+    "data_row_format": {
+      "background": "#fffcf7",
+      "foreground": "#1a1410"
+    }
+  },
+  "palette": {
+    "source": "Yvien Hotlink Website/app-demo/styles/tokens.css:10-56",
+    "role_map": "docs/system/yvien-brand-voice-pack.md §7",
+    "sheet_background": "#fffcf7",
+    "header_bg": "#f6f4df",
+    "header_fg": "#95131f",
+    "border": "#e7d6b4",
+    "text": "#1a1410",
+    "text_soft": "#4a4a4a",
+    "action_required": "#f7e8c2",
+    "blocker_fg": "#c70002",
+    "verified_fg": "#2f5d50",
+    "flat_only": true,
+    "dropped_from_previous_schema": {
+      "header_background": "#6B1F36",
+      "reason": "không thuộc palette Y Viện"
+    }
+  },
+  "action_required_contract": {
+    "trigger": "BOTH_REQUIRED",
+    "condition_a_status_in": [
+      "HYPOTHESIS",
+      "UNVERIFIED",
+      "MISSING_INPUT",
+      "NEEDS_HUMAN_REVIEW",
+      "OPEN_CHOICE"
+    ],
+    "condition_b": "còn một hành động của người thật chưa làm",
+    "cell_prefix": "CHƯA CHỐT — ",
+    "cell_must_state": [
+      "ai quyết",
+      "chốt điều gì"
+    ],
+    "not_equal_to": [
+      "APPROVED",
+      "REJECTED"
+    ],
+    "fallback_rows": {
+      "prefix": "DỰ PHÒNG — ",
+      "yellow": false,
+      "applies_to_option": [
+        "B",
+        "C"
+      ]
+    },
+    "symmetry_rule": "Mỗi ô vàng ở 20 tab ngoài 00_Y_VIEN_CAN_CHOT phải có đúng một dòng ở 00_Y_VIEN_CAN_CHOT; ngược lại mỗi dòng 00_Y_VIEN_CAN_CHOT có decision_status = OPEN mang đúng một ô vàng của chính nó ở cột \"Cần chốt điều gì\" (tự đối ứng). Validator kiểm hai chiều; lệch = VALIDATION_FAILED.",
+    "settled_rows_not_yellow": "Dòng 00_Y_VIEN_CAN_CHOT có decision_status thuộc {DECIDED, DEFERRED, BLOCKED} KHÔNG tô vàng và KHÔNG mang tiền tố \"CHƯA CHỐT — \": điều kiện (b) của hợp đồng không còn. Dòng vẫn nằm trong sổ để giữ vết."
+  },
+  "no_escalate_rule": {
+    "forbidden_transitions": [
+      "HYPOTHESIS → TOPLINK_CONFIRMED",
+      "UNVERIFIED → TOPLINK_CONFIRMED",
+      "DRAFT → APPROVED",
+      "NEEDS_HUMAN_REVIEW → APPROVED",
+      "PASS (agency) → APPROVED",
+      "LOCAL_VERIFIED → APPROVED"
+    ],
+    "only_human_may_set": [
+      "APPROVED"
+    ],
+    "authority": [
+      "RULES.md:53",
+      "RULES.md:129-130"
+    ],
+    "on_violation": "VALIDATION_FAILED (fail closed)"
+  },
+  "enums": {
+    "evidence_status": [
+      "TOPLINK_CONFIRMED",
+      "INFERENCE",
+      "HYPOTHESIS",
+      "MISSING_INPUT",
+      "UNVERIFIED",
+      "DO_NOT_USE"
+    ],
+    "allowed_use": [
+      "INTERNAL_ONLY",
+      "PUBLIC_WITHIN_SOURCE",
+      "HYPOTHESIS_VALIDATION_ONLY",
+      "BLOCKED",
+      "OPERATIONAL_CONTROL",
+      "DO_NOT_USE"
+    ],
+    "decision_status": [
+      "OPEN",
+      "DECIDED",
+      "DEFERRED",
+      "BLOCKED"
+    ],
+    "approval_state": [
+      "DRAFT",
+      "NEEDS_HUMAN_REVIEW",
+      "APPROVED",
+      "EXPIRED",
+      "BLOCKED"
+    ],
+    "publish_state": [
+      "BLOCKED",
+      "READY",
+      "PUBLISHED",
+      "NOT_AVAILABLE"
+    ],
+    "experiment_decision": [
+      "CONTINUE",
+      "REPAIR",
+      "STOP",
+      "DEFERRED",
+      "NOT_AVAILABLE"
+    ],
+    "review_route": [
+      "R1",
+      "R1+R2",
+      "R1+R2+R3"
+    ],
+    "cycle_id": {
+      "pattern": "^C[1-9][0-9]*$",
+      "default": "C1"
+    },
+    "option_code": [
+      "A",
+      "B",
+      "C"
+    ],
+    "funnel_role": [
+      "TOFU",
+      "MOFU",
+      "BOFU"
+    ],
+    "risk_class": [
+      "none",
+      "health",
+      "founder",
+      "product-adjacent",
+      "legal-privacy"
+    ],
+    "dmp_check": [
+      "PASS",
+      "WARN",
+      "BLOCKED",
+      "SKIPPED"
+    ],
+    "consent_state": [
+      "N/A",
+      "REQUIRED",
+      "OBTAINED"
+    ],
+    "rights_state": [
+      "RIGHTS_UNCLEARED",
+      "RIGHTS_CLEARED",
+      "NOT_APPLICABLE"
+    ],
+    "production_status": [
+      "CHƯA CÓ BRIEF",
+      "BRIEF_READY",
+      "IN_PRODUCTION",
+      "READY_FOR_REVIEW",
+      "BLOCKED"
+    ],
+    "priority": [
+      "CHẶN NGAY",
+      "CAO",
+      "TRUNG BÌNH"
+    ],
+    "control_group": [
+      "Kiểm soát",
+      "Runtime"
+    ],
+    "page_strategy_group": [
+      "Chiến lược",
+      "Mốc đo"
+    ],
+    "compliance_group": [
+      "Luật",
+      "Câu claim"
+    ],
+    "brief_kind": [
+      "Bài",
+      "Reel"
+    ]
+  },
+  "display_label_map": {
+    "note": "Nhãn tiếng Việt map 1:1 sang enum máy. Generator đọc bảng này, không hardcode.",
+    "evidence_status": {
+      "TOPLINK_CONFIRMED": "Đã xác nhận",
+      "INFERENCE": "Suy ra",
+      "HYPOTHESIS": "Giả thuyết",
+      "MISSING_INPUT": "Thiếu đầu vào",
+      "UNVERIFIED": "Chưa kiểm chứng",
+      "DO_NOT_USE": "Không được dùng"
+    },
+    "allowed_use": {
+      "INTERNAL_ONLY": "Chỉ nội bộ",
+      "PUBLIC_WITHIN_SOURCE": "Công khai trong phạm vi nguồn",
+      "HYPOTHESIS_VALIDATION_ONLY": "Chỉ để kiểm chứng giả thuyết",
+      "BLOCKED": "Đang bị chặn",
+      "OPERATIONAL_CONTROL": "Kiểm soát vận hành",
+      "DO_NOT_USE": "Không được dùng"
+    },
+    "decision_status": {
+      "OPEN": "Chưa chốt",
+      "DECIDED": "Đã chốt",
+      "DEFERRED": "Hoãn",
+      "BLOCKED": "Bị chặn"
+    },
+    "approval_state": {
+      "DRAFT": "Bản nháp",
+      "NEEDS_HUMAN_REVIEW": "Cần người duyệt",
+      "APPROVED": "Người đã duyệt",
+      "EXPIRED": "Hết hạn",
+      "BLOCKED": "Bị chặn"
+    },
+    "publish_state": {
+      "BLOCKED": "Chưa được đăng",
+      "READY": "Sẵn sàng đăng",
+      "PUBLISHED": "Đã đăng",
+      "NOT_AVAILABLE": "Chưa áp dụng"
+    },
+    "experiment_decision": {
+      "CONTINUE": "Tiếp tục",
+      "REPAIR": "Sửa",
+      "STOP": "Dừng",
+      "DEFERRED": "Hoãn",
+      "NOT_AVAILABLE": "Chưa áp dụng"
+    },
+    "funnel_role": {
+      "TOFU": "Nhận biết",
+      "MOFU": "Cân nhắc",
+      "BOFU": "Ra quyết định"
+    },
+    "risk_class": {
+      "none": "Không rủi ro đặc biệt",
+      "health": "Sức khoẻ",
+      "founder": "Founder",
+      "product-adjacent": "Liên quan sản phẩm",
+      "legal-privacy": "Pháp lý / riêng tư"
+    },
+    "consent_state": {
+      "N/A": "Không cần",
+      "REQUIRED": "Cần xin",
+      "OBTAINED": "Đã có"
+    },
+    "rights_state": {
+      "RIGHTS_UNCLEARED": "Chưa rõ quyền dùng",
+      "RIGHTS_CLEARED": "Đã rõ quyền dùng",
+      "NOT_APPLICABLE": "Không áp dụng"
+    },
+    "tab_title": {
+      "report": "Báo cáo tổng hợp",
+      "00_Y_VIEN_CAN_CHOT": "Y Viện cần chốt",
+      "00_CONTROL": "Kiểm soát & runtime",
+      "01_SOURCE_INVENTORY": "Kho nguồn",
+      "02_INPUT_GAPS": "Thiếu đầu vào",
+      "03_OUTPUT_INDEX": "Mục lục sản phẩm",
+      "04_DECISIONS": "Sổ quyết định",
+      "05_KPI_DICTIONARY": "Từ điển chỉ số",
+      "06_COMPLIANCE_RULES": "Luật phát ngôn & câu claim",
+      "YV_01_brand_profile": "Hồ sơ thương hiệu",
+      "YV_02_audience": "Nhóm khách hàng",
+      "YV_03_positioning": "Định vị",
+      "YV_04_narrative": "Câu chuyện & giọng",
+      "YV_05_content_pillars": "Trụ nội dung",
+      "YV_06_page_strategy": "Chiến lược Page",
+      "YV_07_campaign": "Chiến dịch 28 ngày",
+      "YV_08_experiments": "Thử nghiệm",
+      "YV_09_content_calendar": "Lịch 28 ngày",
+      "YV_10_production_briefs": "Brief sản xuất",
+      "YV_11_asset_batch_plan": "Kế hoạch tư liệu & mẻ quay",
+      "YV_12_workflow_approval": "Sổ duyệt & đăng"
+    },
+    "milestone_gate": {
+      "TL-M1": "Cổng bằng chứng & danh tính Page",
+      "TL-M2": "Cổng hồ sơ DMP & kiến trúc thương hiệu",
+      "TL-M3": "Cổng khách hàng, định vị & chiến lược Page",
+      "TL-M4": "Cổng chiến dịch 28 ngày & chỉ số",
+      "TL-M5": "Cổng nội dung, Reels, sản xuất & duyệt",
+      "TL-M5H": "Cổng lớp người của workbook",
+      "TL-M6": "Cổng chạy thử Page",
+      "TL-M8": "Cổng mở rộng quy mô"
+    }
+  },
+  "external_reference_contracts": {
+    "claim_ids": {
+      "meaning": "mã claim CL-*; nơi định nghĩa duy nhất là 06_COMPLIANCE_RULES",
+      "allowed_sentinels": [
+        "NOT_AVAILABLE",
+        "NONE",
+        "N/A",
+        "No claim"
+      ]
+    },
+    "control_or_blocker_ids": {
+      "meaning": "control, gap, hoặc approval ID có thể resolve ngoài dataset của dòng; phải fail-closed"
+    },
+    "manifest_trace_ids": {
+      "meaning": "DMP/Agency trace ID resolve qua manifest bất biến Run 1 / Run 2"
+    },
+    "registry_tab_keys": {
+      "meaning": "khoá tab, phân tách bằng dấu phẩy, resolve về registry này"
+    }
+  },
+  "foreign_keys": [
+    {
+      "tab": "YV_06_page_strategy",
+      "columns": [
+        "Trụ liên quan"
+      ],
+      "target_tab": "YV_05_content_pillars",
+      "target_column": "Trụ nội dung",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_07_campaign",
+      "columns": [
+        "Trụ nội dung"
+      ],
+      "target_tab": "YV_05_content_pillars",
+      "target_column": "Trụ nội dung",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_08_experiments",
+      "columns": [
+        "Thuộc giai đoạn"
+      ],
+      "target_tab": "YV_07_campaign",
+      "target_column": "Tuần"
+    },
+    {
+      "tab": "YV_08_experiments",
+      "columns": [
+        "Chốt ở quyết định nào"
+      ],
+      "target_tab": "04_DECISIONS",
+      "target_column": "_key",
+      "allow_values": [
+        "—"
+      ],
+      "note": "khoá ngoại mới — đóng vòng chu kỳ"
+    },
+    {
+      "tab": "YV_09_content_calendar",
+      "columns": [
+        "Nhóm khách"
+      ],
+      "target_tab": "YV_02_audience",
+      "target_column": "Nhóm khách",
+      "multi_value_separator": ",",
+      "note": "defect #2 — cột thật, không suy diễn theo số ngày"
+    },
+    {
+      "tab": "YV_09_content_calendar",
+      "columns": [
+        "Trụ nội dung"
+      ],
+      "target_tab": "YV_05_content_pillars",
+      "target_column": "Trụ nội dung"
+    },
+    {
+      "tab": "YV_09_content_calendar",
+      "columns": [
+        "Câu claim dùng"
+      ],
+      "target_tab": "06_COMPLIANCE_RULES",
+      "target_column": "Mã",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_09_content_calendar",
+      "columns": [
+        "Thử nghiệm gắn kèm"
+      ],
+      "target_tab": "YV_08_experiments",
+      "target_column": "_key",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ],
+      "note": "defect #3 — không hardcode NOT_AVAILABLE"
+    },
+    {
+      "tab": "YV_10_production_briefs",
+      "columns": [
+        "Ngày",
+        "Hướng"
+      ],
+      "target_tab": "YV_09_content_calendar",
+      "target_columns": [
+        "Ngày",
+        "Hướng"
+      ]
+    },
+    {
+      "tab": "YV_10_production_briefs",
+      "columns": [
+        "Câu claim dùng"
+      ],
+      "target_tab": "06_COMPLIANCE_RULES",
+      "target_column": "Mã",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_10_production_briefs",
+      "columns": [
+        "Chỉ số theo dõi"
+      ],
+      "target_tab": "05_KPI_DICTIONARY",
+      "target_column": "Chỉ số",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_11_asset_batch_plan",
+      "columns": [
+        "Dùng cho ngày nào"
+      ],
+      "target_tab": "YV_09_content_calendar",
+      "target_column": "Ngày",
+      "multi_value_separator": ","
+    },
+    {
+      "tab": "YV_12_workflow_approval",
+      "columns": [
+        "Ngày",
+        "Hướng"
+      ],
+      "target_tab": "YV_09_content_calendar",
+      "target_columns": [
+        "Ngày",
+        "Hướng"
+      ]
+    },
+    {
+      "tab": "YV_12_workflow_approval",
+      "columns": [
+        "Câu claim"
+      ],
+      "target_tab": "06_COMPLIANCE_RULES",
+      "target_column": "Mã",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "YV_12_workflow_approval",
+      "columns": [
+        "Tham chiếu đo"
+      ],
+      "target_tab": "05_KPI_DICTIONARY",
+      "target_column": "Chỉ số",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "03_OUTPUT_INDEX",
+      "columns": [
+        "Tab hiển thị"
+      ],
+      "target": "registry_tab_keys",
+      "multi_value_separator": ",",
+      "note": "0 orphan — mọi artifact phải trỏ tới ít nhất một tab"
+    },
+    {
+      "tab": "00_Y_VIEN_CAN_CHOT",
+      "columns": [
+        "Chặn cái gì"
+      ],
+      "target": "registry_tab_keys",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "TL-M1",
+        "TL-M2",
+        "TL-M3",
+        "TL-M4",
+        "TL-M5",
+        "TL-M5H",
+        "TL-M6",
+        "TL-M8"
+      ]
+    },
+    {
+      "tab": "report",
+      "section": "C",
+      "columns": [
+        "Đầu vào từ tab"
+      ],
+      "target": "registry_tab_keys",
+      "multi_value_separator": ",",
+      "allow_values": [
+        "—"
+      ]
+    },
+    {
+      "tab": "report",
+      "section": "B",
+      "columns": [
+        "Trụ nội dung"
+      ],
+      "target_tab": "YV_05_content_pillars",
+      "target_column": "Trụ nội dung"
+    },
+    {
+      "tab": "*",
+      "columns": [
+        "_audit#source_id"
+      ],
+      "target_tab": "01_SOURCE_INVENTORY",
+      "target_column": "_key"
+    }
+  ],
+  "cycle_mechanism": {
+    "cycle_column": "Chu kỳ",
+    "enum": "cycle_id",
+    "present_on": [
+      "YV_07_campaign",
+      "YV_08_experiments",
+      "YV_09_content_calendar",
+      "YV_10_production_briefs",
+      "YV_11_asset_batch_plan",
+      "YV_12_workflow_approval"
+    ],
+    "current_cycle": "C1",
+    "close_procedure": "Hết D-28: ghi một dòng 04_DECISIONS chốt chu kỳ (Tiếp tục/Sửa/Dừng theo ngưỡng 05_KPI_DICTIONARY), rồi mở C2 bằng cùng bộ 21 tab.",
+    "new_tab_for_new_cycle": false,
+    "row_growth": "YV_09 = 84 × số chu kỳ"
+  },
+  "tabs": [
+    {
+      "tab": "report",
+      "index": 0,
+      "title": "Báo cáo tổng hợp",
+      "layout": "STACKED_SECTIONS",
+      "role": "LỚP ĐỌC — không dòng nào là nguồn sự thật; mọi ô truy về tab gốc qua _key",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_REPORT"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/report-human-layer.md"
+      ],
+      "derives_from_markdown": [
+        "docs Toplink/brand/dmp-profile.md",
+        "docs Toplink/brand/positioning.md",
+        "docs Toplink/brand/narrative.md",
+        "docs Toplink/brand/content-pillars.md",
+        "docs Toplink/brand/facebook-page-strategy.md",
+        "docs Toplink/brand/campaign-architecture.md",
+        "docs Toplink/brand/kpi-experiment-plan.md",
+        "docs Toplink/research/audience-hypotheses.md",
+        "docs Toplink/content/month-calendar.md"
+      ],
+      "table_count_exception": {
+        "reason": "layout STACKED_SECTIONS",
+        "tables": 3,
+        "mapping": {
+          "§3": "A",
+          "§4": "B (luật dẫn xuất, không phải dữ liệu)",
+          "§5": "C"
+        }
+      },
+      "grid_width": 11,
+      "visible_column_count": 9,
+      "section_padding": {
+        "value": "",
+        "note": "Section A và C chỉ dùng 6 cột; ba cột cuối đệm bằng chuỗi rỗng thật, KHÔNG dùng \"—\" (đó là ô trống có nghĩa)"
+      },
+      "expected_yellow_count": 0,
+      "yellow_policy": "Lớp đọc — 0 ô vàng. Mọi việc treo đã có ô vàng ở tab gốc và một dòng ở 00_Y_VIEN_CAN_CHOT; tô lại ở đây phá luật đối xứng một-đổi-một.",
+      "sections": [
+        {
+          "section_id": "A",
+          "heading": "Bảng A — Nền tảng chiến lược",
+          "heading_format": {
+            "background": "#f6f4df",
+            "foreground": "#95131f"
+          },
+          "display_columns": [
+            {
+              "pos": 1,
+              "header": "Hạng mục",
+              "field": "topic"
+            },
+            {
+              "pos": 2,
+              "header": "Cách hiểu đơn giản",
+              "field": "plain_meaning",
+              "rule": "BẮT BUỘC dịch sang lời đời thường; cấm lặp lại nguyên văn cột 1",
+              "width": 320
+            },
+            {
+              "pos": 3,
+              "header": "Ý nghĩa với campaign / content",
+              "field": "campaign_impact",
+              "width": 320
+            },
+            {
+              "pos": 4,
+              "header": "Điều đã chốt",
+              "field": "settled"
+            },
+            {
+              "pos": 5,
+              "header": "Cần chốt / review",
+              "field": "open_action",
+              "action_required_candidate": true
+            },
+            {
+              "pos": 6,
+              "header": "Người cần can thiệp",
+              "field": "owner_role"
+            }
+          ],
+          "min_records": 10,
+          "max_records": 40,
+          "aggregates_from": [
+            "YV_01_brand_profile",
+            "YV_02_audience",
+            "YV_03_positioning",
+            "YV_04_narrative",
+            "YV_05_content_pillars",
+            "YV_06_page_strategy",
+            "YV_07_campaign",
+            "YV_08_experiments",
+            "05_KPI_DICTIONARY",
+            "06_COMPLIANCE_RULES"
+          ]
+        },
+        {
+          "section_id": "B",
+          "heading": "Bảng B — 28 ngày × 3 hướng",
+          "display_columns": [
+            {
+              "pos": 1,
+              "header": "Ngày",
+              "field": "relative_day",
+              "width": 72
+            },
+            {
+              "pos": 2,
+              "header": "Hướng",
+              "field": "option",
+              "enum": "option_code",
+              "width": 72
+            },
+            {
+              "pos": 3,
+              "header": "Trụ nội dung",
+              "field": "pillar_name"
+            },
+            {
+              "pos": 4,
+              "header": "Định dạng",
+              "field": "format",
+              "width": 96
+            },
+            {
+              "pos": 5,
+              "header": "Nói gì",
+              "field": "message",
+              "width": 320
+            },
+            {
+              "pos": 6,
+              "header": "Vì sao chọn / đánh đổi",
+              "field": "tradeoff",
+              "width": 320,
+              "rule": "Hướng B/C mở đầu \"DỰ PHÒNG — \", KHÔNG tô vàng"
+            },
+            {
+              "pos": 7,
+              "header": "Kêu gọi",
+              "field": "cta_class"
+            },
+            {
+              "pos": 8,
+              "header": "Ai duyệt",
+              "field": "review_route",
+              "enum": "review_route"
+            },
+            {
+              "pos": 9,
+              "header": "Trạng thái",
+              "field": "approval_state",
+              "enum": "approval_state"
+            }
+          ],
+          "min_records": 84,
+          "max_records": 840,
+          "record_rule": "84 = 28 ngày × 3 hướng, × số chu kỳ",
+          "recommended_option": "A",
+          "derived": true,
+          "derived_from_tab": "YV_09_content_calendar",
+          "derivation_rules_markdown": "docs Toplink/system/report-human-layer.md §4",
+          "derivation_fail_closed": "Số dòng nổ ra khác 84 × số chu kỳ thì raise kèm nhãn ngày và chuỗi gốc; CẤM nhân bản A=B=C"
+        },
+        {
+          "section_id": "C",
+          "heading": "Bảng C — Ghép luồng vận hành",
+          "display_columns": [
+            {
+              "pos": 1,
+              "header": "Bước",
+              "field": "step_no",
+              "width": 72
+            },
+            {
+              "pos": 2,
+              "header": "Việc cần làm",
+              "field": "action",
+              "width": 320
+            },
+            {
+              "pos": 3,
+              "header": "Đầu vào từ tab",
+              "field": "input_tabs"
+            },
+            {
+              "pos": 4,
+              "header": "Kết quả ra",
+              "field": "output"
+            },
+            {
+              "pos": 5,
+              "header": "Ai làm",
+              "field": "owner_role"
+            },
+            {
+              "pos": 6,
+              "header": "Chặn bởi",
+              "field": "blocked_by",
+              "action_required_candidate": true
+            }
+          ],
+          "min_records": 6,
+          "max_records": 20
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 10,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 11,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "INFERENCE",
+      "default_allowed_use": "INTERNAL_ONLY"
+    },
+    {
+      "tab": "00_Y_VIEN_CAN_CHOT",
+      "index": 1,
+      "title": "Y Viện cần chốt",
+      "role": "Mọi ô vàng của workbook quy về đây: ai cần chốt gì, chặn cái gì",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_OWNER_ACTIONS"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/owner-decisions.md"
+      ],
+      "derives_from_markdown": [
+        "docs Toplink/system/runtime-compatibility.md",
+        "docs Toplink/brand/campaign-architecture.md",
+        "docs Toplink/brand/kpi-experiment-plan.md",
+        "docs Toplink/content/asset-and-batch-plan.md",
+        "docs Toplink/content/reels-briefs.md",
+        "docs Toplink/content/workflow-approval-measurement.md"
+      ],
+      "grid_width": 14,
+      "min_records": 1,
+      "max_records": 100,
+      "visible_id_allowed": "TL-M*|TL-GAP-*|TL-OA-*|TL-R*",
+      "generated_columns": [
+        {
+          "header": "STT",
+          "rule": "trình biên dịch sinh 1..N theo thứ tự dòng markdown; markdown KHÔNG viết cột này"
+        }
+      ],
+      "expected_yellow_count": 18,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "STT",
+          "field": "display_index",
+          "width": 56,
+          "rule": "số thứ tự thuần 1,2,3… — KHÔNG phải action_id"
+        },
+        {
+          "pos": 2,
+          "header": "Mức ưu tiên",
+          "field": "priority",
+          "enum": "priority",
+          "width": 120
+        },
+        {
+          "pos": 3,
+          "header": "Nhóm việc",
+          "field": "category"
+        },
+        {
+          "pos": 4,
+          "header": "Cần chốt điều gì",
+          "field": "requested_decision_or_input",
+          "width": 380,
+          "action_required_candidate": true,
+          "prefix_required": "CHƯA CHỐT — "
+        },
+        {
+          "pos": 5,
+          "header": "Vì sao đang chặn",
+          "field": "blocked_reason",
+          "width": 320
+        },
+        {
+          "pos": 6,
+          "header": "Chặn cái gì",
+          "field": "blocked_effect"
+        },
+        {
+          "pos": 7,
+          "header": "Ai quyết",
+          "field": "approver_role"
+        },
+        {
+          "pos": 8,
+          "header": "Hạn / cổng",
+          "field": "deadline_gate"
+        },
+        {
+          "pos": 9,
+          "header": "Trạng thái",
+          "field": "decision_status",
+          "enum": "decision_status"
+        },
+        {
+          "pos": 10,
+          "header": "Ngày quyết",
+          "field": "decision_date"
+        },
+        {
+          "pos": 11,
+          "header": "Nội dung quyết",
+          "field": "decision_value"
+        },
+        {
+          "pos": 12,
+          "header": "Ghi chú",
+          "field": "notes"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 13,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 14,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "invariants": [
+        "Đối xứng hai chiều với mọi ô vàng trong 21 tab",
+        "Mỗi TL-GAP-* đang mở có đúng một dòng"
+      ],
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL",
+      "visible_id_rationale": "Sổ việc: mỗi dòng phải nêu được cổng chặn (TL-M*), khoảng trống nó gỡ (TL-GAP-*), mã việc của chính nó (TL-OA-*) và phát hiện nó đóng (TL-R*). Giấu đi là cắt đường truy về milestone doc."
+    },
+    {
+      "tab": "00_CONTROL",
+      "index": 2,
+      "title": "Kiểm soát & runtime",
+      "id_exposure": "AUDIT_TAB",
+      "id_exposure_scope": [
+        "Mã"
+      ],
+      "source_datasets": [
+        "TL_CONTROL",
+        "TL_RUNTIME_COMPATIBILITY"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/runtime-compatibility.md"
+      ],
+      "merge_discriminator": "Nhóm",
+      "grid_width": 9,
+      "min_records": 2,
+      "max_records": 300,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Nhóm",
+          "field": "group",
+          "enum": "control_group",
+          "width": 110
+        },
+        {
+          "pos": 2,
+          "header": "Mã",
+          "field": "control_key_or_runtime_rule_id",
+          "width": 160
+        },
+        {
+          "pos": 3,
+          "header": "Mục",
+          "field": "item"
+        },
+        {
+          "pos": 4,
+          "header": "Giá trị hiện tại",
+          "field": "control_value_or_runtime_role"
+        },
+        {
+          "pos": 5,
+          "header": "Trạng thái",
+          "field": "control_status_or_runtime_state"
+        },
+        {
+          "pos": 6,
+          "header": "Nghĩa là gì",
+          "field": "plain_meaning",
+          "width": 320
+        },
+        {
+          "pos": 7,
+          "header": "Vai trò giữ",
+          "field": "owner_role"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 8,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 9,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "notes": "external_writes và approval_bundle_id là hai dòng nhóm Kiểm soát, KHÔNG phải cột riêng.",
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL"
+    },
+    {
+      "tab": "01_SOURCE_INVENTORY",
+      "index": 3,
+      "title": "Kho nguồn",
+      "id_exposure": "AUDIT_TAB",
+      "source_datasets": [
+        "TL_SOURCE_INVENTORY"
+      ],
+      "source_markdown": [],
+      "grid_width": 8,
+      "min_records": 14,
+      "max_records": 500,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Tệp nguồn",
+          "field": "relative_path",
+          "width": 380
+        },
+        {
+          "pos": 2,
+          "header": "Nhóm",
+          "field": "category"
+        },
+        {
+          "pos": 3,
+          "header": "Mức nhạy cảm",
+          "field": "sensitivity"
+        },
+        {
+          "pos": 4,
+          "header": "Trạng thái",
+          "field": "source_status"
+        },
+        {
+          "pos": 5,
+          "header": "Lý do loại trừ",
+          "field": "exclusion_reason"
+        },
+        {
+          "pos": 6,
+          "header": "SHA-256",
+          "field": "sha256",
+          "width": 320
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 7,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 8,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL"
+    },
+    {
+      "tab": "02_INPUT_GAPS",
+      "index": 4,
+      "title": "Đầu vào còn thiếu",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_INPUT_GAPS"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/input-gaps.md"
+      ],
+      "grid_width": 7,
+      "min_records": 1,
+      "max_records": 200,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Thiếu gì",
+          "field": "requested_input",
+          "width": 380
+        },
+        {
+          "pos": 2,
+          "header": "Ai cấp được",
+          "field": "gap_owner"
+        },
+        {
+          "pos": 3,
+          "header": "Chặn milestone nào",
+          "field": "blocked_milestone"
+        },
+        {
+          "pos": 4,
+          "header": "Cách gỡ",
+          "field": "unblock_action",
+          "width": 320
+        },
+        {
+          "pos": 5,
+          "header": "Trạng thái",
+          "field": "gap_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 6,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 7,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "visible_id_allowed": "TL-M*|TL-GAP-*|TL-OA-*",
+      "expected_yellow_count": 0,
+      "yellow_policy": "Lớp sổ đăng ký — 0 ô vàng. Mọi khoảng trống còn treo đã có đúng một dòng ở 00_Y_VIEN_CAN_CHOT; tô vàng lại ở đây phá luật đối xứng một-đổi-một và làm loãng sổ việc. Cột \"Trạng thái\" đã phân biệt bốn thể.",
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL",
+      "visible_id_rationale": "Sổ đăng ký: mỗi dòng phải trỏ đúng một dòng việc ở 00_Y_VIEN_CAN_CHOT (TL-OA-*) và nêu cổng bị chặn (TL-M*). Mã TL-GAP-* là mã lịch sử, người dùng tra lại được."
+    },
+    {
+      "tab": "03_OUTPUT_INDEX",
+      "index": 5,
+      "title": "Mục lục sản phẩm",
+      "role": "MỤC LỤC — tuyệt đối không chứa nội dung kế hoạch",
+      "id_exposure": "AUDIT_TAB",
+      "source_datasets": [
+        "TL_OUTPUT_INDEX"
+      ],
+      "source_markdown": [],
+      "grid_width": 9,
+      "min_records": 14,
+      "max_records": 100,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Sản phẩm",
+          "field": "artifact_name"
+        },
+        {
+          "pos": 2,
+          "header": "Đường dẫn",
+          "field": "artifact_path",
+          "width": 380
+        },
+        {
+          "pos": 3,
+          "header": "Tab hiển thị",
+          "field": "display_tabs",
+          "new_in": "YV-SHEET-001/1.0.0",
+          "rule": "trỏ tới ≥1 tab YV_*/NN_*; orphan = fail"
+        },
+        {
+          "pos": 4,
+          "header": "Trạng thái QA nội bộ",
+          "field": "local_qa_state"
+        },
+        {
+          "pos": 5,
+          "header": "Trạng thái đưa lên Sheet",
+          "field": "sheet_delivery_state"
+        },
+        {
+          "pos": 6,
+          "header": "Trạng thái đọc lại",
+          "field": "readback_state"
+        },
+        {
+          "pos": 7,
+          "header": "Digest",
+          "field": "artifact_digest",
+          "width": 320
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 8,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 9,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL"
+    },
+    {
+      "tab": "04_DECISIONS",
+      "index": 6,
+      "title": "Sổ quyết định",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_DECISIONS"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/decisions-log.md"
+      ],
+      "grid_width": 10,
+      "min_records": 1,
+      "max_records": 200,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Ngày",
+          "field": "decision_date",
+          "width": 120
+        },
+        {
+          "pos": 3,
+          "header": "Ai quyết",
+          "field": "authority"
+        },
+        {
+          "pos": 4,
+          "header": "Quyết định gì",
+          "field": "decision",
+          "width": 380
+        },
+        {
+          "pos": 5,
+          "header": "Phạm vi áp dụng",
+          "field": "effective_scope"
+        },
+        {
+          "pos": 6,
+          "header": "Căn cứ",
+          "field": "evidence_reference",
+          "width": 320
+        },
+        {
+          "pos": 7,
+          "header": "Điều kiện xem lại",
+          "field": "review_condition"
+        },
+        {
+          "pos": 8,
+          "header": "Trạng thái",
+          "field": "decision_status",
+          "enum": "decision_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 9,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 10,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "additional_row_kinds": [
+        "revision event (mỗi lần ghi Sheet)",
+        "chốt cuối chu kỳ (mở C(n+1))"
+      ],
+      "expected_yellow_count": 0,
+      "yellow_policy": "Sổ quá khứ — 0 ô vàng. Một dòng ở đây là quyết định đã xảy ra, không còn hành động treo. Dòng decision_status = BLOCKED có ô vàng của nó ở 00_Y_VIEN_CAN_CHOT.",
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "OPERATIONAL_CONTROL"
+    },
+    {
+      "tab": "05_KPI_DICTIONARY",
+      "index": 7,
+      "title": "Từ điển chỉ số",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_KPI_DICTIONARY"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/kpi-experiment-plan.md"
+      ],
+      "grid_width": 15,
+      "min_records": 11,
+      "max_records": 100,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chỉ số",
+          "field": "metric"
+        },
+        {
+          "pos": 2,
+          "header": "Nghĩa là gì",
+          "field": "definition",
+          "width": 320
+        },
+        {
+          "pos": 3,
+          "header": "Tính thế nào",
+          "field": "formula"
+        },
+        {
+          "pos": 4,
+          "header": "Đo ở đâu",
+          "field": "measurement_source"
+        },
+        {
+          "pos": 5,
+          "header": "Ai theo dõi",
+          "field": "metric_owner"
+        },
+        {
+          "pos": 6,
+          "header": "Nhịp đo",
+          "field": "cadence",
+          "width": 110
+        },
+        {
+          "pos": 7,
+          "header": "Cỡ mẫu tối thiểu",
+          "field": "minimum_sample"
+        },
+        {
+          "pos": 8,
+          "header": "Mốc xuất phát",
+          "field": "baseline_value",
+          "new_in": "YV-SHEET-001/1.0.0"
+        },
+        {
+          "pos": 9,
+          "header": "Ngưỡng Tiếp tục",
+          "field": "threshold_continue",
+          "new_in": "YV-SHEET-001/1.0.0",
+          "action_required_candidate": true
+        },
+        {
+          "pos": 10,
+          "header": "Ngưỡng Sửa",
+          "field": "threshold_repair",
+          "new_in": "YV-SHEET-001/1.0.0",
+          "action_required_candidate": true
+        },
+        {
+          "pos": 11,
+          "header": "Ngưỡng Dừng",
+          "field": "threshold_stop",
+          "new_in": "YV-SHEET-001/1.0.0",
+          "action_required_candidate": true
+        },
+        {
+          "pos": 12,
+          "header": "Cửa sổ đo",
+          "field": "measurement_window",
+          "new_in": "YV-SHEET-001/1.0.0"
+        },
+        {
+          "pos": 13,
+          "header": "Trạng thái mẫu số",
+          "field": "denominator_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 14,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 15,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "baseline_facts": {
+        "page_id": "61591880797654",
+        "follower_baseline": "0 (chỉ sau Page identity snapshot, TL-D12)",
+        "awareness": "NO_MEASUREMENT",
+        "forbidden": "% growth from zero; tick xanh không phải KPI"
+      },
+      "notes": "Ngưỡng chưa có = ô vàng. Cấm bịa số.",
+      "default_evidence_status": "INFERENCE",
+      "default_allowed_use": "INTERNAL_ONLY"
+    },
+    {
+      "tab": "06_COMPLIANCE_RULES",
+      "index": 8,
+      "title": "Luật tuân thủ & câu claim",
+      "role": "NƠI ĐỊNH NGHĨA DUY NHẤT của mã CL-*",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_COMPLIANCE_RULES"
+      ],
+      "source_markdown": [
+        "docs Toplink/system/compliance-rules.md"
+      ],
+      "merge_discriminator": "Nhóm",
+      "grid_width": 10,
+      "min_records": 10,
+      "max_records": 210,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Nhóm",
+          "field": "group",
+          "enum": "compliance_group",
+          "width": 110
+        },
+        {
+          "pos": 2,
+          "header": "Mã",
+          "field": "rule_or_claim_id",
+          "width": 110,
+          "visible_id_allowed": "CL-*|LP-*"
+        },
+        {
+          "pos": 3,
+          "header": "Mức rủi ro",
+          "field": "risk_class",
+          "enum": "risk_class"
+        },
+        {
+          "pos": 4,
+          "header": "Loại phát ngôn",
+          "field": "claim_class"
+        },
+        {
+          "pos": 5,
+          "header": "Được nói gì",
+          "field": "permitted_boundary",
+          "width": 380
+        },
+        {
+          "pos": 6,
+          "header": "Cấm nói gì",
+          "field": "forbidden_boundary",
+          "width": 380
+        },
+        {
+          "pos": 7,
+          "header": "Ai duyệt",
+          "field": "reviewer_role"
+        },
+        {
+          "pos": 8,
+          "header": "Cổng người",
+          "field": "human_gate"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 9,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 10,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "claim_register": {
+        "absorbed_from": "docs Toplink/content/month-calendar.md §1",
+        "expected_claim_rows": 10,
+        "claim_ids": [
+          "CL-ID1",
+          "CL-M1",
+          "CL-M2",
+          "CL-M3",
+          "CL-M4",
+          "CL-OP1",
+          "CL-OP2",
+          "CL-OP3",
+          "CL-CX1",
+          "CL-FD1"
+        ],
+        "open_finding": "TL-R2-F02 — CL-P2 orphan: đóng tại tab này hoặc hiện thành ô vàng"
+      },
+      "derives_from_markdown": [
+        "docs/system/yvien-brand-voice-pack.md",
+        "docs Toplink/content/month-calendar.md"
+      ],
+      "id_exposure_scope": [
+        "Mã"
+      ],
+      "visible_id_allowed": "CL-*|LP-*",
+      "expected_yellow_count": 0,
+      "yellow_policy": "Lớp luật — 0 ô vàng. Ranh giới phát ngôn là luật, không phải việc cần chốt. Việc treo của CL-P2 và của câu miễn trừ nằm ở TL-OA-14 và TL-OA-13.",
+      "default_evidence_status": "TOPLINK_CONFIRMED",
+      "default_allowed_use": "INTERNAL_ONLY"
+    },
+    {
+      "tab": "YV_01_brand_profile",
+      "index": 9,
+      "title": "Hồ sơ thương hiệu",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_BRAND_PROFILE"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/dmp-profile.md"
+      ],
+      "grid_width": 8,
+      "min_records": 21,
+      "max_records": 21,
+      "record_rule": "Đúng 21 dòng TL-BP-01…TL-BP-21 của dmp-profile.md §2 (defect #10: nguồn 21 vs compile 32 — chênh lệch không truy được nguồn thì xoá)",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Nhóm",
+          "field": "section"
+        },
+        {
+          "pos": 2,
+          "header": "Hạng mục",
+          "field": "field_name"
+        },
+        {
+          "pos": 3,
+          "header": "Nội dung",
+          "field": "field_value",
+          "width": 480
+        },
+        {
+          "pos": 4,
+          "header": "Mức bằng chứng",
+          "field": "evidence_status",
+          "enum": "evidence_status"
+        },
+        {
+          "pos": 5,
+          "header": "Được dùng ở đâu",
+          "field": "allowed_use",
+          "enum": "allowed_use"
+        },
+        {
+          "pos": 6,
+          "header": "Khoá / mở",
+          "field": "mutation_gate"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 7,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 8,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "INFERENCE",
+      "default_allowed_use": "INTERNAL_ONLY"
+    },
+    {
+      "tab": "YV_02_audience",
+      "index": 10,
+      "title": "Nhóm khách hàng",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_AUDIENCE_HYPOTHESES"
+      ],
+      "source_markdown": [
+        "docs Toplink/research/audience-hypotheses.md"
+      ],
+      "grid_width": 9,
+      "min_records": 9,
+      "max_records": 100,
+      "record_rule": "5 nhóm khách (TL-A01, TL-A02a, TL-A02b, TL-A03, TL-A04) + 4 nhóm loại trừ",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Nhóm khách",
+          "field": "audience_display_name",
+          "width": 260,
+          "rule": "TÊN TIẾNG VIỆT — mã TL-A* nằm ở _key"
+        },
+        {
+          "pos": 2,
+          "header": "Giả định về họ",
+          "field": "hypothesis",
+          "width": 480
+        },
+        {
+          "pos": 3,
+          "header": "Mức bằng chứng",
+          "field": "evidence_level",
+          "enum": "evidence_status"
+        },
+        {
+          "pos": 4,
+          "header": "Kiểm chứng bằng cách nào",
+          "field": "validation_method",
+          "width": 320
+        },
+        {
+          "pos": 5,
+          "header": "Cửa sổ quan sát",
+          "field": "observation_window"
+        },
+        {
+          "pos": 6,
+          "header": "Kết luận hiện tại",
+          "field": "current_verdict"
+        },
+        {
+          "pos": 7,
+          "header": "Vì sao tin vậy",
+          "field": "rationale",
+          "width": 380
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 8,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 9,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_03_positioning",
+      "index": 11,
+      "title": "Định vị",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_POSITIONING"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/positioning.md"
+      ],
+      "grid_width": 7,
+      "min_records": 1,
+      "max_records": 100,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Loại tuyên bố",
+          "field": "positioning_type",
+          "width": 160
+        },
+        {
+          "pos": 2,
+          "header": "Câu tuyên bố",
+          "field": "statement",
+          "width": 480
+        },
+        {
+          "pos": 3,
+          "header": "Mức chứng minh",
+          "field": "proof_status",
+          "enum": "evidence_status"
+        },
+        {
+          "pos": 4,
+          "header": "Ranh giới được nói",
+          "field": "proof_boundary",
+          "width": 380
+        },
+        {
+          "pos": 5,
+          "header": "Đường kiểm chứng",
+          "field": "validation_path",
+          "width": 320
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 6,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 7,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_04_narrative",
+      "index": 12,
+      "title": "Cách kể chuyện",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_NARRATIVE"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/narrative.md"
+      ],
+      "grid_width": 6,
+      "min_records": 1,
+      "max_records": 100,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Luật kể chuyện",
+          "field": "narrative_rule",
+          "width": 480
+        },
+        {
+          "pos": 2,
+          "header": "Ranh giới",
+          "field": "boundary",
+          "width": 380
+        },
+        {
+          "pos": 3,
+          "header": "Ai giữ giọng",
+          "field": "voice_owner"
+        },
+        {
+          "pos": 4,
+          "header": "Cổng founder",
+          "field": "founder_gate",
+          "width": 320
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 5,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 6,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_05_content_pillars",
+      "index": 13,
+      "title": "Trụ nội dung",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_CONTENT_PILLARS"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/content-pillars.md"
+      ],
+      "grid_width": 10,
+      "min_records": 5,
+      "max_records": 5,
+      "record_rule": "ĐÚNG 5 dòng (defect #9 — registry cũ cho min_records 3)",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Trụ nội dung",
+          "field": "pillar_name",
+          "width": 260
+        },
+        {
+          "pos": 2,
+          "header": "Số ngày trong chu kỳ",
+          "field": "slots_per_cycle",
+          "width": 120,
+          "constraint": "SUM = 28"
+        },
+        {
+          "pos": 3,
+          "header": "Tỷ trọng %",
+          "field": "weight_percent",
+          "width": 96,
+          "constraint": "SUM = 100"
+        },
+        {
+          "pos": 4,
+          "header": "Giải quyết việc gì cho khách",
+          "field": "audience_job",
+          "width": 380
+        },
+        {
+          "pos": 5,
+          "header": "Định dạng hay dùng",
+          "field": "formats"
+        },
+        {
+          "pos": 6,
+          "header": "Vai trò trong phễu",
+          "field": "funnel_role",
+          "enum": "funnel_role"
+        },
+        {
+          "pos": 7,
+          "header": "Rủi ro / cổng",
+          "field": "risk_gate",
+          "width": 380
+        },
+        {
+          "pos": 8,
+          "header": "Vì sao có trụ này",
+          "field": "rationale",
+          "width": 320
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 8,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 9,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "invariants": [
+        "SUM(Tỷ trọng %) = 100",
+        "slot mapping 6/6/8/4/4 = 28"
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_06_page_strategy",
+      "index": 14,
+      "title": "Chiến lược Page & mốc đo",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_FACEBOOK_STRATEGY",
+        "TL_PAGE_BENCHMARK"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/facebook-page-strategy.md"
+      ],
+      "merge_discriminator": "Nhóm",
+      "grid_width": 12,
+      "min_records": 2,
+      "max_records": 200,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Nhóm",
+          "field": "group",
+          "enum": "page_strategy_group",
+          "width": 110
+        },
+        {
+          "pos": 2,
+          "header": "Hạng mục",
+          "field": "item"
+        },
+        {
+          "pos": 3,
+          "header": "Kênh",
+          "field": "channel"
+        },
+        {
+          "pos": 4,
+          "header": "Vai trò",
+          "field": "role",
+          "width": 320
+        },
+        {
+          "pos": 5,
+          "header": "Tỷ trọng %",
+          "field": "share_percent",
+          "width": 96,
+          "blank_for_group": "Mốc đo"
+        },
+        {
+          "pos": 6,
+          "header": "Trụ liên quan",
+          "field": "pillar_names",
+          "blank_for_group": "Mốc đo"
+        },
+        {
+          "pos": 7,
+          "header": "Giá trị đo",
+          "field": "measured_value",
+          "blank_for_group": "Chiến lược"
+        },
+        {
+          "pos": 8,
+          "header": "Mẫu số",
+          "field": "denominator",
+          "blank_for_group": "Chiến lược"
+        },
+        {
+          "pos": 9,
+          "header": "Thời điểm đo",
+          "field": "snapshot_at_ict",
+          "blank_for_group": "Chiến lược"
+        },
+        {
+          "pos": 10,
+          "header": "Trạng thái",
+          "field": "strategy_state_or_baseline_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 11,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 12,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "notes": "Ô trống theo nhóm ghi \"—\", không để chuỗi rỗng thật (read-back cần chuỗi xác định).",
+      "default_evidence_status": "INFERENCE",
+      "default_allowed_use": "INTERNAL_ONLY"
+    },
+    {
+      "tab": "YV_07_campaign",
+      "index": 15,
+      "title": "Kiến trúc chiến dịch",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_CAMPAIGN"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/campaign-architecture.md"
+      ],
+      "grid_width": 10,
+      "min_records": 4,
+      "max_records": 100,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Tuần",
+          "field": "relative_week",
+          "width": 72
+        },
+        {
+          "pos": 3,
+          "header": "Ngày",
+          "field": "relative_days",
+          "width": 120
+        },
+        {
+          "pos": 4,
+          "header": "Vai trò giai đoạn",
+          "field": "campaign_role",
+          "width": 320
+        },
+        {
+          "pos": 5,
+          "header": "Trụ nội dung",
+          "field": "pillar_names"
+        },
+        {
+          "pos": 6,
+          "header": "Việc cần giải cho khách",
+          "field": "audience_job",
+          "width": 320
+        },
+        {
+          "pos": 7,
+          "header": "Cổng cứng",
+          "field": "hard_gate",
+          "width": 380,
+          "action_required_candidate": true
+        },
+        {
+          "pos": 8,
+          "header": "Kêu gọi mặc định",
+          "field": "default_cta_class"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 9,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 10,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_08_experiments",
+      "index": 16,
+      "title": "Thử nghiệm",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_EXPERIMENTS"
+      ],
+      "source_markdown": [
+        "docs Toplink/brand/kpi-experiment-plan.md",
+        "docs Toplink/brand/campaign-architecture.md"
+      ],
+      "grid_width": 14,
+      "min_records": 3,
+      "max_records": 200,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Thuộc giai đoạn",
+          "field": "campaign_week",
+          "width": 120
+        },
+        {
+          "pos": 3,
+          "header": "Giả thuyết",
+          "field": "hypothesis",
+          "width": 480
+        },
+        {
+          "pos": 4,
+          "header": "Biến thay đổi",
+          "field": "variable",
+          "rule": "MỘT biến mỗi lần"
+        },
+        {
+          "pos": 5,
+          "header": "Mức bằng chứng",
+          "field": "evidence_level",
+          "enum": "evidence_status"
+        },
+        {
+          "pos": 6,
+          "header": "Đo bằng cách nào",
+          "field": "validation_method",
+          "width": 320
+        },
+        {
+          "pos": 7,
+          "header": "Cửa sổ quan sát",
+          "field": "observation_window"
+        },
+        {
+          "pos": 8,
+          "header": "Dấu hiệu Tiếp tục",
+          "field": "continue_signal",
+          "width": 320
+        },
+        {
+          "pos": 9,
+          "header": "Dấu hiệu Sửa",
+          "field": "repair_signal",
+          "width": 320
+        },
+        {
+          "pos": 10,
+          "header": "Dấu hiệu Dừng",
+          "field": "stop_signal",
+          "width": 320
+        },
+        {
+          "pos": 11,
+          "header": "Kết luận",
+          "field": "experiment_decision",
+          "enum": "experiment_decision"
+        },
+        {
+          "pos": 12,
+          "header": "Chốt ở quyết định nào",
+          "field": "cycle_close_decision_id",
+          "new_in": "YV-SHEET-001/1.0.0"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 13,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 14,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "invariants": [
+        "Không thử nghiệm nào gắn vào health claim",
+        "Không quyết định trên % from zero"
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_09_content_calendar",
+      "index": 17,
+      "title": "Lịch nội dung 28 ngày",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_CONTENT_CALENDAR"
+      ],
+      "source_markdown": [
+        "docs Toplink/content/month-calendar.md"
+      ],
+      "grid_width": 17,
+      "min_records": 84,
+      "max_records": 840,
+      "record_rule": "84 = 28 ngày × 3 hướng, × số chu kỳ",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Ngày",
+          "field": "relative_day",
+          "width": 72
+        },
+        {
+          "pos": 3,
+          "header": "Hướng",
+          "field": "option",
+          "enum": "option_code",
+          "width": 72
+        },
+        {
+          "pos": 4,
+          "header": "Nhóm khách",
+          "field": "audience_display_name",
+          "defect_fix": 2,
+          "rule": "cột thật do người chọn; CẤM suy diễn theo số ngày"
+        },
+        {
+          "pos": 5,
+          "header": "Trụ nội dung",
+          "field": "pillar_name"
+        },
+        {
+          "pos": 6,
+          "header": "Định dạng",
+          "field": "format",
+          "width": 110
+        },
+        {
+          "pos": 7,
+          "header": "Vai trò phễu",
+          "field": "funnel_role",
+          "enum": "funnel_role",
+          "defect_fix": 12,
+          "rule": "cột thật theo YV_07; CẤM suy diễn từ pillar"
+        },
+        {
+          "pos": 8,
+          "header": "Angle chính",
+          "field": "primary_angle",
+          "width": 320,
+          "defect_fix": 4,
+          "rule": "góc chung của cả ngày"
+        },
+        {
+          "pos": 9,
+          "header": "Nói gì",
+          "field": "option_message",
+          "width": 480,
+          "rule": "nội dung riêng của từng hướng A/B/C"
+        },
+        {
+          "pos": 10,
+          "header": "Kêu gọi",
+          "field": "cta_class"
+        },
+        {
+          "pos": 11,
+          "header": "Câu claim dùng",
+          "field": "claim_ids",
+          "visible_id_allowed": "CL-*"
+        },
+        {
+          "pos": 12,
+          "header": "Thử nghiệm gắn kèm",
+          "field": "experiment_ids",
+          "defect_fix": 3,
+          "rule": "CẤM hardcode NOT_AVAILABLE"
+        },
+        {
+          "pos": 13,
+          "header": "Tuyến duyệt",
+          "field": "review_route",
+          "enum": "review_route",
+          "defect_fix": 4,
+          "new_in": "YV-SHEET-001/1.0.0"
+        },
+        {
+          "pos": 14,
+          "header": "Bản sửa",
+          "field": "content_revision",
+          "width": 96,
+          "defect_fix": 13,
+          "rule": "nối với YV_12.Bản sửa; CẤM hardcode \"1\""
+        },
+        {
+          "pos": 15,
+          "header": "Trạng thái duyệt",
+          "field": "approval_state",
+          "enum": "approval_state"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 16,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 17,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "option_semantics": {
+        "A": "khuyến nghị",
+        "B": "dự phòng",
+        "C": "dự phòng"
+      },
+      "option_parsing": {
+        "fail_closed": true,
+        "defect_fix": 5,
+        "rule": "parse không ra đúng 3 option thì raise kèm content_id và chuỗi gốc; CẤM nhân bản A=B=C"
+      },
+      "invariants": [
+        "Không item nào APPROVED",
+        "CTA chỉ theo dõi Page / lưu / chia sẻ",
+        "10 item sức khoẻ (TL-P2, TL-P4) = NEEDS_HUMAN_REVIEW"
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_10_production_briefs",
+      "index": 18,
+      "title": "Brief sản xuất",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_PRODUCTION_BRIEFS",
+        "TL_REELS_BRIEFS"
+      ],
+      "source_markdown": [
+        "docs Toplink/content/production-briefs.md",
+        "docs Toplink/content/reels-briefs.md"
+      ],
+      "merge_discriminator": "Loại brief",
+      "grid_width": 21,
+      "min_records": 84,
+      "max_records": 840,
+      "record_rule": "84 dòng — đủ cả B/C (defect #6); dòng chưa có brief mang Trạng thái sản xuất = CHƯA CÓ BRIEF và ô mở đầu \"DỰ PHÒNG — \"",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Ngày",
+          "field": "relative_day",
+          "width": 72
+        },
+        {
+          "pos": 3,
+          "header": "Hướng",
+          "field": "option",
+          "enum": "option_code",
+          "width": 72
+        },
+        {
+          "pos": 4,
+          "header": "Loại brief",
+          "field": "brief_kind",
+          "enum": "brief_kind",
+          "width": 96
+        },
+        {
+          "pos": 5,
+          "header": "Định dạng",
+          "field": "format",
+          "width": 110
+        },
+        {
+          "pos": 6,
+          "header": "Hook",
+          "field": "hook",
+          "width": 380
+        },
+        {
+          "pos": 7,
+          "header": "Hình ảnh / shot",
+          "field": "shot_visual",
+          "width": 380
+        },
+        {
+          "pos": 8,
+          "header": "Chữ trên hình",
+          "field": "on_screen_text",
+          "width": 320
+        },
+        {
+          "pos": 9,
+          "header": "Thời lượng",
+          "field": "duration_seconds",
+          "width": 96,
+          "blank_for_group": "Bài"
+        },
+        {
+          "pos": 10,
+          "header": "Tỷ lệ khung",
+          "field": "aspect_ratio",
+          "width": 96,
+          "blank_for_group": "Bài"
+        },
+        {
+          "pos": 11,
+          "header": "Lời thoại",
+          "field": "script_body",
+          "width": 480,
+          "blank_for_group": "Bài"
+        },
+        {
+          "pos": 12,
+          "header": "Phụ đề",
+          "field": "subtitle_required",
+          "width": 96,
+          "blank_for_group": "Bài"
+        },
+        {
+          "pos": 13,
+          "header": "Vùng an toàn",
+          "field": "safe_zone",
+          "blank_for_group": "Bài"
+        },
+        {
+          "pos": 14,
+          "header": "Kêu gọi",
+          "field": "cta_class"
+        },
+        {
+          "pos": 15,
+          "header": "Câu claim dùng",
+          "field": "claim_ids",
+          "visible_id_allowed": "CL-*"
+        },
+        {
+          "pos": 16,
+          "header": "Chỉ số theo dõi",
+          "field": "kpi_ids"
+        },
+        {
+          "pos": 17,
+          "header": "Tiếp cận",
+          "field": "accessibility"
+        },
+        {
+          "pos": 18,
+          "header": "Rủi ro / cổng",
+          "field": "risk_gate",
+          "width": 380,
+          "action_required_candidate": true
+        },
+        {
+          "pos": 19,
+          "header": "Trạng thái sản xuất",
+          "field": "production_status",
+          "enum": "production_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 20,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 21,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "notes": "Dòng \"Bài\" ghi \"—\" ở 5 cột riêng của Reel (Thời lượng, Tỷ lệ khung, Lời thoại, Phụ đề, Vùng an toàn).",
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_11_asset_batch_plan",
+      "index": 19,
+      "title": "Tài sản & mẻ sản xuất",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_ASSET_BATCH_PLAN"
+      ],
+      "source_markdown": [
+        "docs Toplink/content/asset-and-batch-plan.md"
+      ],
+      "grid_width": 11,
+      "min_records": 13,
+      "max_records": 200,
+      "record_rule": "9 asset placeholder + 4 mẻ B-W1…B-W4",
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Mẻ sản xuất",
+          "field": "batch_id",
+          "width": 110
+        },
+        {
+          "pos": 3,
+          "header": "Dùng cho ngày nào",
+          "field": "content_days",
+          "width": 200
+        },
+        {
+          "pos": 4,
+          "header": "Loại tài sản",
+          "field": "asset_type"
+        },
+        {
+          "pos": 5,
+          "header": "Mô tả",
+          "field": "description",
+          "width": 480
+        },
+        {
+          "pos": 6,
+          "header": "Sức chứa mẻ",
+          "field": "capacity"
+        },
+        {
+          "pos": 7,
+          "header": "Quyền sử dụng",
+          "field": "rights_state",
+          "enum": "rights_state",
+          "action_required_candidate": true
+        },
+        {
+          "pos": 8,
+          "header": "Đồng ý của người xuất hiện",
+          "field": "consent_state",
+          "enum": "consent_state",
+          "action_required_candidate": true
+        },
+        {
+          "pos": 9,
+          "header": "Trạng thái",
+          "field": "production_status"
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 10,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 11,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "invariants": [
+        "100% asset là placeholder RIGHTS_UNCLEARED",
+        "Chưa có consent nào",
+        "Không trỏ tới file/thư viện có sẵn"
+      ],
+      "default_evidence_status": "HYPOTHESIS",
+      "default_allowed_use": "HYPOTHESIS_VALIDATION_ONLY"
+    },
+    {
+      "tab": "YV_12_workflow_approval",
+      "index": 20,
+      "title": "Luồng duyệt & sổ phê duyệt",
+      "id_exposure": "CONTENT_TAB",
+      "source_datasets": [
+        "TL_WORKFLOW_APPROVAL"
+      ],
+      "source_markdown": [
+        "docs Toplink/content/workflow-approval-measurement.md"
+      ],
+      "grid_width": 20,
+      "min_records": 84,
+      "max_records": 840,
+      "display_columns": [
+        {
+          "pos": 1,
+          "header": "Chu kỳ",
+          "field": "cycle_id",
+          "enum": "cycle_id",
+          "width": 72
+        },
+        {
+          "pos": 2,
+          "header": "Ngày",
+          "field": "relative_day",
+          "width": 72
+        },
+        {
+          "pos": 3,
+          "header": "Hướng",
+          "field": "option",
+          "enum": "option_code",
+          "width": 72
+        },
+        {
+          "pos": 4,
+          "header": "Người duyệt",
+          "field": "reviewer_role"
+        },
+        {
+          "pos": 5,
+          "header": "Kết luận",
+          "field": "verdict",
+          "width": 160
+        },
+        {
+          "pos": 6,
+          "header": "Điều kiện kèm theo",
+          "field": "conditions",
+          "width": 380
+        },
+        {
+          "pos": 7,
+          "header": "Hết hạn (ICT)",
+          "field": "expires_at_ict",
+          "width": 160
+        },
+        {
+          "pos": 8,
+          "header": "Trạng thái đăng",
+          "field": "publish_state",
+          "enum": "publish_state"
+        },
+        {
+          "pos": 9,
+          "header": "Bản sửa",
+          "field": "content_revision",
+          "width": 96
+        },
+        {
+          "pos": 10,
+          "header": "Sửa lớn có reset không",
+          "field": "material_edit_reset",
+          "width": 160
+        },
+        {
+          "pos": 11,
+          "header": "Tuyến duyệt",
+          "field": "review_route",
+          "enum": "review_route",
+          "defect_fix": 7
+        },
+        {
+          "pos": 12,
+          "header": "Mức rủi ro",
+          "field": "risk_class",
+          "enum": "risk_class",
+          "defect_fix": 7
+        },
+        {
+          "pos": 13,
+          "header": "DMP check",
+          "field": "dmp_check",
+          "enum": "dmp_check",
+          "defect_fix": 7
+        },
+        {
+          "pos": 14,
+          "header": "Trạng thái đồng ý",
+          "field": "consent_state",
+          "enum": "consent_state",
+          "defect_fix": 7
+        },
+        {
+          "pos": 15,
+          "header": "Giờ đăng",
+          "field": "publish_ts",
+          "defect_fix": 7
+        },
+        {
+          "pos": 16,
+          "header": "Tham chiếu đo",
+          "field": "measurement_ref",
+          "defect_fix": 7
+        },
+        {
+          "pos": 17,
+          "header": "Ghi chú reset",
+          "field": "edit_reset_note",
+          "width": 320,
+          "defect_fix": 7
+        },
+        {
+          "pos": 18,
+          "header": "Câu claim",
+          "field": "claim_ids",
+          "visible_id_allowed": "CL-*",
+          "defect_fix": 7
+        }
+      ],
+      "hidden_columns": [
+        {
+          "pos": 19,
+          "header": "_key",
+          "field": "stable_row_key",
+          "hidden_by_user": true
+        },
+        {
+          "pos": 20,
+          "header": "_audit",
+          "field": "_audit",
+          "hidden_by_user": true
+        }
+      ],
+      "notes": "18 cột hiển thị — hợp nhất 10 cột registry cũ với 8 field ledger bị bỏ rơi ở workflow-approval-measurement.md:48-63 (defect #7). content_hash không hiển thị; nằm trong _audit và JSON sidecar.",
+      "invariants": [
+        "Không dòng nào APPROVED / HUMAN_APPROVED / PUBLISHED",
+        "human_gate = PENDING toàn bộ",
+        "Material edit reset approval về DRAFT / NEEDS_HUMAN_REVIEW"
+      ],
+      "default_evidence_status": "INFERENCE",
+      "default_allowed_use": "INTERNAL_ONLY"
+    }
+  ],
+  "validation_rules": [
+    {
+      "id": "YV-V01",
+      "rule": "21 tab, đúng tên, đúng index; không tab _v2; Trang tính1 (sheetId 0) không bị đụng"
+    },
+    {
+      "id": "YV-V02",
+      "rule": "Mọi tab: hai cột cuối là _key, _audit, hiddenByUser = true"
+    },
+    {
+      "id": "YV-V03",
+      "rule": "11 cột common không xuất hiện ở bất kỳ cột hiển thị nào"
+    },
+    {
+      "id": "YV-V04",
+      "rule": "Tab CONTENT_TAB: cột hiển thị không chứa TL-*, YV-*, hex ≥16, sha256, revision, record_id, stable_row_key, source_digest"
+    },
+    {
+      "id": "YV-V05",
+      "rule": "Ô vàng ↔ 00_Y_VIEN_CAN_CHOT đối xứng hai chiều"
+    },
+    {
+      "id": "YV-V06",
+      "rule": "Ô vàng bắt đầu bằng \"CHƯA CHỐT — \" và nêu ai + chốt gì"
+    },
+    {
+      "id": "YV-V07",
+      "rule": "Dòng hướng B/C không bao giờ vàng; mở đầu \"DỰ PHÒNG — \""
+    },
+    {
+      "id": "YV-V08",
+      "rule": "No-escalate: trạng thái đích không cao hơn trạng thái nguồn"
+    },
+    {
+      "id": "YV-V09",
+      "rule": "Mọi CL-* resolve về 06_COMPLIANCE_RULES"
+    },
+    {
+      "id": "YV-V10",
+      "rule": "03_OUTPUT_INDEX phủ hết artifact, 0 orphan"
+    },
+    {
+      "id": "YV-V11",
+      "rule": "Số dòng từng tab nằm trong [min_records, max_records]"
+    },
+    {
+      "id": "YV-V12",
+      "rule": "YV_05: đúng 5 dòng và SUM(Tỷ trọng %) = 100"
+    },
+    {
+      "id": "YV-V13",
+      "rule": "YV_09: đúng 84 × số chu kỳ; mỗi ngày đủ ba hướng A/B/C phân biệt"
+    },
+    {
+      "id": "YV-V14",
+      "rule": "YV_01: đúng 21 dòng khớp dmp-profile.md §2"
+    },
+    {
+      "id": "YV-V15",
+      "rule": "Uniqueness: _key duy nhất trong từng tab"
+    },
+    {
+      "id": "YV-V16",
+      "rule": "Mọi khoá ngoại resolve; sentinel chỉ dùng khi có dòng lý do ở 02_INPUT_GAPS"
+    },
+    {
+      "id": "YV-V17",
+      "rule": "Không ô nào bắt đầu bằng +, =, -, @"
+    },
+    {
+      "id": "YV-V18",
+      "rule": "Ô trống có nghĩa ghi \"—\", không để chuỗi rỗng"
+    },
+    {
+      "id": "YV-V19",
+      "rule": "Lint từ cấm (voice pack §5) 0 hit trên mọi ô hiển thị"
+    },
+    {
+      "id": "YV-V20",
+      "rule": "Không ngày tuyệt đối trong YV_07 / YV_09 / YV_10 / YV_11"
+    },
+    {
+      "id": "YV-V21",
+      "rule": "CTA hiển thị chỉ thuộc {theo dõi Page, lưu, chia sẻ} trước khi offer gate mở"
+    },
+    {
+      "id": "YV-V22",
+      "rule": "conditional-format rule sau khi ghi = 0"
+    },
+    {
+      "id": "YV-V23",
+      "rule": "content_hash ổn định qua hai lần chạy generator liên tiếp"
+    }
+  ],
+  "boundaries": {
+    "external_writes_phase_1": 0,
+    "network_calls_phase_1": 0,
+    "nothing_becomes_approved": true,
+    "open_gates": [
+      "TL-GAP-002",
+      "TL-GAP-004",
+      "TL-GAP-005",
+      "TL-GAP-006",
+      "TL-GAP-007",
+      "TL-GAP-009",
+      "TL-GAP-010",
+      "TL-GAP-012",
+      "TL-GAP-013",
+      "TL-GAP-014",
+      "TL-M5-ASSET-RIGHTS-001"
+    ],
+    "milestones_still_not_complete": [
+      "TL-M1",
+      "TL-M2",
+      "TL-M3",
+      "TL-M4",
+      "TL-M5"
+    ],
+    "run_model": "repair trong package hai macro-run hiện có — KHÔNG mở Run 3",
+    "thao_tay": "Không dùng bất kỳ identifier, workbook, credential, baseline hay nội dung nào của Thảo Tây. Pattern chỉ được mượn ở mức cơ chế.",
+    "website_repo_facts": "Chỉ vào workbook với evidence_status = UNVERIFIED và allowed_use = DO_NOT_USE (voice pack §8). Chỉ mượn giọng, màu, từ vựng."
+  }
+}

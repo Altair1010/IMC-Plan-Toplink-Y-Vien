@@ -1,0 +1,29 @@
+{
+  "plan_id": "YV-REPORT-PLAN-001",
+  "tab_count": 21,
+  "total_yellow_cells": 27,
+  "workbook_content_hash": "8cbb4e12ff6c8054b969e4c44ab4432bd4b2def3303ba03697c1aceec84e338b",
+  "tab_hashes": {
+    "report": "9833d035f687ca3df062cf47a5e374fa1bc009e6c595a65ecea9850511a24a7d",
+    "00_Y_VIEN_CAN_CHOT": "b8d46921ea7136130b4a420f5253feed239737d5fd7d34973064b945dc0ccd7e",
+    "00_CONTROL": "30ae8d38fea781f823e2ff1d7153f347b64527c99c2906801014cd1a6f54786c",
+    "01_SOURCE_INVENTORY": "0f40c81c551793b369baf1b27bd34325146d1567f6c6e1bec070268fe56c0c7d",
+    "02_INPUT_GAPS": "b0bdb1a71d6a30086cc9c6c5c7a230018ae503f19a613ab33eea1d01fb85e8b8",
+    "03_OUTPUT_INDEX": "ff23550a8a61a218ff9bb27b7db363f99a15fb481a218f209ea03e35860592b5",
+    "04_DECISIONS": "787934b4b580e5767b740b9f086a71a3a530d3bb555defaccd0eae121f2f910e",
+    "05_KPI_DICTIONARY": "fe1c7d50777991fc11ffb8d88fce250071a66d89c623b9ce8980a286ecd5de75",
+    "06_COMPLIANCE_RULES": "44098fcf1e8c1d9f56df5737f881a60a25957dbec12aefd9c49bc614da7f62da",
+    "YV_01_brand_profile": "04eb980f20be99b222bb6b6888f0c64a80a0dfb447fb301dfef9104bad3d3e1a",
+    "YV_02_audience": "119e22f7ab997c13abde07e6facf1e19cae4534b0125e84b3a2dc564c2bf293e",
+    "YV_03_positioning": "1bd5b3c653ec48383035e748f0f3af428b0c47ed967ae1041cfff69f4f1d7cc7",
+    "YV_04_narrative": "dcedc3dfd47fac1a5b4b2a06bcd282843c0d70b6ffcbebda8905e5e2811d7514",
+    "YV_05_content_pillars": "d8652a556ae13df6582fd743d2815939432bbb5f7d7f2f1d95c13969d5177e8a",
+    "YV_06_page_strategy": "e317052ff682f9b06b7d9725c5e55c5d2fcf327457f26deea5aea2c8d542b934",
+    "YV_07_campaign": "9acc10d149b55e40a058326f780f5c1cc5b84a1af7ccd2dac29ae18869b3dcaf",
+    "YV_08_experiments": "d4d07ce54a4f6dc8ceeb3d3062da1a1776704a628577e230460ce35c4d6147d9",
+    "YV_09_content_calendar": "33217867cb5f18b19d0e8367a4c9120cf55d250ef1966f148b74257205867c20",
+    "YV_10_production_briefs": "6314d6e6170050447ecb5d1640ff7265f8991bc5610f2568a563388c8f555376",
+    "YV_11_asset_batch_plan": "98a2e27f398bcc94fa7ee14d5283a044df6496d49d695b021f3269a266535f00",
+    "YV_12_workflow_approval": "98304be0419f4346a1e6c82ece5f53b3305d10df05ea994ed338b42787fea0f9"
+  }
+}

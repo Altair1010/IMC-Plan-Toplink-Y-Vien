@@ -1,135 +1,92 @@
-# TL-M5 — Reels briefs (Toplink Y Viện)
+# TL-M5 — Brief Reel (Toplink Y Viện)
 
-> **Run 1 Phase A · local-only · `external_writes=0`.** DMP `video-script` + `content-engine`
-> (v3.15.1). **Facebook Reels first; TikTok = mechanics-review only** (không phải kênh publish ở phase
-> này). 9:16, 15–30s, editing cơ bản, subtitle bắt buộc, safe-zone chuẩn. Stable ID `TL-M5-REELS-001`.
-> Logical Sheet dataset: `TL_REELS_PRODUCTION`. Không Reel nào `APPROVED`/publish-ready.
+> **Run 1 Phase A · chỉ chạy nội bộ · `external_writes=0`.** Tệp này giữ brief cho **12 mục Reel**. 16
+> mục dạng bài tĩnh và carousel nằm ở `production-briefs.md`; hai tệp đổ chung vào một tab và phân
+> biệt bằng cột `Loại brief`. **Reel trên Facebook là kênh đăng; TikTok chỉ để tham chiếu cơ chế**,
+> không đăng trong chu kỳ này. Không Reel nào `APPROVED`, không Reel nào sẵn sàng đăng.
 
-## 0. Chuẩn chung mọi Reel
+## 0. Khối định danh
 
-- **Tỷ lệ/độ dài:** 9:16 · 15–30s. **Subtitle:** bắt buộc, phông đủ tương phản, đặt trong safe-zone.
-- **Safe-zone:** chừa ~14% trên (tên Page) và ~20% dưới (UI/caption); on-screen text không tràn mép.
-- **Hook 0–3s:** không giật gân/hù dọa. **CTA:** chỉ `theo dõi Page`/`lưu`/`chia sẻ`.
-- **Item sức khỏe (`TL-P2`/`TL-P4`):** disclaimer §3.3 hiển thị cuối, **≥5s** đủ thời gian đọc (hoặc
-  giữ tới hết đối với Reel ≤20s), + individual-variation caveat; route professional/human trước publish.
-- **Cấm:** before/after, medical-fear visual, generalized testimonial, forbidden health terms, cơ chế/
-  chẩn đoán, franchise/legal wording, staff qualification/outcome claim.
-- **Disclaimer §3.3 (chuẩn, dán nguyên văn cho item sức khỏe):**
-  `DISCLAIMER_HOST_PENDING (TL-M1: docs Toplink/system/health-compliance.md)`. Giữ nguyên văn bản dưới đây và bắt buộc human/professional xác nhận bản cuối trước publish; ghi chú này không tự phê duyệt wording.
-  > Sản phẩm và liệu trình chăm sóc tại Y Viện có vai trò hỗ trợ chăm sóc sức khỏe chủ động, thư giãn
-  > và phục hồi thể trạng. Nội dung không thay thế cho chẩn đoán, điều trị hoặc chỉ định của bác sĩ.
-  > Với khách hàng có bệnh nền, đang mang thai, đang dùng thuốc điều trị hoặc có thiết bị y tế cấy ghép
-  > trong cơ thể, cần tham khảo ý kiến chuyên môn trước khi sử dụng.
+| Trường | Giá trị |
+|---|---|
+| Milestone | `TL-M5` |
+| Stable ID | `TL-M5-REELS-001` |
+| Tab đích | `YV_10_production_briefs` |
+| Schema | `YV-SHEET-001/1.0.0` |
+| Trạng thái | `LOCAL_VERIFIED` — chưa `APPROVED`, chưa ghi Sheet |
+| Chu kỳ hiện tại | `C1` |
+| Loại brief của tệp này | `Reel` — 12 dòng |
+| Tệp anh em | `production-briefs.md` — `Loại brief = Bài`, 16 dòng |
+| Chuẩn kỹ thuật | Khung dọc 9:16 · 15 tới 30 giây · phụ đề bắt buộc · dựng cắt đơn giản |
+| Nguồn sự thật | `month-calendar.md §2` · `asset-and-batch-plan.md §2` · `kpi-experiment-plan.md §2` |
+| Ghi ra ngoài | `0` |
 
----
+## 1. Quy ước bảng và chuẩn chung
 
-## Tuần 1 — Identity (`TL-P1`/`TL-P3`)
+Theo `dmp-profile.md §1` và đúng bốn quy ước đã ghi ở `production-briefs.md §1`. Bản cũ của tệp này để
+brief ở dạng tiêu đề và gạch đầu dòng nên máy không đọc được; nay chuyển hết vào bảng, phần diễn giải
+nằm trong ô chứ không nằm ngoài bảng.
 
-### `TL-M5-CAL-D01` — Toplink là ai (`TL-P1`) · R1+R2 · DRAFT
-- **Hook 0–3s (A/B/C):** A "Bạn có đang chăm sóc cơ thể một cách đều đặn?" · B mở bằng không gian tĩnh ·
-  C "Toplink là gì — và không phải gì?"
-- **3–10s:** 1 câu định vị (`CL-M1`) — chăm sóc cơ thể bắt đầu từ việc lắng nghe.
-- **10–20s:** 1 câu giới hạn (`CL-ID1`) — không phải bệnh viện, không cam kết chữa khỏi.
-- **20–30s:** mời theo dõi để hiểu cơ thể mỗi ngày.
-- **Shot list:** WS không gian → MS lễ tân/chi tiết → text-card định vị.
-- **On-screen text:** "Chăm sóc chủ động, không thay thế y khoa." **CTA:** Theo dõi Page · Lưu.
-- **Disclaimer:** không bắt buộc (không health claim); giữ câu ranh giới.
+Chuẩn áp cho **mọi** Reel:
 
-### `TL-M5-CAL-D03` — Teaser không gian 4 tầng (`TL-P3`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A pan nhẹ 4 tầng · B cận 1 chi tiết chất liệu xuyên sáng · C "Một khoảng dừng có
-  chủ đích trông như thế nào?"
-- **3–10s:** giới thiệu 4 tầng TĨNH/THÔNG/DƯỠNG/TỈNH (`CL-OP1`, mô tả không gian).
-- **10–20s:** nhấn sự chỉn chu, real imagery (`CL-M3`), không suy ra outcome.
-- **20–30s:** mời lưu để tham quan tiếp.
-- **Shot list:** 4 clip ngắn mỗi tầng (real footage placeholder AST-SPACE-4F) → text tên tầng.
-- **On-screen text:** tên 4 tầng. **CTA:** Theo dõi · Lưu. **Disclaimer:** operational, không cần §3.3.
+- **Vùng an toàn:** chừa khoảng 14 phần trăm phía trên cho tên Page và 20 phần trăm phía dưới cho phần
+  giao diện và mô tả. Chữ trên hình không tràn mép.
+- **Ba giây đầu:** không giật gân, không doạ. Chủ ngữ ưu tiên là **cơ thể**, không phải khách hàng.
+- **Phụ đề bắt buộc**, phông đủ tương phản, nằm trong vùng an toàn.
+- **Cấm:** ảnh trước và sau, hình ảnh gây sợ về bệnh tật, lời chứng thực khái quát, nói cơ chế, nói
+  chẩn đoán, nói trình độ hay kết quả của nhân sự, và mọi cách nói về nhượng quyền hay pháp lý.
+- **Mục chạm sức khoẻ:** câu miễn trừ hiện ở cuối, giữ **ít nhất 5 giây** đủ để đọc hết — với Reel dài
+  dưới 20 giây thì giữ tới hết — kèm lưu ý mỗi người mỗi khác, và phải qua người có chuyên môn rà.
 
-### `TL-M5-CAL-D07` — Recap định vị tuần 1 (`TL-P1`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A "3 điều nên biết về Toplink" · B "Toplink LÀ / KHÔNG LÀ" · C câu hỏi mở.
-- **3–20s:** tóm 3 ý: chăm sóc chủ động (`CL-M1`) · minh bạch giới hạn (`CL-ID1`) · không gian thật (`CL-M3`).
-- **20–30s:** mời theo dõi. **Shot:** ghép b-roll tuần 1 + text-card. **CTA:** Theo dõi · Lưu.
+**Câu miễn trừ chuẩn** (dán nguyên văn cho mục chạm sức khoẻ). Nơi đặt câu này **chưa chốt** —
+`TL-R2-F08` vẫn đang mở; người có chuyên môn phải xác nhận bản cuối trước khi đăng, và ghi chú này
+không tự phê duyệt câu chữ:
 
----
+> Sản phẩm và liệu trình chăm sóc tại Y Viện có vai trò hỗ trợ chăm sóc sức khỏe chủ động, thư giãn
+> và phục hồi thể trạng. Nội dung không thay thế cho chẩn đoán, điều trị hoặc chỉ định của bác sĩ.
+> Với khách hàng có bệnh nền, đang mang thai, đang dùng thuốc điều trị hoặc có thiết bị y tế cấy ghép
+> trong cơ thể, cần tham khảo ý kiến chuyên môn trước khi sử dụng.
 
-## Tuần 2 — Body-literacy (`TL-P2`/`TL-P4`) — HEALTH-SENSITIVE · disclaimer §3.3 bắt buộc
+**Tab này không có ô vàng**, cùng lý do đã ghi ở `production-briefs.md §1`.
 
-### `TL-M5-CAL-D08` — Tín hiệu cổ vai gáy (`TL-P2`) · R1+R2+R3 · NEEDS_HUMAN_REVIEW
-- **Hook (A/B/C):** A "Cổ vai gáy căng cứng sau một ngày ngồi nhiều?" · B mô tả cảm giác quen thuộc ·
-  C "Cơ thể đang nói gì với bạn?" (không hù dọa).
-- **3–10s:** mô tả cảm giác đời thường, **không chẩn đoán**.
-- **10–20s:** support-level (`CL-M2`) — hỗ trợ thư giãn, làm ấm; 1 thói quen nhỏ giữa giờ.
-- **20–30s:** khi cảm giác kéo dài/bất thường → nên hỏi ý kiến chuyên môn (không đưa vào conversion).
-- **Shot:** người ngồi làm việc (placeholder) → động tác thả lỏng nhẹ → text-card.
-- **On-screen text:** "Hỗ trợ thư giãn — không thay thế chẩn đoán y khoa." **CTA:** Lưu.
-- **Disclaimer §3.3:** hiển thị cuối ≥5s + individual-variation.
+## 2. Bảng dữ liệu — `YV_10_production_briefs` (phần `Reel`)
 
-### `TL-M5-CAL-D11` — Hỗ trợ làm ấm & thư giãn (`TL-P2`) · R1+R2+R3 · NEEDS_HUMAN_REVIEW
-- **Hook (A/B/C):** A "Một khoảng dừng để làm ấm cơ thể" · B nhịp thở/đặt tay · C cảm giác ấm dịu.
-- **3–20s:** support-level framing (`CL-M2`) — hỗ trợ lưu thông khí huyết, giảm cảm giác đau mỏi; **không**
-  cam kết kết quả.
-- **20–30s:** gợi thói quen nghỉ ngơi đều đặn. **Shot:** cận động tác làm ấm (placeholder), tông ấm.
-- **On-screen text:** support phrasing. **CTA:** Lưu. **Disclaimer §3.3:** cuối ≥5s.
+| Mã | Chu kỳ | Ngày | Hướng | Loại brief | Định dạng | Hook | Hình ảnh / shot | Chữ trên hình | Thời lượng | Tỷ lệ khung | Lời thoại | Phụ đề | Vùng an toàn | Kêu gọi | Câu claim dùng | Chỉ số theo dõi | Tiếp cận | Rủi ro / cổng | Trạng thái sản xuất | Chủ sở hữu |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| TL-M5-RB-D1 | C1 | D-1 | A | Reel | Reel | Chị có đang chăm sóc cơ thể đều đặn không | Toàn cảnh không gian, rồi trung cảnh khu đón tiếp, rồi thẻ chữ định vị | Chăm sóc chủ động, không thay thế y khoa | 15 tới 30 giây | 9:16 | Ba tới mười giây một câu định vị; mười tới hai mươi giây một câu giới hạn; hai mươi tới ba mươi giây mời theo dõi | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-ID1, CL-M1 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ | Phụ đề bắt buộc, chữ tương phản cao | Không chạm sức khoẻ; giữ nguyên câu ranh giới, không cần câu miễn trừ | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D3 | C1 | D-3 | A | Reel | Reel | Một khoảng dừng có chủ đích trông như thế nào | Bốn đoạn ngắn, mỗi tầng một đoạn, lấy từ AST-SPACE-4F | Tên bốn tầng Tĩnh, Thông, Dưỡng, Tỉnh | 15 tới 30 giây | 9:16 | Ba tới mười giây giới thiệu bốn tầng; mười tới hai mươi giây nhấn sự chỉn chu của hình thật; hai mươi tới ba mươi giây mời lưu bài | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-OP1 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tỷ lệ xem hết Reel | Phụ đề bắt buộc, chữ tương phản cao | Chỉ mô tả không gian, cấm suy ra kết quả sức khoẻ | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D7 | C1 | D-7 | A | Reel | Reel | Ba điều nên biết về Y Viện | Ghép tư liệu quay trong tuần một, chèn thẻ chữ | Y Viện là gì và không phải gì | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây gói ba ý gồm chăm sóc chủ động, minh bạch giới hạn, không gian thật; hai mươi tới ba mươi giây mời theo dõi | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-ID1, CL-M1 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ | Phụ đề bắt buộc, chữ tương phản cao | Không chạm sức khoẻ; giữ nguyên câu ranh giới | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D8 | C1 | D-8 | A | Reel | Reel | Cổ vai gáy căng sau một ngày ngồi nhiều | Người ngồi làm việc, rồi động tác thả lỏng nhẹ, rồi thẻ chữ | Hỗ trợ thư giãn, không thay thế chẩn đoán y khoa | 15 tới 30 giây | 9:16 | Ba tới mười giây tả cảm giác đời thường và không gọi tên bệnh; mười tới hai mươi giây nói ở mức hỗ trợ kèm một thói quen nhỏ; hai mươi tới ba mươi giây nhắc khi nào nên hỏi người có chuyên môn | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Lưu bài | CL-M2 | Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Câu hỏi đúng chủ đề, Tín hiệu rủi ro | Phụ đề bắt buộc, chữ tương phản cao | Chạm sức khoẻ — câu miễn trừ giữ ít nhất 5 giây, cần người có chuyên môn rà, cấm đưa vào đường chuyển đổi | Chưa quay | Cổng sức khoẻ |
+| TL-M5-RB-D11 | C1 | D-11 | A | Reel | Reel | Một khoảng dừng để làm ấm cơ thể | Cận cảnh động tác làm ấm, tông ấm, lấy từ AST-BODY-LIT | Hỗ trợ làm ấm và thư giãn | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây nói ở mức hỗ trợ lưu thông khí huyết và giảm cảm giác đau mỏi, không cam kết kết quả; hai mươi tới ba mươi giây gợi thói quen nghỉ ngơi đều đặn | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Lưu bài | CL-M2 | Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tín hiệu rủi ro | Phụ đề bắt buộc, chữ tương phản cao | Chạm sức khoẻ — câu miễn trừ giữ ít nhất 5 giây, cần người có chuyên môn rà | Chưa quay | Cổng sức khoẻ |
+| TL-M5-RB-D14 | C1 | D-14 | A | Reel | Reel | Chăm sóc cơ thể như một thói quen | Không gian dưỡng liệu, không quay nhãn và không quay thông số sản phẩm | Trải nghiệm chăm sóc, theo hướng dẫn | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây chỉ kể ở mức trải nghiệm khách hàng và làm theo hướng dẫn; hai mươi tới ba mươi giây nói về nhịp chăm sóc định kỳ | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Lưu bài | CL-CX1, CL-M4 | Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tín hiệu rủi ro | Phụ đề bắt buộc, chữ tương phản cao | Quanh sản phẩm, đóng theo mặc định vì hồ sơ sản phẩm chưa kiểm chứng; cấm nói công dụng; câu miễn trừ giữ ít nhất 5 giây | Chặn bởi cổng hồ sơ sản phẩm | Cổng sức khoẻ |
+| TL-M5-RB-D15 | C1 | D-15 | A | Reel | Reel | Được gọi bằng tên khi bước vào | Hình thật hai tầng đầu, lấy từ AST-SPACE-4F | Tên hai tầng Tĩnh và Thông | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây đi từ tầng đón tiếp sang tầng gội dưỡng sinh và ngâm chân, chỉ nêu dữ kiện; hai mươi tới ba mươi giây mời theo dõi phần tiếp | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-OP1, CL-M3 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tỷ lệ xem hết Reel | Phụ đề bắt buộc, chữ tương phản cao | Chỉ nêu dữ kiện vận hành; cấm nói trình độ nhân sự và cấm suy ra kết quả | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D18 | C1 | D-18 | A | Reel | Reel | Chuẩn bị trước mỗi buổi | Hậu trường đội ngũ, lấy từ AST-TEAM-BTS, đang chờ đồng ý | Xin phép trước mỗi thao tác | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây kể hậu trường quy trình và tinh thần nghề có tâm; hai mươi tới ba mươi giây mời theo dõi | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-OP3 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ | Phụ đề bắt buộc, chữ tương phản cao | Chặn tới khi có đồng ý bằng văn bản của từng người xuất hiện; cấm nói trình độ hay chứng chỉ | Chặn bởi cổng đồng ý | Cổng pháp lý |
+| TL-M5-RB-D21 | C1 | D-21 | A | Reel | Reel | Không mời mua khi khách đang thư giãn | Ghép các khoảnh khắc tạo niềm tin, quay mới trong mẻ tuần 3 | Minh bạch giới hạn | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây kể ba khoảnh khắc gồm nhớ điều khách dặn, nói thẳng khi thấy không phù hợp, không mời mua giữa buổi; hai mươi tới ba mươi giây mời lưu bài | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-OP3, CL-M3 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tỷ lệ xem hết Reel | Phụ đề bắt buộc, chữ tương phản cao | Chỉ nêu dữ kiện vận hành; cấm lời chứng thực khái quát | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D23 | C1 | D-23 | A | Reel | Reel | Một tín hiệu và một thói quen | Dùng lại khung hình của mẻ đọc hiểu cơ thể | Lắng nghe trước, rồi mới nghỉ ngơi đúng cách | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây nhắc lại ở mức hỗ trợ và nói rõ khi nào nên hỏi người có chuyên môn; hai mươi tới ba mươi giây mời lưu bài | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Lưu bài | CL-M2 | Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Tín hiệu rủi ro | Phụ đề bắt buộc, chữ tương phản cao | Chạm sức khoẻ — câu miễn trừ giữ ít nhất 5 giây, cần người có chuyên môn rà | Chưa quay | Cổng sức khoẻ |
+| TL-M5-RB-D25 | C1 | D-25 | A | Reel | Reel | Ba giá trị của Y Viện | Thẻ chữ ghép với tư liệu đã quay | Chăm sóc chủ động | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây tóm định vị theo ba nhịp; hai mươi tới ba mươi giây mời theo dõi để nhận nội dung tuần tới | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Theo dõi Page, lưu bài | CL-ID1, CL-M1 | Số người tiếp cận, Số lượt bắt đầu xem Reel, Người theo dõi mới | Phụ đề bắt buộc, chữ tương phản cao | Không chạm sức khoẻ; giữ nguyên câu ranh giới | Chưa quay | Chủ Y Viện |
+| TL-M5-RB-D27 | C1 | D-27 | A | Reel | Reel | Mỗi ngày một thói quen nhỏ | Dùng lại khung hình của mẻ đọc hiểu cơ thể | Nhắc nhóm cần thận trọng | 15 tới 30 giây | 9:16 | Ba tới hai mươi giây nói một thói quen ở mức hỗ trợ và nhắc nhóm bệnh nền, mang thai, có thiết bị cấy ghép nên hỏi người có chuyên môn; hai mươi tới ba mươi giây mời lưu và chia sẻ | Bắt buộc | Chừa 14 phần trăm trên và 20 phần trăm dưới | Lưu bài, chia sẻ | CL-M2 | Số lượt bắt đầu xem Reel, Lượt lưu và lượt chia sẻ, Câu hỏi đúng chủ đề, Tín hiệu rủi ro | Phụ đề bắt buộc, chữ tương phản cao | Chạm sức khoẻ — câu miễn trừ giữ ít nhất 5 giây, cần người có chuyên môn rà | Chưa quay | Cổng sức khoẻ |
 
-### `TL-M5-CAL-D14` — Dưỡng liệu: trải nghiệm khách hàng (`TL-P4`) · R1+R2+R3 · NEEDS_HUMAN_REVIEW
-- **Hook (A/B/C):** A "Chăm sóc cơ thể như một thói quen" · B trải nghiệm tại trung tâm · C "đúng nhu cầu".
-- **3–20s:** **customer-experience framing only** (`CL-CX1`) — mô tả trải nghiệm/cảm nhận, "theo hướng
-  dẫn"; **KHÔNG** claim sản phẩm/efficacy (`11_Product_Yvien.md` UNVERIFIED, `TL-GAP-010` fail-closed).
-- **20–30s:** chăm sóc định kỳ. **Shot:** không gian dưỡng liệu (placeholder), no label/thông số sản phẩm.
-- **On-screen text:** "Trải nghiệm chăm sóc — theo hướng dẫn." **CTA:** Lưu. **Disclaimer §3.3:** cuối ≥5s.
+## 3. TikTok — chỉ tham chiếu cơ chế
 
----
+TikTok **không** phải kênh đăng trong chu kỳ này. Chỉ dùng để tham chiếu cơ chế: cách giữ chân trong
+ba giây đầu, phụ đề động, nhịp cắt. Mọi tài sản, câu claim và lời kêu gọi vẫn theo chuẩn Facebook và
+theo luật an toàn ở §1. Không đăng chéo, không mở kênh TikTok cho tới khi có một quyết định khác được
+ghi vào `04_DECISIONS`.
 
-## Tuần 3 — Operational proof (`TL-P3`)
+## 4. VERIFY (TL-M5 brief Reel)
 
-### `TL-M5-CAL-D15` — Tầng 1–2: TĨNH & THÔNG (`TL-P3`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A cửa mở/đón tiếp · B "được gọi bằng tên" · C chất liệu xuyên sáng.
-- **3–20s:** tầng 1 TĨNH (đón tiếp, check-in) → tầng 2 THÔNG (gội dưỡng sinh, ngâm chân) — `CL-OP1`/`CL-M3`,
-  operational fact, **không** outcome/qualification.
-- **20–30s:** mời theo dõi phần tiếp. **Shot:** real footage 2 tầng (AST-SPACE-4F). **CTA:** Theo dõi · Lưu.
-
-### `TL-M5-CAL-D18` — Hậu trường đội ngũ (`TL-P3`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A chuẩn bị trước buổi · B "xin phép trước mỗi thao tác" · C chăm chút chi tiết.
-- **3–20s:** hậu trường quy trình (`CL-OP3`) — nghề có tâm; **không** nói trình độ/chứng chỉ nhân sự
-  (no qualification claim), cần consent người xuất hiện.
-- **20–30s:** mời theo dõi. **Shot:** BTS (AST-TEAM-BTS, consent). **CTA:** Theo dõi · Lưu.
-
-### `TL-M5-CAL-D21` — Khoảnh khắc tạo niềm tin (`TL-P3`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A "nhớ điều khách đã dặn" · B "nói rõ điều phù hợp và không phù hợp" · C "không ép
-  mua khi đang thư giãn".
-- **3–20s:** các khoảnh khắc tin cậy (`CL-OP3`/`CL-M3`), minh bạch giới hạn.
-- **20–30s:** mời lưu/theo dõi. **Shot:** ghép moment (placeholder). **CTA:** Theo dõi · Lưu.
-
----
-
-## Tuần 4 — SAFE FALLBACK recap
-
-### `TL-M5-CAL-D23` — Recap lắng nghe cơ thể (`TL-P2`) · R1+R2+R3 · NEEDS_HUMAN_REVIEW
-- **Hook (A/B/C):** A "1 tín hiệu + 1 thói quen" · B nhịp dừng lại · C câu hỏi nhẹ.
-- **3–20s:** recap support-level (`CL-M2`), khi nào nên hỏi chuyên môn. **20–30s:** mời lưu.
-- **Shot:** tái dùng khung body-literacy. **CTA:** Lưu. **Disclaimer §3.3:** cuối ≥5s.
-
-### `TL-M5-CAL-D25` — Recap giá trị thương hiệu (`TL-P1`) · R1+R2 · DRAFT
-- **Hook (A/B/C):** A "3 giá trị của Toplink" · B "chăm sóc chủ động" · C mời theo dõi.
-- **3–20s:** tóm định vị (`CL-M1`/`CL-ID1`). **20–30s:** CTA theo dõi. **Shot:** text-card + b-roll. **CTA:** Theo dõi · Lưu.
-
-### `TL-M5-CAL-D27` — Thói quen chăm sóc chủ động (`TL-P2`) · R1+R2+R3 · NEEDS_HUMAN_REVIEW
-- **Hook (A/B/C):** A "1 thói quen mỗi ngày" · B lắng nghe & nghỉ ngơi · C nhắc nhóm cần thận trọng.
-- **3–20s:** support-level habit (`CL-M2`); nhắc nhóm bệnh nền/mang thai/cấy ghép nên hỏi chuyên môn.
-- **20–30s:** mời lưu/chia sẻ. **CTA:** Lưu · Chia sẻ. **Disclaimer §3.3:** cuối ≥5s.
-
----
-
-## TikTok mechanics note (review-only)
-
-TikTok **không** phải kênh publish ở phase này. Chỉ dùng để **tham chiếu cơ chế** (retention 0–3s,
-subtitle động, nhịp cắt) do Short-Video Coach → TikTok Strategist review; mọi asset/claim/CTA vẫn theo
-chuẩn Facebook + safety trên. Không cross-post, không đăng TikTok cho tới canonical decision khác.
-
-## VERIFY (TL-M5 reels)
-
-- [x] 12 Reel = đúng 12 video item của calendar; Facebook-first; TikTok mechanics-only.
-- [x] Mỗi Reel: hook A/B/C, shot list, on-screen text, subtitle, safe-zone, CTA follow/save/share.
-- [x] 5 Reel sức khỏe (4×`TL-P2` + 1×`TL-P4`: D08,D11,D14,D23,D27) mang disclaimer §3.3 ≥5s + individual-variation; route R3.
-- [x] Operational Reels: fact-only, no qualification/outcome; D14 customer-experience only.
-- [x] Không before/after, medical-fear, generalized testimonial, forbidden term.
-- [x] `external_writes=0`; không Reel `APPROVED`.
+- [x] 12 dòng Reel, đúng 12 mục video của lịch nội dung; Facebook là kênh đăng, TikTok chỉ tham chiếu.
+- [x] Mỗi Reel đủ hook, danh sách hình, chữ trên hình, thời lượng, tỷ lệ khung, lời thoại, phụ đề,
+      vùng an toàn, lời kêu gọi.
+- [x] Năm Reel chạm sức khoẻ (`D-8`, `D-11`, `D-14`, `D-23`, `D-27`) mang câu miễn trừ giữ ít nhất 5
+      giây và đi tuyến duyệt có người có chuyên môn.
+- [x] Reel vận hành chỉ nêu dữ kiện, không nói trình độ nhân sự và không suy ra kết quả; `D-14` chỉ kể
+      ở mức trải nghiệm.
+- [x] Không ảnh trước và sau, không hình gây sợ, không lời chứng thực khái quát, không từ cấm.
+- [x] Chuyển toàn bộ brief từ dạng tiêu đề và gạch đầu dòng sang bảng để `parse_markdown_tables()` đọc được.
+- [x] Xưng hô theo bộ giọng: gọi khách là chị hoặc anh; thương hiệu là Y Viện ngôi thứ ba; bỏ hết chữ
+      "bạn" và chữ "Toplink" trong lời nói với khách.
+- [x] Ngày đã chuẩn hoá về `D-1` … `D-28` (sửa lỗi mô hình #8).
+- [x] Header khai đúng tab `YV_10_production_briefs` (sửa lỗi mô hình #1: bản cũ khai
+      `TL_REELS_PRODUCTION`, một dataset không tồn tại).
+- [x] `external_writes=0`; không Reel nào `APPROVED`.

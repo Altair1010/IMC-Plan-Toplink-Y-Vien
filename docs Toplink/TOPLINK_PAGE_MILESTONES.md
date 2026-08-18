@@ -365,7 +365,8 @@ docs Toplink/brand/content-pillars.md
 docs Toplink/brand/facebook-page-strategy.md
 ```
 
-Logical Sheet dataset: `TL_AUDIENCE_POSITIONING`, `TL_PAGE_STRATEGY`.
+Tab đích trong workbook: `YV_02_audience`, `YV_03_positioning`, `YV_04_narrative`,
+`YV_05_content_pillars`, `YV_06_page_strategy` (registry `YV-SHEET-001/1.0.0`).
 
 ### VERIFY
 
@@ -402,7 +403,8 @@ docs Toplink/brand/campaign-architecture.md
 docs Toplink/brand/kpi-experiment-plan.md
 ```
 
-Logical Sheet dataset: `TL_CAMPAIGN_KPI`.
+Tab đích trong workbook: `YV_07_campaign`, `YV_08_experiments`, `05_KPI_DICTIONARY`
+(registry `YV-SHEET-001/1.0.0`).
 
 ### VERIFY
 
@@ -447,8 +449,8 @@ docs Toplink/content/production-briefs.md
 docs Toplink/content/workflow-approval-measurement.md
 ```
 
-Logical Sheet datasets:
-`TL_CONTENT_CALENDAR`, `TL_REELS_PRODUCTION`, `TL_WORKFLOW_APPROVAL`.
+Tab đích trong workbook: `YV_09_content_calendar`, `YV_10_production_briefs`,
+`YV_11_asset_batch_plan`, `YV_12_workflow_approval` (registry `YV-SHEET-001/1.0.0`).
 
 ### VERIFY
 

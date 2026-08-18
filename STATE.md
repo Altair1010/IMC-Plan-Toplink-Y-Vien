@@ -10,14 +10,53 @@
 
 ## In-progress
 
-- Task `.trellis/tasks/08-04-toplink-sheet-model-correction` is active under a Codex recovery lease.
-  The approved 24-dataset correction completed create/clear/write/format across 24 tabs, then
-  fail-closed at native verification because Google quantized one header RGB channel by one code.
-  Persisted state is `VERIFY_FAILED · RECOVERY_APPROVAL_PENDING`; automatic rollback is forbidden.
-  A read-only audit now matches values/formulas/native rules 24/24 and preserves `Trang tính1`, but
-  success cannot be promoted until the zero-mutation `EXACT_READBACK_ONLY` recovery bundle receives
-  a new exact digest-bound human approval. Historical V2 evidence remains immutable and classified
-  `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`; no Run 3 or milestone advance is permitted.
+- P3.0–P3.3 live verification is `LIVE_STATE_VERIFIED`. Approval 08 SHA-256 `d92c9fb1…47fca`
+  was signed and consumed. Local reconstruction covered pre-closure plan `8cbb4e12…e338b` with the
+  P2.7 runtime overlay and reproduced live hash `f5a373b8…5a585` before network access. Three read
+  planes then confirmed 21 content tabs/22 sheets, `Trang tính1` sheet ID 0, 27 exact yellow cells,
+  42 hidden `_key`/`_audit` columns, zero conditional rules, and mismatch count zero. Request count:
+  two `spreadsheets.get`, one `values.batchGet`, zero mutation. Evidence SHA-256
+  `1dcf253b…34150`. No repair, sync, content promotion, Page action, or human-gate change occurred.
+- Y Viện human-layer Phase 2 P2.0–P2.8 is `PASS · SYNC_READBACK_PASS`. P2.7 consumed fresh
+  UPSERT/READBACK approvals `52542f39…bc264f` and `e8c5df7e…f6acb5`, used exactly two bounded mutation
+  calls, updated 19 `03_OUTPUT_INDEX` status pairs, and appended revision event
+  `YV-REV-20260805-01` to `04_DECISIONS`. Exact read-back passed with closure workbook hash
+  `f5a373b8…5a585`, 27 exact yellow cells, 42 hidden columns, zero conditional rules, zero mismatches,
+  preserved `Trang tính1` sheet ID 0, and no restore. P2.8 independently rebuilt from all 22 source
+  locks and compared the frozen read-back: 21/21 tab diffs zero; same payload second run diff zero;
+  `would_write=false`; network/mutation zero. Evidence SHA-256: P2.7 execution `49dc26bf…0e0540`,
+  P2.7 read-back `5e11a21e…d46a55`, P2.8 audit `b6a85714…b8b495`. No content state was promoted to
+  `APPROVED`; all human/non-Sheet gates remain open. Tests 41/41 plus Phase 1 21/21 PASS.
+- Y Viện human-layer Phase 2 stopped fail-closed at P2.6 on 2026-08-05. P2.0–P2.5 passed; the signed
+  CREATE/UPSERT wrote 21 tabs and direct formatting within scope. The first exact read-back was
+  classified `VERIFY_FAILED` because the verifier requested grid data with only the 21 human-layer
+  ranges, then incorrectly required the filtered response to also contain preserved `Trang tính1`.
+  The approved failure branch immediately restored the 21 ranges to their blank/default `before`
+  state; `automatic_retry=false`. Evidence SHA-256: readback
+  `f41b26ac60607625c00ca28f53a150a371c5154af495369e52dfc621a1949984`, execution
+  `a7ad73fdfff964dd833b628db8d189fc691419d092130dcf23489c36c74a13de`. All three approvals are
+  consumed and cannot be reused. P2.7/P2.8 were not entered; a fresh digest-bound approval is required
+  for any new live attempt. No human status was promoted and all non-Sheet gates remain open.
+- P2.6 complex recovery is `SYNC_READBACK_PASS`. The pre-write live audit confirmed
+  22 sheets in exact order, all 21 human-layer ranges blank, default freeze/filter state, zero conditional
+  rules, and `Trang tính1` preserved at sheet ID 0. Recovery snapshot SHA-256 `16bb24ae…25a8f`.
+  The corrected verifier read three independent planes: 21 values, unfiltered 22-sheet topology, and
+  filtered 21-sheet grid data. Fresh UPSERT/READBACK approvals `8c405d2d…36ea6d` and
+  `e33e8171…189a18` were signed and consumed. Recovery used exactly two bounded mutation calls; exact
+  read-back passed with workbook hash `8cbb4e12…e338b`, 21 human tabs, 27 exact yellow cells, 42 hidden
+  `_key`/`_audit` columns, zero conditional rules, zero mismatches, preserved `Trang tính1` sheet ID 0,
+  and no restore. Evidence SHA-256: execution `fbfc22b0…3ca610`, read-back `7b5d5be5…df15f5`.
+- Task `.trellis/tasks/08-04-toplink-sheet-model-correction` is active under a Codex closure lease.
+  Digest-bound zero-mutation recovery `TL-SHEET-RUN2-CORRECTION-01-RECOVERY-01` passed exact read-back:
+  24/24 values/formulas/native rules match, mismatch count is zero, and `Trang tính1` remains sheet ID
+  0. Sheet migration state is `SYNC_READBACK_PASS`; the parent correction retains four completed
+  mutation phases while recovery authorized and performed zero mutations. The immutable prior
+  `VERIFY_FAILED` evidence remains bound by SHA-256 `bfeae57f…b4679` at Git checkpoint `5cfc73e`.
+  Closure is not yet complete because all 14 `TL_OUTPUT_INDEX` rows still truthfully contain their
+  pre-approval payload state (`SYNC_PENDING_APPROVAL` / `NOT_AVAILABLE`). A new one-call, four-range
+  status-only bundle is `OUTPUT_INDEX_CLOSURE_APPROVAL_PENDING`; no further Sheet mutation is allowed
+  without its exact approval. Historical V2 remains `TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED`;
+  no Run 3 or milestone advance is permitted, and TL-M1–TL-M5 remain `NOT_COMPLETE`.
 - Task `.trellis/tasks/08-04-toplink-sheet-sync` is ready to close; no active writer lease. Signed V2
   execution is closed and post-sync review PASS; later mutations need new approval.
 - Run 2 Phase B `CODEX_RUN2_PHASEB_LOCAL_VERIFIED · NOT_COMPLETE`: Codex blind audit frozen

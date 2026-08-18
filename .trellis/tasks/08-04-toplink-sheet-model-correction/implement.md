@@ -41,14 +41,14 @@
 - [x] Build unsigned `TL-SHEET-RUN2-CORRECTION-01` with 10 creates, 24 bounded replacements,
       formatting/validation, exact ranges/limits, digests, expiry, and read-back ranges.
 - [x] Commit the unsigned bundle and stop with `external_writes=0`.
-- [ ] Only after fresh exact digest-bound `APPROVED`: revalidate lease/target/identity/hashes,
+- [x] Only after fresh exact digest-bound `APPROVED`: revalidate lease/target/identity/hashes,
       mutate minimally, and exact-read-back 24/24 plus `Trang tính1` integrity.
 - [x] On partial write: persist `VERIFY_FAILED`, capture state, require new recovery approval.
 
 ## N5 — Closure
 
 - [ ] Reconcile correction evidence and mutation accounting into output index/manifest/status files.
-- [ ] Keep TL-M1–TL-M5 `NOT_COMPLETE` while non-Sheet human gates remain open.
+- [x] Keep TL-M1–TL-M5 `NOT_COMPLETE` while non-Sheet human gates remain open.
 - [ ] Run full-scope checks, update Trellis spec if warranted, commit by verified gate, checkpoint,
       release lease, and archive only when the applicable approval state is honestly complete.
 

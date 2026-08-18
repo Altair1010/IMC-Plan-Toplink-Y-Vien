@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import importlib.util
+import inspect
 import json
 import tempfile
 import unittest
@@ -18,388 +19,528 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class RegistryContractTests(unittest.TestCase):
-    def test_registry_has_exact_24_operational_tabs_and_common_columns(self) -> None:
+    def test_registry_has_exact_ordered_21_human_layer_tabs(self) -> None:
         registry = sheet_sync.load_registry(REPO_ROOT)
-        self.assertEqual(registry["schema_version"], "TL-SHEET-001/0.2.0")
-        self.assertEqual(set(registry["datasets"]), set(sheet_sync.TAB_KEYS))
-        self.assertEqual(len(registry["datasets"]), 24)
-        for schema in registry["datasets"].values():
-            self.assertEqual(schema["columns"][: len(sheet_sync.COMMON_COLUMNS)], sheet_sync.COMMON_COLUMNS)
-            self.assertIn(schema["primary_key"], schema["columns"])
-
-    def test_registry_rejects_unknown_foreign_dataset(self) -> None:
-        registry = copy.deepcopy(sheet_sync.load_registry(REPO_ROOT))
-        registry["datasets"]["TL_CAMPAIGN"]["foreign_keys"].append(
-            {"columns": ["record_id"], "dataset": "TL_UNKNOWN", "target_columns": ["record_id"]}
+        self.assertEqual(registry["schema_version"], "YV-SHEET-001/1.0.0")
+        self.assertEqual(
+            [tab["tab"] for tab in sorted(registry["tabs"], key=lambda item: item["index"])],
+            list(sheet_sync.TAB_KEYS),
         )
-        with self.assertRaisesRegex(sheet_sync.SyncError, "unknown foreign dataset"):
-            sheet_sync.validate_registry(registry)
+        self.assertEqual(len(sheet_sync.TAB_KEYS), 21)
+
+    def test_stale_existing_tab_id_map_is_removed(self) -> None:
+        self.assertFalse(hasattr(sheet_sync, "EXISTING_TAB_IDS"))
+        self.assertFalse(hasattr(sheet_sync, "NEW_TAB_KEYS"))
+
+    def test_every_tab_declares_hidden_key_and_audit(self) -> None:
+        for tab in sheet_sync.load_registry(REPO_ROOT)["tabs"]:
+            hidden = tab["hidden_columns"]
+            self.assertEqual([item["header"] for item in hidden], ["_key", "_audit"])
+            self.assertTrue(all(item["hidden_by_user"] for item in hidden))
 
 
-class DatasetValidationTests(unittest.TestCase):
+class HumanLayerCompilerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.registry = sheet_sync.load_registry(REPO_ROOT)
+        self.plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        self.locked = json.loads(
+            (REPO_ROOT / "staging/yv-humanize/report-plan.json").read_text(encoding="utf-8")
+        )
+
+    def test_independent_plan_rebuild_matches_locked_hashes(self) -> None:
+        self.assertEqual(len(self.plan["tabs"]), 21)
+        self.assertEqual(self.plan["workbook_content_hash"], self.locked["workbook_content_hash"])
+        self.assertEqual(
+            {tab["tab"]: tab["content_hash"] for tab in self.plan["tabs"]},
+            {tab["tab"]: tab["content_hash"] for tab in self.locked["tabs"]},
+        )
+
+    def test_independent_plan_matches_all_four_phase_one_fixtures(self) -> None:
+        fixture_dir = Path(__file__).resolve().parent / "fixtures" / "yv"
+        by_tab = {tab["tab"]: tab for tab in self.plan["tabs"]}
+        for name in ("report", "YV_08_experiments", "YV_09_content_calendar"):
+            fixture = json.loads((fixture_dir / f"{name}.json").read_text(encoding="utf-8"))
+            actual = by_tab[name]
+            for field in ("row_count", "column_count", "used_range", "yellow_cells", "values", "content_hash"):
+                self.assertEqual(fixture[field], actual[field], f"{name}:{field}")
+        workbook = json.loads((fixture_dir / "workbook.json").read_text(encoding="utf-8"))
+        self.assertEqual(workbook["tab_count"], self.plan["tab_count"])
+        self.assertEqual(workbook["total_yellow_cells"], self.plan["total_yellow_cells"])
+        self.assertEqual(workbook["workbook_content_hash"], self.plan["workbook_content_hash"])
+        self.assertEqual(
+            workbook["tab_hashes"],
+            {tab["tab"]: tab["content_hash"] for tab in self.plan["tabs"]},
+        )
+
+    def test_split_options_fails_closed_instead_of_cloning(self) -> None:
+        with self.assertRaisesRegex(sheet_sync.SyncError, "three options"):
+            sheet_sync._split_options("A: one · B: two")
+        with self.assertRaisesRegex(sheet_sync.SyncError, "duplicate option bodies"):
+            sheet_sync._split_options("A: same · B: same · C: other")
+
+    def test_split_options_returns_ordered_distinct_abc(self) -> None:
+        self.assertEqual(
+            sheet_sync._split_options("A: one · B: two · C: three"),
+            [("A", "one"), ("B", "two"), ("C", "three")],
+        )
+
+    def test_calendar_carries_real_audience_experiment_review_and_cycle(self) -> None:
+        calendar = next(tab for tab in self.plan["tabs"] if tab["tab"] == "YV_09_content_calendar")
+        headers = calendar["values"][0]
+        rows = calendar["values"][2:]
+        for header in ("Chu kỳ", "Nhóm khách", "Tuyến duyệt"):
+            index = headers.index(header)
+            self.assertTrue(all(row[index] not in ("", "—", "NOT_AVAILABLE") for row in rows))
+        experiment_index = headers.index("Thử nghiệm gắn kèm")
+        experiments = {row[experiment_index] for row in rows}
+        self.assertGreater(len(experiments - {"—"}), 0)
+        self.assertNotIn("NOT_AVAILABLE", experiments)
+
+    def test_all_tabs_put_key_and_audit_last(self) -> None:
+        for tab in self.plan["tabs"]:
+            self.assertEqual(tab["values"][0][-2:], ["_key", "_audit"])
+            self.assertTrue(all(len(row) == tab["column_count"] for row in tab["values"]))
+
+    def test_plan_is_pure_and_local_only(self) -> None:
+        self.assertEqual(self.plan["external_writes"], 0)
+        self.assertFalse(self.plan["write_executed"])
+        self.assertEqual(self.plan["state"], "DRAFT_UNSIGNED · LOCAL_ONLY")
+
+
+class DatasetBundleTests(unittest.TestCase):
+    def setUp(self) -> None:
         self.bundle = sheet_sync.compile_datasets(REPO_ROOT)
 
-    def test_rejects_duplicate_primary_key(self) -> None:
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_INPUT_GAPS"]["records"].append(
-            copy.deepcopy(broken["datasets"]["TL_INPUT_GAPS"]["records"][0])
-        )
-        with self.assertRaisesRegex(sheet_sync.SyncError, "duplicate primary key"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-
-    def test_rejects_orphan_foreign_key(self) -> None:
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_EXPERIMENTS"]["records"][0]["campaign_item_id"] = "TL-CAMPAIGN-MISSING"
-        with self.assertRaisesRegex(sheet_sync.SyncError, "orphan foreign key"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-
-    def test_rejects_unknown_enum_and_blank_confirmation_state(self) -> None:
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_OWNER_ACTIONS"]["records"][0]["evidence_status"] = ""
-        with self.assertRaisesRegex(sheet_sync.SyncError, "blank required field"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_OWNER_ACTIONS"]["records"][0]["evidence_status"] = "CONFIRMED_BY_SHEET"
-        with self.assertRaisesRegex(sheet_sync.SyncError, "unknown enum"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-
-    def test_rejects_prose_rows_and_section_text_dump(self) -> None:
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_REPORT"]["records"][0]["record_type"] = "PROSE"
-        with self.assertRaisesRegex(sheet_sync.SyncError, "prose row"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-
-    def test_bundle_has_24_valid_sidecars_and_14_of_14_artifact_coverage(self) -> None:
-        sheet_sync.validate_dataset_bundle(self.bundle, self.registry)
-        self.assertEqual(len(self.bundle["datasets"]), 24)
-        output_records = self.bundle["datasets"]["TL_OUTPUT_INDEX"]["records"]
-        self.assertEqual(len(output_records), 14)
-        self.assertTrue(all(record["dataset_keys"] for record in output_records))
-        self.assertGreaterEqual(len(self.bundle["datasets"]["TL_CONTENT_CALENDAR"]["records"]), 84)
-
-    def test_identical_inputs_compile_to_byte_identical_bundle(self) -> None:
-        first = sheet_sync.compile_datasets(REPO_ROOT)
-        second = sheet_sync.compile_datasets(REPO_ROOT)
-        self.assertEqual(sheet_sync.canonical_json_bytes(first), sheet_sync.canonical_json_bytes(second))
-        self.assertEqual(first["bundle_sha256"], second["bundle_sha256"])
+    def test_bundle_has_21_deterministic_datasets(self) -> None:
+        self.assertEqual(set(self.bundle["datasets"]), set(sheet_sync.TAB_KEYS))
+        self.assertEqual(self.bundle, sheet_sync.compile_datasets(REPO_ROOT))
+        sheet_sync.validate_human_layer_bundle(self.bundle, REPO_ROOT)
 
     def test_source_digest_drift_is_rejected(self) -> None:
         broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_OUTPUT_INDEX"]["records"][0]["artifact_digest"] = "0" * 64
+        key = next(iter(broken["source_digests"]))
+        broken["source_digests"][key] = "0" * 64
         with self.assertRaisesRegex(sheet_sync.SyncError, "source digest drift"):
             sheet_sync.validate_source_digests(broken, REPO_ROOT)
 
-    def test_all_row_sources_are_in_inventory_and_dataset_digest_is_bound(self) -> None:
-        inventory = {record["inventory_source_id"] for record in self.bundle["datasets"]["TL_SOURCE_INVENTORY"]["records"]}
-        row_sources = {record["source_id"] for payload in self.bundle["datasets"].values() for record in payload["records"]}
-        self.assertTrue(row_sources.issubset(inventory))
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_REPORT"]["dataset_sha256"] = "0" * 64
-        with self.assertRaisesRegex(sheet_sync.SyncError, "dataset digest mismatch"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-        broken = copy.deepcopy(self.bundle)
-        broken["datasets"]["TL_CONTENT_CALENDAR"]["records"][0]["claim_ids"] = "`CL-ID1` (prose)"
-        with self.assertRaisesRegex(sheet_sync.SyncError, "invalid claim reference"):
-            sheet_sync.validate_dataset_bundle(broken, self.registry)
-
-    def test_committed_sidecars_must_match_bundle_exactly(self) -> None:
+    def test_writes_one_sidecar_per_tab(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             output = Path(temp_dir)
-            sheet_sync.write_dataset_sidecars(self.bundle, output)
+            paths = sheet_sync.write_dataset_sidecars(self.bundle, output)
+            self.assertEqual(len(paths), 21)
             sheet_sync.validate_dataset_sidecars(self.bundle, output)
-            (output / "TL_REPORT.json").write_text("{}\n", encoding="utf-8")
-            with self.assertRaisesRegex(sheet_sync.SyncError, "sidecar drift"):
-                sheet_sync.validate_dataset_sidecars(self.bundle, output)
+            parsed = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
+            self.assertEqual({item["dataset_key"] for item in parsed}, set(sheet_sync.TAB_KEYS))
 
-    def test_sidecars_exclude_machine_local_paths_secrets_and_cross_brand_data(self) -> None:
-        serialized = sheet_sync.canonical_json_bytes(self.bundle).decode("utf-8")
-        self.assertNotIn("C:/Users/", serialized)
-        self.assertNotIn("private_key", serialized)
-        self.assertNotIn(".secrets/", serialized)
-        self.assertNotIn("Thảo Tây", serialized)
+    def test_bundle_digest_drift_is_rejected(self) -> None:
+        broken = copy.deepcopy(self.bundle)
+        broken["bundle_sha256"] = "0" * 64
+        with self.assertRaisesRegex(sheet_sync.SyncError, "bundle digest drift"):
+            sheet_sync.validate_human_layer_bundle(broken, REPO_ROOT)
+
+
+class HumanLayerValidatorTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.registry = sheet_sync.load_human_layer_registry(REPO_ROOT)
+        self.plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+
+    def tab(self, name: str) -> dict:
+        return next(tab for tab in self.plan["tabs"] if tab["tab"] == name)
+
+    def test_signed_plan_satisfies_semantic_contract(self) -> None:
+        sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_status_escalation_is_rejected(self) -> None:
+        tab = self.tab("YV_01_brand_profile")
+        tab["values"][2][0] = "APPROVED"
+        with self.assertRaisesRegex(sheet_sync.SyncError, "status escalation"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_yellow_cell_contract_is_recomputed_from_values(self) -> None:
+        tab = self.tab("00_Y_VIEN_CAN_CHOT")
+        address = tab["yellow_cells"][0]
+        row_number = int("".join(char for char in address if char.isdigit()))
+        column_letters = "".join(char for char in address if char.isalpha())
+        column_number = 0
+        for char in column_letters:
+            column_number = column_number * 26 + ord(char) - ord("A") + 1
+        tab["values"][row_number - 1][column_number - 1] = "DỰ PHÒNG — không phải việc chờ người chốt"
+        with self.assertRaisesRegex(sheet_sync.SyncError, "yellow"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_external_yellow_cell_requires_corresponding_open_owner_row(self) -> None:
+        tab = self.tab("00_Y_VIEN_CAN_CHOT")
+        target = next(row for row in tab["values"][2:] if row[-2] == "TL-OA-06")
+        target[-2] = "TL-OA-06-MISSING"
+        with self.assertRaisesRegex(sheet_sync.SyncError, "yellow correspondence"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_duplicate_stable_key_is_rejected(self) -> None:
+        tab = self.tab("YV_05_content_pillars")
+        tab["values"][3][-2] = tab["values"][2][-2]
+        with self.assertRaisesRegex(sheet_sync.SyncError, "duplicate stable key"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_minimum_record_count_is_enforced(self) -> None:
+        tab = self.tab("YV_05_content_pillars")
+        tab["values"].pop()
+        tab["row_count"] -= 1
+        with self.assertRaisesRegex(sheet_sync.SyncError, "cardinality"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_maximum_record_count_is_enforced(self) -> None:
+        tab = self.tab("YV_05_content_pillars")
+        extra = copy.deepcopy(tab["values"][-1])
+        extra[-2] = "TEST-UNIQUE-EXTRA-KEY"
+        tab["values"].append(extra)
+        tab["row_count"] += 1
+        with self.assertRaisesRegex(sheet_sync.SyncError, "cardinality"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_registry_tab_reference_orphan_is_rejected(self) -> None:
+        tab = self.tab("03_OUTPUT_INDEX")
+        column = tab["values"][0].index("Tab hiển thị")
+        tab["values"][2][column] = "TAB_KHÔNG_TỒN_TẠI"
+        with self.assertRaisesRegex(sheet_sync.SyncError, "orphan foreign key"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_dataset_foreign_key_orphan_is_rejected(self) -> None:
+        tab = self.tab("YV_09_content_calendar")
+        column = tab["values"][0].index("Nhóm khách")
+        tab["values"][2][column] = "NHÓM KHÁCH KHÔNG TỒN TẠI"
+        with self.assertRaisesRegex(sheet_sync.SyncError, "orphan foreign key"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
+
+    def test_unindexed_source_artifact_is_rejected_as_orphan(self) -> None:
+        tab = self.tab("03_OUTPUT_INDEX")
+        tab["values"].pop()
+        tab["row_count"] -= 1
+        with self.assertRaisesRegex(sheet_sync.SyncError, "orphan source artifact"):
+            sheet_sync.validate_human_layer_plan(self.plan, self.registry)
 
 
 class ApprovalAndRangeSafetyTests(unittest.TestCase):
-    def test_material_content_edit_resets_approval(self) -> None:
-        record = {"content_hash": "a" * 64, "verdict": "APPROVED", "publish_state": "READY"}
-        changed = sheet_sync.reset_approval_on_material_edit(record, "b" * 64)
-        self.assertEqual(changed["verdict"], "NEEDS_HUMAN_REVIEW")
-        self.assertEqual(changed["publish_state"], "BLOCKED")
+    def test_signed_human_layer_approvals_remain_digest_exact_but_are_consumed(self) -> None:
+        self.assertEqual(
+            set(sheet_sync.validate_human_layer_approvals(REPO_ROOT, require_unconsumed=False)),
+            {"CREATE_TAB", "UPSERT", "READBACK"},
+        )
+        with self.assertRaisesRegex(sheet_sync.SyncError, "already consumed"):
+            sheet_sync.validate_human_layer_approvals(REPO_ROOT)
 
-    def test_bounded_replace_clears_only_union_tail(self) -> None:
-        plan = sheet_sync.plan_bounded_replace("A1:F20", "A1:D12")
-        self.assertEqual(plan["write_range"], "A1:D12")
-        self.assertEqual(plan["clear_range"], "A1:F20")
-        matrix = [[f"{row}:{col}" for col in range(8)] for row in range(25)]
-        result = sheet_sync.apply_bounded_replace(matrix, plan, [["new"] * 4 for _ in range(12)])
-        self.assertEqual(result[20][6], "20:6")
-        self.assertEqual(result[0][0], "new")
-        self.assertEqual(result[19][5], "")
+    def test_recovery_signatures_remain_digest_exact_but_are_consumed(self) -> None:
+        self.assertEqual(
+            set(
+                sheet_sync.validate_human_layer_recovery_approvals(
+                    REPO_ROOT, require_unconsumed=False
+                )
+            ),
+            {"UPSERT_RECOVERY", "READBACK_RECOVERY"},
+        )
+        with self.assertRaisesRegex(sheet_sync.SyncError, "not unconsumed"):
+            sheet_sync.validate_human_layer_recovery_approvals(REPO_ROOT)
 
-    def test_rejects_one_shot_create_for_existing_tabs(self) -> None:
-        with self.assertRaisesRegex(sheet_sync.SyncError, "existing tab"):
-            sheet_sync.validate_create_actions(
-                ["TL_REPORT", "TL_BRAND_PROFILE"], existing_titles={"TL_BRAND_PROFILE"}
+    def test_p27_closure_plan_is_bounded_and_deterministic(self) -> None:
+        closure = sheet_sync.build_human_layer_ledger_closure(REPO_ROOT)
+        self.assertEqual(closure["status"], "DRAFT_UNSIGNED")
+        self.assertEqual(closure["external_writes_authorized"], 2)
+        self.assertEqual(
+            [action["range"] for action in closure["actions"]],
+            ["'03_OUTPUT_INDEX'!E3:F21", "'04_DECISIONS'!A20:J20"],
+        )
+        self.assertEqual(len(closure["actions"][0]["values"]), 19)
+        self.assertEqual(
+            set(tuple(row) for row in closure["actions"][0]["values"]),
+            {("SYNC_WRITE_PASS", "SYNC_READBACK_PASS")},
+        )
+        revision = closure["actions"][1]["values"][0]
+        self.assertEqual(revision[-2], "YV-REV-20260805-01")
+        self.assertEqual(revision[7], "DECIDED")
+        expected = sheet_sync.apply_human_layer_ledger_closure(
+            sheet_sync.build_human_layer_plan(REPO_ROOT), closure
+        )
+        decisions = next(tab for tab in expected["tabs"] if tab["tab"] == "04_DECISIONS")
+        self.assertEqual(decisions["row_count"], 20)
+        self.assertEqual(decisions["used_range"], "'04_DECISIONS'!A1:J20")
+        sheet_sync.validate_human_layer_plan(
+            expected, sheet_sync.load_human_layer_registry(REPO_ROOT)
+        )
+        self.assertEqual(
+            closure,
+            sheet_sync.build_human_layer_ledger_closure(REPO_ROOT),
+        )
+
+    def test_p27_closure_signatures_remain_digest_exact_but_are_consumed(self) -> None:
+        self.assertEqual(
+            set(
+                sheet_sync.validate_human_layer_ledger_closure_approvals(
+                    REPO_ROOT, require_unconsumed=False
+                )
+            ),
+            {"P2_7_LEDGER_UPSERT", "P2_7_LEDGER_READBACK"},
+        )
+        with self.assertRaisesRegex(sheet_sync.SyncError, "not unconsumed"):
+            sheet_sync.validate_human_layer_ledger_closure_approvals(REPO_ROOT)
+
+    def test_p27_structural_requests_touch_only_decision_row_20(self) -> None:
+        plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        requests = sheet_sync.build_p27_structural_requests(plan, 1314363516)
+        self.assertEqual(len(requests), 3)
+        serialized = json.dumps(requests)
+        self.assertNotIn("ConditionalFormat", serialized)
+        self.assertNotIn('"sheetId": 0', serialized)
+        self.assertIn('"startRowIndex": 19', serialized)
+        self.assertIn('"endRowIndex": 20', serialized)
+
+    def test_p28_same_payload_second_run_has_zero_diff(self) -> None:
+        base = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        expected = sheet_sync.apply_human_layer_ledger_closure(
+            base, sheet_sync.build_human_layer_ledger_closure(REPO_ROOT)
+        )
+        readback = {
+            "valueRanges": [
+                {"range": tab["used_range"], "values": copy.deepcopy(tab["values"])}
+                for tab in expected["tabs"]
+            ]
+        }
+        audit = sheet_sync.audit_human_layer_idempotency(expected, readback)
+        self.assertEqual(audit["same_payload_second_run_diff_count"], 0)
+        self.assertFalse(audit["would_write"])
+        readback["valueRanges"][0]["values"][0][0] = "drift"
+        drift = sheet_sync.audit_human_layer_idempotency(expected, readback)
+        self.assertEqual(drift["cell_diff_count"], 1)
+        self.assertTrue(drift["would_write"])
+
+    def test_p3_expected_live_plan_covers_runtime_overlay(self) -> None:
+        expected = sheet_sync.build_p3_expected_live_plan(REPO_ROOT)
+        self.assertEqual(
+            expected["workbook_content_hash"],
+            "f5a373b814c5995592514b0eea670e8c1540ad4ed8bdcb769a6f8d2365f5a585",
+        )
+        decisions = next(tab for tab in expected["tabs"] if tab["tab"] == "04_DECISIONS")
+        self.assertEqual(decisions["values"][-1][-2], "YV-REV-20260805-01")
+
+    def test_p3_approval_remains_exact_read_only_and_consumed(self) -> None:
+        approval = sheet_sync.validate_p3_live_verify_approval(
+            REPO_ROOT, require_unconsumed=False
+        )
+        self.assertEqual(approval["mutation_requests_allowed"], 0)
+        self.assertEqual(approval["read_plane_count"], 3)
+        with self.assertRaisesRegex(sheet_sync.SyncError, "consumed"):
+            sheet_sync.validate_p3_live_verify_approval(REPO_ROOT)
+
+    def test_p3_verifier_has_no_mutation_or_restore_path(self) -> None:
+        source = inspect.getsource(sheet_sync._verify_live_state_command)
+        self.assertIn("_read_human_layer_planes", source)
+        for forbidden in ("batchUpdate", "batchClear", "_restore", "addSheet", "deleteSheet", "repeatCell"):
+            self.assertNotIn(forbidden, source)
+
+    def test_readback_metadata_scope_includes_preserved_sheet(self) -> None:
+        plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        topology = {
+            "sheets": [
+                {"properties": {"title": name, "sheetId": index + 100, "index": index}}
+                for index, name in enumerate(sheet_sync.TAB_KEYS)
+            ]
+            + [
+                {
+                    "properties": {
+                        "title": "Trang tính1",
+                        "sheetId": 0,
+                        "index": 21,
+                        "gridProperties": {"rowCount": 1000, "columnCount": 26},
+                    }
+                }
+            ]
+        }
+        filtered_grid = {
+            "sheets": [
+                {"properties": {"title": name, "sheetId": index + 100, "index": index}}
+                for index, name in enumerate(sheet_sync.TAB_KEYS)
+            ]
+        }
+        sheet_sync.validate_human_layer_topology_metadata(topology)
+        self.assertEqual(
+            sheet_sync.validate_human_layer_grid_scope(filtered_grid),
+            set(sheet_sync.TAB_KEYS),
+        )
+        with self.assertRaisesRegex(sheet_sync.SyncError, "topology"):
+            sheet_sync.validate_human_layer_topology_metadata(filtered_grid)
+        self.assertEqual(
+            sheet_sync.human_layer_grid_ranges(plan),
+            [tab["used_range"] for tab in plan["tabs"]],
+        )
+
+    def test_recovery_target_requires_21_existing_blank_default_grids(self) -> None:
+        plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        topology_sheets = []
+        grid_sheets = []
+        for index, tab in enumerate(plan["tabs"]):
+            properties = {
+                "title": tab["tab"],
+                "sheetId": index + 100,
+                "index": index,
+                "gridProperties": {
+                    "rowCount": tab["row_count"],
+                    "columnCount": tab["column_count"],
+                },
+            }
+            topology_sheets.append({"properties": copy.deepcopy(properties)})
+            grid_sheets.append({"properties": copy.deepcopy(properties)})
+        topology_sheets.append(
+            {
+                "properties": {
+                    "title": "Trang tính1",
+                    "sheetId": 0,
+                    "index": 21,
+                    "gridProperties": {"rowCount": 1000, "columnCount": 26},
+                }
+            }
+        )
+        topology = {"sheets": topology_sheets}
+        filtered_grid = {"sheets": grid_sheets}
+        blank_values = {
+            "valueRanges": [{"range": tab["used_range"]} for tab in plan["tabs"]]
+        }
+        result = sheet_sync.validate_blank_human_layer_recovery_target(
+            plan, topology, filtered_grid, blank_values
+        )
+        self.assertEqual(result["blank_range_count"], 21)
+        broken = copy.deepcopy(blank_values)
+        broken["valueRanges"][0]["values"] = [["not blank"]]
+        with self.assertRaisesRegex(sheet_sync.SyncError, "not blank"):
+            sheet_sync.validate_blank_human_layer_recovery_target(
+                plan, topology, filtered_grid, broken
             )
 
-    def test_rejects_wrong_target_service_account_expiry_and_scope_drift(self) -> None:
-        now = datetime(2026, 8, 4, 15, 0, tzinfo=timezone.utc)
-        bundle = sheet_sync.example_approval_bundle(now + timedelta(hours=2))
-        sheet_sync.validate_correction_approval(bundle, now=now)
-        for field, value, message in (
-            ("spreadsheet_id", "wrong", "wrong target"),
-            ("service_account", "other@example.com", "wrong service account"),
-            ("expires_at_ict", "2026-08-04T20:00:00+07:00", "approval expired"),
-        ):
-            broken = copy.deepcopy(bundle)
-            broken[field] = value
-            with self.assertRaisesRegex(sheet_sync.SyncError, message):
-                sheet_sync.validate_correction_approval(broken, now=now)
-        broken = copy.deepcopy(bundle)
-        broken["actions"][0]["new_used_range"] = "A1:ZZ99999"
-        with self.assertRaisesRegex(sheet_sync.SyncError, "scope drift"):
-            sheet_sync.validate_correction_approval(broken, now=now)
-
-    def test_recovery_bundle_always_requires_new_approval(self) -> None:
-        recovery = sheet_sync.build_recovery_bundle("TL-SHEET-RUN2-CORRECTION-01", {"partial": True})
-        self.assertEqual(recovery["approval_state"], "NOT_GRANTED")
-        self.assertNotEqual(recovery["bundle_id"], "TL-SHEET-RUN2-CORRECTION-01")
-
-    def test_verify_only_recovery_binds_current_state_and_authorizes_no_mutation(self) -> None:
-        parent = sheet_sync.read_json(REPO_ROOT / sheet_sync.CORRECTION_DIR / "approval-bundle-unsigned.json")
-        sheets = [{"title": "Trang tính1", "sheet_id": 0}]
-        new_id = 2000000000
-        for title in sheet_sync.TAB_KEYS:
-            sheets.append({"title": title, "sheet_id": sheet_sync.EXISTING_TAB_IDS.get(title, new_id)})
-            if title not in sheet_sync.EXISTING_TAB_IDS:
-                new_id += 1
-        partial = {
-            "status": "VERIFY_FAILED",
-            "completed_phases": ["CREATE_TAB", "CLEAR_BOUNDED_RANGES", "WRITE_DATASETS", "FORMAT_AND_VALIDATE"],
-            "current_state": {"metadata": {"sheets": sheets}, "ranges": []},
-        }
-        with tempfile.TemporaryDirectory() as temp_dir:
-            root = Path(temp_dir)
-            output = root / sheet_sync.CORRECTION_DIR
-            sheet_sync.write_json(output / "approval-bundle-unsigned.json", parent)
-            sheet_sync.write_json(output / "correction-readback.json", partial)
-            recovery = sheet_sync.build_verify_only_recovery_bundle(root, parent, partial, "2026-08-06T23:59:00+07:00")
-            self.assertEqual(recovery["recovery_mode"], "EXACT_READBACK_ONLY")
-            self.assertEqual(recovery["authorized_external_mutations"], 0)
-            self.assertEqual(len(recovery["actions"]), 24)
-            self.assertEqual({action["action"] for action in recovery["actions"]}, {"EXACT_READBACK_ONLY"})
-            approved = copy.deepcopy(recovery)
-            approved["approval_state"] = "APPROVED"
-            sheet_sync.validate_exact_recovery_scope(approved, root, parent, partial)
-            approved["actions"][0]["sheet_id"] = 999
-            with self.assertRaisesRegex(sheet_sync.SyncError, "recovery scope drift"):
-                sheet_sync.validate_exact_recovery_scope(approved, root, parent, partial)
-
-    def test_repository_bindings_and_live_baseline_fail_closed(self) -> None:
-        datasets = sheet_sync.compile_datasets(REPO_ROOT)
-        snapshot = sheet_sync.read_json(
-            REPO_ROOT / sheet_sync.CORRECTION_DIR / "target-snapshot.json"
+    def test_create_and_format_requests_are_bounded_to_human_tabs(self) -> None:
+        plan = sheet_sync.build_human_layer_plan(REPO_ROOT)
+        registry = sheet_sync.load_human_layer_registry(REPO_ROOT)
+        creates = sheet_sync.build_human_layer_create_requests(plan)
+        self.assertEqual(len(creates), 21)
+        self.assertEqual(
+            [request["addSheet"]["properties"]["title"] for request in creates],
+            list(sheet_sync.TAB_KEYS),
         )
-        correction = sheet_sync.build_correction_bundle(
-            REPO_ROOT, datasets, snapshot, "2026-08-05T23:00:00+07:00"
+        self.assertEqual(
+            [request["addSheet"]["properties"]["index"] for request in creates],
+            list(range(21)),
         )
-        sheet_sync.validate_repository_bindings(correction, REPO_ROOT)
-        broken = copy.deepcopy(correction)
-        broken["repository_bindings"]["registry_sha256"] = "0" * 64
-        with self.assertRaisesRegex(sheet_sync.SyncError, "registry digest drift"):
-            sheet_sync.validate_repository_bindings(broken, REPO_ROOT)
+        sheet_ids = {name: index + 100 for index, name in enumerate(sheet_sync.TAB_KEYS)}
+        formats = sheet_sync.build_human_layer_format_requests(plan, registry, sheet_ids)
+        serialized = json.dumps(formats)
+        self.assertNotIn("ConditionalFormat", serialized)
+        self.assertNotIn('"sheetId": 0', serialized)
+        self.assertEqual(sum("setBasicFilter" in request for request in formats), 21)
+        self.assertEqual(
+            sum(
+                request.get("updateDimensionProperties", {}).get("properties", {}).get("hiddenByUser") is True
+                for request in formats
+            ),
+            42,
+        )
+        gold = sheet_sync._yv_rgb(plan["palette"]["action_required"])
+        self.assertEqual(
+            sum(
+                request.get("repeatCell", {}).get("cell", {}).get("userEnteredFormat", {}).get("backgroundColor") == gold
+                and request.get("repeatCell", {}).get("fields") == "userEnteredFormat.backgroundColor"
+                for request in formats
+            ),
+            27,
+        )
 
-        live_values = {
-            sheet["title"]: {"range": sheet.get("used_range", sheet.get("baseline_range")), "digest": sheet.get("values_digest", sheet.get("baseline_digest"))}
-            for sheet in snapshot["sheets"]
-            if sheet.get("values_digest") or sheet.get("baseline_digest")
+    def test_human_layer_snapshot_accepts_only_pristine_target(self) -> None:
+        metadata = {
+            "spreadsheetId": sheet_sync.TARGET_SPREADSHEET_ID,
+            "properties": {"title": "IMC Plan - Toplink Y Viện"},
+            "sheets": [{"properties": {"title": "Trang tính1", "sheetId": 0, "index": 0}}],
         }
-        sheet_sync.validate_live_baseline(correction, snapshot, snapshot["sheets"], live_values)
-        live_values["TL_BRAND_PROFILE"]["digest"] = "f" * 64
-        with self.assertRaisesRegex(sheet_sync.SyncError, "live values drift"):
-            sheet_sync.validate_live_baseline(correction, snapshot, snapshot["sheets"], live_values)
+        snapshot = sheet_sync.validate_human_layer_target_snapshot(
+            metadata, sheet_sync.TARGET_SERVICE_ACCOUNT
+        )
+        self.assertEqual(snapshot["sheets"][0]["sheet_id"], 0)
+        self.assertEqual(snapshot["external_writes"], 0)
 
-    def test_active_lease_is_required_before_execution(self) -> None:
+        extra = copy.deepcopy(metadata)
+        extra["sheets"].append({"properties": {"title": "report", "sheetId": 123}})
+        with self.assertRaisesRegex(sheet_sync.SyncError, "only Trang tính1"):
+            sheet_sync.validate_human_layer_target_snapshot(extra, sheet_sync.TARGET_SERVICE_ACCOUNT)
+
+        forbidden = copy.deepcopy(metadata)
+        forbidden["sheets"].append({"properties": {"title": "report_v2", "sheetId": 124}})
+        with self.assertRaisesRegex(sheet_sync.SyncError, "forbidden _v2"):
+            sheet_sync.validate_human_layer_target_snapshot(forbidden, sheet_sync.TARGET_SERVICE_ACCOUNT)
+
+        with self.assertRaisesRegex(sheet_sync.SyncError, "wrong service account"):
+            sheet_sync.validate_human_layer_target_snapshot(metadata, "wrong@example.com")
+
+    def test_bounded_replace_clears_only_union_tail(self) -> None:
+        self.assertEqual(
+            sheet_sync.plan_bounded_replace("A1:C10", "A1:B4"),
+            {"clear_range": "A1:C10", "write_range": "A1:B4"},
+        )
+
+    def test_material_edit_resets_approval(self) -> None:
+        payload = {"content_hash": "old", "verdict": "APPROVED", "publish_state": "READY"}
+        reset = sheet_sync.reset_approval_on_material_edit(payload, "new")
+        self.assertEqual(reset["verdict"], "NEEDS_HUMAN_REVIEW")
+        self.assertEqual(reset["publish_state"], "BLOCKED")
+
+    def test_create_action_rejects_existing_titles(self) -> None:
+        with self.assertRaisesRegex(sheet_sync.SyncError, "existing tab"):
+            sheet_sync.validate_create_actions(["report"], {"Trang tính1", "report"})
+
+    def test_active_lease_is_required(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / "task.md").write_text(
-                "| Codex CLI (`root`) | `.trellis/scripts/toplink_sheet_sync.py` | now | Sheet correction with digest-bound approval |\n",
+                "| Codex CLI (`root`) | `.trellis/scripts/toplink_sheet_sync.py` | now | digest-bound approval |\n",
                 encoding="utf-8",
             )
             sheet_sync.validate_active_lease(root)
-            (root / "task.md").write_text("## no active lease\n", encoding="utf-8")
+            (root / "task.md").write_text("## Lease\n", encoding="utf-8")
             with self.assertRaisesRegex(sheet_sync.SyncError, "lease drift"):
                 sheet_sync.validate_active_lease(root)
 
-    def test_bundle_has_10_creates_24_bounded_replacements_and_native_rules(self) -> None:
-        datasets = sheet_sync.compile_datasets(REPO_ROOT)
-        sheets = [{"title": "Trang tính1", "sheet_id": 0}]
-        sheets.extend(
-            {"title": title, "sheet_id": sheet_id}
-            for title, sheet_id in sheet_sync.EXISTING_TAB_IDS.items()
-        )
-        correction = sheet_sync.build_correction_bundle(
-            REPO_ROOT,
-            datasets,
-            {"spreadsheet_id": sheet_sync.TARGET_SPREADSHEET_ID, "sheets": sheets},
-            "2026-08-05T23:00:00+07:00",
-        )
-        self.assertEqual(len(correction["create_actions"]), 10)
-        self.assertEqual(len(correction["actions"]), 24)
-        self.assertEqual({item["action"] for item in correction["actions"]}, {"REPLACE_RANGE"})
-        for action in correction["actions"]:
-            self.assertEqual(action["formatting"]["frozen_rows"], 1)
-            fields = {item["field"] for item in action["validations"]}
-            self.assertTrue({"evidence_status", "allowed_use"}.issubset(fields))
-            self.assertNotIn("DELETE", json.dumps(action))
-            self.assertNotIn("RENAME", json.dumps(action))
-        approved = copy.deepcopy(correction)
-        approved["approval_state"] = "APPROVED"
-        sheet_sync.validate_exact_correction_scope(approved, REPO_ROOT, datasets, {"spreadsheet_id": sheet_sync.TARGET_SPREADSHEET_ID, "sheets": sheets})
-        for mutation in ("create", "tab", "clear", "validation", "scope", "missing", "duplicate", "sheet_id"):
-            broken = copy.deepcopy(approved)
-            if mutation == "create":
-                broken["create_actions"][0]["tab_key"] = "UNAPPROVED_TAB"
-            elif mutation == "tab":
-                broken["actions"][0]["tab_key"] = "Trang tính1"
-            elif mutation == "clear":
-                broken["actions"][0]["clear_range"] = "A1:Z1000"
-            elif mutation == "validation":
-                broken["actions"][0]["validations"] = []
-            elif mutation == "scope":
-                broken["scope_sha256"] = "0" * 64
-            elif mutation == "missing":
-                broken["actions"].pop()
-            elif mutation == "duplicate":
-                broken["actions"][1] = copy.deepcopy(broken["actions"][0])
-            else:
-                broken["actions"][10]["sheet_id"] = 999
-            with self.assertRaisesRegex(sheet_sync.SyncError, "scope drift"):
-                sheet_sync.validate_exact_correction_scope(broken, REPO_ROOT, datasets, {"spreadsheet_id": sheet_sync.TARGET_SPREADSHEET_ID, "sheets": sheets})
+    def test_partial_write_is_verify_failed_without_automatic_rollback(self) -> None:
+        evidence = sheet_sync.record_partial_write(["report"], ["00_Y_VIEN_CAN_CHOT"])
+        self.assertEqual(evidence["status"], "VERIFY_FAILED")
+        self.assertFalse(evidence["automatic_rollback"])
+        self.assertTrue(evidence["new_approval_required"])
 
-    def test_live_baseline_uses_historical_v2_no_newline_digest(self) -> None:
-        payload = sheet_sync.read_json(REPO_ROOT / "docs Toplink/staging/run2/codex/61-sheet-payload-v2.json")
-        brand = next(tab for tab in payload["tabs"] if tab["tab_key"] == "TL_BRAND_PROFILE")
-        self.assertEqual(sheet_sync.sha256_v2_values(brand["values"]), "9917067b522ef620364712e44ce4d042965eb2a121ef565aef02ac7834e6cf5e")
-        self.assertNotEqual(sheet_sync.sha256_json(brand["values"]), sheet_sync.sha256_v2_values(brand["values"]))
-        normalized_blank = sheet_sync.normalize_matrix([], width=26, height=1000)
-        self.assertEqual(sheet_sync.sha256_v2_values(normalized_blank), "ab636994b1e61d22f6980d6ffd6cf59bc93d7ff9869f66286e1646064cb02ee8")
-
-
-class ReadbackTests(unittest.TestCase):
-    def test_detects_reordered_row_unicode_formula_validation_and_sheet_id_drift(self) -> None:
-        expected = {
-            "sheet_id": 123,
-            "values": [["record_id", "formula"], ["TL-01", "=1+1"], ["TL-02", "Tiếng Việt"]],
-            "formulas": [["", ""], ["", "=1+1"], ["", ""]],
-            "validations": {"A2:A3": ["TL-01", "TL-02"]},
+    def test_expired_approval_fails_closed(self) -> None:
+        bundle = {
+            "spreadsheet_id": sheet_sync.TARGET_SPREADSHEET_ID,
+            "service_account": sheet_sync.TARGET_SERVICE_ACCOUNT,
+            "operator": "Codex CLI",
+            "expires_at_ict": (datetime.now(timezone.utc) - timedelta(days=1)).isoformat(),
+            "approval_state": "APPROVED",
+            "actions": [],
         }
-        sheet_sync.verify_dataset_readback(expected, copy.deepcopy(expected))
-        mutations = (
-            ("values", [["record_id", "formula"], ["TL-02", "Tiếng Việt"], ["TL-01", "=1+1"]]),
-            ("values", [["record_id", "formula"], ["TL-01", "=1+1"], ["TL-02", "Tieng Viet"]]),
-            ("formulas", [["", ""], ["", ""], ["", ""]]),
-            ("validations", {}),
-            ("sheet_id", 456),
-        )
-        for field, value in mutations:
-            actual = copy.deepcopy(expected)
-            actual[field] = value
-            with self.assertRaises(sheet_sync.SyncError):
-                sheet_sync.verify_dataset_readback(expected, actual)
-
-    def test_partial_write_is_verify_failed_and_not_auto_rollback(self) -> None:
-        state = sheet_sync.record_partial_write(["TL_REPORT"], ["TL_OWNER_ACTIONS"])
-        self.assertEqual(state["status"], "VERIFY_FAILED")
-        self.assertFalse(state["automatic_rollback"])
-        self.assertTrue(state["new_approval_required"])
-
-    def test_native_sheet_state_checks_format_validation_and_dates(self) -> None:
-        action = {
-            "tab_key": "TL_REPORT",
-            "max_rows": 2,
-            "max_columns": 2,
-            "formatting": {"frozen_rows": 1, "date_format": "yyyy-mm-dd hh:mm:ss"},
-            "validations": [{"column_index": 0, "allowed_values": ["A", "B"]}],
-            "date_columns": [1],
-        }
-        header_format = {
-            "wrapStrategy": "WRAP",
-            "backgroundColor": {"red": 0.4196, "green": 0.1216, "blue": 0.2118},
-            "textFormat": {"foregroundColor": {"red": 1, "green": 1, "blue": 1}, "bold": True},
-        }
-        sheet = {
-            "properties": {"sheetId": 123, "gridProperties": {"frozenRowCount": 1}},
-            "data": [{
-                "columnMetadata": [{"pixelSize": 180}, {"pixelSize": 180}],
-                "rowData": [
-                    {"values": [{"userEnteredFormat": copy.deepcopy(header_format)}, {"userEnteredFormat": copy.deepcopy(header_format)}]},
-                    {"values": [
-                        {"userEnteredFormat": {"wrapStrategy": "WRAP"}, "dataValidation": {"strict": True, "condition": {"type": "ONE_OF_LIST", "values": [{"userEnteredValue": "A"}, {"userEnteredValue": "B"}]}}},
-                        {"userEnteredFormat": {"wrapStrategy": "WRAP", "numberFormat": {"type": "DATE_TIME", "pattern": "yyyy-mm-dd hh:mm:ss"}}},
-                    ]},
-                ],
-            }],
-        }
-        sheet_sync.verify_native_sheet_readback(action, sheet, 123)
-        quantized = copy.deepcopy(sheet)
-        quantized["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["backgroundColor"]["red"] = 0.41568628
-        sheet_sync.verify_native_sheet_readback(action, quantized, 123)
-        for mutate in ("frozen", "width", "wrap", "header", "color", "validation", "date"):
-            broken = copy.deepcopy(sheet)
-            if mutate == "frozen": broken["properties"]["gridProperties"]["frozenRowCount"] = 0
-            elif mutate == "width": broken["data"][0]["columnMetadata"][0]["pixelSize"] = 100
-            elif mutate == "wrap": broken["data"][0]["rowData"][1]["values"][0]["userEnteredFormat"]["wrapStrategy"] = "OVERFLOW_CELL"
-            elif mutate == "header": broken["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["textFormat"]["bold"] = False
-            elif mutate == "color": broken["data"][0]["rowData"][0]["values"][0]["userEnteredFormat"]["backgroundColor"]["red"] = 0.3
-            elif mutate == "validation": broken["data"][0]["rowData"][1]["values"][0]["dataValidation"]["strict"] = False
-            else: broken["data"][0]["rowData"][1]["values"][1]["userEnteredFormat"]["numberFormat"]["pattern"] = "wrong"
-            with self.assertRaises(sheet_sync.SyncError):
-                sheet_sync.verify_native_sheet_readback(action, broken, 123)
-
-    def test_partial_failure_persists_verify_failed_and_unsigned_recovery(self) -> None:
-        class FailingSheets:
-            def get(self, **_kwargs):
-                raise RuntimeError("capture unavailable")
-        with tempfile.TemporaryDirectory() as temp_dir:
-            root = Path(temp_dir)
-            approved = {"bundle_id": "TL-SHEET-RUN2-CORRECTION-01", "actions": [{"tab_key": "TL_REPORT"}]}
-            sheet_sync.persist_partial_failure(root, approved, ["CREATE_TAB"], RuntimeError("write failed"), FailingSheets())
-            evidence = sheet_sync.read_json(root / sheet_sync.CORRECTION_DIR / "correction-readback.json")
-            recovery = sheet_sync.read_json(root / sheet_sync.CORRECTION_DIR / "recovery-bundle-unsigned.json")
-            self.assertEqual(evidence["status"], "VERIFY_FAILED")
-            self.assertTrue(recovery["new_approval_required"])
-            self.assertEqual(recovery["approval_state"], "NOT_GRANTED")
+        with self.assertRaisesRegex(sheet_sync.SyncError, "expired"):
+            sheet_sync.validate_correction_approval(bundle)
 
 
 class CliContractTests(unittest.TestCase):
-    def test_cli_exposes_all_correction_commands(self) -> None:
+    def test_cli_exposes_human_layer_commands(self) -> None:
         parser = sheet_sync.build_parser()
         choices = next(action for action in parser._actions if action.dest == "command").choices
-        self.assertEqual(
-            set(choices),
-            {
-                "compile-datasets",
-                "validate-datasets",
-                "snapshot-target",
-                "build-correction-bundle",
-                "build-recovery-bundle",
-                "validate-approval",
-                "execute-correction",
-                "execute-recovery",
-                "verify-readback",
-            },
-        )
-
-    def test_writes_one_deterministic_json_sidecar_per_dataset(self) -> None:
-        bundle = sheet_sync.compile_datasets(REPO_ROOT)
-        with tempfile.TemporaryDirectory() as temp_dir:
-            paths = sheet_sync.write_dataset_sidecars(bundle, Path(temp_dir))
-            self.assertEqual(len(paths), 24)
-            parsed = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
-            self.assertEqual({item["dataset_key"] for item in parsed}, set(sheet_sync.TAB_KEYS))
+        for command in (
+            "compile-datasets",
+            "validate-datasets",
+            "build-report-plan",
+            "snapshot-target",
+            "snapshot-human-layer-recovery",
+            "execute-human-layer",
+            "execute-human-layer-recovery",
+            "verify-human-layer-recovery",
+            "build-human-layer-ledger-closure",
+            "execute-human-layer-ledger-closure",
+            "verify-human-layer-ledger-closure",
+            "audit-human-layer-idempotency",
+            "verify-live-state",
+            "verify-readback",
+        ):
+            self.assertIn(command, choices)
 
 
 if __name__ == "__main__":

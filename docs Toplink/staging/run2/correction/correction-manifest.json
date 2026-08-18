@@ -14,8 +14,8 @@
     "classification": "TECHNICAL_READBACK_PASS · BUSINESS_MODEL_FAILED"
   },
   "target_model": "TL-SHEET-001/0.2.0/24-DATASETS",
-  "state": "VERIFY_FAILED_RECOVERY_APPROVAL_PENDING",
-  "approval_state": "PARENT_APPROVAL_CONSUMED",
+  "state": "SYNC_READBACK_PASS_OUTPUT_INDEX_CLOSURE_APPROVAL_PENDING",
+  "approval_state": "PARENT_AND_RECOVERY_APPROVALS_CONSUMED",
   "registry_path": "docs/system/toplink-sheet-dataset-registry.json",
   "registry_sha256": "681689306b0ce32a3d540daec4662aaa1b993dbb59753ccdbe53c12713da5f08",
   "dataset_bundle_path": "docs Toplink/staging/run2/correction/dataset-bundle.json",
@@ -28,12 +28,37 @@
   "independent_review_state": "PASS_ZERO_CRITICAL_MAJOR_MINOR",
   "partial_failure_path": "docs Toplink/staging/run2/correction/correction-readback.json",
   "partial_failure_sha256": "bfeae57fa6d4c60ca7f77066214a67d6e87ea247803f08687f2733ff0dcb4679",
+  "partial_failure_git_checkpoint": "5cfc73e",
   "completed_mutation_phases": ["CREATE_TAB", "CLEAR_BOUNDED_RANGES", "WRITE_DATASETS", "FORMAT_AND_VALIDATE"],
   "recovery_bundle_path": "docs Toplink/staging/run2/correction/recovery-bundle-unsigned.json",
   "recovery_bundle_sha256": "319b3bb821246e1b56c3552aaedaf090369643037a6b9ddf6e3fa4fca14a8c7c",
   "recovery_mode": "EXACT_READBACK_ONLY",
   "recovery_authorized_external_mutations": 0,
+  "recovery_state": "SYNC_READBACK_PASS",
+  "correction_readback_path": "docs Toplink/staging/run2/correction/correction-readback.json",
+  "correction_readback_sha256": "75f85457fdd69a78de4c09de8808b7328fa62b0a635ea69a83773f914ae2c4d8",
+  "correction_readback_tab_count": 24,
+  "correction_readback_mismatch_count": 0,
+  "preserved_trang_tinh1_sheet_id": 0,
+  "output_index_reconciliation": {
+    "current_payload_state": "SYNC_PENDING_APPROVAL · NOT_AVAILABLE",
+    "record_count": 14,
+    "required_final_state": "SYNC_READBACK_PASS · SYNC_READBACK_PASS",
+    "closure_bundle_path": "docs Toplink/staging/run2/correction/output-index-closure-bundle-unsigned.json",
+    "closure_bundle_sha256": "e43cc9594828911d4041ede278874486866579c2e7878c95968151ff4d97cc6f",
+    "closure_mode": "OUTPUT_INDEX_STATUS_FINALIZE",
+    "approval_state": "DRAFT_UNSIGNED",
+    "approved_ranges": ["H2:H15", "K2:K15", "S2:S15", "T2:T15"],
+    "authorized_external_mutations": 1,
+    "mutation_api_call_limit": 1,
+    "external_mutations_to_date": 0
+  },
   "external_writes": 4,
+  "external_write_accounting": {
+    "parent_completed_mutation_phases": 4,
+    "recovery_mutation_api_calls": 0,
+    "output_index_closure_mutation_api_calls": 0
+  },
   "macro_run_count": 2,
   "created_at_ict": "2026-08-04T21:20:38+07:00"
 }
