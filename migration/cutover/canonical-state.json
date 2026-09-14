@@ -24,7 +24,7 @@
     "remote": "https://github.com/Altair1010/IMC-Plan-Toplink-Y-Vien",
     "canonical_branch": "main",
     "verified_runtime_revision": "d95397b",
-    "promotion_payload_revision": "PENDING_FIRST_CUTOVER_COMMIT"
+    "promotion_payload_revision": "393dba937acf87bbe48a5b9304ac5b49e2c18ba4"
   },
   "authority": {
     "public_page_publication": false,

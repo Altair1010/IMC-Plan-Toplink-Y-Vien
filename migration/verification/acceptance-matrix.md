@@ -10,7 +10,7 @@ eligible to pass before the owner cutover gate.
 | ID | Requirement / observable condition | Level | Evidence | Verdict |
 |---|---|---:|---|---|
 | ID-01 | Historical Toplink files are not renamed or deleted | E2 | Git diff; baseline manifest | PASS |
-| ID-02 | KTD becomes canonical at cutover | E3 | GM-9 post-cutover readback | NOT_TESTED — GM-9 gate |
+| ID-02 | KTD becomes canonical at cutover | E3 | GM-9 Sheet and remote-main readback | PASS |
 | ID-03 | Legacy lineage is explainable without becoming current context | E2 | migration ledger; runtime-context test | PASS |
 | ID-04 | No current KTD fact is inferred solely from legacy | E1 | fact provenance and unknown register | PASS |
 | CON-01 | Legal-pending data does not block ordinary KTD planning | E2 | runtime-context test; Sheet readback | PASS |
@@ -58,9 +58,9 @@ eligible to pass before the owner cutover gate.
 
 ## Summary
 
-- Blocking PASS: 42
+- Blocking PASS: 43
 - Non-blocking PASS_WITH_NOTE: 3
-- GM-9-only NOT_TESTED: 1
+- GM-9-only NOT_TESTED: 0
 - FAIL: 0
 - BLOCKED: 0
 

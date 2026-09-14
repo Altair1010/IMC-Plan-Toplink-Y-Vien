@@ -4,7 +4,7 @@
   "DONE": "Frozen by migration/program/control-card.yaml and the owner specification Section 3.2.",
   "CURRENT_PHASE": "GM-9",
   "CURRENT_STATE": {
-    "program_state": "PROMOTION_PENDING",
+    "program_state": "DONE",
     "package_integrity": "PASS",
     "repository_identity": "PASS",
     "legacy_workbook_identity": "PASS",
@@ -19,25 +19,26 @@
     "verification": "PASS",
     "staging_workbook_id": "1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794",
     "target_plan_fingerprint": "627ab66d724c2e5017a3ee613433d65ba11048233c42b523bf288ee71e043c30",
-    "cutover_authorized": false
+    "cutover_authorized": true,
+    "canonical_workbook_id": "1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794",
+    "legacy_reference_workbook_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+    "promotion_payload_revision": "393dba937acf87bbe48a5b9304ac5b49e2c18ba4"
   },
-  "ACTIVE_ROUTE": "Wait at the GM-9 promotion edge; revalidate the exact fingerprint and rollback pointer only after explicit owner authorization.",
+  "ACTIVE_ROUTE": "STOP — all frozen DONE conditions are satisfied.",
   "OPEN_HYPOTHESES": [
     "The parent workspace may not contain authoritative current KTD facts beyond the live owner instruction and locked package decisions.",
-    "The owner may authorize GM-9 later; until then the verified staging workbook remains non-canonical."
+    "Eight unsupported current business fact families remain explicit UNKNOWN and must not be promoted without future current evidence."
   ],
-  "LAST_ACTION": "Verified the exact five-tab staging workbook, Control Plane, active runtime, authority guard, and pre-cutover acceptance matrix.",
+  "LAST_ACTION": "Promoted the exact verified KTD workbook and repository pointers, then read back canonical and rollback state.",
   "LAST_EVIDENCE": [
     "migration/baseline/baseline-manifest.json",
     "migration/evidence/staging-workbook-readback.md",
     "migration/verification/acceptance-matrix.md",
     "F:/tmp/evidence AMH v0.3/runs/2026-09/KTD-GM-20260914-201546-f9ea6b6/run.json"
   ],
-  "BLOCKERS": [
-    "GM-9 cutover requires AUTHORIZE_GM0_TO_GM9_CUTOVER = YES."
-  ],
+  "BLOCKERS": [],
   "RISK_LEVEL": "A3",
-  "NEXT_ALLOWED_ACTION": "Receive explicit cutover authorization, then revalidate and promote the exact verified target without rebuilding it.",
+  "NEXT_ALLOWED_ACTION": "STOP",
   "CONVERGENCE": "PROGRESSING",
   "PHASE_VERDICTS": {
     "GM-0": "PASS",
@@ -49,7 +50,7 @@
     "GM-6": "PASS",
     "GM-7": "PASS",
     "GM-8": "PASS",
-    "GM-9": "PROMOTION_PENDING"
+    "GM-9": "PASS"
   },
   "CHECKPOINTS": [
     {
@@ -99,6 +100,12 @@
       "phase": "GM-8",
       "state": "VERIFIED",
       "evidence": "migration/verification/acceptance-matrix.md"
+    },
+    {
+      "timestamp": "2026-09-14T21:20:26+07:00",
+      "phase": "GM-9",
+      "state": "DONE",
+      "evidence": "migration/cutover/cutover-record.yaml"
     }
   ],
   "EVIDENCE_RUN_ID": "KTD-GM-20260914-201546-f9ea6b6"

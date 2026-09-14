@@ -1,6 +1,6 @@
 # GM-9 Cutover Plan
 
-Status: `PROMOTION_PENDING`
+Status: `DONE`
 
 ## Locked inputs
 
@@ -10,21 +10,19 @@ Status: `PROMOTION_PENDING`
 - Legacy rollback/reference workbook: `1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms`
 - Acceptance matrix: `migration/verification/acceptance-matrix.md`
 
-## Gate
+## Gate result
 
-Do not promote until the owner supplies exactly:
-
-`AUTHORIZE_GM0_TO_GM9_CUTOVER = YES`
+The owner supplied `AUTHORIZE_GM0_TO_GM9_CUTOVER = YES` in the GM-9 invocation.
 
 This gate does not authorize public publication, force-push, legacy deletion, or irreversible
 permission changes.
 
-## Bounded execution after authorization
+## Completed bounded execution
 
-1. Re-read source and staging workbook identities and exact five-tab topology.
-2. Recompute the deterministic plan fingerprint and verify it remains exact.
-3. Re-run the KTD tests and reopen only affected acceptance rows if drift exists.
-4. Confirm the legacy workbook remains the rollback/reference object.
-5. Promote the exact verified KTD pointers without rebuilding the workbook.
-6. Read back canonical workbook, runtime mapping, and legacy accessibility.
-7. Write the cutover record, finalize AMH state as DONE, and stop.
+1. Source and staging workbook identities and exact five-tab topology were re-read.
+2. The deterministic fingerprint remained exact.
+3. KTD tests passed; no affected GM-0 through GM-8 row reopened.
+4. The 22-tab legacy workbook remained accessible as rollback/reference.
+5. The exact workbook was renamed to CURRENT CANONICAL without rebuilding its cells.
+6. Repository `main` was fast-forwarded without force or history rewrite.
+7. Canonical workbook, runtime mapping, repository ref, and legacy accessibility were read back.

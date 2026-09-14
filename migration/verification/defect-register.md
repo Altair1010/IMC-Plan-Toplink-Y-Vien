@@ -17,5 +17,6 @@
   approvals; `git diff --name-only` shows no changes to legacy runtime or fixtures.
 - Disposition: accepted non-blocking legacy-reference failure. Repairing or renewing the
   approvals would resurrect obsolete governance and is outside the active route.
-- Retest: the isolated KTD suite passes; all other 68 repository tests pass.
+- Retest: the isolated KTD suite passes; 70 of 74 repository tests pass. The same four legacy
+  approval-expiry tests remain the only errors.
 - Convergence: PROGRESSING.
