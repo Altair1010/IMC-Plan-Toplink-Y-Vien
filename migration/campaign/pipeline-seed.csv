@@ -1,0 +1,4 @@
+item_type,phase,topic,story_angle,format,asset_requirement,cta,human_status,grounding_status,result,learning
+PLANNED_CAPTURE_NEED,Dry Run,Dry Run and standardization,One real event and the correction it produced,Short video or photo story,Current event record plus usable media rights,Follow or save,Ý tưởng,CURRENT_EVENT_PENDING,,
+PLANNED_CAPTURE_NEED,Dry Run,KTD taking shape,One verified preparation detail and why it matters,Photo story or short video,Current visual plus verified factual context,Follow or share,Ý tưởng,CURRENT_ASSET_PENDING,,
+PLANNED_CAPTURE_NEED,Dry Run,KTD people,One current working standard shown through human effort,Behind-the-scenes short video,Current owner-confirmed standard plus usable media,Save or message KTD,Ý tưởng,CURRENT_STANDARD_PENDING,,
