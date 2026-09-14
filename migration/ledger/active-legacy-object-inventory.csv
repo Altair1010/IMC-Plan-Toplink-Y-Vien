@@ -1,0 +1,51 @@
+object_id,object_type,legacy_object,legacy_path_or_tab,active_relevance
+KTD-L-001,SHEET,Legacy report projection,report,Current-state projection risk
+KTD-L-002,SHEET,Owner action surface,00_Y_VIEN_CAN_CHOT,Current-state projection risk
+KTD-L-003,SHEET,Legacy control surface,00_CONTROL,Machine topology source
+KTD-L-004,SHEET,Source inventory,01_SOURCE_INVENTORY,Lineage source
+KTD-L-005,SHEET,Input gaps,02_INPUT_GAPS,Legacy constraint source
+KTD-L-006,SHEET,Output index,03_OUTPUT_INDEX,Legacy artifact binding
+KTD-L-007,SHEET,Decision log,04_DECISIONS,Historical decision provenance
+KTD-L-008,SHEET,KPI dictionary,05_KPI_DICTIONARY,Reusable metric semantics
+KTD-L-009,SHEET,Compliance rules,06_COMPLIANCE_RULES,Obsolete active constraint risk
+KTD-L-010,SHEET,Legacy brand profile,YV_01_brand_profile,Brand lineage
+KTD-L-011,SHEET,Legacy audience,YV_02_audience,Audience lineage
+KTD-L-012,SHEET,Legacy positioning,YV_03_positioning,Positioning lineage
+KTD-L-013,SHEET,Legacy narrative,YV_04_narrative,Narrative lineage
+KTD-L-014,SHEET,Legacy content pillars,YV_05_content_pillars,Content method lineage
+KTD-L-015,SHEET,Legacy Page strategy,YV_06_page_strategy,Page strategy lineage
+KTD-L-016,SHEET,Legacy campaign,YV_07_campaign,Campaign lineage
+KTD-L-017,SHEET,Legacy experiments,YV_08_experiments,Obsolete experiment surface
+KTD-L-018,SHEET,Legacy content calendar,YV_09_content_calendar,Calendar lineage
+KTD-L-019,SHEET,Legacy production briefs,YV_10_production_briefs,Production craft lineage
+KTD-L-020,SHEET,Legacy asset batch plan,YV_11_asset_batch_plan,Asset lineage
+KTD-L-021,SHEET,Legacy workflow approval,YV_12_workflow_approval,Obsolete approval risk
+KTD-L-022,SHEET,Preserved default sheet,Trang tính1,Legacy workbook completeness
+KTD-L-023,REPO,Root governance and runtime instructions,AGENTS.md; CLAUDE.md; RULES.md; GOVERNANCE.md; spec.md,Legacy context-loader risk
+KTD-L-024,REPO,Legacy brand dossier,docs Toplink/Ho-so-thuong-hieu-Y-Vien-Toplink-Cai-tien-2026.md,Brand lineage
+KTD-L-025,REPO,Legacy positioning and pillars,docs Toplink/01_positioning_and_pillars.md,Strategy lineage
+KTD-L-026,REPO,Legacy communication safety,docs Toplink/02_communication_safety.md,Obsolete gate risk and bounded craft
+KTD-L-027,REPO,Legacy product and service sources,docs Toplink/03_product_may_vtv.md through 11_Product_Yvien.md,Claim-contamination risk
+KTD-L-028,REPO,Legacy scripts and content formulas,docs Toplink/09_scripts_and_hooks.md; 10_content_formulas_and_checklist.md,Reusable method
+KTD-L-029,REPO,Legacy master plan,docs Toplink/TOPLINK_PAGE_MASTER_PLAN.md,Strategy lineage
+KTD-L-030,REPO,Legacy milestones,docs Toplink/TOPLINK_PAGE_MILESTONES.md,Obsolete lifecycle risk
+KTD-L-031,REPO,Legacy campaign architecture,docs Toplink/brand/campaign-architecture.md,Campaign lineage
+KTD-L-032,REPO,Legacy content pillars,docs Toplink/brand/content-pillars.md,Content method lineage
+KTD-L-033,REPO,Legacy DMP profile,docs Toplink/brand/dmp-profile.md,Obsolete runtime profile risk
+KTD-L-034,REPO,Legacy Facebook Page strategy,docs Toplink/brand/facebook-page-strategy.md,Page strategy lineage
+KTD-L-035,REPO,Legacy experiment plan,docs Toplink/brand/kpi-experiment-plan.md,Obsolete experiment framework
+KTD-L-036,REPO,Legacy narrative,docs Toplink/brand/narrative.md,Narrative lineage
+KTD-L-037,REPO,Legacy positioning,docs Toplink/brand/positioning.md,Positioning lineage
+KTD-L-038,REPO,Legacy asset and production materials,docs Toplink/content/asset-and-batch-plan.md; production-briefs.md; reels-briefs.md,Production and asset lineage
+KTD-L-039,REPO,Legacy month calendar,docs Toplink/content/month-calendar.md,Calendar-first contamination risk
+KTD-L-040,REPO,Legacy workflow approval,docs Toplink/content/workflow-approval-measurement.md,Obsolete approval risk
+KTD-L-041,REPO,Legacy audience research,docs Toplink/research/audience-hypotheses.md,Audience hypothesis lineage
+KTD-L-042,REPO,Legacy active constraint assets,docs Toplink/system/compliance-rules.md; input-gaps.md; owner-decisions.md,Obsolete constraint injection risk
+KTD-L-043,REPO,Legacy staging and audit history,docs Toplink/staging/**; staging/toplink-reconciled/**,Historical evidence
+KTD-L-044,RUNTIME,Legacy Sheet sync runtime,.trellis/scripts/toplink_sheet_sync.py,Active old-schema consumer
+KTD-L-045,RUNTIME,Legacy human-layer builder,.trellis/scripts/yv_build_report_plan.py,Active old-schema builder
+KTD-L-046,RUNTIME,Legacy dataset registries,docs/system/toplink-sheet-dataset-registry.json; yvien-sheet-dataset-registry.json,Active topology source
+KTD-L-047,RUNTIME,Legacy human-layer specification,docs/system/yvien-sheet-human-layer-spec.md,Active topology source
+KTD-L-048,RUNTIME,Legacy Sheet runtime tests,.trellis/scripts/tests/test_toplink_sheet_sync.py; test_yv_report_plan.py,Old-schema test dependency
+KTD-L-049,RUNTIME,Legacy prompt and context loaders,AGENTS.md; CLAUDE.md; docs/prompts/TOPLINK_*.md,Obsolete constraint injection risk
+KTD-L-050,RUNTIME,Toplink communication safety skill,.agents/skills/toplink-communication-safety/**,Obsolete default-loader risk

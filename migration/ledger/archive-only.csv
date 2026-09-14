@@ -1,0 +1,24 @@
+object_id,legacy_object,archive_reason
+KTD-L-001,Legacy report projection,Legacy derived view
+KTD-L-002,Owner action surface,Legacy blocker projection
+KTD-L-004,Source inventory,Repository provenance replaces active tab
+KTD-L-005,Input gaps,Obsolete active constraint surface
+KTD-L-006,Output index,Legacy artifact binding
+KTD-L-007,Decision log,Historical provenance
+KTD-L-009,Compliance rules,Removed active constraint
+KTD-L-017,Legacy experiments,Explicitly removed from active workbook
+KTD-L-021,Legacy workflow approval,Removed active approval gate
+KTD-L-022,Preserved default sheet,Legacy workbook only
+KTD-L-023,Root governance and runtime instructions,Legacy runtime context
+KTD-L-026,Legacy communication safety,Legacy claim-centered controls
+KTD-L-027,Legacy product and service sources,Legacy claim contamination risk
+KTD-L-029,Legacy master plan,Superseded current authority
+KTD-L-030,Legacy milestones,Superseded lifecycle
+KTD-L-033,Legacy DMP profile,Superseded generation context
+KTD-L-035,Legacy experiment plan,Removed experiment framework
+KTD-L-040,Legacy workflow approval,Removed approval workflow
+KTD-L-042,Legacy active constraint assets,Removed active constraints
+KTD-L-043,Legacy staging and audit history,Historical evidence only
+KTD-L-045,Legacy human-layer builder,Preserve legacy reproducibility
+KTD-L-047,Legacy human-layer specification,Superseded topology
+KTD-L-050,Toplink communication safety skill,Excluded from KTD default routing

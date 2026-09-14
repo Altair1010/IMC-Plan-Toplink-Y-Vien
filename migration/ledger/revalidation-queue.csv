@@ -1,0 +1,6 @@
+object_id,legacy_object,blocking_unknown,target_object
+KTD-L-011,Legacy audience,KTD-U-008,YV_02_AUDIENCE_PAGE
+KTD-L-020,Legacy asset batch plan,KTD-U-006,YV_04_CAMPAIGN_CALENDAR
+KTD-L-025,Legacy positioning and pillars,KTD-U-002; KTD-U-008,YV_01_BRAND; YV_03_CONTENT_SYSTEM
+KTD-L-038,Legacy asset and production materials,KTD-U-006,YV_03_CONTENT_SYSTEM; YV_04_CAMPAIGN_CALENDAR
+KTD-L-041,Legacy audience research,KTD-U-008,YV_02_AUDIENCE_PAGE

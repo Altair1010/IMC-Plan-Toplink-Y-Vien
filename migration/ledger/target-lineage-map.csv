@@ -1,0 +1,7 @@
+target_object,legacy_object_ids,current_authority
+YV_01_BRAND,KTD-L-010; KTD-L-012; KTD-L-013; KTD-L-024; KTD-L-025; KTD-L-036; KTD-L-037,migration/current-truth/CURRENT_KTD_TRUTH.md
+YV_02_AUDIENCE_PAGE,KTD-L-011; KTD-L-015; KTD-L-034; KTD-L-041,migration/current-truth/CURRENT_KTD_TRUTH.md and explicit unknown register
+YV_03_CONTENT_SYSTEM,KTD-L-013; KTD-L-014; KTD-L-019; KTD-L-025; KTD-L-028; KTD-L-032; KTD-L-036; KTD-L-038,migration package 04 and current truth boundary
+YV_04_CAMPAIGN_CALENDAR,KTD-L-008; KTD-L-016; KTD-L-018; KTD-L-019; KTD-L-020; KTD-L-031; KTD-L-038; KTD-L-039; KTD-L-040,migration package 02 04 and 05
+_CONTROL_PLANE,KTD-L-003; KTD-L-006; KTD-L-044; KTD-L-046,migration package 06
+KTD_RUNTIME_CONTEXT,KTD-L-023; KTD-L-029; KTD-L-030; KTD-L-033; KTD-L-042; KTD-L-049; KTD-L-050,migration/current-truth/CURRENT_KTD_TRUTH.md
