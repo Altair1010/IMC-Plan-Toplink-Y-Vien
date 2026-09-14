@@ -1,0 +1,39 @@
+fan_in_owner: KTD Great Migration program controller
+mutation_policy: All canonical and shared mutations are serialized.
+loops:
+  - loop_id: WS-A
+    purpose: Establish package, repository, workbook, and lineage provenance.
+    input_boundary: Migration package, Git metadata, read-only workbook metadata.
+    output_contract: Baseline manifest and source-authority map.
+    mutation_allowed: false
+    dependencies: []
+    max_retry_without_mechanism_delta: 1
+    convergence_signal: A source identity or drift classification is proven.
+    stop_signal: GM-0 blocking rows have evidence.
+  - loop_id: WS-B
+    purpose: Extract current KTD facts and explicit unknowns.
+    input_boundary: Live owner instruction, locked package decisions, current KTD sources under the parent workspace.
+    output_contract: CURRENT_KTD_TRUTH with provenance and conflict register.
+    mutation_allowed: false
+    dependencies: [WS-A]
+    max_retry_without_mechanism_delta: 1
+    convergence_signal: Each material fact is sourced or marked UNKNOWN.
+    stop_signal: GM-1 exit conditions are evaluable.
+  - loop_id: WS-F
+    purpose: Map active runtime dependencies on the legacy workbook and constraints.
+    input_boundary: Repository code, configuration, prompts, registries, and tests.
+    output_contract: Runtime dependency map and rewiring surface.
+    mutation_allowed: false
+    dependencies: [WS-A]
+    max_retry_without_mechanism_delta: 1
+    convergence_signal: Every active legacy consumer has a disposition.
+    stop_signal: GM-7 change boundary is known.
+  - loop_id: WS-G
+    purpose: Build and maintain claim-specific acceptance evidence.
+    input_boundary: Package acceptance tests and verified migration artifacts.
+    output_contract: Acceptance matrix, defect register, and retest pointers.
+    mutation_allowed: false
+    dependencies: [WS-A]
+    max_retry_without_mechanism_delta: 1
+    convergence_signal: A requirement moves from NOT_TESTED to an evidence-backed verdict.
+    stop_signal: Every blocking GM-8 row is terminal.

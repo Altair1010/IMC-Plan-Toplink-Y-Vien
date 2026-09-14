@@ -49,6 +49,7 @@ privacy/consent/asset rights, signed Sheet approval/read-back, and the fresh Run
 
 | Agent/runtime | File set | Started (ICT) | Purpose |
 |---|---|---|---|
+| Codex (`/root`) | `migration/**`; `.trellis/scripts/ktd_*`; AMH run `KTD-GM-20260914-201546-f9ea6b6`; read-only inspection elsewhere | 2026-09-14T20:15:46+07:00 | Execute KTD Great Migration GM-0..GM-8; one serialized mutation route; GM-9 remains promotion-gated |
 
 _Checkpoint 2026-08-05T16:39:22+07:00 — P3.0–P3.3 `LIVE_STATE_VERIFIED`. Approval 08 SHA-256 `d92c9fb12ae960aa895c140a90273501df4876840a1103a803f37e0a03a47fca` was signed and consumed. P3.0 verified LIVE-STATE, live-state JSON, plan/overlay, three prior evidence artifacts, contract, guide, repository bindings, approval digest/fields/expiry/signature, and active lease. P3.1 independently rebuilt the 22-source pre-closure plan `8cbb4e12…e338b`, applied the exact P2.7 runtime overlay, and reproduced `f5a373b814c5995592514b0eea670e8c1540ad4ed8bdcb769a6f8d2365f5a585` before credential/network. P3.2 sent exactly three reads (two `spreadsheets.get`, one `values.batchGet`) and zero mutation requests. Exact live result: 21 content tabs/22 sheets, preserved `Trang tính1` sheet ID 0, 27 yellow cells, 42 hidden columns, zero conditional rules, mismatch count 0. Evidence `staging/yv-humanize/p3-verify/live-verify-evidence.json` SHA-256 `1dcf253bc000fe97f8adbd42b63fd56ddd7030b3915cc742eeb7b279e2134150`. Tests 44/44 plus Phase 1 21/21 PASS; py_compile and diff check PASS. No repair or sync was attempted._
 

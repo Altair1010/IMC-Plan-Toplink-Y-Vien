@@ -1,0 +1,61 @@
+{
+  "program": "KTD_GREAT_MIGRATION",
+  "run_id": "KTD-GM-20260914-201546-f9ea6b6",
+  "observed_at": "2026-09-14T20:15:46+07:00",
+  "package": {
+    "version": "1.0",
+    "checksum_entries": 16,
+    "checksum_matches": 16,
+    "status": "PASS"
+  },
+  "repository": {
+    "path": "F:\\Codex\\IMC Plan - Toplink Y Viện",
+    "remote": "https://github.com/Altair1010/IMC-Plan-Toplink-Y-Vien.git",
+    "packaged_branch": "main",
+    "observed_branch_before_isolation": "main",
+    "migration_branch": "program/ktd-great-migration",
+    "packaged_sha_labeled_tree_sha": "f9ea6b61941dd46872acc39d180b8d847ceb1ec7",
+    "observed_local_commit": "f9ea6b61941dd46872acc39d180b8d847ceb1ec7",
+    "observed_remote_main_commit": "f9ea6b61941dd46872acc39d180b8d847ceb1ec7",
+    "actual_git_tree_object": "d0067ecd3803b5fb059df06fd2b76a71babd54ca",
+    "packaged_state_blob": "065467257858f2a9873db59ff4a591a936a6493e",
+    "observed_state_blob": "065467257858f2a9873db59ff4a591a936a6493e",
+    "preexisting_untracked_paths": [
+      "docs Toplink/KTD-GREAT-MIGRATION-PACKAGE-v1.0.zip",
+      "docs Toplink/KTD-GREAT-MIGRATION-PACKAGE-v1.0/",
+      "docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md"
+    ],
+    "preexisting_work_preserved": true
+  },
+  "legacy_workbook": {
+    "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+    "title": "IMC - Y Viện Toplink",
+    "locale": "vi_VN",
+    "time_zone": "Asia/Saigon",
+    "observed_sheet_count": 22,
+    "observed_human_layer_count": 21,
+    "preserved_default_sheet": "Trang tính1",
+    "provided_gid_sheet": "04_DECISIONS",
+    "provided_gid": 1314363516,
+    "last_modified_time": "2026-08-25T05:35:36.284Z",
+    "topology_drift": "NONE_OBSERVED"
+  },
+  "staging_workbook": {
+    "spreadsheet_id": "1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794",
+    "url": "https://docs.google.com/spreadsheets/d/1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794/edit",
+    "title": "KTD Great Migration Staging — KTD-GM-20260914-201546-f9ea6b6",
+    "source_spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+    "identity_is_distinct": true,
+    "copied_sheet_count": 22,
+    "purpose": "Non-canonical migration target and rollback-safe workbook staging area."
+  },
+  "source_drift": [
+    {
+      "classification": "relevant_metadata_discrepancy",
+      "subject": "package source.tree_sha label",
+      "resolution": "Preserve the packaged value as the source commit and separately record the actual Git tree object."
+    }
+  ],
+  "destructive_mutations": 0,
+  "publications": 0
+}

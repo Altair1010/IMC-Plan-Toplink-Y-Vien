@@ -1,0 +1,34 @@
+program: KTD_GREAT_MIGRATION
+program_spec_version: "1.0"
+run_id: KTD-GM-20260914-201546-f9ea6b6
+objective: Complete GM-0 through GM-9 and establish a verified KTD canonical communication operating system.
+done: >-
+  GM-0 through GM-9 have terminal verdicts; every blocking requirement passes with
+  claim-matched evidence; legacy lineage and rollback remain reachable; the verified
+  KTD workbook, control plane, and runtime are singularly canonical; the AMH record is
+  finalized; and no blocking risk remains.
+non_goals:
+  - Public Page publication
+  - Destructive legacy mutation
+  - Force-push or history rewrite
+  - Reintroduction of legacy legal, reviewer, approval, or claim gates
+  - General M2 autonomy or architecture beyond the minimum sufficient graph
+constraints:
+  workspace_root: "F:\\Codex\\IMC Plan - Toplink Y Viện"
+  migration_package_root: "F:\\Codex\\IMC Plan - Toplink Y Viện\\docs Toplink\\KTD-GREAT-MIGRATION-PACKAGE-v1.0"
+  evidence_root: "F:\\tmp\\evidence AMH v0.3"
+  all_migration_work_under_parent_folder: true
+  required_file_language: English
+  required_sheet_language: Vietnamese
+  required_final_report_language: Vietnamese
+  authorize_gm9_cutover: false
+  public_page_publication_authorized: false
+  destructive_legacy_mutation_authorized: false
+  force_push_authorized: false
+current_state: PREFLIGHTED
+active_route: One controller and one serialized mutation route on branch program/ktd-great-migration.
+next_signal: Complete source inventory and identify the highest-authority current KTD facts.
+risk_level: A3
+m0_used: true
+m1_used: false
+human_gate: GM-9 promotion pending after GM-8 PASS.
