@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "status": "CURRENT_CANONICAL",
+  "brand": "KHIẾT TÂM ĐƯỜNG",
+  "brand_short_name": "KTD",
+  "business_phase": "DRY_RUN",
+  "canonical_workbook": {
+    "spreadsheet_id": "1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794",
+    "title": "KHIẾT TÂM ĐƯỜNG — Brand & Growth OS — CURRENT CANONICAL",
+    "url": "https://docs.google.com/spreadsheets/d/1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794/edit",
+    "plan_fingerprint": "627ab66d724c2e5017a3ee613433d65ba11048233c42b523bf288ee71e043c30",
+    "active_sheet_count": 5,
+    "human_sheet_count": 4,
+    "control_plane_count": 1
+  },
+  "legacy_reference": {
+    "status": "HISTORICAL_REFERENCE",
+    "spreadsheet_id": "1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms",
+    "title": "IMC - Y Viện Toplink",
+    "url": "https://docs.google.com/spreadsheets/d/1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms/edit",
+    "observed_sheet_count": 22
+  },
+  "repository": {
+    "remote": "https://github.com/Altair1010/IMC-Plan-Toplink-Y-Vien",
+    "canonical_branch": "main",
+    "verified_runtime_revision": "d95397b",
+    "promotion_payload_revision": "PENDING_FIRST_CUTOVER_COMMIT"
+  },
+  "authority": {
+    "public_page_publication": false,
+    "destructive_legacy_mutation": false,
+    "force_push": false,
+    "irreversible_permission_change": false
+  }
+}

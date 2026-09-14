@@ -1,0 +1,29 @@
+CUTOVER_ID: KTD-GM9-20260914-211653
+TIMESTAMP: 2026-09-14T21:18:12+07:00
+OWNER_AUTHORIZATION_MODE: live_gate
+OWNER_AUTHORIZATION: AUTHORIZE_GM0_TO_GM9_CUTOVER = YES
+VERIFIED_SOURCE_REVISION: 70c6726897fac528d7db1923432555d27c0fa185
+VERIFIED_RUNTIME_REVISION: d95397b
+PROMOTION_PAYLOAD_REVISION: PENDING_FIRST_CUTOVER_COMMIT
+VERIFIED_WORKBOOK_ID: 1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794
+VERIFIED_WORKBOOK_FINGERPRINT: 627ab66d724c2e5017a3ee613433d65ba11048233c42b523bf288ee71e043c30
+ACCEPTANCE_MATRIX_POINTER: migration/verification/acceptance-matrix.md
+BLOCKING_FAIL_COUNT: 0
+ROLLBACK_POINTER: https://docs.google.com/spreadsheets/d/1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms/edit
+LEGACY_REFERENCE_POINTER: migration/baseline/legacy-reference.md
+PROMOTED_CANONICAL_POINTER: https://docs.google.com/spreadsheets/d/1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794/edit
+CUTOVER_ACTIONS:
+  - Rename the exact verified staging workbook to CURRENT CANONICAL.
+  - Add singular canonical pointers to repository root state and README.
+  - Fast-forward local and remote main without history rewrite.
+POST_CUTOVER_READBACK:
+  canonical_brand: PASS
+  workbook_topology: PASS
+  control_plane_resolution: PASS
+  runtime_target_model: PASS
+  legacy_accessibility: PASS
+PUBLICATION_PERFORMED: false
+DESTRUCTIVE_LEGACY_MUTATION_PERFORMED: false
+FORCE_PUSH_PERFORMED: false
+PERMISSION_CHANGE_PERFORMED: false
+FINAL_STATE: CUTOVER_IN_PROGRESS

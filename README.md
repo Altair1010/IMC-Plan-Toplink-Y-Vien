@@ -1,4 +1,17 @@
-# IMC Plan — Toplink Y Viện
+# KTD Brand & Growth OS — CURRENT CANONICAL
+
+KHIẾT TÂM ĐƯỜNG (KTD) is the current canonical communication operating system. Its
+human-first workbook is available at
+`https://docs.google.com/spreadsheets/d/1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794/edit`.
+Canonical identity, runtime, rollback, and evidence pointers are recorded in
+`migration/cutover/canonical-state.json`.
+
+Toplink / Y Viện material remains historical lineage and reference. The legacy content below is
+preserved for provenance and must not be loaded as current KTD truth or active governance.
+
+---
+
+# Legacy repository context — IMC Plan Toplink Y Viện
 
 Operational repository for the Facebook Page IMC track of Nhất Liệu Y Viện Toplink.
 The canonical strategy and milestone contracts live in `docs Toplink/`; all other

@@ -1,4 +1,24 @@
-# STATE.md — loop state tracker (Toplink Y Viện)
+# STATE.md — KTD current canonical state
+
+## Current canonical
+
+- Brand: `KHIẾT TÂM ĐƯỜNG` (`KTD`).
+- Business phase: `DRY_RUN`.
+- Operating model: `HUMAN_FIRST_WITH_SINGLE_CONTROL_PLANE`.
+- Canonical workbook: `1v2bk-MOrYyDybgfAh1sYnOZ8D-Rw0bE9VO2HLG-t794`.
+- Workbook topology: four human tabs plus `_CONTROL_PLANE`.
+- Target plan fingerprint: `627ab66d724c2e5017a3ee613433d65ba11048233c42b523bf288ee71e043c30`.
+- Runtime revision: `d95397b`.
+- Legacy workbook: `1s-Pm5fIxSfh6znWAWy9QUG4ZXLj0fcO4lC6sRAh8hms`, historical/reference only.
+- Public Page publication: not authorized and not performed.
+
+See `migration/cutover/canonical-state.json` and `migration/cutover/cutover-record.yaml` for the
+canonical and rollback contracts. The historical state below is retained as provenance and does
+not override current KTD state.
+
+---
+
+# Legacy state tracker — Toplink Y Viện
 
 > Sprint-level truth only. Read this before `task.md`; it never overrides a canonical source.
 

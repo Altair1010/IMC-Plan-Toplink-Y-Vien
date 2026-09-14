@@ -49,6 +49,7 @@ privacy/consent/asset rights, signed Sheet approval/read-back, and the fresh Run
 
 | Agent/runtime | File set | Started (ICT) | Purpose |
 |---|---|---|---|
+| Codex (`/root`) | GM-9 canonical pointers; KTD staging workbook metadata; `main` fast-forward | 2026-09-14T21:16:53+07:00 | Execute owner-authorized GM-9 with exact readback and rollback preservation |
 
 _Released 2026-09-14T20:44:07+07:00 — KTD Great Migration GM-0..GM-8 verified on
 `program/ktd-great-migration`; GM-9 remains `PROMOTION_PENDING`. No active writer remains._
