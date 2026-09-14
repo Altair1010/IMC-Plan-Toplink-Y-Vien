@@ -2,13 +2,14 @@
   "TASK_ID": "KTD_GREAT_MIGRATION",
   "GOAL": "Complete GM-0 through GM-9 and establish a verified KTD canonical communication operating system.",
   "DONE": "Frozen by migration/program/control-card.yaml and the owner specification Section 3.2.",
-  "CURRENT_PHASE": "GM-1",
+  "CURRENT_PHASE": "GM-2",
   "CURRENT_STATE": {
     "program_state": "RUNNING",
     "package_integrity": "PASS",
     "repository_identity": "PASS",
     "legacy_workbook_identity": "PASS",
     "staging_workbook_isolation": "PASS",
+    "current_truth_bundle": "PASS_WITH_EXPLICIT_UNKNOWNS",
     "cutover_authorized": false
   },
   "ACTIVE_ROUTE": "Complete GM-0 baseline evidence, then extract current KTD truth; serialize every mutation on program/ktd-great-migration.",
@@ -16,7 +17,7 @@
     "The parent workspace may not contain authoritative current KTD facts beyond the live owner instruction and locked package decisions.",
     "The minimum safe workbook cutover may require a versioned copy because GM-9 is not authorized."
   ],
-  "LAST_ACTION": "Completed GM-0 and verified a distinct non-canonical staging workbook copy.",
+  "LAST_ACTION": "Completed GM-1 current-truth extraction with sourced boundaries and eight explicit unknowns.",
   "LAST_EVIDENCE": [
     "migration/baseline/baseline-manifest.json",
     "migration/program/reverse-graph.md",
@@ -24,11 +25,11 @@
   ],
   "BLOCKERS": [],
   "RISK_LEVEL": "A3",
-  "NEXT_ALLOWED_ACTION": "Extract current KTD truth from the live owner instruction, locked package decisions, and any current authoritative sources under the parent workspace.",
+  "NEXT_ALLOWED_ACTION": "Classify all active legacy workbook, repository, and runtime semantic objects in the migration ledger.",
   "CONVERGENCE": "PROGRESSING",
   "PHASE_VERDICTS": {
     "GM-0": "PASS",
-    "GM-1": "NOT_TESTED",
+    "GM-1": "PASS",
     "GM-2": "NOT_TESTED",
     "GM-3": "NOT_TESTED",
     "GM-4": "NOT_TESTED",
@@ -50,6 +51,12 @@
       "phase": "GM-0",
       "state": "VERIFIED",
       "evidence": "migration/phases/GM-0/requirement-matrix.md"
+    },
+    {
+      "timestamp": "2026-09-14T20:25:00+07:00",
+      "phase": "GM-1",
+      "state": "VERIFIED",
+      "evidence": "migration/phases/GM-1/requirement-matrix.md"
     }
   ],
   "EVIDENCE_RUN_ID": "KTD-GM-20260914-201546-f9ea6b6"

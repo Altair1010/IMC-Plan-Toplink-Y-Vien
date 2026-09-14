@@ -1,0 +1,11 @@
+item_id,object,classification,observed_sources,impact,required_resolution,current_status
+KTD-U-001,official_slogan,MISSING_CURRENT_SOURCE,No current authoritative source under parent workspace,Blocks final slogan population,Owner-provided current slogan or authoritative current brand source,UNKNOWN
+KTD-U-002,than_tam_tri_meaning,PARTIAL_CURRENT_SOURCE,Live instruction confirms theme but not exact meaning,Limits brand copy depth,Owner-approved wording or current brand source,UNKNOWN
+KTD-U-003,current_brand_story,MISSING_CURRENT_SOURCE,Legacy narrative only,Blocks factual story population,Current KTD narrative source,UNKNOWN
+KTD-U-004,space_and_experience,MISSING_CURRENT_SOURCE,Only communication category is confirmed,Blocks factual space claims,Current documented facts or media with provenance,UNKNOWN
+KTD-U-005,team_standards,MISSING_CURRENT_SOURCE,Only communication category is confirmed,Blocks factual people and standards claims,Current operating source,UNKNOWN
+KTD-U-006,media_inventory_and_rights,MISSING_CURRENT_SOURCE,No current asset register located,Blocks grounding real content rows in existing assets,Current asset inventory and rights status,UNKNOWN
+KTD-U-007,current_page_and_cta_readiness,MISSING_CURRENT_SOURCE,Inbox and Zalo are conditional allowed classes,Blocks active booking CTA,Current Page URL ID and operational readiness source,UNKNOWN
+KTD-U-008,audience_evidence,MISSING_CURRENT_SOURCE,Legacy personas are hypotheses,Blocks evidence-backed segmentation claims,Observed current questions feedback or research,UNKNOWN
+KTD-C-001,legacy_approval_governance,SOURCE_CONFLICT,Legacy repo and Sheet require approval gates while the live migration instruction archives them,Would resurrect obsolete runtime blockers,Apply live owner instruction and locked migration package; retain legacy as history only,RESOLVED
+KTD-C-002,workbook_topology,SOURCE_CONFLICT,Legacy current workbook has 21 human tabs while locked target has four human tabs plus Control Plane,Would create competing target models,Use isolated target workbook and defer canonical promotion to GM-9,RESOLVED

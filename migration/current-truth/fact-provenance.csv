@@ -1,0 +1,9 @@
+fact_id,object,current_value,status,authority_class,source_pointer,allowed_use,notes
+KTD-F-001,brand_identity,KHIẾT TÂM ĐƯỜNG,CONFIRMED_CURRENT,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:28",active_runtime,
+KTD-F-002,legacy_identity,Y Viện Toplink / Toplink Y Viện,CONFIRMED_CURRENT,locked_package,"docs Toplink/KTD-GREAT-MIGRATION-PACKAGE-v1.0/01_BASELINE_AND_LINEAGE.md:5",lineage_only,Historical facts are not current by continuity.
+KTD-F-003,current_phase,DRY_RUN,CONFIRMED_CURRENT,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:30",active_runtime,
+KTD-F-004,operating_model,HUMAN_FIRST_WITH_SINGLE_CONTROL_PLANE,CONFIRMED_CURRENT,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:31",active_runtime,
+KTD-F-005,philosophy_theme,Thân – Tâm – Trí,CONFIRMED_CURRENT_BOUNDARY,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:2021",architecture_only,Exact owner-approved meaning remains unknown.
+KTD-F-006,content_engine,REAL EVENT → CONTENT OPPORTUNITY → STORY ANGLE → FORMAT → CTA → RESPONSE → LEARNING,CONFIRMED_CURRENT,locked_package,"docs Toplink/KTD-GREAT-MIGRATION-PACKAGE-v1.0/02_LOCKED_DECISIONS.md:70",active_runtime,
+KTD-F-007,publication_authority,NO_PUBLICATION,CONFIRMED_CURRENT,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:2801",control_only,
+KTD-F-008,cutover_authority,PROMOTION_PENDING,CONFIRMED_CURRENT,live_owner_instruction,"docs Toplink/KTD_GREAT_MIGRATION_PROGRAM_ORCHESTRATOR_MASTER_SPEC_v1.0.md:2800",control_only,
